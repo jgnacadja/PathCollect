@@ -12,7 +12,7 @@
     <color name="colorOnError">#ffffff</color>
 
     <color name="colorSurface">#FFFFFF</color>
-    <color name="colorOnSurface">#100F10</color>
+    <color name="colorOnSurface">#000000</color>
 
     <bool name="lightStatusBar">true</bool>
 

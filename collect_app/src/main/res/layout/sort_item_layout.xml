@@ -38,8 +38,6 @@ the License.
         android:layout_gravity="center"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:background="#753081"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-        android:textColor="#FFFFFF"
         tools:text="Sort by Name" />
 </LinearLayout>

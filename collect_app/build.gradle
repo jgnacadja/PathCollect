@@ -237,7 +237,6 @@ configurations.all {
 }
 
 dependencies {
-    implementation 'com.google.ar.sceneform:filament-android:1.17.1'
     repositories {
         mavenLocal() // Only used for javarosa_local dependency
     }
