@@ -16,4 +16,6 @@
     <color name="color13">#F2972C</color>
     <color name="color14">#795548</color>
     <color name="color15">#9E9E9E</color>
+    <color name="colorPrimary">#753081</color>
+    <color name="colorWhite">#FFFFFF</color>
 </resources>
