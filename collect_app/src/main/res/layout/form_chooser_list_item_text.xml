@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
-        android:textColor="#753081"
+        android:textColor="@color/color3"
         tools:text="All widgets" />
 
     <TextView
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_extra_small"
-        android:background="#200A3945"
+        android:background="@color/color15"
         android:textAppearance="@style/TextAppearance.Collect.Body2.MediumEmphasis"
         tools:text="Version: 2019051301" />
 
