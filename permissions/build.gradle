@@ -39,7 +39,6 @@ android {
             includeAndroidResources = true
         }
     }
-    namespace 'org.odk.collect.permissions'
 }
 
 dependencies {

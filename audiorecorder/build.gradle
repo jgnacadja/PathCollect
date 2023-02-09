@@ -36,7 +36,6 @@ android {
     testOptions {
         unitTests.includeAndroidResources = true
     }
-    namespace 'org.odk.collect.audiorecorder'
 }
 
 dependencies {

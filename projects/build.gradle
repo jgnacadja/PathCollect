@@ -45,7 +45,6 @@ android {
             includeAndroidResources = true
         }
     }
-    namespace 'org.odk.collect.projects'
 
 }
 
