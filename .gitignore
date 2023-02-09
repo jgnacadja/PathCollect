@@ -5,7 +5,7 @@ local.properties
 *.iml
 .DS_Store
 *.sublime-project
-
+**.build.gradle**
 # emacs backup files
 *.*~
 
@@ -53,3 +53,77 @@ collect_app/src/odkCollectRelease/
 # Robolectric dependencies
 robolectric-deps/
 **/robolectric-deps.properties
+
+## Other
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Log/OS Files
+*.log
+
+# Android Studio generated files and folders
+captures/
+.externalNativeBuild/
+.cxx/
+
+output.json
+
+# IntelliJ
+.idea/
+misc.xml
+deploymentTargetDropDown.xml
+render.experimental.xml
+
+# Keystore files
+*.jks
+*.keystore
+
+# Google Services (e.g. APIs or Firebase)
+google-services.json
+
+# Android Profiling
+*.hprof
+/analytics/
+/androidshared/
+/androidtest/
+/async/
+/audioclips/
+/audiorecorder/
+/buildSrc/
+/build/
+/errors/
+/externalapp/
+/forms/
+/formstest/
+/fragmentstest/
+/geo/
+/imageloader/
+/location/
+/maps/
+/material/
+/nbistubs/
+/osmdroid/
+/permissions/
+/projects/
+/projects/src/test/
+/servicetest/
+/settings/
+/shared/
+/strings/
+/testshared/
+/upgrade/
+/config/
+/docs/
+/fastlane/
+/gradle/
+/mapbox/
+/projects/build/
+/projects/src/
+/projects/src/main/
+/projects/.gitignore
+/projects/build.gradle
+/projects/consumer-rules.pro
