@@ -29,6 +29,7 @@
                 android:layout_marginTop="@dimen/margin_extra_small"
                 android:layout_marginRight="@dimen/margin_standard"
                 android:orientation="vertical"
+                android:textColor="@color/colorPrimary"
                 tools:text="This is a question?" />
 
         </FrameLayout>
@@ -82,7 +83,8 @@
             android:layout_width="@dimen/touch_target_size"
             android:layout_height="@dimen/touch_target_size"
             android:visibility="gone"
-            app:iconTint="?colorOnSurface"
+            android:fillColor="@color/colorPrimary"
+            app:iconTint="@color/colorPrimary"
             tools:visibility="visible" />
 
         <com.google.android.material.button.MaterialButton
@@ -92,7 +94,7 @@
             android:layout_height="@dimen/touch_target_size"
             android:visibility="gone"
             app:icon="@drawable/ic_ondemand_video_black_24dp"
-            app:iconTint="?colorOnSurface"
+            app:iconTint="@color/colorPrimary"
             tools:visibility="visible" />
     </LinearLayout>
 </RelativeLayout>
