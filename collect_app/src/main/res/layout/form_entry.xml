@@ -68,7 +68,6 @@ the License.
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
         android:background="@color/colorOnPrimary"
-        android:elevation="4dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:layout_marginBottom="20dp">
@@ -89,6 +88,7 @@ the License.
             android:textColor="@color/colorOnPrimary"
             android:textStyle="bold"
             android:visibility="gone"
+            android:layout_marginStart="20dp"
             tools:visibility="visible" />
 
         <View
@@ -112,6 +112,7 @@ the License.
             android:textColor="@color/colorOnPrimary"
             android:textStyle="bold"
             android:visibility="gone"
+            android:layout_marginEnd="20dp"
             tools:visibility="visible" />
     </LinearLayout>
 </RelativeLayout>
