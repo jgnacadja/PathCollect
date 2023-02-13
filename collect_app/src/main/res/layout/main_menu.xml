@@ -24,7 +24,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_margin="@dimen/margin_standard">
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/map_box_initialization_fragment"
@@ -39,7 +40,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/subtitle"
-                android:layout_marginStart="@dimen/margin_standard"
                 android:textAppearance="?textAppearanceBody1"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/margin_extra_large"
@@ -61,7 +61,7 @@
                         android:id="@+id/enter_data"
                         style="@style/Widget.Collect.Button.FullWidth"
                         android:layout_width="match_parent"
-                        android:layout_height="153dp"
+                        android:layout_height="161dp"
                         android:layout_marginTop="@dimen/margin_extra_small"
                         android:backgroundTint="@color/surfaceButtonColor"
                         android:orientation="vertical"
@@ -69,7 +69,7 @@
                         app:cornerRadius="@dimen/text_size_small"
                         app:icon="@drawable/ic_form"
                         app:iconGravity="top"
-                        app:iconSize="45dp"
+                        app:iconSize="33dp"
                         app:iconTint="@color/colorPrimary"
                         android:text="@string/enter_data_button"
                         tools:text="@string/enter_data_button" />
@@ -125,7 +125,7 @@
                         app:cornerRadius="@dimen/text_size_small"
                         app:icon="@drawable/ic_send"
                         app:iconGravity="top"
-                        app:iconSize="45dp"
+                        app:iconSize="30dp"
                         app:iconTint="@color/colorPrimary"
                         android:text="@string/send_data"
                         tools:text="@string/send_data" />
@@ -150,7 +150,7 @@
                         app:cornerRadius="@dimen/text_size_small"
                         app:icon="@drawable/ic_save"
                         app:iconGravity="top"
-                        app:iconSize="45dp"
+                        app:iconSize="30dp"
                         app:iconTint="@color/colorPrimary"
                         android:text="@string/view_sent_forms"
                         tools:text="@string/view_sent_forms"/>
@@ -180,7 +180,7 @@
                     app:cornerRadius="@dimen/text_size_small"
                     app:icon="@drawable/ic_align_left"
                     app:iconGravity="top"
-                    app:iconSize="45dp"
+                    app:iconSize="30dp"
                     app:iconTint="@color/colorPrimary"
                     android:text="@string/get_forms"
                     tools:text="@string/get_forms" />
@@ -205,7 +205,7 @@
                     app:cornerRadius="@dimen/text_size_small"
                     app:icon="@drawable/ic_delete"
                     app:iconGravity="top"
-                    app:iconSize="45dp"
+                    app:iconSize="30dp"
                     app:iconTint="@color/colorPrimary"
                     android:text="@string/manage_files"
                     tools:text="@string/manage_files" />
