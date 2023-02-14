@@ -23,9 +23,9 @@
     <!-- Text for an action button on the main screen. A form count is provided in parentheses. -->
     <string name="send_data_button">Send Finalized Form (%s)</string>
     <!-- Text for an action button on the main screen. -->
-    <string name="view_sent_forms">View Sent Form</string>
+    <string name="view_sent_forms">Sent Form History</string>
     <!-- Text for an action button on the main screen. A form count is provided in parentheses. -->
-    <string name="view_sent_forms_button">View Sent Form (%s)</string>
+    <string name="view_sent_forms_button">Sent Form History (%s)</string>
     <!-- Text for an action button on the main screen. -->
     <string name="get_forms">Get Blank Form</string>
     <!-- Text for an action button on the main screen. -->
