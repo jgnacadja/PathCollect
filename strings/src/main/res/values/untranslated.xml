@@ -36,6 +36,7 @@ the specific language governing permissions and limitations under the License. -
     <string name="hash" translatable="false">#</string>
     <string name="hex" translatable="false">Hex</string>
     <string name="subtitle" translatable="false">SONDAGE</string>
+    <string name="form_selected" translatable="false">%s Formualaire(s) sélectionné(s)</string>
 
     <string name="empty_accuracy" translatable="false">--</string>
 </resources>
