@@ -13,9 +13,9 @@
   <!--Text for an action button on the main screen. A form count is provided in parentheses.-->
   <string name="send_data_button">Envoyer un formulaire finalisé (%s)</string>
   <!--Text for an action button on the main screen.-->
-  <string name="view_sent_forms">Voir formulaire envoyé</string>
+  <string name="view_sent_forms">Historique formulaire envoyé</string>
   <!--Text for an action button on the main screen. A form count is provided in parentheses.-->
-  <string name="view_sent_forms_button">Voir formulaire envoyé (%s)</string>
+  <string name="view_sent_forms_button">Historique formulaire envoyé (%s)</string>
   <!--Text for an action button on the main screen.-->
   <string name="get_forms">Télécharger un formulaire vierge</string>
   <!--Text for an action button on the main screen.-->
