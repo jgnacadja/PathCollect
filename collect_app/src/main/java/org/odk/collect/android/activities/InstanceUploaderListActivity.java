@@ -27,6 +27,7 @@ import android.view.View.OnLongClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -95,6 +96,7 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
 
     @Inject
     InstanceSubmitScheduler instanceSubmitScheduler;
+    private TextView countSelectedItem;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -143,6 +145,8 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
     void init() {
         binding.uploadButton.setText(R.string.send_selected_data);
 
+        countSelectedItem = findViewById(R.id.count_form_finalize);
+
         binding.toggleButton.setLongClickable(true);
         binding.toggleButton.setOnClickListener(v -> {
             ListView lv = listView;
@@ -177,6 +181,7 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
         // Start observer that sets autoSendOngoing field based on AutoSendWorker status
         updateAutoSendStatus();
     }
+
 
     /**
      * Updates whether an auto-send job is ongoing.
@@ -266,6 +271,9 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
 
         binding.uploadButton.setEnabled(areCheckedItems());
         Button toggleSelectionsButton = findViewById(R.id.toggle_button);
+
+        countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
+
         toggleButtonLabel(toggleSelectionsButton, listView);
     }
 
