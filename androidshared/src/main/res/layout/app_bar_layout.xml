@@ -17,7 +17,7 @@
         app:titleTextColor="@color/colorWhite"
         android:layout_gravity="center"
         android:textAlignment="center"
-        app:navigationIcon="@drawable/notes"
+        app:navigationIcon="@drawable/notes_white"
         app:subtitleTextColor="@color/colorWhite"
         tools:title="Title" />
 

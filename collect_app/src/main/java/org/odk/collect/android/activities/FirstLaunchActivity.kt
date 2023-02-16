@@ -37,9 +37,9 @@ class FirstLaunchActivity : CollectAbstractActivity() {
 
     private fun addDsscProject() {
         val settingsJson = appConfigurationGenerator.getAppConfigurationAsJsonWithServerDetails(
-                getString(R.string.dssc_kc_server_url),
-                getString(R.string.dssc_username),
-                getString(R.string.dssc_password)
+                "http://kc.kobo.dev.rintio.com",
+                "molympio",
+                "m@l@n@@2020$"
         )
         projectCreator.createNewProject(settingsJson)
     }
