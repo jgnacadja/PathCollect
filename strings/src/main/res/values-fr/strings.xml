@@ -821,7 +821,8 @@
   <!--##############################################
      # ABOUT
      ##############################################-->
-  <string name="about_preferences">À propos</string>
+  <string name="periodical_app">Suivi de Cycles Menstruelles</string>
+  <string name="about_preferences">À PROPOS</string>
   <string name="tell_your_friends">Partager KoboCollect</string>
   <string name="tell_your_friends_msg">Vos collègues continuent-ils à collecter des données sur papier ? Partagez KoboCollect avec eux.</string>
   <string name="leave_a_review">Laissez un avis sur Play Store</string>

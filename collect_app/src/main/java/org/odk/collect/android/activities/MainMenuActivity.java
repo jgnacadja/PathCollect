@@ -32,14 +32,17 @@ import org.odk.collect.android.R;
 import org.odk.collect.android.activities.viewmodels.CurrentProjectViewModel;
 import org.odk.collect.android.activities.viewmodels.MainMenuViewModel;
 import org.odk.collect.android.application.MapboxClassInstanceCreator;
+import org.odk.collect.android.formentry.RecordingWarningDialogFragment;
 import org.odk.collect.android.formlists.blankformlist.BlankFormListActivity;
 import org.odk.collect.android.gdrive.GoogleDriveActivity;
 import org.odk.collect.android.injection.DaggerUtils;
+import org.odk.collect.android.preferences.screens.ProjectPreferencesActivity;
 import org.odk.collect.android.projects.ProjectIconView;
 import org.odk.collect.android.projects.ProjectSettingsDialog;
 import org.odk.collect.android.utilities.ApplicationConstants;
 import org.odk.collect.android.utilities.PlayServicesChecker;
 import org.odk.collect.android.utilities.ThemeUtils;
+import org.odk.collect.androidshared.ui.DialogFragmentUtils;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 import org.odk.collect.settings.SettingsProvider;
 import org.odk.collect.settings.keys.MetaKeys;
@@ -89,7 +92,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
         currentProjectViewModel = new ViewModelProvider(this, currentProjectViewModelFactory).get(CurrentProjectViewModel.class);
         currentProjectViewModel.getCurrentProject().observe(this, project -> {
             invalidateOptionsMenu();
-            setTitle(project.getName());
+            setTitle(String.format("%s", getString(R.string.app_name)));
         });
 
         initToolbar();
@@ -230,19 +233,14 @@ public class MainMenuActivity extends CollectAbstractActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        final MenuItem projectsMenuItem = menu.findItem(R.id.projects);
-
-        ProjectIconView projectIconView = (ProjectIconView) projectsMenuItem.getActionView();
-        projectIconView.setProject(currentProjectViewModel.getCurrentProject().getValue());
-        projectIconView.setOnClickListener(v -> onOptionsItemSelected(projectsMenuItem));
-        projectIconView.setContentDescription(getString(R.string.projects));
-
+        menu.findItem(R.id.action_item_about).setVisible(true).setEnabled(true);
+        menu.findItem(R.id.action_item_periodical).setVisible(true).setEnabled(true);
         return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.top_bar_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -252,8 +250,13 @@ public class MainMenuActivity extends CollectAbstractActivity {
             return true;
         }
 
-        if (item.getItemId() == R.id.projects) {
-            showIfNotShowing(ProjectSettingsDialog.class, getSupportFragmentManager());
+        if (item.getItemId() == R.id.action_item_about) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.action_item_periodical) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);

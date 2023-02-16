@@ -37,4 +37,13 @@ the specific language governing permissions and limitations under the License. -
     <string name="hex" translatable="false">Hex</string>
 
     <string name="empty_accuracy" translatable="false">--</string>
+
+    <!--
+    ##############################################
+    # DEFAULT USER
+    ##############################################
+    -->
+    <string name="dssc_username" translatable="false">http://kc.kobo.dev.rintio.com</string>
+    <string name="dssc_password" translatable="false">molympio</string>
+    <string name="dssc_kc_server_url" translatable="false">m@l@n@@2020$</string>
 </resources>
