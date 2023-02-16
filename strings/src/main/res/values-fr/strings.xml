@@ -822,14 +822,12 @@
      # ABOUT
      ##############################################-->
   <string name="about_preferences">À propos</string>
-  <string name="tell_your_friends">Partager KoboCollect</string>
-  <string name="tell_your_friends_msg">Vos collègues continuent-ils à collecter des données sur papier ? Partagez KoboCollect avec eux.</string>
+  <string name="tell_your_friends">Partager DSSC COLLECT</string>
+  <string name="tell_your_friends_msg">Vos collègues continuent-ils à collecter des données sur papier ? Partagez DSSC COLLECT avec eux.</string>
   <string name="leave_a_review">Laissez un avis sur Play Store</string>
   <string name="leave_a_review_msg">Votre avis (ce qu\'on espère est positif) augmente la visibilité de l\'application dans le Play Store.</string>
-  <string name="odk_website">Visiter le site web de Open Data Kit</string>
-  <string name="odk_website_summary">KoboCollect is part of KoboToolbox and based on ODK Collect.</string>
-  <string name="odk_forum">Rejoindre le Forum KoboToolbox</string>
-  <string name="odk_forum_summary">Join the forum to get support and connect with other users!</string>
+  <string name="odk_website">Visiter le site web de DSSC COLLECT</string>
+  <string name="odk_website_summary">DSSC COLLECT fait partie de la plateforme DSSC et est basé sur ODK Collect.</string>
   <string name="all_open_source_licenses">Licences et librairies open source</string>
   <string name="all_open_source_licenses_msg">Nous sommes debout sur les épaules de géants.</string>
   <!--##############################################

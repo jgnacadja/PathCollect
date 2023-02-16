@@ -47,6 +47,7 @@ limitations under the License.
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_extra_small"
+            android:textColor="@color/color15"
             tools:text="@string/odk_website_summary" />
 
     </LinearLayout>
