@@ -15,6 +15,10 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
         app:titleTextColor="@color/colorWhite"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        app:navigationIcon="@drawable/notes"
+        app:subtitleTextColor="@color/colorWhite"
         tools:title="Title" />
 
 </com.google.android.material.appbar.AppBarLayout>
