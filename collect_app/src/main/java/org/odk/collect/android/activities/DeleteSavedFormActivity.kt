@@ -13,8 +13,13 @@
  */
 package org.odk.collect.android.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
+import androidx.test.core.app.ApplicationProvider
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import org.odk.collect.android.R
@@ -38,8 +43,20 @@ class DeleteSavedFormActivity : CollectAbstractActivity() {
         DaggerUtils.getComponent(this).inject(this)
         binding = TabsLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupAppBarLayout(this, getString(R.string.manage_files))
+
+        initToolbar()
         setUpViewPager()
+    }
+
+    private fun initToolbar() {
+        val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
+        toolbar.title = getString(R.string.manage_files)
+        this.setSupportActionBar(toolbar)
+        toolbar.setNavigationOnClickListener {
+            // This code will be executed when the navigation icon is clicked
+            val intent = Intent(getApplicationContext(), MainMenuActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setUpViewPager() {

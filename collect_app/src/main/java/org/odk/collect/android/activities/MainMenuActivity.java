@@ -16,7 +16,9 @@ package org.odk.collect.android.activities;
 
 import static org.odk.collect.androidshared.ui.DialogFragmentUtils.showIfNotShowing;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -92,7 +94,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
         currentProjectViewModel = new ViewModelProvider(this, currentProjectViewModelFactory).get(CurrentProjectViewModel.class);
         currentProjectViewModel.getCurrentProject().observe(this, project -> {
             invalidateOptionsMenu();
-            setTitle(String.format("%s", getString(R.string.app_name)));
+            setTitle(String.format("%s", getString(R.string.collect_app_name)));
         });
 
         initToolbar();
@@ -255,9 +257,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
             startActivity(intent);
             return true;
         } else if (item.getItemId() == R.id.action_item_periodical) {
-            Intent intent = new Intent(this, AboutActivity.class);
-            startActivity(intent);
-            return true;
+            return openPeriodical();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -265,6 +265,14 @@ public class MainMenuActivity extends CollectAbstractActivity {
     private void initToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // This code will be executed when the navigation icon is clicked
+                Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initMapbox() {
@@ -275,4 +283,22 @@ public class MainMenuActivity extends CollectAbstractActivity {
                     .commit();
         }
     }
+
+    private boolean openPeriodical() {
+        String packageName = getString(R.string.periodical_package_name);
+        PackageManager manager = getApplicationContext().getPackageManager();
+        try {
+            Intent i = manager.getLaunchIntentForPackage(packageName);
+            if (i == null) {
+                return false;
+                //throw new ActivityNotFoundException();
+            }
+            i.addCategory(Intent.CATEGORY_LAUNCHER);
+            startActivity(i);
+            return true;
+        } catch (ActivityNotFoundException e) {
+            return false;
+        }
+    }
+
 }

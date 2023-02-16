@@ -19,6 +19,7 @@ package org.odk.collect.android.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -81,6 +82,14 @@ public class AboutActivity extends CollectAbstractActivity implements
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle(getString(R.string.about_preferences));
         setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // This code will be executed when the navigation icon is clicked
+                Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

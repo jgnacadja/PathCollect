@@ -42,6 +42,7 @@ import com.google.api.services.drive.Drive;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.activities.FormListActivity;
+import org.odk.collect.android.activities.MainMenuActivity;
 import org.odk.collect.android.adapters.FileArrayAdapter;
 import org.odk.collect.android.exception.MultipleFoldersFoundException;
 import org.odk.collect.android.gdrive.sheets.DriveHelper;
@@ -128,6 +129,14 @@ public class GoogleDriveActivity extends FormListActivity implements View.OnClic
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle(getString(R.string.google_drive));
         setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // This code will be executed when the navigation icon is clicked
+                Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
