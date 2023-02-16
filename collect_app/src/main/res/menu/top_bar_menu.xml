@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_item_periodical"
+        android:title="@string/periodical_app"
+        android:icon="@drawable/periodical"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_item_about"
+        android:title="@string/about_preferences"
+        android:icon="@drawable/ic_outline_info_24_white"
+        app:showAsAction="always" />
+</menu>

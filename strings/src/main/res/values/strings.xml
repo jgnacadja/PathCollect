@@ -995,6 +995,7 @@
      # ABOUT
      ##############################################
      -->
+    <string name="periodical_app">Menstrual Cycle Tracker</string>
     <string name="about_preferences">About</string>
     <string name="tell_your_friends">Share DSSC COLLECT</string>
     <string name="tell_your_friends_msg">Are your colleagues still collecting data on paper? Share DSSC COLLECT with them.</string>
