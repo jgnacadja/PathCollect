@@ -752,6 +752,14 @@ public class FormEntryActivity extends CollectAbstractActivity implements Animat
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle(getString(R.string.loading_form));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // This code will be executed when the navigation icon is clicked
+                Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**

@@ -14,6 +14,7 @@
 
 package org.odk.collect.android.activities;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
@@ -41,6 +42,14 @@ public class WebViewActivity extends CollectAbstractActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // This code will be executed when the navigation icon is clicked
+                Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
+                startActivity(intent);
+            }
+        });
 
         String url = getIntent().getStringExtra(ExternalWebPageHelper.OPEN_URL);
         webView = (WebView) findViewById(R.id.webView);
