@@ -996,14 +996,17 @@
      ##############################################
      -->
     <string name="about_preferences">About</string>
-    <string name="tell_your_friends">Share KoboCollect</string>
-    <string name="tell_your_friends_msg">Are your colleagues still collecting data on paper? Share KoboCollect with them.</string>
+    <string name="tell_your_friends">Share DSSC COLLECT</string>
+    <string name="tell_your_friends_msg">Are your colleagues still collecting data on paper? Share DSSC COLLECT with them.</string>
     <string name="leave_a_review">Leave a Play Store review</string>
     <string name="leave_a_review_msg">Your (hopefully positive) review increases the visibility of the App in the Play Store.</string>
-    <string name="odk_website">Visit the KoboToolbox website</string>
-    <string name="odk_website_summary">KoboCollect is part of KoboToolbox and based on ODK Collect.</string>
-    <string name="odk_forum">Join the KoboToolbox forum</string>
-    <string name="odk_forum_summary">Join the forum to get support and connect with other users!</string>
+    <string name="odk_website">Visit the DSSC COLLECT website</string>
+    <string name="odk_website_summary">DSSC COLLECT is part of DSSC platform and based on ODK Collect.</string>
+    <string name="FAQ">FAQ</string>
+    <string name="FAQ_msg">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
     <string name="all_open_source_licenses">Open source libraries/licenses</string>
     <string name="all_open_source_licenses_msg">We stand on the shoulders of giants!</string>
 

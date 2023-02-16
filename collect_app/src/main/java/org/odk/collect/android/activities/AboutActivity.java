@@ -58,10 +58,9 @@ public class AboutActivity extends CollectAbstractActivity implements
 
         int[][] items = {
                 {R.drawable.ic_outline_website_24, R.string.odk_website, R.string.odk_website_summary},
-                {R.drawable.ic_outline_forum_24, R.string.odk_forum, R.string.odk_forum_summary},
                 {R.drawable.ic_outline_share_24, R.string.tell_your_friends, R.string.tell_your_friends_msg},
-                {R.drawable.ic_outline_rate_review_24, R.string.leave_a_review, R.string.leave_a_review_msg},
-                {R.drawable.ic_outline_stars_24, R.string.all_open_source_licenses, R.string.all_open_source_licenses_msg}
+                {R.drawable.ic_outline_stars_24, R.string.all_open_source_licenses, R.string.all_open_source_licenses_msg},
+                {R.drawable.vector, R.string.FAQ, R.string.FAQ_msg},
         };
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
