@@ -55,7 +55,7 @@ public class AboutActivity extends CollectAbstractActivity implements
         setContentView(R.layout.about_layout);
         DaggerUtils.getComponent(this).inject(this);
 
-        initToolbar();
+        initToolbar(getString(R.string.about_preferences), false, null);
 
         int[][] items = {
                 {R.drawable.ic_outline_website_24, R.string.odk_website, R.string.odk_website_summary},
@@ -79,20 +79,6 @@ public class AboutActivity extends CollectAbstractActivity implements
 
         websiteUri = Uri.parse(getString(R.string.app_url));
         forumUri = Uri.parse(getString(R.string.forum_url));
-    }
-
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.about_preferences));
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // This code will be executed when the navigation icon is clicked
-                Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override

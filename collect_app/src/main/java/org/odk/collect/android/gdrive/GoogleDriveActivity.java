@@ -125,20 +125,6 @@ public class GoogleDriveActivity extends FormListActivity implements View.OnClic
     @Inject
     FormsRepositoryProvider formsRepositoryProvider;
 
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.google_drive));
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // This code will be executed when the navigation icon is clicked
-                Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
@@ -148,7 +134,7 @@ public class GoogleDriveActivity extends FormListActivity implements View.OnClic
         DaggerUtils.getComponent(this).inject(this);
 
         setProgressBarVisibility(true);
-        initToolbar();
+        initToolbar(getString(R.string.google_drive), false, null);
 
         parentId = null;
         alertShowing = false;

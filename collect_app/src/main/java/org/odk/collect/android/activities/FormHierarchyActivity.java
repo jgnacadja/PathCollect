@@ -135,16 +135,7 @@ public class FormHierarchyActivity extends CollectAbstractActivity implements De
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         TextView emptyView = findViewById(android.R.id.empty);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // This code will be executed when the navigation icon is clicked
-                Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
-                startActivity(intent);
-            }
-        });
+        initToolbar(null, false, null);
 
         FormController formController = Collect.getInstance().getFormController();
         // https://github.com/getodk/collect/issues/998

@@ -44,19 +44,8 @@ class DeleteSavedFormActivity : CollectAbstractActivity() {
         binding = TabsLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initToolbar()
+        initToolbar(getString(R.string.manage_files), false, null)
         setUpViewPager()
-    }
-
-    private fun initToolbar() {
-        val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
-        toolbar.title = getString(R.string.manage_files)
-        this.setSupportActionBar(toolbar)
-        toolbar.setNavigationOnClickListener {
-            // This code will be executed when the navigation icon is clicked
-            val intent = Intent(getApplicationContext(), MainMenuActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun setUpViewPager() {
