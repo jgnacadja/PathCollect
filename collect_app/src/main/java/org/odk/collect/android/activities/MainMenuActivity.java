@@ -27,24 +27,18 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.activities.viewmodels.CurrentProjectViewModel;
 import org.odk.collect.android.activities.viewmodels.MainMenuViewModel;
 import org.odk.collect.android.application.MapboxClassInstanceCreator;
-import org.odk.collect.android.formentry.RecordingWarningDialogFragment;
 import org.odk.collect.android.formlists.blankformlist.BlankFormListActivity;
 import org.odk.collect.android.gdrive.GoogleDriveActivity;
 import org.odk.collect.android.injection.DaggerUtils;
-import org.odk.collect.android.preferences.screens.ProjectPreferencesActivity;
-import org.odk.collect.android.projects.ProjectIconView;
-import org.odk.collect.android.projects.ProjectSettingsDialog;
 import org.odk.collect.android.utilities.ApplicationConstants;
 import org.odk.collect.android.utilities.PlayServicesChecker;
 import org.odk.collect.android.utilities.ThemeUtils;
-import org.odk.collect.androidshared.ui.DialogFragmentUtils;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 import org.odk.collect.settings.SettingsProvider;
 import org.odk.collect.settings.keys.MetaKeys;
@@ -97,7 +91,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
             setTitle(String.format("%s", getString(R.string.collect_app_name)));
         });
 
-        initToolbar();
+        initToolbar(null, false, null);
         initMapbox();
 
         Button enterDataButtonNew = findViewById(R.id.enter_data);
@@ -242,7 +236,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.top_bar_menu, menu);
+        getMenuInflater().inflate(R.menu.home_top_bar_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -260,19 +254,6 @@ public class MainMenuActivity extends CollectAbstractActivity {
             return openPeriodical();
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // This code will be executed when the navigation icon is clicked
-                Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void initMapbox() {

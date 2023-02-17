@@ -43,8 +43,8 @@ the specific language governing permissions and limitations under the License. -
     # APP CONFIG
     ##############################################
     -->
-    <string name="dssc_username" translatable="false">http://kc.kobo.dev.rintio.com</string>
-    <string name="dssc_password" translatable="false">molympio</string>
-    <string name="dssc_kc_server_url" translatable="false">m@l@n@@2020$</string>
+    <string name="dssc_kc_server_url" translatable="false">http://kc.kobo.dev.rintio.com</string>
+    <string name="dssc_username" translatable="false">molympio</string>
+    <string name="dssc_password" translatable="false">m@l@n@@2020$</string>
     <string name="periodical_package_name" translatable="false">de.arnowelzel.android.periodical</string>
 </resources>

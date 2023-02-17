@@ -37,9 +37,18 @@ class FirstLaunchActivity : CollectAbstractActivity() {
 
     private fun addDsscProject() {
         val settingsJson = appConfigurationGenerator.getAppConfigurationAsJsonWithServerDetails(
-                "http://kc.kobo.dev.rintio.com",
-                "molympio",
-                "m@l@n@@2020$"
+                getString(R.string.dssc_kc_server_url),
+                getString(R.string.dssc_username),
+                getString(R.string.dssc_password)
+        )
+        projectCreator.createNewProject(settingsJson)
+    }
+
+    private fun otherConfigOptions() {
+        val settingsJson = appConfigurationGenerator.getAppConfigurationAsJsonWithServerDetails(
+                getString(R.string.dssc_kc_server_url),
+                getString(R.string.dssc_username),
+                getString(R.string.dssc_password)
         )
         projectCreator.createNewProject(settingsJson)
     }
@@ -57,14 +66,40 @@ class FirstLaunchActivity : CollectAbstractActivity() {
 
         FirstLaunchLayoutBinding.inflate(layoutInflater).apply {
             setContentView(this.root)
-
-            appName.text = String.format(
-                "%s %s",
-                getString(R.string.collect_app_name),
-                versionInformation.versionToDisplay
-            )
             addDsscProject()
-            ActivityUtils.startActivityAndCloseAllOthers(this@FirstLaunchActivity, MainMenuActivity::class.java)
+            if (projectsRepository.getAll().isNotEmpty()) {
+                ActivityUtils.startActivityAndCloseAllOthers(this@FirstLaunchActivity, MainMenuActivity::class.java)
+                return
+            } else {
+                appName.text = String.format(
+                        "%s %s",
+                        getString(R.string.collect_app_name),
+                        versionInformation.versionToDisplay
+                )
+
+                configureViaQrButton.setOnClickListener {
+                    DialogFragmentUtils.showIfNotShowing(
+                            QrCodeProjectCreatorDialog::class.java,
+                            supportFragmentManager
+                    )
+                }
+
+                configureManuallyButton.setOnClickListener {
+                    DialogFragmentUtils.showIfNotShowing(
+                            ManualProjectCreatorDialog::class.java,
+                            supportFragmentManager
+                    )
+                }
+
+                configureLater.addOnClickListener {
+                    Analytics.log(AnalyticsEvents.TRY_DEMO)
+
+                    projectsRepository.save(Project.DEMO_PROJECT)
+                    currentProjectProvider.setCurrentProject(Project.DEMO_PROJECT_ID)
+
+                    ActivityUtils.startActivityAndCloseAllOthers(this@FirstLaunchActivity, MainMenuActivity::class.java)
+                }
+            }
         }
     }
 }

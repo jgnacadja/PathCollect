@@ -16,10 +16,14 @@
 
 package org.odk.collect.android.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 
+import org.odk.collect.android.R;
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.permissions.PermissionsProvider;
 import org.odk.collect.settings.SettingsProvider;
@@ -57,5 +61,27 @@ public abstract class CollectAbstractActivity extends LocalizedActivity {
 
     public boolean isInstanceStateSaved() {
         return isInstanceStateSaved;
+    }
+
+    protected void initToolbar(String title, boolean isDisplayEnable, Integer homeIndicator) {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if(title != null){
+            setTitle(title);
+        }
+        if(isDisplayEnable){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+        if(homeIndicator != null){
+            getSupportActionBar().setHomeAsUpIndicator(homeIndicator);
+        }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // This code will be executed when the navigation icon is clicked
+                Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
