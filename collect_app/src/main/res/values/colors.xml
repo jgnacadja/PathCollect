@@ -13,6 +13,7 @@
 
     <color name="colorSurface">#FFFFFF</color>
     <color name="colorOnSurface">#000000</color>
+    <color name="colorSlider">#804C88</color>
 
     <bool name="lightStatusBar">true</bool>
 
