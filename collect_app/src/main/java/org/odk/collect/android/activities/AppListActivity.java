@@ -141,16 +141,7 @@ abstract class AppListActivity extends CollectAbstractActivity {
         listView.setDivider(ContextCompat.getDrawable(this, R.drawable.list_item_divider));
         listView.setDividerHeight(1);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // This code will be executed when the navigation icon is clicked
-                Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
-                startActivity(intent);
-            }
-        });
+        initToolbar(null, false, null);
     }
 
     @Override

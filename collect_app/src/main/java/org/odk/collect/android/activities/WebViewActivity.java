@@ -38,18 +38,7 @@ public class WebViewActivity extends CollectAbstractActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // This code will be executed when the navigation icon is clicked
-                Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
-                startActivity(intent);
-            }
-        });
+        initToolbar(null, true, R.drawable.ic_close);
 
         String url = getIntent().getStringExtra(ExternalWebPageHelper.OPEN_URL);
         webView = (WebView) findViewById(R.id.webView);
