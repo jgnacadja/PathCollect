@@ -16,6 +16,7 @@
     <color name="colorOnSurface">#000000</color>
     <color name="bg_discussion">#A4FFC107</color>
 
+    <color name="colorSlider">#804C88</color>
 
     <bool name="lightStatusBar">true</bool>
 
