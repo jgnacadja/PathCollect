@@ -37,5 +37,16 @@ the specific language governing permissions and limitations under the License. -
     <string name="hex" translatable="false">Hex</string>
     <string name="subtitle" translatable="false">SONDAGE</string>
 
+    <string name="opinion_title" translatable="false"> ENQUETE \n D'OPINION</string>
+    <string name="article" translatable="false">  LECTURE \n D'ARTICLE</string>
+    <string name="forum" translatable="false">  FORUM DE \nDISCUSSION </string>
+    <string name="hospital" translatable="false">  CENTRES \nHOSPITALIERS </string>
+    <string name="opinion_surtitle" translatable="false">Donnez librement vos avis sur \nproduits et services que vous recevez</string>
+    <string name="skip" translatable="false">Sauter</string>
+    <string name="article_reading" translatable="false">Accès à des articles informatifs sur la PF/SR et \n les effets secondaires liés aux produits et \n services de PF/SR</string>
+    <string name="discussion_forum" translatable="false">Echanger librement sur tous les sujets abordés \n sur la plateforme</string>
+    <string name="hospitalier" translatable="false">Recevoir une assistance médicale en temps réel\nen cas d\'effets secondaires des produits\n et services</string>
+
+
     <string name="empty_accuracy" translatable="false">--</string>
 </resources>
