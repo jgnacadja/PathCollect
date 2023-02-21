@@ -162,7 +162,7 @@
                     android:textColor="@color/color_on_surface_high_emphasis"
                     android:textSize="17sp"
                     app:cornerRadius="@dimen/text_size_small"
-                    app:icon="@drawable/icon_blood"
+                    app:icon="@drawable/ic_periodical"
                     app:iconGravity="top"
                     app:iconSize="40dp"
                     app:iconTint="@color/colorError"
