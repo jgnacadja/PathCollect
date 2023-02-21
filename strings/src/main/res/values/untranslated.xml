@@ -36,7 +36,11 @@ the specific language governing permissions and limitations under the License. -
     <string name="hash" translatable="false">#</string>
     <string name="hex" translatable="false">Hex</string>
     <string name="subtitle" translatable="false">SONDAGE</string>
-    <string name="form_selected" translatable="false">%s Formualaire(s) sélectionné(s)</string>
+    <string name="btn_sondage" translatable="false">Sondage</string>
+    <string name="btn_messsage" translatable="false">Message</string>
+    <string name="btn_article" translatable="false">Article</string>
+    <string name="btn_centreHospital" translatable="false">Formation\n Sanitaires</string>
+    <string name="btn_cycle" translatable="false">Mon\n Cycle </string>
 
     <string name="empty_accuracy" translatable="false">--</string>
 </resources>
