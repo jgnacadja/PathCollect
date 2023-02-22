@@ -61,6 +61,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
     private Button viewSentFormsButton;
     private Button reviewDataButton;
     private Button getFormsButton;
+    private Button openForumButton;
 
     @Inject
     MainMenuViewModel.Factory viewModelFactory;
@@ -134,6 +135,16 @@ public class MainMenuActivity extends CollectAbstractActivity {
                 Intent i = new Intent(getApplicationContext(), InstanceChooserList.class);
                 i.putExtra(ApplicationConstants.BundleKeys.FORM_MODE,
                         ApplicationConstants.FormModes.VIEW_SENT);
+                startActivity(i);
+            }
+        });
+
+        // Test forum
+        openForumButton = findViewById(R.id.forum);
+        openForumButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), TopicActivity.class);
                 startActivity(i);
             }
         });
@@ -226,6 +237,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
         viewSentFormsButton.setVisibility(mainMenuViewModel.shouldViewSentFormButtonBeVisible() ? View.VISIBLE : View.GONE);
         getFormsButton.setVisibility(mainMenuViewModel.shouldGetBlankFormButtonBeVisible() ? View.VISIBLE : View.GONE);
         manageFilesButton.setVisibility(mainMenuViewModel.shouldDeleteSavedFormButtonBeVisible() ? View.VISIBLE : View.GONE);
+        openForumButton.setVisibility(View.VISIBLE);
     }
 
     @Override
