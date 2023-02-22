@@ -36,6 +36,8 @@ import org.odk.collect.android.application.MapboxClassInstanceCreator;
 import org.odk.collect.android.formlists.blankformlist.BlankFormListActivity;
 import org.odk.collect.android.gdrive.GoogleDriveActivity;
 import org.odk.collect.android.injection.DaggerUtils;
+import org.odk.collect.android.projects.ProjectIconView;
+import org.odk.collect.android.projects.ProjectSettingsDialog;
 import org.odk.collect.android.utilities.ApplicationConstants;
 import org.odk.collect.android.utilities.PlayServicesChecker;
 import org.odk.collect.android.utilities.ThemeUtils;
@@ -242,7 +244,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home_top_bar_menu, menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -272,23 +274,6 @@ public class MainMenuActivity extends CollectAbstractActivity {
             getSupportFragmentManager()
                     .beginTransaction()
                     .commit();
-        }
-    }
-
-    private boolean openPeriodical() {
-        String packageName = getString(R.string.periodical_package_name);
-        PackageManager manager = getApplicationContext().getPackageManager();
-        try {
-            Intent i = manager.getLaunchIntentForPackage(packageName);
-            if (i == null) {
-                return false;
-                //throw new ActivityNotFoundException();
-            }
-            i.addCategory(Intent.CATEGORY_LAUNCHER);
-            startActivity(i);
-            return true;
-        } catch (ActivityNotFoundException e) {
-            return false;
         }
     }
 
