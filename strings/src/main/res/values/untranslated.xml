@@ -41,6 +41,7 @@ the specific language governing permissions and limitations under the License. -
     <string name="btn_article" translatable="false">Article</string>
     <string name="btn_centreHospital" translatable="false">Formation\n Sanitaires</string>
     <string name="btn_cycle" translatable="false">Mon\n Cycle </string>
+    <string name="btn_about" translatable="false">About</string>
 
     <string name="empty_accuracy" translatable="false">--</string>
 </resources>
