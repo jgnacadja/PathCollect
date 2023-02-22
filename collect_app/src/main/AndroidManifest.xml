@@ -107,6 +107,7 @@ the specific language governing permissions and limitations under the License.
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.TopicActivity" />
         <activity android:name=".activities.MainMenuActivity" />
         <activity android:name=".activities.LandingPageActivity" />
         <activity

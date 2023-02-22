@@ -1154,4 +1154,13 @@
     -->
     <string name="open_settings">Open Settings</string>
 
+    <!--
+    ##############################################
+    # Forum
+    ##############################################
+    -->
+    <string name="no_items_display_topics">No topics available to display.</string>
+    <string name="no_items_display_discussions">No discussions available to display.</string>
+    <string name="no_items_display_comments">No comments available to display.</string>
+    <string name="anon_user" translatable="false">Anonymous</string>
 </resources>
