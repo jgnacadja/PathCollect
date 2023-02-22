@@ -951,4 +951,14 @@
     # Permissions
     ##############################################-->
   <string name="open_settings">Ouvrir les paramètres</string>
+
+    <!--
+    ##############################################
+    # Forum
+    ##############################################
+    -->
+    <string name="no_items_display_topics">Aucun topic disponible à afficher.</string>
+    <string name="no_items_display_discussions">Aucune discussion disponible à afficher.</string>
+    <string name="no_items_display_comments">Aucun commentaire disponible à afficher.</string>
+    <string name="anon_user">Anonyme</string>
 </resources>

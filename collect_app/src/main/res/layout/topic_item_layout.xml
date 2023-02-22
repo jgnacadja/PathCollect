@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:padding="@dimen/margin_standard">
+
+    <!-- Material Design reference: https://material.io/design/components/lists.html#specs -->
+    <ImageView
+        android:id="@+id/topic_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_weight="0"
+        app:srcCompat="@drawable/form_state_blank_circle" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <!-- Material Design reference: https://material.io/design/components/lists.html#specs -->
+        <TextView
+            android:id="@+id/topic_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
+            android:textColor="@color/colorPrimary"
+            tools:text="All widgets" />
+
+        <TextView
+            android:id="@+id/discussions_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_extra_small"
+            android:background="@color/color15"
+            android:textAppearance="@style/TextAppearance.Collect.Body2.MediumEmphasis"
+            android:textColor="@color/colorOnPrimary"
+            tools:text="Version: 2019051301" />
+    </LinearLayout>
+
+    <org.odk.collect.android.audio.AudioButton
+        android:id="@+id/topic_audioButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+        android:layout_width="@dimen/touch_target_size"
+        android:layout_height="@dimen/touch_target_size"
+        android:layout_weight="0"
+        android:fillColor="@color/colorPrimary"
+        android:visibility="gone"
+        app:iconTint="@color/colorPrimary"
+        tools:visibility="visible" />
+
+</LinearLayout>
