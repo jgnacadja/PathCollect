@@ -1,7 +1,5 @@
 package org.odk.collect.android.activities;
 
-import static org.odk.collect.androidshared.ui.DialogFragmentUtils.showIfNotShowing;
-
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,8 +15,6 @@ import org.odk.collect.android.R;
 import org.odk.collect.android.activities.viewmodels.CurrentProjectViewModel;
 import org.odk.collect.android.activities.viewmodels.MainMenuViewModel;
 import org.odk.collect.android.injection.DaggerUtils;
-import org.odk.collect.android.projects.ProjectIconView;
-import org.odk.collect.android.projects.ProjectSettingsDialog;
 import org.odk.collect.android.utilities.ApplicationConstants;
 import org.odk.collect.android.utilities.ThemeUtils;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
@@ -42,10 +38,6 @@ public class LandingPageActivity extends CollectAbstractActivity{
 
     @Inject
     SettingsProvider settingsProvider;
-
-    private MainMenuViewModel mainMenuViewModel;
-
-    private CurrentProjectViewModel currentProjectViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,18 +116,13 @@ public class LandingPageActivity extends CollectAbstractActivity{
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        final MenuItem projectsMenuItem = menu.findItem(R.id.projects);
-
-        ProjectIconView projectIconView = (ProjectIconView) projectsMenuItem.getActionView();
-        projectIconView.setOnClickListener(v -> onOptionsItemSelected(projectsMenuItem));
-        projectIconView.setContentDescription(getString(R.string.projects));
-
+        menu.findItem(R.id.about_menu_icon).setVisible(true).setEnabled(true);
         return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.landing_page_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -145,8 +132,9 @@ public class LandingPageActivity extends CollectAbstractActivity{
             return true;
         }
 
-        if (item.getItemId() == R.id.projects) {
-            showIfNotShowing(ProjectSettingsDialog.class, getSupportFragmentManager());
+        if (item.getItemId() == R.id.about_menu_icon) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
