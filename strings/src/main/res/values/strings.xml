@@ -995,7 +995,6 @@
      # ABOUT
      ##############################################
      -->
-    <string name="periodical_app">Cycle Tracker</string>
     <string name="about_preferences">About</string>
     <string name="tell_your_friends">Share KoboCollect</string>
     <string name="tell_your_friends_msg">Are your colleagues still collecting data on paper? Share KoboCollect with them.</string>
