@@ -1002,11 +1002,15 @@
     <string name="leave_a_review_msg">Your (hopefully positive) review increases the visibility of the App in the Play Store.</string>
     <string name="odk_website">Visit the DSSC COLLECT website</string>
     <string name="odk_website_summary">DSSC COLLECT is part of DSSC platform and based on ODK Collect.</string>
-    <string name="FAQ">FAQ</string>
-    <string name="FAQ_msg">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="download_a_survey_form">How can I download a survey form</string>
+    <string name="download_a_survey_form_msg">To download a survey form, go to the "Survey" section and click on the "Download a blank form" button. Select the desired form(s) from the available list and click the "Download" button to retrieve it.</string>
+    <string name="how_do_i_respond_to_a_survey_form">How can I download a survey form</string>
+    <string name="how_do_i_respond_to_a_survey_form_msg">To answer a survey form, go to the "Survey" section and click on the "Fill out a form" button. Select the form you want to fill in from the list of downloaded forms, fill in the required fields and click "Save" to save the data entered.
+        You can submit the form later if you wish.</string>
+    <string name="how_do_i_submit_a_saved_form">How do I submit a saved form?</string>
+    <string name="how_do_i_submit_a_saved_form_msg">To submit a saved form, go to the "Survey" section and click on the "Send a finalized form" button. Select the desired form(s) from the available list and click the "Send" button to submit it.</string>
+    <string name="how_can_i_access_the_discussion_forum">How can I access the discussion forum?</string>
+    <string name="how_can_i_access_the_discussion_forum_msg">To access the discussion forum, select the "Discussion" section in the applications main menu. You can chat with other users and share ideas or experiences.</string>
     <string name="all_open_source_licenses">Open source libraries/licenses</string>
     <string name="all_open_source_licenses_msg">We stand on the shoulders of giants!</string>
 
