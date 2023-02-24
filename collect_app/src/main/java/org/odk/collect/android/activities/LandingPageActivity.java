@@ -30,15 +30,6 @@ public class LandingPageActivity extends CollectAbstractActivity{
     private Button centreHospitalButton;
     private Button cycleButton;
 
-    @Inject
-    MainMenuViewModel.Factory viewModelFactory;
-
-    @Inject
-    CurrentProjectViewModel.Factory currentProjectViewModelFactory;
-
-    @Inject
-    SettingsProvider settingsProvider;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         new ThemeUtils(this).setDarkModeForCurrentProject();
