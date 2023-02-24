@@ -27,11 +27,6 @@
             android:orientation="vertical"
             android:layout_margin="@dimen/margin_standard">
 
-<!--            <androidx.fragment.app.FragmentContainerView-->
-<!--                android:id="@+id/map_box_initialization_fragment"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="1dp"/>-->
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
