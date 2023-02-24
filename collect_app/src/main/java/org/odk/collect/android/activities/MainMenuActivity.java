@@ -268,7 +268,6 @@ public class MainMenuActivity extends CollectAbstractActivity {
         if (MapboxClassInstanceCreator.isMapboxAvailable()) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.map_box_initialization_fragment, MapboxClassInstanceCreator.createMapBoxInitializationFragment())
                     .commit();
         }
     }
