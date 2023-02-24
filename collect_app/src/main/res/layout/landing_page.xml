@@ -27,10 +27,10 @@
             android:orientation="vertical"
             android:layout_margin="@dimen/margin_standard">
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/map_box_initialization_fragment"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"/>
+<!--            <androidx.fragment.app.FragmentContainerView-->
+<!--                android:id="@+id/map_box_initialization_fragment"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1dp"/>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -49,7 +49,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="161dp"
                         android:layout_marginTop="@dimen/margin_extra_small"
-                        android:backgroundTint="@color/surfaceButtonColor"
+                        android:backgroundTint="@color/colorWhite"
                         android:orientation="vertical"
                         android:text="@string/btn_sondage"
                         android:textColor="@color/color_on_surface_high_emphasis"
@@ -75,7 +75,7 @@
                         android:layout_height="161dp"
                         android:layout_marginStart="@dimen/margin_standard"
                         android:layout_marginTop="@dimen/margin_extra_small"
-                        android:backgroundTint="@color/surfaceButtonColor"
+                        android:backgroundTint="@color/colorWhite"
                         android:orientation="vertical"
                         android:textColor="@color/color_on_surface_high_emphasis"
                         android:textSize="17sp"
@@ -106,7 +106,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="161dp"
                         android:layout_marginTop="@dimen/margin_extra_small"
-                        android:backgroundTint="@color/surfaceButtonColor"
+                        android:backgroundTint="@color/colorWhite"
                         android:orientation="vertical"
                         android:textColor="@color/color_on_surface_high_emphasis"
                         app:cornerRadius="@dimen/text_size_small"
@@ -131,7 +131,7 @@
                         android:layout_height="161dp"
                         android:layout_marginTop="@dimen/margin_extra_small"
                         android:layout_marginStart="@dimen/margin_standard"
-                        android:backgroundTint="@color/surfaceButtonColor"
+                        android:backgroundTint="@color/colorSurface"
                         android:orientation="vertical"
                         android:textColor="@color/color_on_surface_high_emphasis"
                         app:cornerRadius="@dimen/text_size_small"
@@ -156,7 +156,7 @@
                     android:layout_width="170dp"
                     android:layout_height="161dp"
                     android:layout_marginTop="@dimen/margin_extra_small"
-                    android:backgroundTint="@color/surfaceButtonColor"
+                    android:backgroundTint="@color/colorWhite"
                     android:orientation="vertical"
                     android:text="@string/btn_cycle"
                     android:textColor="@color/color_on_surface_high_emphasis"
