@@ -4,7 +4,7 @@
     <color name="colorPrimaryVariant">#560F63</color>
     <color name="colorOnPrimary">#ffffff</color>
 
-    <color name="colorSecondary">#000001</color>
+    <color name="colorSecondary">@color/colorPrimary</color>
     <color name="colorSecondaryVariant">#2c2c2d</color>
     <color name="colorOnSecondary">#ffffff</color>
 
@@ -21,5 +21,5 @@
 
     {@deprecated These components should be replaced with material ones and this
     color should be deleted} -->
-    <color name="surfaceButtonColor">#f7f7f7</color>
+    <color name="surfaceButtonColor">@color/colorPrimary</color>
 </resources>

@@ -13,6 +13,7 @@ License for the specific language governing permissions and limitations under
 the License.
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/llParent"
     android:layout_width="match_parent"
@@ -29,7 +30,9 @@ the License.
             android:id="@+id/toolbar"
             style="@style/Widget.AndroidShared.Toolbar.Surface.HighEmphasisControls"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:titleTextColor="@color/colorOnPrimary" />
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/audio_recording_controller"
@@ -64,27 +67,29 @@ the License.
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/surfaceButtonColor"
-        android:elevation="4dp"
+        android:background="@color/colorOnPrimary"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/form_back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:background="@color/color15"
             android:clickable="true"
             android:contentDescription="@string/form_backward"
-            android:drawableStart="@drawable/ic_navigate_back_wrapped"
+            android:drawableStart="@drawable/ic_arrow_back"
             android:focusable="true"
             android:padding="10dp"
             android:text="@string/form_backward"
             android:textAllCaps="true"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:textColor="@color/colorOnPrimary"
             android:textStyle="bold"
             android:visibility="gone"
-            tools:visibility="visible"/>
+            android:layout_marginStart="20dp"
+            tools:visibility="visible" />
 
         <View
             android:layout_width="0dp"
@@ -95,17 +100,19 @@ the License.
             android:id="@+id/form_forward_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:background="@color/colorPrimary"
             android:clickable="true"
             android:contentDescription="@string/form_forward"
-            android:drawableEnd="@drawable/ic_navigate_forward_wrapped"
+            android:drawableEnd="@drawable/baseline_arrow_forward_24"
             android:focusable="true"
             android:padding="10dp"
             android:text="@string/form_forward"
             android:textAllCaps="true"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:textColor="@color/colorOnPrimary"
             android:textStyle="bold"
             android:visibility="gone"
-            tools:visibility="visible"/>
+            android:layout_marginEnd="20dp"
+            tools:visibility="visible" />
     </LinearLayout>
 </RelativeLayout>

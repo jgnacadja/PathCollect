@@ -60,7 +60,7 @@ class FirstLaunchActivity : CollectAbstractActivity() {
         DaggerUtils.getComponent(this).inject(this)
 
         if (projectsRepository.getAll().isNotEmpty()) {
-            ActivityUtils.startActivityAndCloseAllOthers(this, MainMenuActivity::class.java)
+            ActivityUtils.startActivityAndCloseAllOthers(this, LandingPageActivity::class.java)
             return
         }
 

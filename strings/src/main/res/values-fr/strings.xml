@@ -13,9 +13,9 @@
   <!--Text for an action button on the main screen. A form count is provided in parentheses.-->
   <string name="send_data_button">Envoyer un formulaire finalisé (%s)</string>
   <!--Text for an action button on the main screen.-->
-  <string name="view_sent_forms">Voir formulaire envoyé</string>
+  <string name="view_sent_forms">Historique formulaire envoyé</string>
   <!--Text for an action button on the main screen. A form count is provided in parentheses.-->
-  <string name="view_sent_forms_button">Voir formulaire envoyé (%s)</string>
+  <string name="view_sent_forms_button">Historique formulaire envoyé (%s)</string>
   <!--Text for an action button on the main screen.-->
   <string name="get_forms">Télécharger un formulaire vierge</string>
   <!--Text for an action button on the main screen.-->
@@ -129,7 +129,7 @@
   <string name="save_form_as">Nommer le formulaire :</string>
   <string name="save_as_error">Le nom ne peut pas être vide !</string>
   <string name="mark_finished">Marquer le formulaire comme finalisé</string>
-  <string name="quit_entry">Enregistrer le formulaire et sortir</string>
+  <string name="quit_entry">Enregistrer</string>
   <string name="data_saved_error">Désolé, l\'enregistrement du formulaire a échoué.</string>
   <string name="data_saved_ok">Le formulaire a été enregistré avec succès.</string>
   <string name="save_point_error">Erreur lors de l\'enregistrement du point de récupération: %s</string>
@@ -821,17 +821,23 @@
   <!--##############################################
      # ABOUT
      ##############################################-->
-  <string name="about_preferences">À PROPOS</string>
-  <string name="tell_your_friends">Partager KoboCollect</string>
-  <string name="tell_your_friends_msg">Vos collègues continuent-ils à collecter des données sur papier ? Partagez KoboCollect avec eux.</string>
+  <string name="about_preferences">À propos</string>
+  <string name="tell_your_friends">Partager DSSC COLLECT</string>
+  <string name="tell_your_friends_msg">Vos collègues continuent-ils à collecter des données sur papier ? Partagez DSSC COLLECT avec eux.</string>
   <string name="leave_a_review">Laissez un avis sur Play Store</string>
   <string name="leave_a_review_msg">Votre avis (ce qu\'on espère est positif) augmente la visibilité de l\'application dans le Play Store.</string>
-  <string name="odk_website">Visiter le site web de Open Data Kit</string>
-  <string name="odk_website_summary">KoboCollect is part of KoboToolbox and based on ODK Collect.</string>
-  <string name="odk_forum">Rejoindre le Forum KoboToolbox</string>
-  <string name="odk_forum_summary">Join the forum to get support and connect with other users!</string>
+  <string name="odk_website">Visiter le site web de DSSC COLLECT</string>
+  <string name="odk_website_summary">DSSC COLLECT fait partie de la plateforme DSSC et est basé sur ODK Collect.</string>
   <string name="all_open_source_licenses">Licences et librairies open source</string>
   <string name="all_open_source_licenses_msg">Nous sommes debout sur les épaules de géants.</string>
+  <string name="download_a_survey_form">Comment puis-je télécharger un formulaire d\'enquête?</string>
+  <string name="download_a_survey_form_msg">Pour télécharger un formulaire d\'enquête, allez dans la section "Sondage" puis cliquez sur le bouton "Télécharger un formulaire vierge". Sélectionnez le(s) formulaire(s) souhaité(s) dans la liste disponible et cliquez sur le bouton "Télécharger" pour le(s) récupérer.</string>
+  <string name="how_do_i_respond_to_a_survey_form">Comment répondre à un formulaire d\'enquête?</string>
+  <string name="how_do_i_respond_to_a_survey_form_msg">Pour répondre à un formulaire d\'enquête, allez dans la section "Sondage" puis cliquez sur le bouton "Remplir un formulaire". Sélectionnez le formulaire que vous voulez remplir dans la liste des formulaires téléchargés, remplissez les champs requis et cliquez sur "Enregistrer" pour enregistrer les données saisies. Vous pouvez soumettre le formulaire plus tard si vous le souhaitez.</string>
+  <string name="how_do_i_submit_a_saved_form">Comment puis-je soumettre un formulaire enregistré ?</string>
+  <string name="how_do_i_submit_a_saved_form_msg">Pour soumettre un formulaire enregistré, allez dans la section "Sondage" puis cliquez sur le bouton "Envoyé un formulaire finalisé". Sélectionnez le(s) formulaire(s) souhaité(s) dans la liste disponible et cliquez sur le bouton "Envoyer" pour le(s) soumettre.</string>
+  <string name="how_can_i_access_the_discussion_forum">Comment puis-je accéder au forum de discussion ?</string>
+  <string name="how_can_i_access_the_discussion_forum_msg">Pour accéder au forum de discussion, sélectionnez la section "Discussion" dans le menu principal de l\'application. Vous pouvez discuter avec d\'autres utilisateurs et partager des idées ou des expériences.</string>
   <!--##############################################
      # SETTINGS IMPORT
      ##############################################-->
