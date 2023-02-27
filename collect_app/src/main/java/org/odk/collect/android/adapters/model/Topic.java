@@ -4,15 +4,17 @@ public class Topic {
     private String id;
     private String title;
     private String icon;
+    private int discussionCount;
 
     public Topic(){
 
     }
 
-    public Topic(String id, String title, String icon){
+    public Topic(String id, String title, String icon, int discussionCount){
         this.id = id;
         this.title = title;
         this.icon = icon;
+        this.discussionCount = discussionCount;
     }
 
     public String getId() {
@@ -37,5 +39,21 @@ public class Topic {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public int getDiscussionCount(){
+        return discussionCount;
+    }
+
+    public void setDiscussionCount(int discussionCount) {
+        this.discussionCount = discussionCount;
+    }
+
+    public void incrementDiscussionCount() {
+        discussionCount++;
+    }
+
+    public void decrementDiscussionCount() {
+        discussionCount--;
     }
 }
