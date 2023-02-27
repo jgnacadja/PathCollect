@@ -27,25 +27,6 @@
             android:orientation="vertical"
             android:layout_margin="@dimen/margin_standard">
 
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/map_box_initialization_fragment"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="381dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="@string/subtitle"
-                android:textAppearance="?textAppearanceBody1"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/margin_extra_large"
-                android:textStyle="bold"
-                tools:text="@string/subtitle" />
-        </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,21 +39,22 @@
                     android:orientation="vertical">
 
                     <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                        android:id="@+id/enter_data"
+                        android:id="@+id/sondage"
                         style="@style/Widget.Collect.Button.FullWidth"
                         android:layout_width="match_parent"
                         android:layout_height="161dp"
                         android:layout_marginTop="@dimen/margin_extra_small"
                         android:backgroundTint="@color/colorWhite"
                         android:orientation="vertical"
-                        android:textColor="@color/colorPrimary"
+                        android:text="@string/btn_sondage"
+                        android:textColor="@color/color_on_surface_high_emphasis"
+                        android:textSize="17sp"
                         app:cornerRadius="@dimen/text_size_small"
                         app:icon="@drawable/ic_formulaire"
                         app:iconGravity="top"
-                        app:iconSize="33dp"
+                        app:iconSize="30dp"
                         app:iconTint="@color/colorPrimary"
-                        android:text="@string/enter_data_button"
-                        tools:text="@string/enter_data_button" />
+                        tools:text="@string/btn_sondage" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -82,7 +64,7 @@
                     android:orientation="vertical">
 
                     <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                        android:id="@+id/review_data"
+                        android:id="@+id/message"
                         style="@style/Widget.Collect.Button.FullWidth"
                         android:layout_width="match_parent"
                         android:layout_height="161dp"
@@ -90,17 +72,17 @@
                         android:layout_marginTop="@dimen/margin_extra_small"
                         android:backgroundTint="@color/colorWhite"
                         android:orientation="vertical"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/color_on_surface_high_emphasis"
+                        android:textSize="17sp"
                         app:cornerRadius="@dimen/text_size_small"
-                        app:icon="@drawable/ic_edit_note"
+                        app:icon="@drawable/ic_mes"
                         app:iconGravity="top"
-                        app:iconSize="45dp"
+                        app:iconSize="30dp"
                         app:iconTint="@color/colorPrimary"
-                        android:text="@string/review_data"
-                        tools:text="@string/review_data" />
+                        android:text="@string/btn_messsage"
+                        tools:text="@string/btn_messsage" />
                 </LinearLayout>
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -114,23 +96,23 @@
                     android:orientation="vertical">
 
                     <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                        android:id="@+id/send_data"
+                        android:id="@+id/article"
                         style="@style/Widget.Collect.Button.FullWidth"
                         android:layout_width="match_parent"
                         android:layout_height="161dp"
                         android:layout_marginTop="@dimen/margin_extra_small"
                         android:backgroundTint="@color/colorWhite"
                         android:orientation="vertical"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/color_on_surface_high_emphasis"
                         app:cornerRadius="@dimen/text_size_small"
-                        app:icon="@drawable/ic_send"
+                        android:textSize="17sp"
+                        app:icon="@drawable/icon_article"
                         app:iconGravity="top"
                         app:iconSize="30dp"
                         app:iconTint="@color/colorPrimary"
-                        android:text="@string/send_data"
-                        tools:text="@string/send_data" />
+                        android:text="@string/btn_article"
+                        tools:text="@string/btn_article" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="50"
@@ -138,115 +120,49 @@
                     android:orientation="vertical">
 
                     <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                        android:id="@+id/view_sent_forms"
+                        android:id="@+id/centre_Hospital"
                         style="@style/Widget.Collect.Button.FullWidth"
                         android:layout_width="match_parent"
                         android:layout_height="161dp"
                         android:layout_marginTop="@dimen/margin_extra_small"
                         android:layout_marginStart="@dimen/margin_standard"
-                        android:backgroundTint="@color/colorWhite"
+                        android:backgroundTint="@color/colorSurface"
                         android:orientation="vertical"
-                        android:textColor="@color/colorPrimary"
+                        android:textColor="@color/color_on_surface_high_emphasis"
                         app:cornerRadius="@dimen/text_size_small"
-                        app:icon="@drawable/ic_save"
+                        android:textSize="17sp"
+                        app:icon="@drawable/icon_hospital"
                         app:iconGravity="top"
                         app:iconSize="30dp"
                         app:iconTint="@color/colorPrimary"
-                        android:text="@string/view_sent_forms"
-                        tools:text="@string/view_sent_forms"/>
+                        android:text="@string/btn_centreHospital"
+                        tools:text="@string/btn_centreHospital" />
                 </LinearLayout>
-        </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="50"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
                 <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                    android:id="@+id/get_forms"
+                    android:id="@+id/cycle"
                     style="@style/Widget.Collect.Button.FullWidth"
-                    android:layout_width="match_parent"
+                    android:layout_width="170dp"
                     android:layout_height="161dp"
                     android:layout_marginTop="@dimen/margin_extra_small"
                     android:backgroundTint="@color/colorWhite"
                     android:orientation="vertical"
-                    android:textColor="@color/colorPrimary"
+                    android:text="@string/btn_cycle"
+                    android:textColor="@color/color_on_surface_high_emphasis"
+                    android:textSize="17sp"
                     app:cornerRadius="@dimen/text_size_small"
-                    app:icon="@drawable/ic_align_left"
+                    app:icon="@drawable/ic_periodical"
                     app:iconGravity="top"
-                    app:iconSize="30dp"
-                    app:iconTint="@color/colorPrimary"
-                    android:text="@string/get_forms"
-                    tools:text="@string/get_forms" />
-        </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="50"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                    android:id="@+id/manage_forms"
-                    style="@style/Widget.Collect.Button.FullWidth"
-                    android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    android:layout_marginStart="@dimen/margin_standard"
-                    android:layout_marginTop="@dimen/margin_extra_small"
-                    android:backgroundTint="@color/colorWhite"
-                    android:orientation="vertical"
-                    android:textColor="@color/colorPrimary"
-                    app:cornerRadius="@dimen/text_size_small"
-                    app:icon="@drawable/ic_delete"
-                    app:iconGravity="top"
-                    app:iconSize="30dp"
-                    app:iconTint="@color/colorPrimary"
-                    android:text="@string/manage_files"
-                    tools:text="@string/manage_files" />
-
-                <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                    android:id="@+id/forum"
-                    style="@style/Widget.Collect.Button.FullWidth"
-                    android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    android:layout_marginStart="@dimen/margin_standard"
-                    android:layout_marginTop="@dimen/margin_extra_small"
-                    android:backgroundTint="@color/surfaceButtonColor"
-                    android:orientation="vertical"
-                    android:textColor="@color/colorPrimary"
-                    app:cornerRadius="@dimen/text_size_small"
-                    app:icon="@drawable/ic_delete"
-                    app:iconGravity="top"
-                    app:iconSize="30dp"
-                    app:iconTint="@color/colorPrimary"
-                    android:text="Test forum"
-                    tools:text="Test forum" />
+                    app:iconSize="40dp"
+                    app:iconTint="@color/colorError"
+                    tools:text="@string/btn_cycle" />
             </LinearLayout>
-        </LinearLayout>
-
-                <TextView
-                    android:id="@+id/app_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/margin_standard"
-                    android:textAppearance="?textAppearanceBody1"
-                    android:textColor="@color/color_on_surface_medium_emphasis"
-                    tools:text="DSSC Collect v2023.1" />
-
-                <TextView
-                    android:id="@+id/version_sha"
-                    android:textAppearance="?textAppearanceCaption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    tools:text="commit sha" />
 
         </LinearLayout>
     </ScrollView>

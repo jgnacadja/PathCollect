@@ -26,6 +26,8 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +39,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.odk.collect.analytics.Analytics;
 import org.odk.collect.android.R;
 import org.odk.collect.android.activities.viewmodels.FormDownloadListViewModel;
+import org.odk.collect.android.activities.viewmodels.MainMenuViewModel;
 import org.odk.collect.android.adapters.FormDownloadListAdapter;
 import org.odk.collect.android.formentry.RefreshFormListDialogFragment;
 import org.odk.collect.android.formmanagement.FormDownloadException;
@@ -60,6 +63,7 @@ import org.odk.collect.android.views.DayNightProgressDialog;
 import org.odk.collect.androidshared.ui.DialogFragmentUtils;
 import org.odk.collect.androidshared.ui.ToastUtils;
 import org.odk.collect.forms.FormSourceException;
+import org.w3c.dom.Text;
 
 import java.io.Serializable;
 import java.net.URI;
@@ -108,6 +112,7 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
     private AlertDialog alertDialog;
     private ProgressDialog cancelDialog;
     private Button downloadButton;
+    private TextView countSelectedItem;
 
     private DownloadFormListTask downloadFormListTask;
     private DownloadFormsTask downloadFormsTask;
@@ -178,6 +183,9 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
                 }
             }
         }
+
+        countSelectedItem = findViewById(R.id.count_selected_form);
+        countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
 
         downloadButton = findViewById(R.id.add_button);
         downloadButton.setEnabled(listView.getCheckedItemCount() > 0);
@@ -259,6 +267,7 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         toggleButtonLabel(toggleButton, listView);
+        countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
         downloadButton.setEnabled(listView.getCheckedItemCount() > 0);
 
         if (listView.isItemChecked(position)) {
