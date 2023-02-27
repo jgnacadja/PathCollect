@@ -102,7 +102,6 @@ public class MainMenuActivity extends CollectAbstractActivity {
 
         initToolbar();
         initMapbox();
-        //initTopics();
 
         Button enterDataButtonNew = findViewById(R.id.enter_data);
         enterDataButtonNew.setOnClickListener(v -> {
@@ -143,16 +142,6 @@ public class MainMenuActivity extends CollectAbstractActivity {
                 Intent i = new Intent(getApplicationContext(), InstanceChooserList.class);
                 i.putExtra(ApplicationConstants.BundleKeys.FORM_MODE,
                         ApplicationConstants.FormModes.VIEW_SENT);
-                startActivity(i);
-            }
-        });
-
-        // Test forum
-        openForumButton = findViewById(R.id.forum);
-        openForumButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), TopicActivity.class);
                 startActivity(i);
             }
         });
@@ -290,21 +279,5 @@ public class MainMenuActivity extends CollectAbstractActivity {
                     .add(R.id.map_box_initialization_fragment, MapboxClassInstanceCreator.createMapBoxInitializationFragment())
                     .commit();
         }
-    }
-
-    private void initTopics() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference topicsRef = database.getReference("topics");
-
-        // Add the topic to the database
-        String key = topicsRef.push().getKey(); // generate a new unique key
-        Topic t1 = new Topic(key, "Avortement", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.XrKyI5FPoD_1qiBK4NltAQHaHs%26pid%3DApi&f=1&ipt=84638f0dc938d8e0901ca7f0a2f41868ed602e7e6435c121edd3e3fb0fb1bc29&ipo=images",0);
-        topicsRef.child(key).setValue(t1); // save the topic to the database
-
-        // Add the topic to the database
-        String k2 = topicsRef.push().getKey(); // generate a new unique key
-        Topic t2 = new Topic(k2, "Contraception familiale", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.SszthSkd5uWhaCx-HYx5yQHaHa%26pid%3DApi&f=1&ipt=7a4d75712bcb0170a818902a5d0a1b0caab36a0940a51ef34b9602e06fc03136&ipo=images",0);
-        topicsRef.child(k2).setValue(t2); // save the topic to the database
-
     }
 }

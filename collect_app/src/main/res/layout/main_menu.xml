@@ -209,24 +209,6 @@
                     app:iconTint="@color/colorPrimary"
                     android:text="@string/manage_files"
                     tools:text="@string/manage_files" />
-
-                <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                    android:id="@+id/forum"
-                    style="@style/Widget.Collect.Button.FullWidth"
-                    android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    android:layout_marginStart="@dimen/margin_standard"
-                    android:layout_marginTop="@dimen/margin_extra_small"
-                    android:backgroundTint="@color/surfaceButtonColor"
-                    android:orientation="vertical"
-                    android:textColor="@color/colorPrimary"
-                    app:cornerRadius="@dimen/text_size_small"
-                    app:icon="@drawable/ic_delete"
-                    app:iconGravity="top"
-                    app:iconSize="30dp"
-                    app:iconTint="@color/colorPrimary"
-                    android:text="Test forum"
-                    tools:text="Test forum" />
             </LinearLayout>
         </LinearLayout>
 
