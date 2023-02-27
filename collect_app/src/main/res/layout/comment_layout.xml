@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:orientation="horizontal"
+    android:padding="@dimen/margin_standard">
+
+    <!-- Material Design reference: https://material.io/design/components/lists.html#specs -->
+    <ImageView
+        android:id="@+id/comment_author_image"
+        android:layout_width="@dimen/touch_target_size"
+        android:layout_height="@dimen/touch_target_size"
+        android:layout_gravity="start"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:layout_weight="0"
+        app:srcCompat="@drawable/ic_anonymous_user" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/square_corner"
+        android:padding="@dimen/margin_small"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginEnd="@dimen/margin_extra_small"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/comment_author_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_large"
+                android:textStyle="bold"
+                tools:text="@string/title_text_example" />
+
+            <TextView
+                android:id="@+id/comment_publication_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
+                android:textColor="@color/color15"
+                android:textSize="@dimen/text_size_standard"
+                tools:text="@string/title_text_example" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/comment_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
+            android:textColor="@color/colorOnSurface"
+            tools:text="@string/none" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_extra_small"
+            android:layout_gravity="end"
+            android:orientation="horizontal">
+
+            <!-- Material Design reference: https://material.io/design/components/lists.html#specs -->
+            <ImageButton
+                android:id="@+id/comment_like_icon"
+                android:layout_width="@dimen/touch_target_size"
+                android:layout_height="@dimen/touch_target_size"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:background="@null"
+                app:srcCompat="@drawable/thumbs_up" />
+
+            <TextView
+                android:id="@+id/comment_like_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
+                android:textColor="@color/colorOnSurface"
+                android:textSize="@dimen/text_size_small"
+                tools:text="@string/none" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
