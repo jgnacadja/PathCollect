@@ -1,10 +1,20 @@
 package org.odk.collect.android.utilities;
 
+
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 public class TimeAgo {
     public static final long SECOND_MILLIS = 1000;
     public static final long MINUTE_MILLIS = 60 * SECOND_MILLIS;
     public static final long HOUR_MILLIS = 60 * MINUTE_MILLIS;
     public static final long DAY_MILLIS = 24 * HOUR_MILLIS;
+    private static final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy à HH:mm:ss");
+
+    public static String formatTimestamp(long timestamp){
+        return formatter.format(new Date(timestamp));
+    }
 
     public static String getTimeAgo(long time) {
         long now = System.currentTimeMillis();

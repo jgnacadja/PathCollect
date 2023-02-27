@@ -952,13 +952,24 @@
     ##############################################-->
   <string name="open_settings">Ouvrir les paramètres</string>
 
-    <!--
-    ##############################################
-    # Forum
-    ##############################################
-    -->
-    <string name="no_items_display_topics">Aucun topic disponible à afficher.</string>
-    <string name="no_items_display_discussions">Aucune discussion disponible à afficher.</string>
-    <string name="no_items_display_comments">Aucun commentaire disponible à afficher.</string>
-    <string name="anon_user">Anonyme</string>
+  <!--
+  ##############################################
+  # Forum
+  ##############################################
+  -->
+  <string name="no_items_display_topics">Aucun topic disponible à afficher.</string>
+  <string name="no_items_display_discussions">Aucune discussion disponible à afficher.</string>
+  <string name="no_items_display_comments">Aucun commentaire disponible à afficher.</string>
+  <string name="error_display_topics">Erreur lors de la récupération de la liste des sujets de discussions. Réessayez plus tard. Si l\'erreur persiste, contactez l\'équipe de développement de l\'application.</string>
+  <string name="error_display_discussions">Erreur lors de la récupération de la liste des discussions. Réessayez plus tard. Si l\'erreur persiste, contactez l\'équipe de développement de l\'application.</string>
+  <string name="error_display_comments">Erreur lors de la récupération de la liste des commentaires. Réessayez plus tard. Si l\'erreur persiste, contactez l\'équipe de développement de l\'application.</string>
+  <string name="anon_user">Anonyme</string>
+  <string name="discussion_last_comment_time">Dernière réponse: %s</string>
+  <string name="btn_add_discussion">Publier votre question</string>
+  <string name="comments_count">%s Réponses</string>
+  <string name="title_text_example">Insérer le titre ici</string>
+  <string name="responses">Réponses</string>
+  <string name="comment_hint">Tapez un message</string>
+  <string name="question_content_hint">Contenue de la question</string>
+  <string name="question_label_hint">Intitulé de la question</string>
 </resources>

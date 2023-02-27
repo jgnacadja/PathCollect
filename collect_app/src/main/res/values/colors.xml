@@ -3,6 +3,7 @@
     <color name="colorPrimary">#753081</color>
     <color name="colorPrimaryVariant">#560F63</color>
     <color name="colorOnPrimary">#ffffff</color>
+    <color name="colorGray">#F5F5F5</color>
 
     <color name="colorSecondary">@color/colorPrimary</color>
     <color name="colorSecondaryVariant">#2c2c2d</color>

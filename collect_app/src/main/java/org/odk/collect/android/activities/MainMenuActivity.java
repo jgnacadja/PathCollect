@@ -27,9 +27,13 @@ import android.widget.TextView;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.odk.collect.android.R;
 import org.odk.collect.android.activities.viewmodels.CurrentProjectViewModel;
 import org.odk.collect.android.activities.viewmodels.MainMenuViewModel;
+import org.odk.collect.android.adapters.model.Topic;
 import org.odk.collect.android.application.MapboxClassInstanceCreator;
 import org.odk.collect.android.formlists.blankformlist.BlankFormListActivity;
 import org.odk.collect.android.gdrive.GoogleDriveActivity;
@@ -43,6 +47,9 @@ import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 import org.odk.collect.settings.SettingsProvider;
 import org.odk.collect.settings.keys.MetaKeys;
 import org.odk.collect.settings.keys.ProjectKeys;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -94,6 +101,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
 
         initToolbar(getString(R.string.collect_app_name), false, null);
         initMapbox();
+        //initTopics();
 
         Button enterDataButtonNew = findViewById(R.id.enter_data);
         enterDataButtonNew.setOnClickListener(v -> {
@@ -242,7 +250,6 @@ public class MainMenuActivity extends CollectAbstractActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         final MenuItem projectsMenuItem = menu.findItem(R.id.projects);
-
         ProjectIconView projectIconView = (ProjectIconView) projectsMenuItem.getActionView();
         projectIconView.setProject(currentProjectViewModel.getCurrentProject().getValue());
         projectIconView.setOnClickListener(v -> onOptionsItemSelected(projectsMenuItem));
@@ -286,4 +293,20 @@ public class MainMenuActivity extends CollectAbstractActivity {
         }
     }
 
+}
+    private void initTopics() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference topicsRef = database.getReference("topics");
+
+        // Add the topic to the database
+        String key = topicsRef.push().getKey(); // generate a new unique key
+        Topic t1 = new Topic(key, "Avortement", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.XrKyI5FPoD_1qiBK4NltAQHaHs%26pid%3DApi&f=1&ipt=84638f0dc938d8e0901ca7f0a2f41868ed602e7e6435c121edd3e3fb0fb1bc29&ipo=images",0);
+        topicsRef.child(key).setValue(t1); // save the topic to the database
+
+        // Add the topic to the database
+        String k2 = topicsRef.push().getKey(); // generate a new unique key
+        Topic t2 = new Topic(k2, "Contraception familiale", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.SszthSkd5uWhaCx-HYx5yQHaHa%26pid%3DApi&f=1&ipt=7a4d75712bcb0170a818902a5d0a1b0caab36a0940a51ef34b9602e06fc03136&ipo=images",0);
+        topicsRef.child(k2).setValue(t2); // save the topic to the database
+
+    }
 }
