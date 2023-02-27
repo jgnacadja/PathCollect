@@ -101,7 +101,6 @@ public class MainMenuActivity extends CollectAbstractActivity {
 
         initToolbar(getString(R.string.collect_app_name), false, null);
         initMapbox();
-        //initTopics();
 
         Button enterDataButtonNew = findViewById(R.id.enter_data);
         enterDataButtonNew.setOnClickListener(v -> {
@@ -142,16 +141,6 @@ public class MainMenuActivity extends CollectAbstractActivity {
                 Intent i = new Intent(getApplicationContext(), InstanceChooserList.class);
                 i.putExtra(ApplicationConstants.BundleKeys.FORM_MODE,
                         ApplicationConstants.FormModes.VIEW_SENT);
-                startActivity(i);
-            }
-        });
-
-        // Test forum
-        openForumButton = findViewById(R.id.forum);
-        openForumButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), TopicActivity.class);
                 startActivity(i);
             }
         });

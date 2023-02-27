@@ -58,7 +58,6 @@ public class LandingPageActivity extends CollectAbstractActivity{
         messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
 
@@ -67,7 +66,6 @@ public class LandingPageActivity extends CollectAbstractActivity{
         articleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
 
@@ -77,7 +75,6 @@ public class LandingPageActivity extends CollectAbstractActivity{
         centreHospitalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
 
