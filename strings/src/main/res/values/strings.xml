@@ -1155,5 +1155,16 @@
     <string name="no_items_display_topics">No topics available to display.</string>
     <string name="no_items_display_discussions">No discussions available to display.</string>
     <string name="no_items_display_comments">No comments available to display.</string>
-    <string name="anon_user" translatable="false">Anonymous</string>
+    <string name="error_display_topics">Error fetching topic list. Try again later. If the error persists, contact the app development team.</string>
+    <string name="error_display_discussions">Error fetching discussion list. Try again later. If the error persists, contact the app development team.</string>
+    <string name="error_display_comments">Error fetching comment list. Try again later. If the error persists, contact the app development team.</string>
+    <string name="anon_user">Anonymous</string>
+    <string name="discussion_last_comment_time">Last response: %s</string>
+    <string name="btn_add_discussion">Publish your question</string>
+    <string name="comments_count">%d Responses</string>
+    <string name="title_text_example">Title Here</string>
+    <string name="responses">Responses</string>
+    <string name="comment_hint">Type a message</string>
+    <string name="question_content_hint">Question content</string>
+    <string name="question_label_hint">Question label</string>
 </resources>

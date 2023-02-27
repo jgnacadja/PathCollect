@@ -38,4 +38,5 @@ the specific language governing permissions and limitations under the License. -
     <string name="subtitle" translatable="false">SONDAGE</string>
 
     <string name="empty_accuracy" translatable="false">--</string>
+
 </resources>

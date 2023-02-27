@@ -3,8 +3,14 @@
 <resources>
     <!-- Custom font sizes -->
     <dimen name="text_size_small">16sp</dimen>
+    <dimen name="text_size_standard">18sp</dimen>
+    <dimen name="text_size_large">22sp</dimen>
+    <dimen name="text_size_larger">26sp</dimen>
 
     <!-- touch target -->
     <dimen name="touch_target_size">48dp</dimen>
     <dimen name="divider_accidental_tap">8dp</dimen>
+
+    <dimen name="discussion_icon">20dp</dimen>
+    <dimen name="text_size_smaller">13sp</dimen>
 </resources>
