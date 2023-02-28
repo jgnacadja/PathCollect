@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.model.Topic;
-import org.odk.collect.android.utilities.DownloadImageTask;
+import org.odk.collect.android.tasks.DownloadImageTask;
 import org.odk.collect.android.views.ForumViewHolder;
 
 import java.util.List;
@@ -19,8 +19,8 @@ import java.util.List;
 public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.ViewHolder> {
 
     private final Context context;
-    private List<Topic> topics;
     private final TopicItemClickListener listener;
+    private List<Topic> topics;
 
     public TopicListAdapter(List<Topic> topics, Context context, TopicItemClickListener listener) {
         this.context = context;

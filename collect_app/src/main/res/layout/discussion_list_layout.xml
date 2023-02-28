@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <include layout="@layout/app_bar_with_progress_bar_layout" />
 
     <ProgressBar
         android:id="@+id/discussionListProgressBar"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        style="?android:attr/progressBarStyleLarge"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/discussionListFetchError"
@@ -21,9 +21,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:text="@string/error_display_discussions"
-        android:textStyle="bold"
         android:textSize="@dimen/text_size_large"
-        android:visibility="gone"/>
+        android:textStyle="bold"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/discussionListRecyclerView"
@@ -35,9 +35,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="end"
         android:layout_margin="@dimen/margin_standard"
         android:layout_weight="0"
+        android:gravity="end"
         android:orientation="horizontal">
 
         <ImageButton
@@ -45,8 +45,8 @@
             android:layout_width="@dimen/touch_target_size"
             android:layout_height="@dimen/touch_target_size"
             android:layout_gravity="center_vertical"
-            android:padding="@dimen/margin_small"
             android:background="@drawable/rounded_corner"
+            android:padding="@dimen/margin_small"
             app:srcCompat="@drawable/ic_add_white" />
     </LinearLayout>
 </LinearLayout>
