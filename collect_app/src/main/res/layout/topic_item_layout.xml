@@ -7,18 +7,25 @@
     android:background="?android:attr/selectableItemBackground"
     android:padding="@dimen/margin_standard">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_standard"
+        android:background="@color/colorGray"
+        android:layout_weight="0">
+        <ImageView
+            android:id="@+id/topic_image"
+            android:layout_width="@dimen/touch_target_size"
+            android:layout_height="@dimen/touch_target_size"
+            app:srcCompat="@drawable/ic_anonymous_user" />
+    </LinearLayout>
     <!-- Material Design reference: https://material.io/design/components/lists.html#specs -->
-    <ImageView
-        android:id="@+id/topic_image"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_weight="0"
-        app:srcCompat="@drawable/form_state_blank_circle" />
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_marginStart="@dimen/margin_small"
         android:orientation="vertical">
 
         <!-- Material Design reference: https://material.io/design/components/lists.html#specs -->
@@ -27,29 +34,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
-            android:textColor="@color/colorPrimary"
-            tools:text="All widgets" />
+            android:textColor="@color/colorWhite"
+            android:padding="@dimen/margin_small"
+            android:background="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_large"
+            tools:text="Avortement" />
 
         <TextView
             android:id="@+id/discussions_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_extra_small"
-            android:background="@color/color15"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_standard"
             android:textAppearance="@style/TextAppearance.Collect.Body2.MediumEmphasis"
-            android:textColor="@color/colorOnPrimary"
-            tools:text="Version: 2019051301" />
+            tools:text="(20548 questions)" />
     </LinearLayout>
-
-    <org.odk.collect.android.audio.AudioButton
-        android:id="@+id/topic_audioButton"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-        android:layout_width="@dimen/touch_target_size"
-        android:layout_height="@dimen/touch_target_size"
-        android:layout_weight="0"
-        android:fillColor="@color/colorPrimary"
-        android:visibility="gone"
-        app:iconTint="@color/colorPrimary"
-        tools:visibility="visible" />
-
 </LinearLayout>

@@ -15,7 +15,7 @@ import androidx.core.widget.doOnTextChanged
 import org.odk.collect.analytics.Analytics
 import org.odk.collect.android.R
 import org.odk.collect.android.activities.ActivityUtils
-import org.odk.collect.android.activities.MainMenuActivity
+import org.odk.collect.android.activities.LandingPageActivity
 import org.odk.collect.android.analytics.AnalyticsEvents
 import org.odk.collect.android.configure.qr.AppConfigurationGenerator
 import org.odk.collect.android.databinding.ManualProjectCreatorDialogLayoutBinding
@@ -208,7 +208,7 @@ class ManualProjectCreatorDialog :
 
     override fun createProject(settingsJson: String) {
         projectCreator.createNewProject(settingsJson)
-        ActivityUtils.startActivityAndCloseAllOthers(activity, MainMenuActivity::class.java)
+        ActivityUtils.startActivityAndCloseAllOthers(activity, LandingPageActivity::class.java)
         ToastUtils.showLongToast(
             requireContext(),
             getString(R.string.switched_project, currentProjectProvider.getCurrentProject().name)
@@ -217,7 +217,7 @@ class ManualProjectCreatorDialog :
 
     override fun switchToProject(uuid: String) {
         currentProjectProvider.setCurrentProject(uuid)
-        ActivityUtils.startActivityAndCloseAllOthers(activity, MainMenuActivity::class.java)
+        ActivityUtils.startActivityAndCloseAllOthers(activity, LandingPageActivity::class.java)
         ToastUtils.showLongToast(
             requireContext(),
             getString(
