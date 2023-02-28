@@ -1,19 +1,11 @@
 package org.odk.collect.android.dao;
 
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.odk.collect.android.adapters.model.Topic;
-
-import java.util.ArrayList;
 
 public class TopicDao {
     private final DatabaseReference topicsRef;
@@ -32,7 +24,7 @@ public class TopicDao {
         topicsRef.child(topicId).setValue(topic);
     }
 
-    public void getAll(ValueEventListener listener){
+    public void getAll(ValueEventListener listener) {
         // Set up the Firebase query
         Query query = topicsRef.orderByChild("timestamp");
 

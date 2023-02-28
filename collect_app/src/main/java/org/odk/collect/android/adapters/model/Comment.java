@@ -9,11 +9,11 @@ public class Comment {
     private String discussionId;
     private int likes;
 
-    public Comment(){
+    public Comment() {
 
     }
 
-    public Comment(String id, String icon, String author, String text, long timestamp, String discussionId, int likes){
+    public Comment(String id, String icon, String author, String text, long timestamp, String discussionId, int likes) {
         this.id = id;
         this.icon = icon;
         this.author = author;

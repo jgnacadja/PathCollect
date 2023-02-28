@@ -10,11 +10,11 @@
 
     <ProgressBar
         android:id="@+id/discussionProgressBar"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        style="?android:attr/progressBarStyleLarge"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/discussionFetchError"
@@ -22,17 +22,17 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:text="@string/error_display_comments"
-        android:textStyle="bold"
         android:textSize="@dimen/text_size_large"
-        android:visibility="gone"/>
+        android:textStyle="bold"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/ll_dtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="start"
         android:layout_marginTop="@dimen/margin_standard"
         android:layout_weight="0"
+        android:gravity="start"
         android:orientation="vertical">
 
         <LinearLayout
@@ -50,10 +50,10 @@
                 android:layout_marginEnd="@dimen/margin_small"
                 android:ellipsize="end"
                 android:gravity="start"
+                android:text="@string/title_text_example"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/text_size_larger"
-                android:textStyle="bold"
-                android:text="@string/title_text_example" />
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -67,10 +67,10 @@
                 android:id="@+id/author_icon"
                 android:layout_width="@dimen/touch_target_size"
                 android:layout_height="@dimen/touch_target_size"
-                android:scaleType="centerCrop"
-                android:layout_weight="0"
                 android:layout_marginStart="@dimen/margin_small"
                 android:layout_marginEnd="@dimen/margin_small"
+                android:layout_weight="0"
+                android:scaleType="centerCrop"
                 tools:src="@drawable/ic_anonymous_user" />
 
             <LinearLayout
@@ -121,22 +121,22 @@
             android:layout_marginStart="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_small"
             android:layout_marginEnd="@dimen/margin_small"
-            android:textColor="@color/colorOnSurface"
             android:text="@string/title_text_example"
+            android:textColor="@color/colorOnSurface"
             android:textSize="@dimen/text_size_standard"
             tools:text="@string/title_text_example" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/margin_standard"
             android:layout_marginTop="@dimen/margin_large"
+            android:background="@drawable/square_corner"
             android:ellipsize="end"
+            android:padding="@dimen/margin_standard"
             android:singleLine="true"
             android:text="@string/responses"
             android:textColor="@color/colorOnSurface"
             android:textSize="@dimen/text_size_large"
-            android:background="@drawable/square_corner"
             android:textStyle="bold"
             tools:text="@string/responses" />
     </LinearLayout>
@@ -151,9 +151,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
         android:layout_marginStart="@dimen/margin_small"
         android:layout_marginEnd="@dimen/margin_small"
+        android:layout_weight="0"
         android:orientation="horizontal">
 
         <TextView
@@ -163,8 +163,8 @@
             android:layout_margin="@dimen/margin_small"
             android:singleLine="true"
             android:text="@string/none"
-            android:visibility="gone"
-            android:textColor="@color/colorError" />
+            android:textColor="@color/colorError"
+            android:visibility="gone" />
 
         <ProgressBar
             android:id="@+id/pBar"
@@ -172,7 +172,7 @@
             android:layout_width="@dimen/touch_target_size"
             android:layout_height="@dimen/touch_target_size"
             android:layout_marginTop="@dimen/margin_large"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/message_input_layout"
@@ -185,22 +185,22 @@
                 android:id="@+id/message_input_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:hint="@string/comment_hint"
+                android:inputType="text"
                 android:maxLines="5"
                 android:padding="@dimen/margin_standard"
-                android:layout_gravity="center_vertical"
-                android:textSize="@dimen/text_size_standard"
-                android:inputType="text" />
+                android:textSize="@dimen/text_size_standard" />
 
             <ImageButton
                 android:id="@+id/send_button"
                 android:layout_width="@dimen/touch_target_size"
                 android:layout_height="@dimen/touch_target_size"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_send"
                 android:background="@null"
-                android:padding="@dimen/margin_small" />
+                android:padding="@dimen/margin_small"
+                android:src="@drawable/ic_send" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

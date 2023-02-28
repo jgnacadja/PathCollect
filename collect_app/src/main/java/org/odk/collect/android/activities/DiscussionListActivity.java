@@ -2,7 +2,6 @@ package org.odk.collect.android.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -14,7 +13,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -24,13 +22,10 @@ import org.odk.collect.android.adapters.DiscussionListAdapter;
 import org.odk.collect.android.adapters.model.Discussion;
 import org.odk.collect.android.dao.DiscussionDao;
 import org.odk.collect.android.injection.DaggerUtils;
-import org.odk.collect.androidshared.system.IntentLauncher;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Inject;
 
 import timber.log.Timber;
 
@@ -38,13 +33,11 @@ import timber.log.Timber;
 public class DiscussionListActivity extends CollectAbstractActivity implements
         DiscussionListAdapter.DiscussionItemClickListener {
 
-    @Inject
-    IntentLauncher intentLauncher;
+    private static final String TAG = "DiscussionListActivity";
     private DiscussionListAdapter adapter;
     private List<Discussion> discussions;
     private String topicId;
     private DiscussionDao dao;
-    private static final String TAG = "DiscussionListActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

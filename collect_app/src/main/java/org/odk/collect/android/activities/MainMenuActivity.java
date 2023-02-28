@@ -28,13 +28,9 @@ import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import org.odk.collect.android.R;
 import org.odk.collect.android.activities.viewmodels.CurrentProjectViewModel;
 import org.odk.collect.android.activities.viewmodels.MainMenuViewModel;
-import org.odk.collect.android.adapters.model.Topic;
 import org.odk.collect.android.application.MapboxClassInstanceCreator;
 import org.odk.collect.android.formlists.blankformlist.BlankFormListActivity;
 import org.odk.collect.android.gdrive.GoogleDriveActivity;
@@ -48,9 +44,6 @@ import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 import org.odk.collect.settings.SettingsProvider;
 import org.odk.collect.settings.keys.MetaKeys;
 import org.odk.collect.settings.keys.ProjectKeys;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -68,7 +61,6 @@ public class MainMenuActivity extends CollectAbstractActivity {
     private Button viewSentFormsButton;
     private Button reviewDataButton;
     private Button getFormsButton;
-    private Button openForumButton;
 
     @Inject
     MainMenuViewModel.Factory viewModelFactory;
@@ -234,12 +226,12 @@ public class MainMenuActivity extends CollectAbstractActivity {
         viewSentFormsButton.setVisibility(mainMenuViewModel.shouldViewSentFormButtonBeVisible() ? View.VISIBLE : View.GONE);
         getFormsButton.setVisibility(mainMenuViewModel.shouldGetBlankFormButtonBeVisible() ? View.VISIBLE : View.GONE);
         manageFilesButton.setVisibility(mainMenuViewModel.shouldDeleteSavedFormButtonBeVisible() ? View.VISIBLE : View.GONE);
-        openForumButton.setVisibility(View.VISIBLE);
     }
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         final MenuItem projectsMenuItem = menu.findItem(R.id.projects);
+
         ProjectIconView projectIconView = (ProjectIconView) projectsMenuItem.getActionView();
         projectIconView.setProject(currentProjectViewModel.getCurrentProject().getValue());
         projectIconView.setOnClickListener(v -> onOptionsItemSelected(projectsMenuItem));
