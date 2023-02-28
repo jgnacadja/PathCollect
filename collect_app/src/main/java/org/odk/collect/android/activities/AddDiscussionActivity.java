@@ -16,15 +16,9 @@ import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.model.Discussion;
 import org.odk.collect.android.dao.DiscussionDao;
 import org.odk.collect.android.injection.DaggerUtils;
-import org.odk.collect.androidshared.system.IntentLauncher;
-
-import javax.inject.Inject;
 
 
 public class AddDiscussionActivity extends CollectAbstractActivity {
-
-    @Inject
-    IntentLauncher intentLauncher;
 
     private TextInputEditText questionLabelTV;
     private TextInputEditText questionDescriptionTV;

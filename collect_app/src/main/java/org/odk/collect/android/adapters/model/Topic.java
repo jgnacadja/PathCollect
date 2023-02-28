@@ -6,11 +6,11 @@ public class Topic {
     private String icon;
     private int discussionCount;
 
-    public Topic(){
+    public Topic() {
 
     }
 
-    public Topic(String id, String title, String icon, int discussionCount){
+    public Topic(String id, String title, String icon, int discussionCount) {
         this.id = id;
         this.title = title;
         this.icon = icon;
@@ -41,7 +41,7 @@ public class Topic {
         this.icon = icon;
     }
 
-    public int getDiscussionCount(){
+    public int getDiscussionCount() {
         return discussionCount;
     }
 
