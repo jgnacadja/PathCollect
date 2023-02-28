@@ -1,8 +1,6 @@
 package org.odk.collect.android.utilities;
 
-
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class TimeAgo {
@@ -12,7 +10,7 @@ public class TimeAgo {
     public static final long DAY_MILLIS = 24 * HOUR_MILLIS;
     private static final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy à HH:mm:ss");
 
-    public static String formatTimestamp(long timestamp){
+    public static String formatTimestamp(long timestamp) {
         return formatter.format(new Date(timestamp));
     }
 
@@ -32,7 +30,7 @@ public class TimeAgo {
         } else if (diff < 90 * MINUTE_MILLIS) {
             return "il y a une heure";
         } else if (diff < 24 * HOUR_MILLIS) {
-            return "il y a "+ diff / HOUR_MILLIS + " heures";
+            return "il y a " + diff / HOUR_MILLIS + " heures";
         } else if (diff < 48 * HOUR_MILLIS) {
             return "hier";
         } else {

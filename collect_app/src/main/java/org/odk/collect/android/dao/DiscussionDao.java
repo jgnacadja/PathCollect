@@ -9,7 +9,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
-import org.odk.collect.android.adapters.model.Comment;
 import org.odk.collect.android.adapters.model.Discussion;
 
 public class DiscussionDao {

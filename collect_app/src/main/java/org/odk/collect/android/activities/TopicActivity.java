@@ -2,7 +2,6 @@ package org.odk.collect.android.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -12,20 +11,20 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.TopicListAdapter;
 import org.odk.collect.android.adapters.model.Topic;
 import org.odk.collect.android.dao.TopicDao;
 import org.odk.collect.android.injection.DaggerUtils;
-import org.odk.collect.androidshared.system.IntentLauncher;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Inject;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
 
 import timber.log.Timber;
 
@@ -33,11 +32,9 @@ import timber.log.Timber;
 public class TopicActivity extends CollectAbstractActivity implements
         TopicListAdapter.TopicItemClickListener {
 
-    @Inject
-    IntentLauncher intentLauncher;
+    private static final String TAG = "TopicActivity";
     private TopicListAdapter adapter;
     private List<Topic> topics;
-    private static final String TAG = "TopicActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -8,11 +8,11 @@
 
     <ProgressBar
         android:id="@+id/topicProgressBar"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        style="?android:attr/progressBarStyleLarge"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/topicFetchError"
@@ -20,9 +20,9 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:text="@string/error_display_topics"
-        android:textStyle="bold"
         android:textSize="@dimen/text_size_large"
-        android:visibility="gone"/>
+        android:textStyle="bold"
+        android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/topicRecyclerView"

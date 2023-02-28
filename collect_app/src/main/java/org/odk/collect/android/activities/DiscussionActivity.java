@@ -31,7 +31,6 @@ import org.odk.collect.android.dao.CommentDao;
 import org.odk.collect.android.dao.DiscussionDao;
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.utilities.TimeAgo;
-import org.odk.collect.androidshared.system.IntentLauncher;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -39,15 +38,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import timber.log.Timber;
 
 
 public class DiscussionActivity extends CollectAbstractActivity {
 
-    @Inject
-    IntentLauncher intentLauncher;
+    private static final String TAG = "DiscussionActivity";
     private CommentListAdapter adapter;
     private Discussion discussion;
     private List<Comment> comments;
@@ -63,7 +59,6 @@ public class DiscussionActivity extends CollectAbstractActivity {
     private EditText commentText;
     private ImageButton commentBtn;
     private ProgressBar pgsBar;
-    private static final String TAG = "DiscussionActivity";
     private boolean isDiscussionRead;
     private boolean isCommentsRead;
 
@@ -178,14 +173,14 @@ public class DiscussionActivity extends CollectAbstractActivity {
     }
 
     private int getVisibility(boolean isDiscussionRead, boolean isCommentsRead) {
-        if (isCommentsRead && isDiscussionRead){
+        if (isCommentsRead && isDiscussionRead) {
             return View.GONE;
         } else {
             return View.VISIBLE;
         }
     }
 
-    private void initComponent(){
+    private void initComponent() {
         errorMessage = findViewById(R.id.comment_creation_error);
         errorMessage.setVisibility(View.GONE);
         pgsBar = findViewById(R.id.pBar);
@@ -199,7 +194,7 @@ public class DiscussionActivity extends CollectAbstractActivity {
         commentBtn = findViewById(R.id.send_button);
     }
 
-    private void createComment(){
+    private void createComment() {
         pgsBar.setVisibility(View.VISIBLE);
         errorMessage.setVisibility(View.GONE);
         errorMessage.setText("");
@@ -239,7 +234,7 @@ public class DiscussionActivity extends CollectAbstractActivity {
         @Override
         protected Drawable doInBackground(String... urls) {
             String url = urls[0];
-            if(url != null && !url.isEmpty()){
+            if (url != null && !url.isEmpty()) {
                 try {
                     URL urlConnection = new URL(url);
                     HttpURLConnection connection = (HttpURLConnection) urlConnection
@@ -259,7 +254,7 @@ public class DiscussionActivity extends CollectAbstractActivity {
 
         @Override
         protected void onPostExecute(Drawable drawable) {
-            if(drawable != null){
+            if (drawable != null) {
                 authorIconImageView.setImageDrawable(drawable);
             } else {
                 int iconId = R.drawable.ic_anonymous_user;
