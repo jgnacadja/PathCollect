@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.model.Topic;
 import org.odk.collect.android.tasks.DownloadImageTask;
+import org.odk.collect.android.utilities.TimeAgo;
 import org.odk.collect.android.views.ForumViewHolder;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.View
         DownloadImageTask task = new DownloadImageTask(holder);
         task.execute(topic.getIcon());
         holder.title.setText(topic.getTitle());
-        holder.discussionCount.setText(String.valueOf(topic.getDiscussionCount()));
+        holder.discussionCount.setText(this.context.getString(R.string.questions_count, topic.getDiscussionCount()));
     }
 
     @Override
