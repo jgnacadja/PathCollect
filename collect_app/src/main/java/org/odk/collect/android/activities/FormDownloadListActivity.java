@@ -119,7 +119,7 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
     private TextView countSelectedItem;
     private DownloadFormListTask downloadFormListTask;
     private DownloadFormsTask downloadFormsTask;
-    private AppCompatCheckBox toggleButton;
+    private Button toggleButton;
 
     private final ArrayList<HashMap<String, String>> filteredFormList = new ArrayList<>();
 
