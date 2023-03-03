@@ -24,64 +24,52 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="@dimen/margin_standard">
+            android:layout_margin="@dimen/margin_standard"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <LinearLayout
+                <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
+                    android:id="@+id/sondage"
+                    style="@style/Widget.Collect.Button.FullWidth"
                     android:layout_width="0dp"
+                    android:layout_height="@dimen/main_menu_bloc"
+                    android:layout_marginTop="@dimen/margin_extra_small"
                     android:layout_weight="50"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:backgroundTint="@color/colorWhite"
+                    android:orientation="vertical"
+                    android:text="@string/btn_sondage"
+                    android:textColor="@color/color_on_surface_high_emphasis"
+                    android:textSize="@dimen/text_size_standard"
+                    app:cornerRadius="@dimen/text_size_small"
+                    app:icon="@drawable/ic_formulaire"
+                    app:iconGravity="top"
+                    app:iconSize="@dimen/main_menu_icon"
+                    app:iconTint="@color/colorPrimary"
+                    tools:text="@string/btn_sondage" />
 
-                    <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                        android:id="@+id/sondage"
-                        style="@style/Widget.Collect.Button.FullWidth"
-                        android:layout_width="match_parent"
-                        android:layout_height="161dp"
-                        android:layout_marginTop="@dimen/margin_extra_small"
-                        android:backgroundTint="@color/colorWhite"
-                        android:orientation="vertical"
-                        android:text="@string/btn_sondage"
-                        android:textColor="@color/color_on_surface_high_emphasis"
-                        android:textSize="17sp"
-                        app:cornerRadius="@dimen/text_size_small"
-                        app:icon="@drawable/ic_formulaire"
-                        app:iconGravity="top"
-                        app:iconSize="30dp"
-                        app:iconTint="@color/colorPrimary"
-                        tools:text="@string/btn_sondage" />
-                </LinearLayout>
-
-                <LinearLayout
+                <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
+                    android:id="@+id/message"
+                    style="@style/Widget.Collect.Button.FullWidth"
                     android:layout_width="0dp"
+                    android:layout_height="@dimen/main_menu_bloc"
+                    android:layout_marginStart="@dimen/margin_standard"
+                    android:layout_marginTop="@dimen/margin_extra_small"
                     android:layout_weight="50"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                        android:id="@+id/message"
-                        style="@style/Widget.Collect.Button.FullWidth"
-                        android:layout_width="match_parent"
-                        android:layout_height="161dp"
-                        android:layout_marginStart="@dimen/margin_standard"
-                        android:layout_marginTop="@dimen/margin_extra_small"
-                        android:backgroundTint="@color/colorWhite"
-                        android:orientation="vertical"
-                        android:textColor="@color/color_on_surface_high_emphasis"
-                        android:textSize="17sp"
-                        app:cornerRadius="@dimen/text_size_small"
-                        app:icon="@drawable/ic_mes"
-                        app:iconGravity="top"
-                        app:iconSize="30dp"
-                        app:iconTint="@color/colorPrimary"
-                        android:text="@string/btn_messsage"
-                        tools:text="@string/btn_messsage" />
-                </LinearLayout>
+                    android:backgroundTint="@color/colorWhite"
+                    android:orientation="vertical"
+                    android:text="@string/btn_messsage"
+                    android:textColor="@color/color_on_surface_high_emphasis"
+                    android:textSize="@dimen/text_size_standard"
+                    app:cornerRadius="@dimen/text_size_small"
+                    app:icon="@drawable/ic_mes"
+                    app:iconGravity="top"
+                    app:iconSize="@dimen/main_menu_icon"
+                    app:iconTint="@color/colorPrimary"
+                    tools:text="@string/btn_messsage" />
             </LinearLayout>
 
             <LinearLayout
@@ -89,55 +77,44 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <LinearLayout
+                <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
+                    android:id="@+id/article"
+                    style="@style/Widget.Collect.Button.FullWidth"
                     android:layout_width="0dp"
+                    android:layout_height="@dimen/main_menu_bloc"
+                    android:layout_marginTop="@dimen/margin_extra_small"
                     android:layout_weight="50"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:backgroundTint="@color/colorWhite"
+                    android:orientation="vertical"
+                    android:text="@string/btn_article"
+                    android:textColor="@color/color_on_surface_high_emphasis"
+                    android:textSize="@dimen/text_size_standard"
+                    app:cornerRadius="@dimen/text_size_small"
+                    app:icon="@drawable/icon_article"
+                    app:iconGravity="top"
+                    app:iconSize="@dimen/main_menu_icon"
+                    app:iconTint="@color/colorPrimary"
+                    tools:text="@string/btn_article" />
 
-                    <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                        android:id="@+id/article"
-                        style="@style/Widget.Collect.Button.FullWidth"
-                        android:layout_width="match_parent"
-                        android:layout_height="161dp"
-                        android:layout_marginTop="@dimen/margin_extra_small"
-                        android:backgroundTint="@color/colorWhite"
-                        android:orientation="vertical"
-                        android:textColor="@color/color_on_surface_high_emphasis"
-                        app:cornerRadius="@dimen/text_size_small"
-                        android:textSize="17sp"
-                        app:icon="@drawable/icon_article"
-                        app:iconGravity="top"
-                        app:iconSize="30dp"
-                        app:iconTint="@color/colorPrimary"
-                        android:text="@string/btn_article"
-                        tools:text="@string/btn_article" />
-                </LinearLayout>
-                <LinearLayout
+                <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
+                    android:id="@+id/centre_Hospital"
+                    style="@style/Widget.Collect.Button.FullWidth"
                     android:layout_width="0dp"
+                    android:layout_height="@dimen/main_menu_bloc"
+                    android:layout_marginStart="@dimen/margin_standard"
+                    android:layout_marginTop="@dimen/margin_extra_small"
                     android:layout_weight="50"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                        android:id="@+id/centre_Hospital"
-                        style="@style/Widget.Collect.Button.FullWidth"
-                        android:layout_width="match_parent"
-                        android:layout_height="161dp"
-                        android:layout_marginTop="@dimen/margin_extra_small"
-                        android:layout_marginStart="@dimen/margin_standard"
-                        android:backgroundTint="@color/colorSurface"
-                        android:orientation="vertical"
-                        android:textColor="@color/color_on_surface_high_emphasis"
-                        app:cornerRadius="@dimen/text_size_small"
-                        android:textSize="17sp"
-                        app:icon="@drawable/icon_hospital"
-                        app:iconGravity="top"
-                        app:iconSize="30dp"
-                        app:iconTint="@color/colorPrimary"
-                        android:text="@string/btn_centreHospital"
-                        tools:text="@string/btn_centreHospital" />
-                </LinearLayout>
+                    android:backgroundTint="@color/colorSurface"
+                    android:orientation="vertical"
+                    android:text="@string/btn_centreHospital"
+                    android:textColor="@color/color_on_surface_high_emphasis"
+                    android:textSize="@dimen/text_size_standard"
+                    app:cornerRadius="@dimen/text_size_small"
+                    app:icon="@drawable/icon_hospital"
+                    app:iconGravity="top"
+                    app:iconSize="@dimen/main_menu_icon"
+                    app:iconTint="@color/colorPrimary"
+                    tools:text="@string/btn_centreHospital" />
             </LinearLayout>
 
             <LinearLayout
@@ -148,20 +125,28 @@
                 <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
                     android:id="@+id/cycle"
                     style="@style/Widget.Collect.Button.FullWidth"
-                    android:layout_width="170dp"
-                    android:layout_height="161dp"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/main_menu_bloc"
                     android:layout_marginTop="@dimen/margin_extra_small"
+                    android:layout_weight="50"
                     android:backgroundTint="@color/colorWhite"
                     android:orientation="vertical"
                     android:text="@string/btn_cycle"
                     android:textColor="@color/color_on_surface_high_emphasis"
-                    android:textSize="17sp"
+                    android:textSize="@dimen/text_size_standard"
                     app:cornerRadius="@dimen/text_size_small"
                     app:icon="@drawable/ic_periodical"
                     app:iconGravity="top"
-                    app:iconSize="40dp"
+                    app:iconSize="@dimen/main_menu_icon"
                     app:iconTint="@color/colorError"
                     tools:text="@string/btn_cycle" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50">
+
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>

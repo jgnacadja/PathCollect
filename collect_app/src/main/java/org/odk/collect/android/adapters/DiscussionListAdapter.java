@@ -44,7 +44,11 @@ public class DiscussionListAdapter extends RecyclerView.Adapter<DiscussionListAd
         task.execute(discussion.getIcon());
         holder.title.setText(discussion.getTitle());
         holder.description.setText(discussion.getDescription());
-        holder.lastCommentTimestamp.setText(this.context.getString(R.string.discussion_last_comment_time, TimeAgo.getTimeAgo(discussion.getLastCommentTimestamp())));
+        if(discussion.getLastCommentTimestamp() != 0){
+            holder.lastCommentTimestamp.setText(this.context.getString(R.string.discussion_last_comment_time, TimeAgo.getTimeAgo(discussion.getLastCommentTimestamp())));
+        } else {
+            holder.lastCommentTimestamp.setVisibility(View.GONE);
+        }
         holder.likes.setText(String.valueOf(discussion.getLikes()));
         holder.views.setText(String.valueOf(discussion.getViews()));
         holder.commentCount.setText(String.valueOf(discussion.getCommentCount()));

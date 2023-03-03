@@ -11,6 +11,8 @@
     <dimen name="touch_target_size">48dp</dimen>
     <dimen name="divider_accidental_tap">8dp</dimen>
 
+    <dimen name="main_menu_icon">30dp</dimen>
+    <dimen name="main_menu_bloc">160dp</dimen>
     <dimen name="discussion_icon">20dp</dimen>
     <dimen name="text_size_smaller">13sp</dimen>
 </resources>

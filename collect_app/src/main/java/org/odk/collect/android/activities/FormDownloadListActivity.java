@@ -32,8 +32,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.odk.collect.analytics.Analytics;
@@ -41,6 +44,7 @@ import org.odk.collect.android.R;
 import org.odk.collect.android.activities.viewmodels.FormDownloadListViewModel;
 import org.odk.collect.android.activities.viewmodels.MainMenuViewModel;
 import org.odk.collect.android.adapters.FormDownloadListAdapter;
+import org.odk.collect.android.button.MaterialButtonCheckable;
 import org.odk.collect.android.formentry.RefreshFormListDialogFragment;
 import org.odk.collect.android.formmanagement.FormDownloadException;
 import org.odk.collect.android.formmanagement.FormDownloader;
@@ -113,10 +117,9 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
     private ProgressDialog cancelDialog;
     private Button downloadButton;
     private TextView countSelectedItem;
-
     private DownloadFormListTask downloadFormListTask;
     private DownloadFormsTask downloadFormsTask;
-    private Button toggleButton;
+    private AppCompatCheckBox toggleButton;
 
     private final ArrayList<HashMap<String, String>> filteredFormList = new ArrayList<>();
 
@@ -201,6 +204,7 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
             public void onClick(View v) {
                 downloadButton.setEnabled(toggleChecked(listView));
                 toggleButtonLabel(toggleButton, listView);
+                countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
                 viewModel.clearSelectedFormIds();
                 if (listView.getCheckedItemCount() == listView.getCount()) {
                     for (HashMap<String, String> map : viewModel.getFormList()) {
@@ -542,6 +546,7 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
             updateAdapter();
             selectSupersededForms();
             downloadButton.setEnabled(listView.getCheckedItemCount() > 0);
+            countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
             toggleButton.setEnabled(listView.getCount() > 0);
             toggleButtonLabel(toggleButton, listView);
 
