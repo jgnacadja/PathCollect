@@ -70,7 +70,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
         articleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), MainMenuActivity.class);
+                Intent i = new Intent(getApplicationContext(), ArticleListActivity.class);
                 i.putExtra(ApplicationConstants.BundleKeys.FORM_MODE,
                         ApplicationConstants.FormModes.VIEW_SENT);
                 startActivity(i);
