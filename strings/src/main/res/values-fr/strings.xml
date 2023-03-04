@@ -972,5 +972,5 @@
   <string name="responses">Réponses</string>
   <string name="comment_hint">Tapez un message</string>
   <string name="question_content_hint">Contenue de la question</string>
-  <string name="question_label_hint">Intitulé de la question</string>
+  <string name="question_label_hint">Votre question</string>
 </resources>

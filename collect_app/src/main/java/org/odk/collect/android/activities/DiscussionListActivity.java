@@ -27,6 +27,7 @@ import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import timber.log.Timber;
@@ -76,6 +77,7 @@ public class DiscussionListActivity extends CollectAbstractActivity implements
                         discussions.add(discussion);
                     }
                 }
+                Collections.reverse(discussions);
                 adapter.setDiscussions(discussions);
                 progressBar.setVisibility(View.GONE);
             }

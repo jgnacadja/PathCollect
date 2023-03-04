@@ -5,7 +5,6 @@ public class Discussion {
     private String icon;
     private String author;
     private String title;
-    private String description;
     private long timestamp;
     private String topicId;
     private int likes;
@@ -17,12 +16,11 @@ public class Discussion {
 
     }
 
-    public Discussion(String id, String icon, String author, String title, String description, long timestamp, String topicId, int views, int likes, int commentCount, long lastCommentTimestamp) {
+    public Discussion(String id, String icon, String author, String title, long timestamp, String topicId, int views, int likes, int commentCount, long lastCommentTimestamp) {
         this.id = id;
         this.icon = icon;
         this.author = author;
         this.title = title;
-        this.description = description;
         this.timestamp = timestamp;
         this.topicId = topicId;
         this.views = views;
@@ -53,14 +51,6 @@ public class Discussion {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public long getTimestamp() {

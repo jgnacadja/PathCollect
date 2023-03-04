@@ -41,7 +41,7 @@
                 android:layout_gravity="center_vertical"
                 android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/text_size_large"
+                android:textSize="@dimen/text_size_standard"
                 android:textStyle="bold"
                 tools:text="@string/title_text_example" />
 
@@ -52,7 +52,7 @@
                 android:layout_gravity="center_vertical"
                 android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
                 android:textColor="@color/color15"
-                android:textSize="@dimen/text_size_standard"
+                android:textSize="@dimen/text_size_small"
                 tools:text="@string/title_text_example" />
         </LinearLayout>
 

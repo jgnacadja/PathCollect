@@ -24,17 +24,17 @@ public class TimeAgo {
         if (diff < MINUTE_MILLIS) {
             return "maintenant";
         } else if (diff < 2 * MINUTE_MILLIS) {
-            return "il y a une minute";
+            return "il y a 1 min.";
         } else if (diff < 50 * MINUTE_MILLIS) {
-            return "il y a " + diff / MINUTE_MILLIS + " minutes";
+            return "il y a " + diff / MINUTE_MILLIS + " min.";
         } else if (diff < 90 * MINUTE_MILLIS) {
-            return "il y a une heure";
+            return "il y a 1h";
         } else if (diff < 24 * HOUR_MILLIS) {
-            return "il y a " + diff / HOUR_MILLIS + " heures";
+            return "il y a " + diff / HOUR_MILLIS + "h";
         } else if (diff < 48 * HOUR_MILLIS) {
             return "hier";
         } else {
-            return "il y a " + diff / DAY_MILLIS + " jours";
+            return "il y a " + diff / DAY_MILLIS + "j";
         }
     }
 }

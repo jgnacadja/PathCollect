@@ -24,7 +24,6 @@ import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 public class AddDiscussionActivity extends CollectAbstractActivity {
 
     private TextInputEditText questionLabelTV;
-    private TextInputEditText questionDescriptionTV;
     private MaterialTextView submitButton;
     private TextView errorMessage;
     private ProgressBar pgsBar;
@@ -46,7 +45,6 @@ public class AddDiscussionActivity extends CollectAbstractActivity {
         errorMessage.setVisibility(View.GONE);
         pgsBar = findViewById(R.id.discussionpBar);
         questionLabelTV = findViewById(R.id.question_label);
-        questionDescriptionTV = findViewById(R.id.question_description);
         submitButton = findViewById(R.id.submit_discussion);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,27 +65,17 @@ public class AddDiscussionActivity extends CollectAbstractActivity {
         errorMessage.setVisibility(View.GONE);
         errorMessage.setText("");
         String title = questionLabelTV.getText().toString();
-        String description = questionDescriptionTV.getText().toString();
 
-        if (TextUtils.isEmpty(title) && TextUtils.isEmpty(description)) {
-            pgsBar.setVisibility(View.GONE);
-            errorMessage.setVisibility(View.VISIBLE);
-            errorMessage.setText("Veuillez entrer le titre et le contenu de votre question");
-        } else if (TextUtils.isEmpty(title)) {
+        if (TextUtils.isEmpty(title)) {
             pgsBar.setVisibility(View.GONE);
             errorMessage.setVisibility(View.VISIBLE);
             errorMessage.setText("Veuillez entrer le titre de la question");
-        } else if (TextUtils.isEmpty(description)) {
-            pgsBar.setVisibility(View.GONE);
-            errorMessage.setVisibility(View.VISIBLE);
-            errorMessage.setText("Veuillez entrer la description de la question");
         } else {
             Discussion discussion = new Discussion(
                     null,
                     null,
                     getString(R.string.anon_user),
                     title,
-                    description,
                     0,
                     topicId,
                     0,

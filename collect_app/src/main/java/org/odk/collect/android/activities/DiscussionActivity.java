@@ -1,5 +1,6 @@
 package org.odk.collect.android.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -8,6 +9,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -40,6 +42,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import timber.log.Timber;
@@ -57,9 +60,9 @@ public class DiscussionActivity extends CollectAbstractActivity {
     private ImageView authorIconImageView;
     private TextView authorNameTextView;
     private TextView dateTextView;
-    private TextView descriptionTextView;
     private ImageButton discussionLikeBtn;
     private TextView errorMessage;
+    private TextView likeCount;
     private EditText commentText;
     private ImageButton commentBtn;
     private ProgressBar pgsBar;
@@ -109,9 +112,9 @@ public class DiscussionActivity extends CollectAbstractActivity {
                 // Init display with discussion data
                 titleTextView.setText(discussion.getTitle());
                 new DownloadImageFile().execute(discussion.getIcon());
-                descriptionTextView.setText(discussion.getDescription());
                 dateTextView.setText(TimeAgo.formatTimestamp(discussion.getTimestamp()));
                 authorNameTextView.setText(discussion.getAuthor());
+                likeCount.setText(String.valueOf(discussion.getLikes()));
 
                 // Init listeners
                 discussionLikeBtn.setOnClickListener(new View.OnClickListener() {
@@ -155,6 +158,7 @@ public class DiscussionActivity extends CollectAbstractActivity {
                         comments.add(comment);
                     }
                 }
+                Collections.reverse(comments);
                 adapter.setComments(comments);
                 isCommentsRead = true;
                 progressBar.setVisibility(getVisibility(isDiscussionRead, isCommentsRead));
@@ -189,8 +193,8 @@ public class DiscussionActivity extends CollectAbstractActivity {
         errorMessage.setVisibility(View.GONE);
         pgsBar = findViewById(R.id.pBar);
         titleTextView = findViewById(R.id.discussion_title);
+        likeCount = findViewById(R.id.discussion_like_count);
         authorIconImageView = findViewById(R.id.author_icon);
-        descriptionTextView = findViewById(R.id.discussion_description);
         dateTextView = findViewById(R.id.discussion_publication_date);
         authorNameTextView = findViewById(R.id.author_name);
         discussionLikeBtn = findViewById(R.id.discussion_like_icon);
@@ -218,6 +222,7 @@ public class DiscussionActivity extends CollectAbstractActivity {
 
             commentDao.addComment(comment);
             commentText.setText("");
+            hideSoftKeyboard();
         }
 
         pgsBar.setVisibility(View.GONE);
@@ -293,5 +298,15 @@ public class DiscussionActivity extends CollectAbstractActivity {
             }
         }
 
+    }
+
+    private void hideSoftKeyboard(){
+        try {
+            InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        } catch (Exception e) {
+            // TODO: handle exception
+            Timber.tag(TAG).e(e);
+        }
     }
 }
