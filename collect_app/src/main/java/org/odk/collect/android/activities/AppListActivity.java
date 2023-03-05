@@ -16,6 +16,7 @@
 
 package org.odk.collect.android.activities;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,6 +32,7 @@ import android.widget.ProgressBar;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -139,7 +141,7 @@ abstract class AppListActivity extends CollectAbstractActivity {
         listView.setDivider(ContextCompat.getDrawable(this, R.drawable.list_item_divider));
         listView.setDividerHeight(1);
 
-        setSupportActionBar(findViewById(R.id.toolbar));
+        initToolbar(null, false, null);
     }
 
     @Override

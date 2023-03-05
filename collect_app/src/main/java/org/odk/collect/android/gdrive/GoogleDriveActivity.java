@@ -42,6 +42,7 @@ import com.google.api.services.drive.Drive;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.activities.FormListActivity;
+import org.odk.collect.android.activities.MainMenuActivity;
 import org.odk.collect.android.adapters.FileArrayAdapter;
 import org.odk.collect.android.exception.MultipleFoldersFoundException;
 import org.odk.collect.android.gdrive.sheets.DriveHelper;
@@ -124,12 +125,6 @@ public class GoogleDriveActivity extends FormListActivity implements View.OnClic
     @Inject
     FormsRepositoryProvider formsRepositoryProvider;
 
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.google_drive));
-        setSupportActionBar(toolbar);
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
@@ -139,7 +134,7 @@ public class GoogleDriveActivity extends FormListActivity implements View.OnClic
         DaggerUtils.getComponent(this).inject(this);
 
         setProgressBarVisibility(true);
-        initToolbar();
+        initToolbar(getString(R.string.google_drive), false, null);
 
         parentId = null;
         alertShowing = false;

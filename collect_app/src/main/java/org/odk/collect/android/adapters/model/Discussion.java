@@ -1,5 +1,7 @@
 package org.odk.collect.android.adapters.model;
 
+import java.util.List;
+
 public class Discussion {
     private String id;
     private String icon;
@@ -11,12 +13,14 @@ public class Discussion {
     private int views;
     private int commentCount;
     private long lastCommentTimestamp;
+    private List<String> likedUsers;
+    private List<String> viewedUsers;
 
     public Discussion() {
 
     }
 
-    public Discussion(String id, String icon, String author, String title, long timestamp, String topicId, int views, int likes, int commentCount, long lastCommentTimestamp) {
+    public Discussion(String id, String icon, String author, String title, long timestamp, String topicId, int views, int likes, int commentCount, long lastCommentTimestamp, List<String> likedUsers, List<String> viewedUsers) {
         this.id = id;
         this.icon = icon;
         this.author = author;
@@ -27,6 +31,8 @@ public class Discussion {
         this.likes = likes;
         this.commentCount = commentCount;
         this.lastCommentTimestamp = lastCommentTimestamp;
+        this.likedUsers = likedUsers;
+        this.viewedUsers = viewedUsers;
     }
 
     public String getId() {
@@ -127,5 +133,21 @@ public class Discussion {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public List<String> getLikedUsers() {
+        return likedUsers;
+    }
+
+    public void setLikedUsers(List<String> likedUsers) {
+        this.likedUsers = likedUsers;
+    }
+
+    public List<String> getViewedUsers() {
+        return viewedUsers;
+    }
+
+    public void setViewedUsers(List<String> viewedUsers) {
+        this.viewedUsers = viewedUsers;
     }
 }

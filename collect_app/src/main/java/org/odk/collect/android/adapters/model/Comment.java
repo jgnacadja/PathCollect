@@ -1,5 +1,7 @@
 package org.odk.collect.android.adapters.model;
 
+import java.util.List;
+
 public class Comment {
     private String id;
     private String icon;
@@ -8,12 +10,14 @@ public class Comment {
     private long timestamp;
     private String discussionId;
     private int likes;
+    private List<String> likedUsers;
+    private List<String> viewedUsers;
 
     public Comment() {
 
     }
 
-    public Comment(String id, String icon, String author, String text, long timestamp, String discussionId, int likes) {
+    public Comment(String id, String icon, String author, String text, long timestamp, String discussionId, int likes, List<String> likedUsers, List<String> viewedUsers) {
         this.id = id;
         this.icon = icon;
         this.author = author;
@@ -21,6 +25,8 @@ public class Comment {
         this.timestamp = timestamp;
         this.discussionId = discussionId;
         this.likes = likes;
+        this.likedUsers = likedUsers;
+        this.viewedUsers = viewedUsers;
     }
 
     public String getId() {
@@ -85,5 +91,21 @@ public class Comment {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public List<String> getLikedUsers() {
+        return likedUsers;
+    }
+
+    public void setLikedUsers(List<String> likedUsers) {
+        this.likedUsers = likedUsers;
+    }
+
+    public List<String> getViewedUsers() {
+        return viewedUsers;
+    }
+
+    public void setViewedUsers(List<String> viewedUsers) {
+        this.viewedUsers = viewedUsers;
     }
 }

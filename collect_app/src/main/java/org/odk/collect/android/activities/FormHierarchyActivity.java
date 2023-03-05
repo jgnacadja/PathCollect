@@ -17,6 +17,7 @@ package org.odk.collect.android.activities;
 import static org.odk.collect.android.javarosawrapper.FormIndexUtils.getPreviousLevel;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -134,8 +135,7 @@ public class FormHierarchyActivity extends CollectAbstractActivity implements De
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         TextView emptyView = findViewById(android.R.id.empty);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        initToolbar(null, false, null);
 
         FormController formController = Collect.getInstance().getFormController();
         // https://github.com/getodk/collect/issues/998

@@ -1,9 +1,11 @@
 package org.odk.collect.android.adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.CookieManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -24,9 +26,12 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
     private final Context context;
     private List<Comment> comments;
 
-    public CommentListAdapter(List<Comment> comments, Context context) {
+    private final String installID;
+
+    public CommentListAdapter(List<Comment> comments, Context context, String installID) {
         this.context = context;
         this.comments = comments;
+        this.installID = installID;
     }
 
     @NonNull
@@ -43,6 +48,15 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         CommentDao dao = new CommentDao();
 
         Comment comment = comments.get(position);
+
+        // Check if the user has already liked this comment
+        boolean alreadyLiked;
+        try {
+            alreadyLiked = comment.getLikedUsers().contains(installID);
+        } catch (NullPointerException e){
+            alreadyLiked = false;
+        }
+
         DownloadImageTask task = new DownloadImageTask(holder);
         task.execute(comment.getIcon());
         holder.author.setText(comment.getAuthor());
@@ -50,15 +64,37 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         holder.date.setText(TimeAgo.formatTimestamp(comment.getTimestamp()));
         holder.likes.setText(String.valueOf(comment.getLikes()));
 
+        if(alreadyLiked){
+            int iconId = R.drawable.thumb_up_filled;
+            holder.likeBtn.setImageResource(iconId);
+            holder.likeBtn.setTag(iconId);
+        }
+
+        boolean finalAlreadyLiked = alreadyLiked;
         holder.likeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Update the likes count in the Discussion object
-                comment.incrementLikes();
-                holder.likes.setText(String.valueOf(comment.getLikes()));
+                if (!finalAlreadyLiked) {
+                    // Update the likes count in the Comment object
+                    comment.incrementLikes();
+                    holder.likes.setText(String.valueOf(comment.getLikes()));
 
-                // Update the likes count in the database
-                dao.updateCommentLikesCount(comment);
+                    // Update the likes count in the database
+                    dao.updateCommentLikesCount(comment, installID, true);
+                    int iconId = R.drawable.thumb_up_filled;
+                    holder.likeBtn.setImageResource(iconId);
+                    holder.likeBtn.setTag(iconId);
+                } else {
+                    // Update the likes count in the Comment object
+                    comment.decrementLikes();
+                    holder.likes.setText(String.valueOf(comment.getLikes()));
+
+                    // Update the likes count in the database
+                    dao.updateCommentLikesCount(comment, installID, false);
+                    int iconId = R.drawable.thumbs_up;
+                    holder.likeBtn.setImageResource(iconId);
+                    holder.likeBtn.setTag(iconId);
+                }
             }
         });
     }

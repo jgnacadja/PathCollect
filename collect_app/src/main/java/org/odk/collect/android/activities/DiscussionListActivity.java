@@ -48,7 +48,7 @@ public class DiscussionListActivity extends CollectAbstractActivity implements
         setContentView(R.layout.discussion_list_layout);
         DaggerUtils.getComponent(this).inject(this);
 
-        initToolbar();
+        initToolbar(getString(R.string.collect_app_name), false, null);
         ProgressBar progressBar = findViewById(R.id.discussionListProgressBar);
         progressBar.setVisibility(View.VISIBLE);
         TextView tv = findViewById(R.id.discussionListFetchError);
@@ -105,22 +105,10 @@ public class DiscussionListActivity extends CollectAbstractActivity implements
         startActivity(intent);
     }
 
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.collect_app_name));
-        setSupportActionBar(toolbar);
-    }
-
     @Override
     public void onClick(int position) {
         if (MultiClickGuard.allowClick(getClass().getName())) {
             Discussion discussion = discussions.get(position);
-            // Update the views count in the Discussion object
-            discussion.incrementViews();
-
-            // Update the views count in the database
-            dao.updateDiscussionViewsCount(discussion);
-
             Intent intent = new Intent(this, DiscussionActivity.class);
             intent.putExtra("discussionId", discussion.getId());
             startActivity(intent);

@@ -1,6 +1,6 @@
 package org.odk.collect.android.activities;
 
-import android.content.Context;
+import static org.odk.collect.settings.keys.MetaKeys.KEY_INSTALL_ID;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -17,7 +17,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,8 +34,10 @@ import org.odk.collect.android.adapters.model.Discussion;
 import org.odk.collect.android.dao.CommentDao;
 import org.odk.collect.android.dao.DiscussionDao;
 import org.odk.collect.android.injection.DaggerUtils;
+import org.odk.collect.android.tasks.DownloadImageTask;
 import org.odk.collect.android.utilities.TimeAgo;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
+import org.odk.collect.settings.SettingsProvider;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -44,6 +45,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import timber.log.Timber;
 
@@ -68,6 +71,7 @@ public class DiscussionActivity extends CollectAbstractActivity {
     private ProgressBar pgsBar;
     private boolean isDiscussionRead;
     private boolean isCommentsRead;
+    private String installID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,13 +79,14 @@ public class DiscussionActivity extends CollectAbstractActivity {
         setContentView(R.layout.discussion_layout);
         DaggerUtils.getComponent(this).inject(this);
 
-        initToolbar();
+        initToolbar(getString(R.string.collect_app_name), false, null);
         initComponent();
         ProgressBar progressBar = findViewById(R.id.discussionProgressBar);
         progressBar.setVisibility(View.VISIBLE);
         TextView tv = findViewById(R.id.discussionFetchError);
         isDiscussionRead = false;
         isCommentsRead = false;
+        installID = settingsProvider.getMetaSettings().getString(KEY_INSTALL_ID);
 
         // Get a reference to the "discussions" node in Firebase
         discussionDao = new DiscussionDao();
@@ -94,7 +99,7 @@ public class DiscussionActivity extends CollectAbstractActivity {
         // Set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.commentRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new CommentListAdapter(comments, this);
+        adapter = new CommentListAdapter(comments, this, installID);
         recyclerView.setAdapter(adapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
@@ -116,15 +121,68 @@ public class DiscussionActivity extends CollectAbstractActivity {
                 authorNameTextView.setText(discussion.getAuthor());
                 likeCount.setText(String.valueOf(discussion.getLikes()));
 
+                // Check if the user has already viewed this question
+                boolean alreadyViewed;
+                try {
+                    alreadyViewed = discussion.getViewedUsers().contains(installID);
+                } catch (NullPointerException e){
+                    alreadyViewed = false;
+                }
+                if (!alreadyViewed) {
+                    // Update the views count in the Discussion object
+                    discussion.incrementViews();
+
+                    // Update the views count in the database
+                    discussionDao.updateDiscussionViewsCount(discussion, installID);
+                }
+
+                // Check if the user has already liked this comment
+                boolean alreadyLiked;
+                try {
+                    alreadyLiked = discussion.getLikedUsers().contains(installID);
+                } catch (NullPointerException e){
+                    alreadyLiked = false;
+                }
+
+                if(alreadyLiked){
+                    int iconId = R.drawable.thumb_up_filled;
+                    discussionLikeBtn.setImageResource(iconId);
+                    discussionLikeBtn.setTag(iconId);
+                }else {
+                    int iconId = R.drawable.thumbs_up;
+                    discussionLikeBtn.setImageResource(iconId);
+                    discussionLikeBtn.setTag(iconId);
+                }
+
                 // Init listeners
+                boolean finalAlreadyLiked = alreadyLiked;
                 discussionLikeBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Update the likes count in the Discussion object
-                        discussion.incrementLikes();
+                        // Check if the user has already liked this question
+                        if (!finalAlreadyLiked) {
+                            // Update the likes count in the Discussion object
+                            discussion.incrementLikes();
+                            likeCount.setText(String.valueOf(discussion.getLikes()));
 
-                        // Update the likes count in the database
-                        discussionDao.updateDiscussionLikesCount(discussion);
+                            // Update the likes count in the database
+                            discussionDao.updateDiscussionLikesCount(discussion, installID, true);
+
+                            int iconId = R.drawable.thumb_up_filled;
+                            discussionLikeBtn.setImageResource(iconId);
+                            discussionLikeBtn.setTag(iconId);
+                        } else {
+                            // Update the likes count in the Discussion object
+                            discussion.decrementLikes();
+                            likeCount.setText(String.valueOf(discussion.getLikes()));
+
+                            // Update the likes count in the database
+                            discussionDao.updateDiscussionLikesCount(discussion, installID, false);
+
+                            int iconId = R.drawable.thumbs_up;
+                            discussionLikeBtn.setImageResource(iconId);
+                            discussionLikeBtn.setTag(iconId);
+                        }
                     }
                 });
 
@@ -174,12 +232,6 @@ public class DiscussionActivity extends CollectAbstractActivity {
         });
     }
 
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.collect_app_name));
-        setSupportActionBar(toolbar);
-    }
-
     private int getVisibility(boolean isDiscussionRead, boolean isCommentsRead) {
         if (isCommentsRead && isDiscussionRead) {
             return View.GONE;
@@ -219,6 +271,8 @@ public class DiscussionActivity extends CollectAbstractActivity {
             comment.setLikes(0);
             comment.setAuthor(getString(R.string.anon_user));
             comment.setIcon(null);
+            comment.setLikedUsers(new ArrayList<String>());
+            comment.setViewedUsers(new ArrayList<String>());
 
             commentDao.addComment(comment);
             commentText.setText("");

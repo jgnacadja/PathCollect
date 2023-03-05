@@ -16,7 +16,9 @@ package org.odk.collect.android.activities;
 
 import static org.odk.collect.androidshared.ui.DialogFragmentUtils.showIfNotShowing;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,7 +27,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.odk.collect.android.R;
@@ -89,10 +90,10 @@ public class MainMenuActivity extends CollectAbstractActivity {
         currentProjectViewModel = new ViewModelProvider(this, currentProjectViewModelFactory).get(CurrentProjectViewModel.class);
         currentProjectViewModel.getCurrentProject().observe(this, project -> {
             invalidateOptionsMenu();
-            setTitle(project.getName());
+            setTitle(String.format("%s", getString(R.string.collect_app_name)));
         });
 
-        initToolbar();
+        initToolbar(getString(R.string.collect_app_name), false, null);
         initMapbox();
 
         Button enterDataButtonNew = findViewById(R.id.enter_data);
@@ -237,6 +238,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
         projectIconView.setOnClickListener(v -> onOptionsItemSelected(projectsMenuItem));
         projectIconView.setContentDescription(getString(R.string.projects));
 
+        menu.findItem(R.id.action_item_about).setVisible(true).setEnabled(true);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -252,16 +254,15 @@ public class MainMenuActivity extends CollectAbstractActivity {
             return true;
         }
 
-        if (item.getItemId() == R.id.projects) {
+        if (item.getItemId() == R.id.action_item_about) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.projects) {
             showIfNotShowing(ProjectSettingsDialog.class, getSupportFragmentManager());
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
     }
 
     private void initMapbox() {
@@ -272,4 +273,5 @@ public class MainMenuActivity extends CollectAbstractActivity {
                     .commit();
         }
     }
+
 }

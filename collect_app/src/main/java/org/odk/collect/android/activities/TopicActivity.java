@@ -44,7 +44,7 @@ public class TopicActivity extends CollectAbstractActivity implements
         setContentView(R.layout.topic_layout);
         DaggerUtils.getComponent(this).inject(this);
 
-        initToolbar();
+        initToolbar(getString(R.string.collect_app_name), false, null);
         ProgressBar progressBar = findViewById(R.id.topicProgressBar);
         progressBar.setVisibility(View.VISIBLE);
         TextView tv = findViewById(R.id.topicFetchError);
@@ -83,12 +83,6 @@ public class TopicActivity extends CollectAbstractActivity implements
                 Timber.tag(TAG).e(error.toException(), "Error reading topics");
             }
         });
-    }
-
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.collect_app_name));
-        setSupportActionBar(toolbar);
     }
 
     @Override

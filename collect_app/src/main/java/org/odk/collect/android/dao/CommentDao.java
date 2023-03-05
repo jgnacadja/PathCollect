@@ -11,6 +11,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.odk.collect.android.adapters.model.Comment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CommentDao {
     private final DatabaseReference commentsRef;
     private final DatabaseReference discussionsRef;
@@ -62,9 +65,21 @@ public class CommentDao {
         discussionRef.child("lastCommentTimestamp").setValue(System.currentTimeMillis());
     }
 
-    public void updateCommentLikesCount(Comment comment) {
+    public void updateCommentLikesCount(Comment comment, String installID, boolean liked) {
         // Update the comment like count and last comment date in the discussion dao
         commentsRef.child(comment.getId()).child("likes").setValue(comment.getLikes());
+        List<String> users;
+        if(comment.getLikedUsers() != null){
+            users = comment.getLikedUsers();
+        } else {
+            users = new ArrayList<>();
+        }
+        if(liked){
+            users.add(installID);
+        } else {
+            users.remove(installID);
+        }
+        commentsRef.child(comment.getId()).child("likedUsers").setValue(users);
     }
 
     // Other methods for updating and deleting comments as needed...
