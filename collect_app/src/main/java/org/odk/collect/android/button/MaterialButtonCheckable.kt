@@ -48,6 +48,7 @@ class MaterialButtonCheckable : MaterialButton, Checkable {
     override fun setChecked(checked: Boolean) {
         Timber.tag("MaterialButtonCheckable").e("Toogle Button clicked %s", checked)
         if (mChecked != checked) {
+            Timber.tag("MaterialButtonCheckable").e("Checked state %s", checked)
             mChecked = checked
             refreshDrawableState()
 
@@ -114,15 +115,16 @@ class MaterialButtonCheckable : MaterialButton, Checkable {
 
         companion object {
             @JvmField
-            val CREATOR: Parcelable.Creator<SavedState?> = object : Parcelable.Creator<SavedState?> {
-                override fun createFromParcel(`in`: Parcel): SavedState? {
-                    return SavedState(`in`)
-                }
+            val CREATOR: Parcelable.Creator<SavedState?> =
+                object : Parcelable.Creator<SavedState?> {
+                    override fun createFromParcel(`in`: Parcel): SavedState? {
+                        return SavedState(`in`)
+                    }
 
-                override fun newArray(size: Int): Array<SavedState?> {
-                    return arrayOfNulls(size)
+                    override fun newArray(size: Int): Array<SavedState?> {
+                        return arrayOfNulls(size)
+                    }
                 }
-            }
         }
     }
 

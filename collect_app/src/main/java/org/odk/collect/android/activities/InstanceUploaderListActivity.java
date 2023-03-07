@@ -25,7 +25,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -47,10 +46,10 @@ import org.odk.collect.android.dao.CursorLoaderFactory;
 import org.odk.collect.android.databinding.InstanceUploaderListBinding;
 import org.odk.collect.android.gdrive.GoogleSheetsUploaderActivity;
 import org.odk.collect.android.injection.DaggerUtils;
-import org.odk.collect.androidshared.network.NetworkStateProvider;
 import org.odk.collect.android.preferences.screens.ProjectPreferencesActivity;
 import org.odk.collect.android.projects.CurrentProjectProvider;
 import org.odk.collect.android.utilities.PlayServicesChecker;
+import org.odk.collect.androidshared.network.NetworkStateProvider;
 import org.odk.collect.androidshared.ui.ToastUtils;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 import org.odk.collect.settings.keys.ProjectKeys;
@@ -132,29 +131,42 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
             // items selected
             uploadSelectedFiles();
             setAllToCheckedState(listView, false);
-            toggleButtonLabel(findViewById(R.id.toggle_button), listView);
+            //toggleButtonLabel(findViewById(R.id.toggle_button), listView);
             binding.uploadButton.setEnabled(false);
+            checkToogle();
         } else {
             // no items selected
             ToastUtils.showLongToast(this, R.string.noselect_error);
         }
     }
 
+    private void checkToogle() {
+        int iconId = R.drawable.ic_square;
+        if (listView.getCheckedItemCount() == listView.getCount()) {
+            iconId = R.drawable.ic_checked;
+        }
+        binding.toggleButton.setImageResource(iconId);
+        binding.toggleButton.setTag(iconId);
+    }
+
     void init() {
-        binding.uploadButton.setText(R.string.send_selected_data);
+        //binding.uploadButton.setText(R.string.send_selected_data);
 
         binding.toggleButton.setLongClickable(true);
         binding.toggleButton.setOnClickListener(v -> {
-            ListView lv = listView;
-            boolean allChecked = toggleChecked(lv);
-            toggleButtonLabel(binding.toggleButton, lv);
-            binding.uploadButton.setEnabled(allChecked);
-            if (allChecked) {
-                for (int i = 0; i < lv.getCount(); i++) {
-                    selectedInstances.add(lv.getItemIdAtPosition(i));
+            if (MultiClickGuard.allowClick(getClass().getName())) {
+                ListView lv = listView;
+                boolean allChecked = toggleChecked(lv);
+                //toggleButtonLabel(binding.toggleButton, lv);
+                binding.uploadButton.setEnabled(allChecked);
+                if (allChecked) {
+                    for (int i = 0; i < lv.getCount(); i++) {
+                        selectedInstances.add(lv.getItemIdAtPosition(i));
+                    }
+                } else {
+                    selectedInstances.clear();
                 }
-            } else {
-                selectedInstances.clear();
+                checkToogle();
             }
         });
         binding.toggleButton.setOnLongClickListener(this);
@@ -176,6 +188,7 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
 
         // Start observer that sets autoSendOngoing field based on AutoSendWorker status
         updateAutoSendStatus();
+        checkToogle();
     }
 
     /**
@@ -202,7 +215,8 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
     @Override
     protected void onResume() {
         super.onResume();
-        binding.uploadButton.setText(R.string.send_selected_data);
+        checkToogle();
+//        binding.uploadButton.setText(R.string.send_selected_data);
     }
 
     private void uploadSelectedFiles() {
@@ -265,8 +279,9 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
         }
 
         binding.uploadButton.setEnabled(areCheckedItems());
-        Button toggleSelectionsButton = findViewById(R.id.toggle_button);
-        toggleButtonLabel(toggleSelectionsButton, listView);
+        //ImageButton toggleSelectionsButton = findViewById(R.id.toggle_button);
+        //toggleButtonLabel(toggleSelectionsButton, listView);
+        checkToogle();
     }
 
     @Override
@@ -294,6 +309,7 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
                 break;
         }
         super.onActivityResult(requestCode, resultCode, intent);
+        checkToogle();
     }
 
     private void setupAdapter() {
@@ -310,6 +326,7 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
     @Override
     protected void updateAdapter() {
         getSupportLoaderManager().restartLoader(LOADER_ID, null, this);
+        checkToogle();
     }
 
     @NonNull
@@ -328,7 +345,8 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
         hideProgressBarAndAllow();
         listAdapter.changeCursor(cursor);
         checkPreviouslyCheckedItems();
-        toggleButtonLabel(findViewById(R.id.toggle_button), listView);
+        checkToogle();
+        //toggleButtonLabel(findViewById(R.id.toggle_button), listView);
     }
 
     @Override
