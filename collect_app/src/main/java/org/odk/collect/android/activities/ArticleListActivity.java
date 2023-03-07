@@ -1,6 +1,8 @@
 package org.odk.collect.android.activities;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +22,12 @@ import org.odk.collect.android.adapters.model.Article;
 import org.odk.collect.android.utilities.ExternalWebPageHelper;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,34 +51,14 @@ public class ArticleListActivity extends AppCompatActivity implements
         Timber.tag(tag).d("Initialisation de setContentView");
 
         initToolbar();
+        ReadArticlesTask task = new ReadArticlesTask();
+        task.execute("");
 
-        articles = new ArrayList<>();
-        Timber.tag(tag).d("Creation d'un article");
-        articles.add(new Article(
-                54,
-                "2023-03-01T15:13:11",
-                "https://dssc-cms.000webhostapp.com/2023/03/planification-familiale-contraception",
-                "Planification familiale/Contraception",
-                "\n<h2>Principaux faits</h2>\n\n\n\n<ul>\n<li>En 2019, sur 1,9 milliard de femmes en âge de procréer (15-49 ans) dans le monde, elles sont 1,1 milliard à avoir besoin de planification familiale ; parmi celles-ci, 842 millions utilisent des méthodes de contraception, et 270 millions n’ont pas accès à la contraception dont elles ont besoin.[1,2]</li>\n\n\n\n<li>La proportion de femmes en âge de procréer (15 à 49 ans) utilisant des méthodes modernes de planification familiale – l’indicateur 3.7.1 des objectifs de développement durable – était de 75,7 % à l’échelle mondiale en 2019 ; toutefois, moins de la moitié des besoins en planification familiale étaient satisfaits en Afrique centrale et en Afrique de l’Ouest.[1]</li>\n\n\n\n<li>Une seule méthode contraceptive, les préservatifs, permet à la fois d’éviter une grossesse et la transmission des infections sexuellement transmissibles, dont le VIH.</li>\n\n\n\n<li>La contraception renforce les droits des populations à choisir le nombre d’enfants qu’elles souhaitent avoir et à déterminer l’espacement des naissances.</li>\n</ul>\n\n\n\n<p><strong>Bref aperçu</strong></p>\n\n\n\n<p>La garantie d’un accès de toutes les populations à leurs méthodes de contraception préférées permet de renforcer plusieurs droits humains tels que le droit à la vie et à la liberté, la liberté d’opinion et d’expression et le droit au travail et à l’éducation, tout en apportant d’autres avantages importants en matière de santé, et dans d’autres domaines. L’utilisation de la contraception protège les femmes, en particulier les adolescentes, des risques que peuvent représenter les grossesses pour leur santé et lorsque les naissances sont espacées de moins de deux ans, le taux de mortalité chez le nourrisson est supérieur de 45&nbsp;% au taux de mortalité lorsque les naissances sont espacées de 2 à 3 ans, et supérieur de 60% au taux de mortalité lorsqu’elles le sont de quatre ans ou plus.[3] La&nbsp;contraception offre tout un éventail d’avantages potentiels dans d’autres domaines que la santé, qui vont des possibilités élargies d’éducation et d’autonomisation des femmes, à la croissance durable de la population et au développement économique des pays.</p>\n\n\n\n<p>La prévalence de méthodes modernes de contraception chez les femmes mariées en âge de procréer a progressé dans le monde entre&nbsp;2000 et 2019 de 2,1 points de pourcentage, passant de 55,0&nbsp;% (95&nbsp;%&nbsp;IC&nbsp;: 53,7&nbsp;%-56,3&nbsp;%) à 57,1&nbsp;% (95&nbsp;% IC&nbsp;: 54,6&nbsp;%–59,5&nbsp;%).[1] La&nbsp;lenteur de cette augmentation s’explique, entre autres,&nbsp;par : le choix limité des méthodes&nbsp;; l’accès limité aux services, en particulier pour les jeunes, les populations les plus pauvres et les personnes non mariées&nbsp;; la crainte ou l’expérience d’effets secondaires&nbsp;; les&nbsp;barrières culturelles ou religieuses&nbsp;; la médiocre qualité des services disponibles&nbsp;; les opinions biaisées des utilisateurs et des prestataires contre certaines méthodes&nbsp;; et les obstacles liés au genre dans l’accès aux services.</p>\n",
-                "<p>Principaux faits Bref aperçu La garantie d’un accès de toutes les populations à leurs méthodes de contraception préférées permet de renforcer plusieurs droits humains tels que le droit à la vie et à la liberté, la liberté d’opinion et d’expression et le droit au travail et à l’éducation, tout en apportant d’autres avantages importants en</p>\n<div><a class=\"btn-filled btn\" href=\"https://dssc-cms.000webhostapp.com/2023/03/planification-familiale-contraception\" title=\"Planification familiale/Contraception\">Lire la suite</a></div>\n",
-                "RAM",
-                "\"https://dssc-cms.000webhostapp.com/wp-json/wp/v2/media/55\"",
-                null));
-        Timber.tag(tag).d("Initialisation recyclerView");
         recyclerView = findViewById(R.id.articlerecyclerView);
-        Timber.tag(tag).d("Initialisation de LayoutManager");
-
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        Timber.tag(tag).d("Initialisation de setLayoutManger");
-
         recyclerView.setLayoutManager(layoutManager);
-        Timber.tag(tag).d("Initialisation de setAdapter");
-
         recyclerView.setAdapter(new ArticleListAdapter(articles, this, this));
-        Timber.tag(tag).d("Initialisation de setItemAnimator");
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-//        loadArticles();
     }
 
     private void initToolbar() {
@@ -132,5 +119,135 @@ public class ArticleListActivity extends AppCompatActivity implements
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    private class ReadArticlesTask extends AsyncTask<String, Void, List<Article>> {
+
+        @Override
+        protected List<Article> doInBackground(String... urls) {
+            String url = urls[0];
+            List<Article> result = new ArrayList<>();
+            if (url != null && !url.isEmpty()) {
+                JSONArray jsonArray = this.getArticles(url);
+                for (int i = 0; i < (jsonArray != null ? jsonArray.length() : 0); i++) {
+                    try {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        Article article = this.parseArticle(jsonObject);
+                        result.add(article);
+                    } catch (JSONException e){
+                        e.printStackTrace();
+                    }
+                }
+                return result;
+            } else {
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(List<Article> result) {
+            if (result == null) {
+                articles = new ArrayList<>();
+            } else {
+                articles = result;
+            }
+        }
+
+        private JSONArray getArticles(String url){
+            try {
+                URL urlConnection = new URL(url);
+                HttpURLConnection connection = (HttpURLConnection) urlConnection
+                        .openConnection();
+                connection.setRequestMethod("GET");
+                connection.setRequestProperty("Content-length", "0");
+                connection.setUseCaches(false);
+                connection.setAllowUserInteraction(false);
+                connection.setConnectTimeout(60);
+                connection.setReadTimeout(60);
+                connection.connect();
+                int status = connection.getResponseCode();
+
+                switch (status) {
+                    case 200:
+                    case 201:
+                        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                        StringBuilder sb = new StringBuilder();
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            sb.append(line).append("\n");
+                        }
+                        br.close();
+
+                        return new JSONArray(sb.toString());
+                }
+                return null;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        private Article parseArticle(JSONObject json){
+            int id;
+            try {
+                id = json.getInt("id");
+            } catch (JSONException e) {
+                id = 0;
+                e.printStackTrace();
+            }
+            String date;
+            try {
+                date = json.getString("date");
+            } catch (JSONException e) {
+                date = "";
+                e.printStackTrace();
+            }
+            String link;
+            try {
+                link = json.getString("link");
+            } catch (JSONException e) {
+                link = "";
+                e.printStackTrace();
+            }
+            String title;
+            try {
+                title = json.getJSONObject("title").getString("rendered");
+            } catch (JSONException e) {
+                title = "";
+                e.printStackTrace();
+            }
+            String  content;
+            try {
+                  content = json.getJSONObject("content").getString("rendered");
+            } catch (JSONException e) {
+                content = "";
+                e.printStackTrace();
+            }
+            String contentPreview;
+            try {
+                 contentPreview = json.getJSONObject("excerpt").getString("rendered");
+            } catch (JSONException e) {
+                contentPreview = "";
+                e.printStackTrace();
+            }
+            String author;
+            try {
+                String imageBaseUrl = "https://dssc-cms.000webhostapp.com/wp-json/wp/v2/users/";
+                author = imageBaseUrl+json.getInt("author");
+            } catch (JSONException e) {
+                author = "";
+                e.printStackTrace();
+            }
+            String image;
+            try {
+                String imageBaseUrl = "https://dssc-cms.000webhostapp.com/wp-json/wp/v2/media/";
+                image = imageBaseUrl+json.getInt("featured_media");
+            } catch (JSONException e) {
+                image = "";
+                e.printStackTrace();
+            }
+            List<String> categories = null;
+            return new Article(id, date, link, title, content, contentPreview, author, image, categories);
+        }
     }
 }
