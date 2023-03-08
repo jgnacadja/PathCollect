@@ -1,9 +1,9 @@
 package org.odk.collect.android.activities;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -24,7 +24,6 @@ import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -42,6 +41,7 @@ public class ArticleListActivity extends AppCompatActivity implements
         ArticleListAdapter.ArticleItemClickListener {
     private List<Article> articles;
     private RecyclerView recyclerView;
+    private TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +51,12 @@ public class ArticleListActivity extends AppCompatActivity implements
         Timber.tag(tag).d("Initialisation de setContentView");
 
         initToolbar();
+        articles = new ArrayList<>();
         ReadArticlesTask task = new ReadArticlesTask();
-        task.execute("");
+        task.execute("https://dssc-cms.000webhostapp.com/wp-json/wp/v2/posts?status=publish");
+
+        tv = findViewById(R.id.articletext);
+        tv.setText(String.valueOf(articles.size()));
 
         recyclerView = findViewById(R.id.articlerecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -151,36 +155,18 @@ public class ArticleListActivity extends AppCompatActivity implements
             } else {
                 articles = result;
             }
+            tv.setText(String.valueOf(articles.size()+1));
         }
 
-        private JSONArray getArticles(String url){
+        private JSONArray getArticles(String url) {
             try {
-                URL urlConnection = new URL(url);
-                HttpURLConnection connection = (HttpURLConnection) urlConnection
-                        .openConnection();
-                connection.setRequestMethod("GET");
-                connection.setRequestProperty("Content-length", "0");
-                connection.setUseCaches(false);
-                connection.setAllowUserInteraction(false);
-                connection.setConnectTimeout(60);
-                connection.setReadTimeout(60);
-                connection.connect();
-                int status = connection.getResponseCode();
-
-                switch (status) {
-                    case 200:
-                    case 201:
-                        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                        StringBuilder sb = new StringBuilder();
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            sb.append(line).append("\n");
-                        }
-                        br.close();
-
-                        return new JSONArray(sb.toString());
-                }
-                return null;
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder()
+                        .url(url)
+                        .build();
+                Response response = client.newCall(request).execute();
+                String responseData = response.body().string();
+                return new JSONArray(responseData);
             } catch (Exception e) {
                 e.printStackTrace();
                 return null;
@@ -218,14 +204,14 @@ public class ArticleListActivity extends AppCompatActivity implements
             }
             String  content;
             try {
-                  content = json.getJSONObject("content").getString("rendered");
+                content = json.getJSONObject("content").getString("rendered");
             } catch (JSONException e) {
                 content = "";
                 e.printStackTrace();
             }
             String contentPreview;
             try {
-                 contentPreview = json.getJSONObject("excerpt").getString("rendered");
+                contentPreview = json.getJSONObject("excerpt").getString("rendered");
             } catch (JSONException e) {
                 contentPreview = "";
                 e.printStackTrace();
@@ -251,3 +237,7 @@ public class ArticleListActivity extends AppCompatActivity implements
         }
     }
 }
+
+
+
+
