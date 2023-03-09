@@ -56,4 +56,14 @@ the specific language governing permissions and limitations under the License. -
     <string name="api_gateway_url" translatable="false">https://store.prod.rintio.com/</string>
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string name="fcm_message" translatable="false">FCM Message</string>
+    <string name="quickstart_message" translatable="false">Click the SUBSCRIBE TO WEATHER button below to subscribe to the
+        weather topic. Messages sent to the weather topic will be received. The LOG TOKEN button logs the
+        FCM registration token to logcat.</string>
+    <string name="subscribe_to_weather" translatable="false">Subscribe To Weather</string>
+    <string name="log_token" translatable="false">Log Token</string>
+    <string name="phone_info" translatable="false">Afficher ici les informations du telephone</string>
+    <string name="default_notification_channel_name" translatable="false">Weather</string>
+    <string name="msg_subscribed" translatable="false">Subscribed to weather topic</string>
+    <string name="msg_subscribe_failed" translatable="false">Failed to subscribe to weather topic</string>
+    <string name="msg_token_fmt" translatable="false">FCM registration Token: %s</string>
 </resources>
