@@ -7,6 +7,8 @@ import android.util.Log;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
+import timber.log.Timber;
+
 public class MyWorker extends Worker {
 
     private static final String TAG = "MyWorker";
@@ -18,7 +20,7 @@ public class MyWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        Log.d(TAG, "Performing long running task in scheduled job");
+        Timber.tag(TAG).d("Performing long running task in scheduled job");
         // TODO(developer): add long running task here.
         return Result.success();
     }
