@@ -237,6 +237,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
         projectIconView.setOnClickListener(v -> onOptionsItemSelected(projectsMenuItem));
         projectIconView.setContentDescription(getString(R.string.projects));
 
+        menu.findItem(R.id.action_item_about).setVisible(true).setEnabled(true);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -252,7 +253,11 @@ public class MainMenuActivity extends CollectAbstractActivity {
             return true;
         }
 
-        if (item.getItemId() == R.id.projects) {
+        if (item.getItemId() == R.id.action_item_about) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (item.getItemId() == R.id.projects) {
             showIfNotShowing(ProjectSettingsDialog.class, getSupportFragmentManager());
             return true;
         }
