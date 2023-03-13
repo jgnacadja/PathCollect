@@ -16,6 +16,12 @@ limitations under the License.
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_item_about"
+        android:title="@string/about_preferences"
+        android:icon="@drawable/ic_outline_info_24_white"
+        app:showAsAction="always" />
+
+    <item
         android:id="@+id/projects"
         android:title="@string/projects"
         app:actionLayout="@layout/current_project_menu_icon"
