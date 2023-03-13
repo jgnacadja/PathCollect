@@ -94,18 +94,6 @@ public class AboutActivity extends CollectAbstractActivity implements
                     websiteTabHelper.openWebPageInCustomTab(this, websiteUri);
                     break;
                 case 1:
-                    forumTabHelper.openWebPageInCustomTab(this, forumUri);
-                    break;
-                case 2:
-                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                    shareIntent.setType("text/plain");
-                    shareIntent.putExtra(Intent.EXTRA_TEXT,
-                            getString(R.string.tell_your_friends_msg) + " " + GOOGLE_PLAY_URL
-                                    + getPackageName());
-                    startActivity(Intent.createChooser(shareIntent,
-                            getString(R.string.tell_your_friends)));
-                    break;
-                case 3:
                     Intent intent = new Intent(Intent.ACTION_VIEW,
                             Uri.parse("market://details?id=" + getPackageName()));
                     intentLauncher.launch(this, intent, () -> {
@@ -114,11 +102,13 @@ public class AboutActivity extends CollectAbstractActivity implements
                         return null;
                     });
                     break;
-                case 4:
+                case 2:
                     intent = new Intent(this, WebViewActivity.class);
                     intent.putExtra(ExternalWebPageHelper.OPEN_URL, LICENSES_HTML_PATH);
                     startActivity(intent);
                     break;
+
+
             }
         }
     }
