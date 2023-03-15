@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -81,6 +82,7 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
     CurrentProjectProvider currentProjectProvider;
 
     private boolean showAllMode;
+    private TextView countSelectedItem;
 
     // Default to true so the send button is disabled until the worker status is updated by the
     // observer
@@ -159,6 +161,7 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
                 boolean allChecked = toggleChecked(lv);
                 //toggleButtonLabel(binding.toggleButton, lv);
                 binding.uploadButton.setEnabled(allChecked);
+                countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
                 if (allChecked) {
                     for (int i = 0; i < lv.getCount(); i++) {
                         selectedInstances.add(lv.getItemIdAtPosition(i));
@@ -169,6 +172,10 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
                 checkToogle();
             }
         });
+
+        countSelectedItem = findViewById(R.id.count_selected_form);
+        countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
+
         binding.toggleButton.setOnLongClickListener(this);
 
         setupAdapter();
@@ -272,6 +279,7 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
+        countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
         if (listView.isItemChecked(position)) {
             selectedInstances.add(listView.getItemIdAtPosition(position));
         } else {
