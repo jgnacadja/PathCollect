@@ -22,6 +22,7 @@ import org.odk.collect.android.adapters.DeleteFormsTabsAdapter
 import org.odk.collect.android.databinding.TabsLayoutBinding
 import org.odk.collect.android.formlists.blankformlist.BlankFormListViewModel
 import org.odk.collect.android.injection.DaggerUtils
+import org.odk.collect.androidshared.utils.AppBarUtils.setupAppBarLayout
 import javax.inject.Inject
 
 class DeleteSavedFormActivity : CollectAbstractActivity() {
@@ -37,8 +38,7 @@ class DeleteSavedFormActivity : CollectAbstractActivity() {
         DaggerUtils.getComponent(this).inject(this)
         binding = TabsLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        initToolbar(getString(R.string.manage_files), false, null)
+        setupAppBarLayout(this, getString(R.string.manage_files))
         setUpViewPager()
     }
 
