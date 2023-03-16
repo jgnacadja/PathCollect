@@ -20,6 +20,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -268,7 +269,6 @@ public class BlankFormListFragment extends FormListFragment implements DiskSyncL
                     ToastUtils.showShortToast(requireContext(), R.string.noselect_error);
                 }
                 break;
-m
             case R.id.toggle_button:
                 if (MultiClickGuard.allowClick(getClass().getName())) {
                     ListView lv = getListView();

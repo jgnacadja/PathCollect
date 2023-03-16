@@ -25,9 +25,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.utilities.SnackbarUtils;
@@ -35,12 +37,11 @@ import org.odk.collect.android.utilities.SnackbarUtils;
 public abstract class FileManagerFragment extends AppListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int LOADER_ID = 0x01;
     protected Button deleteButton;
-    protected Button toggleButton;
+    protected ImageButton toggleButton;
     protected LinearLayout llParent;
     protected ProgressBar progressBar;
     protected boolean canHideProgressBar;
     private boolean progressBarVisible;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -51,7 +52,6 @@ public abstract class FileManagerFragment extends AppListFragment implements Loa
         toggleButton = rootView.findViewById(R.id.toggle_button);
         llParent = rootView.findViewById(R.id.llParent);
         progressBar = getActivity().findViewById(R.id.progressBar);
-
         setHasOptionsMenu(true);
         return rootView;
     }
@@ -61,6 +61,7 @@ public abstract class FileManagerFragment extends AppListFragment implements Loa
         getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         getListView().setItemsCanFocus(false);
         deleteButton.setEnabled(false);
+        checkToogle();
 
         sortingOptions = new int[]{
                 R.string.sort_by_name_asc, R.string.sort_by_name_desc,
@@ -74,20 +75,21 @@ public abstract class FileManagerFragment extends AppListFragment implements Loa
     public void onViewStateRestored(@Nullable Bundle bundle) {
         super.onViewStateRestored(bundle);
         deleteButton.setEnabled(areCheckedItems());
+        checkToogle();
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long rowId) {
         super.onListItemClick(l, v, position, rowId);
-
         if (getListView().isItemChecked(position)) {
             selectedInstances.add(getListView().getItemIdAtPosition(position));
         } else {
             selectedInstances.remove(getListView().getItemIdAtPosition(position));
         }
 
-        toggleButtonLabel(toggleButton, getListView());
+        //toggleButtonLabel(toggleButton, getListView());
         deleteButton.setEnabled(areCheckedItems());
+        checkToogle();
     }
 
     @Override
@@ -108,14 +110,11 @@ public abstract class FileManagerFragment extends AppListFragment implements Loa
         listAdapter.swapCursor(cursor);
 
         checkPreviouslyCheckedItems();
-        toggleButtonLabel(toggleButton, getListView());
+        //toggleButtonLabel(toggleButton, getListView());
         deleteButton.setEnabled(areCheckedItems());
 
-        if (getListView().getCount() == 0) {
-            toggleButton.setEnabled(false);
-        } else {
-            toggleButton.setEnabled(true);
-        }
+        checkToogle();
+
     }
 
     @Override
@@ -139,6 +138,15 @@ public abstract class FileManagerFragment extends AppListFragment implements Loa
     private void hideProgressBar() {
         progressBar.setVisibility(View.GONE);
         progressBarVisible = false;
+    }
+
+    protected void checkToogle(){
+        int iconId = R.drawable.ic_square;
+        if(getListView().getCheckedItemCount() == getListView().getCount()){
+            iconId = R.drawable.ic_checked;
+        }
+        toggleButton.setImageResource(iconId);
+        toggleButton.setTag(iconId);
     }
 
     protected void showProgressBar() {
