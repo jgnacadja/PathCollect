@@ -268,7 +268,7 @@ public class BlankFormListFragment extends FormListFragment implements DiskSyncL
                     ToastUtils.showShortToast(requireContext(), R.string.noselect_error);
                 }
                 break;
-
+m
             case R.id.toggle_button:
                 if (MultiClickGuard.allowClick(getClass().getName())) {
                     ListView lv = getListView();
