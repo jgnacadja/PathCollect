@@ -38,12 +38,13 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Article article = articles.get(position);
-        DownloadArticleImageTask task = new DownloadArticleImageTask(holder);
-        task.execute(article.getImage());
+//        String image = article.get_links().getWp_featuredmedia().get(0).getHref();
+//        DownloadArticleImageTask task = new DownloadArticleImageTask(holder);
+//        task.execute(image);
         int iconId = R.drawable.bubbles;
         holder.imageView.setImageResource(iconId);
         holder.imageView.setTag(iconId);
-        holder.title.setText(article.getTitle());
+        holder.title.setText(article.getTitle().getRendered());
     }
 
     @Override
