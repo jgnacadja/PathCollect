@@ -2,6 +2,7 @@ package org.odk.collect.android.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +11,15 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.model.Article;
 import org.odk.collect.android.tasks.DownloadArticleImageTask;
 
 import java.util.List;
+
+import timber.log.Timber;
 
 public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.ViewHolder> {
 
@@ -38,13 +43,19 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Article article = articles.get(position);
-//        String image = article.get_links().getWp_featuredmedia().get(0).getHref();
-//        DownloadArticleImageTask task = new DownloadArticleImageTask(holder);
-//        task.execute(image);
-        int iconId = R.drawable.ic_outline_website_24;
-        holder.imageView.setImageResource(iconId);
-        holder.imageView.setTag(iconId);
+        Timber.tag("ArticleListAdapter").i(new Gson().toJson(article));
+        if(article.get_links().getWp_featuredmedia() != null){
+            String image = article.get_links().getWp_featuredmedia().get(0).getHref();
+            DownloadArticleImageTask task = new DownloadArticleImageTask(holder);
+            task.execute(image);
+        } else {
+            int iconId = R.drawable.ic_outline_website_24;
+            holder.imageView.setImageResource(iconId);
+            holder.imageView.setTag(iconId);
+        }
         holder.title.setText(article.getTitle().getRendered());
+        String plainString = Html.fromHtml(article.getExcerpt().getRendered()).toString();
+        holder.preview.setText(plainString);
     }
 
     @Override
@@ -60,12 +71,14 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         private final ArticleItemClickListener listener;
         private final ImageView imageView;
         private final TextView title;
+        private final TextView preview;
 
         ViewHolder(View view, ArticleItemClickListener listener) {
             super(view);
             this.listener = listener;
-            imageView = view.findViewById(R.id.articleimageView);
-            title = view.findViewById(R.id.articletitle);
+            imageView = view.findViewById(R.id.articleImageView);
+            title = view.findViewById(R.id.articleTitle);
+            preview = view.findViewById(R.id.articlePreview);
             view.setOnClickListener(this);
         }
 

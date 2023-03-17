@@ -3,8 +3,10 @@
 <resources>
     <!-- Custom font sizes -->
     <dimen name="text_size_small">16sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
 
     <!-- touch target -->
     <dimen name="touch_target_size">48dp</dimen>
+    <dimen name="article_image_size">92dp</dimen>
     <dimen name="divider_accidental_tap">8dp</dimen>
 </resources>
