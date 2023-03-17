@@ -94,16 +94,16 @@ public class AboutActivity extends CollectAbstractActivity implements
                     websiteTabHelper.openWebPageInCustomTab(this, websiteUri);
                     break;
                 case 1:
-                    Intent intent = new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("market://details?id=" + getPackageName()));
-                    intentLauncher.launch(this, intent, () -> {
-                        // Show a list of all available browsers if user doesn't have a default browser
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(GOOGLE_PLAY_URL + getPackageName())));
-                        return null;
-                    });
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_TEXT,
+                            getString(R.string.tell_your_friends_msg) + " " + GOOGLE_PLAY_URL
+                                    + getPackageName());
+                    startActivity(Intent.createChooser(shareIntent,
+                            getString(R.string.tell_your_friends)));
                     break;
                 case 2:
-                    intent = new Intent(this, WebViewActivity.class);
+                    Intent intent = new Intent(this, WebViewActivity.class);
                     intent.putExtra(ExternalWebPageHelper.OPEN_URL, LICENSES_HTML_PATH);
                     startActivity(intent);
                     break;
