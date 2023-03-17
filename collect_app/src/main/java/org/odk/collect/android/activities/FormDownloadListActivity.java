@@ -206,7 +206,6 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
             public void onClick(View v) {
                 if (MultiClickGuard.allowClick(getClass().getName())) {
                     downloadButton.setEnabled(toggleChecked(listView));
-                    //toggleButtonLabel(toggleButton, listView);
                     countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
                     viewModel.clearSelectedFormIds();
                     if (listView.getCheckedItemCount() == listView.getCount()) {
@@ -284,7 +283,6 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //toggleButtonLabel(toggleButton, listView);
         countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
         downloadButton.setEnabled(listView.getCheckedItemCount() > 0);
 
@@ -374,7 +372,6 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
         }
         toggleButton.setEnabled(!filteredFormList.isEmpty());
         checkPreviouslyCheckedItems();
-        //toggleButtonLabel(toggleButton, listView);
     }
 
     @Override
@@ -563,7 +560,6 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
             downloadButton.setEnabled(listView.getCheckedItemCount() > 0);
             countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
             toggleButton.setEnabled(listView.getCount() > 0);
-            //toggleButtonLabel(toggleButton, listView);
 
             if (viewModel.isDownloadOnlyMode()) {
                 performDownloadModeDownload();
