@@ -13,15 +13,10 @@ import android.widget.Button;
 import androidx.appcompat.widget.Toolbar;
 
 import org.odk.collect.android.R;
-import org.odk.collect.android.activities.viewmodels.CurrentProjectViewModel;
-import org.odk.collect.android.activities.viewmodels.MainMenuViewModel;
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.utilities.ApplicationConstants;
 import org.odk.collect.android.utilities.ThemeUtils;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
-import org.odk.collect.settings.SettingsProvider;
-
-import javax.inject.Inject;
 
 public class LandingPageActivity extends CollectAbstractActivity{
     //button
