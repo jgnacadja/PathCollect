@@ -133,11 +133,9 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
             // items selected
             uploadSelectedFiles();
             setAllToCheckedState(listView, false);
-            //toggleButtonLabel(findViewById(R.id.toggle_button), listView);
             binding.uploadButton.setEnabled(false);
             checkToogle();
         } else {
-            // no items selected
             ToastUtils.showLongToast(this, R.string.noselect_error);
         }
     }
@@ -152,14 +150,11 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
     }
 
     void init() {
-        //binding.uploadButton.setText(R.string.send_selected_data);
-
         binding.toggleButton.setLongClickable(true);
         binding.toggleButton.setOnClickListener(v -> {
             if (MultiClickGuard.allowClick(getClass().getName())) {
                 ListView lv = listView;
                 boolean allChecked = toggleChecked(lv);
-                //toggleButtonLabel(binding.toggleButton, lv);
                 binding.uploadButton.setEnabled(allChecked);
                 countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
                 if (allChecked) {
@@ -223,7 +218,6 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
     protected void onResume() {
         super.onResume();
         checkToogle();
-//        binding.uploadButton.setText(R.string.send_selected_data);
     }
 
     private void uploadSelectedFiles() {
@@ -287,8 +281,6 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
         }
 
         binding.uploadButton.setEnabled(areCheckedItems());
-        //ImageButton toggleSelectionsButton = findViewById(R.id.toggle_button);
-        //toggleButtonLabel(toggleSelectionsButton, listView);
         checkToogle();
     }
 
@@ -354,7 +346,6 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
         listAdapter.changeCursor(cursor);
         checkPreviouslyCheckedItems();
         checkToogle();
-        //toggleButtonLabel(findViewById(R.id.toggle_button), listView);
     }
 
     @Override
