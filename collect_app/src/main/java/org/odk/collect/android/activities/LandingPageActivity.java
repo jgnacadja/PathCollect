@@ -60,9 +60,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
         messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(getApplicationContext(),
-//                        MainMenuActivity.class);
-//                startActivity(i);
+
             }
         });
 
@@ -71,10 +69,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
         articleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(getApplicationContext(), MainMenuActivity.class);
-//                i.putExtra(ApplicationConstants.BundleKeys.FORM_MODE,
-//                        ApplicationConstants.FormModes.VIEW_SENT);
-//                startActivity(i);
+
             }
         });
 
@@ -84,9 +79,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
         centreHospitalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(getApplicationContext(),
-//                        MainMenuActivity.class);
-//                startActivity(i);
+
             }
         });
 
