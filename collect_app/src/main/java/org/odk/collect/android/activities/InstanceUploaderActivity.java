@@ -343,7 +343,7 @@ public class InstanceUploaderActivity extends CollectAbstractActivity implements
     }
 
     private void createUploadInstancesResultDialog(String message) {
-        String dialogTitle = getString(R.string.upload_results);
+        String dialogTitle = getString(R.string.upload_answer);
         String buttonTitle = getString(R.string.ok);
 
         SimpleDialog simpleDialog = SimpleDialog.newInstance(dialogTitle, 0, message, buttonTitle, true);
