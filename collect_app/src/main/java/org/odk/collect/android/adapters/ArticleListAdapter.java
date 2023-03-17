@@ -41,7 +41,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
 //        String image = article.get_links().getWp_featuredmedia().get(0).getHref();
 //        DownloadArticleImageTask task = new DownloadArticleImageTask(holder);
 //        task.execute(image);
-        int iconId = R.drawable.bubbles;
+        int iconId = R.drawable.ic_outline_website_24;
         holder.imageView.setImageResource(iconId);
         holder.imageView.setTag(iconId);
         holder.title.setText(article.getTitle().getRendered());
@@ -73,7 +73,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
             if(drawable != null){
                 this.imageView.setImageDrawable(drawable);
             } else {
-                int iconId = R.drawable.bubbles;
+                int iconId = R.drawable.ic_outline_website_24;
                 this.imageView.setImageResource(iconId);
                 this.imageView.setTag(iconId);
             }
