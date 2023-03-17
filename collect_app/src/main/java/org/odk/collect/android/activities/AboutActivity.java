@@ -112,7 +112,6 @@ public class AboutActivity extends CollectAbstractActivity implements
             }
         }
     }
-
     @Override
     public void onStart() {
         super.onStart();
