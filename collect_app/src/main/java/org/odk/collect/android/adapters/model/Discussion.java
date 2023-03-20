@@ -1,34 +1,38 @@
 package org.odk.collect.android.adapters.model;
 
+import java.util.List;
+
 public class Discussion {
     private String id;
     private String icon;
     private String author;
     private String title;
-    private String description;
     private long timestamp;
     private String topicId;
     private int likes;
     private int views;
     private int commentCount;
     private long lastCommentTimestamp;
+    private List<String> likedUsers;
+    private List<String> viewedUsers;
 
     public Discussion() {
 
     }
 
-    public Discussion(String id, String icon, String author, String title, String description, long timestamp, String topicId, int views, int likes, int commentCount, long lastCommentTimestamp) {
+    public Discussion(String id, String icon, String author, String title, long timestamp, String topicId, int views, int likes, int commentCount, long lastCommentTimestamp, List<String> likedUsers, List<String> viewedUsers) {
         this.id = id;
         this.icon = icon;
         this.author = author;
         this.title = title;
-        this.description = description;
         this.timestamp = timestamp;
         this.topicId = topicId;
         this.views = views;
         this.likes = likes;
         this.commentCount = commentCount;
         this.lastCommentTimestamp = lastCommentTimestamp;
+        this.likedUsers = likedUsers;
+        this.viewedUsers = viewedUsers;
     }
 
     public String getId() {
@@ -53,14 +57,6 @@ public class Discussion {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public long getTimestamp() {
@@ -137,5 +133,21 @@ public class Discussion {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public List<String> getLikedUsers() {
+        return likedUsers;
+    }
+
+    public void setLikedUsers(List<String> likedUsers) {
+        this.likedUsers = likedUsers;
+    }
+
+    public List<String> getViewedUsers() {
+        return viewedUsers;
+    }
+
+    public void setViewedUsers(List<String> viewedUsers) {
+        this.viewedUsers = viewedUsers;
     }
 }

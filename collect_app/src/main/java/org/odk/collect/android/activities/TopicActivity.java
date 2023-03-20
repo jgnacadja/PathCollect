@@ -44,7 +44,7 @@ public class TopicActivity extends CollectAbstractActivity implements
         setContentView(R.layout.topic_layout);
         DaggerUtils.getComponent(this).inject(this);
 
-        initToolbar();
+        initToolbar(getString(R.string.collect_app_name), false, null);
         ProgressBar progressBar = findViewById(R.id.topicProgressBar);
         progressBar.setVisibility(View.VISIBLE);
         TextView tv = findViewById(R.id.topicFetchError);
@@ -85,12 +85,6 @@ public class TopicActivity extends CollectAbstractActivity implements
         });
     }
 
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.collect_app_name));
-        setSupportActionBar(toolbar);
-    }
-
     @Override
     public void onClick(int position) {
         if (MultiClickGuard.allowClick(getClass().getName())) {
@@ -122,7 +116,11 @@ public class TopicActivity extends CollectAbstractActivity implements
         getMenuInflater().inflate(R.menu.landing_page_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
+    private void initToolbar(String string, boolean b, Object o) {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setTitle(getString(R.string.collect_app_name));
+        setSupportActionBar(toolbar);
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (!MultiClickGuard.allowClick(getClass().getName())) {
@@ -136,5 +134,4 @@ public class TopicActivity extends CollectAbstractActivity implements
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

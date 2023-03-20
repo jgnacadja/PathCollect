@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,8 +44,12 @@ public class DiscussionListAdapter extends RecyclerView.Adapter<DiscussionListAd
         DownloadImageTask task = new DownloadImageTask(holder);
         task.execute(discussion.getIcon());
         holder.title.setText(discussion.getTitle());
-        holder.description.setText(discussion.getDescription());
-        holder.lastCommentTimestamp.setText(this.context.getString(R.string.discussion_last_comment_time, TimeAgo.getTimeAgo(discussion.getLastCommentTimestamp())));
+        if(discussion.getLastCommentTimestamp() != 0){
+            holder.lastCommentTimestamp.setText(TimeAgo.getTimeAgo(discussion.getLastCommentTimestamp()));
+            holder.lastCommentLayout.setVisibility(View.VISIBLE);
+        } else {
+            holder.lastCommentLayout.setVisibility(View.GONE);
+        }
         holder.likes.setText(String.valueOf(discussion.getLikes()));
         holder.views.setText(String.valueOf(discussion.getViews()));
         holder.commentCount.setText(String.valueOf(discussion.getCommentCount()));
@@ -68,20 +73,20 @@ public class DiscussionListAdapter extends RecyclerView.Adapter<DiscussionListAd
     class ViewHolder extends ForumViewHolder implements View.OnClickListener {
         private final DiscussionItemClickListener listener;
         private final TextView title;
-        private final TextView description;
         private final TextView likes;
         private final TextView views;
         private final TextView commentCount;
+        private final LinearLayout lastCommentLayout;
         private final TextView lastCommentTimestamp;
 
         ViewHolder(View view, DiscussionItemClickListener listener) {
             super(view, R.id.discussion_image);
             this.listener = listener;
             title = view.findViewById(R.id.discussion_title);
-            description = view.findViewById(R.id.discussion_description);
-            likes = view.findViewById(R.id.discussion_like_count);
+            likes = view.findViewById(R.id.like_count);
             views = view.findViewById(R.id.discussion_view_count);
             commentCount = view.findViewById(R.id.comment_count);
+            lastCommentLayout = view.findViewById(R.id.ll_last_comment_date);
             lastCommentTimestamp = view.findViewById(R.id.last_comment_date);
             view.setOnClickListener(this);
         }
