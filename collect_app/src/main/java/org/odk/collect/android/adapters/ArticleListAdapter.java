@@ -43,8 +43,8 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Article article = articles.get(position);
-        if(article.get_links().getWp_featuredmedia() != null){
-            String image = article.get_links().getWp_featuredmedia().get(0).getHref();
+        if(article.get_links().getWpFeaturedMedia() != null){
+            String image = article.get_links().getWpFeaturedMedia().get(0).getHref();
             DownloadArticleImageTask task = new DownloadArticleImageTask(holder);
             task.execute(image);
         } else {

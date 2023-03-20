@@ -1,23 +1,35 @@
 package org.odk.collect.android.adapters.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Article {
+    @SerializedName("id")
     private int id;
-    private String date_gmt;
-    private String modified_gmt;
+    @SerializedName("date_gmt")
+    private String dateGmt;
+    @SerializedName("modified_gmt")
+    private String modifiedGmt;
+    @SerializedName("link")
     private String link;
+    @SerializedName("title")
     private Title title;
+    @SerializedName("content")
     private Content content;
+    @SerializedName("excerpt")
     private Content excerpt;
+    @SerializedName("categories")
     private List<Integer> categories;
+    @SerializedName("tags")
     private List<Integer> tags;
+    @SerializedName("_links")
     private Links _links;
 
-    public Article(int id, String date_gmt, String modified_gmt, String link, Title title, Content content, Content excerpt, List<Integer> categories, List<Integer> tags, Links _links) {
+    public Article(int id, String dateGmt, String modifiedGmt, String link, Title title, Content content, Content excerpt, List<Integer> categories, List<Integer> tags, Links _links) {
         this.id = id;
-        this.date_gmt = date_gmt;
-        this.modified_gmt = modified_gmt;
+        this.dateGmt = dateGmt;
+        this.modifiedGmt = modifiedGmt;
         this.link = link;
         this.title = title;
         this.content = content;
@@ -38,20 +50,20 @@ public class Article {
         this.id = id;
     }
 
-    public String getDate_gmt() {
-        return date_gmt;
+    public String getDateGmt() {
+        return dateGmt;
     }
 
-    public void setDate_gmt(String date_gmt) {
-        this.date_gmt = date_gmt;
+    public void setDateGmt(String dateGmt) {
+        this.dateGmt = dateGmt;
     }
 
-    public String getModified_gmt() {
-        return modified_gmt;
+    public String getModifiedGmt() {
+        return modifiedGmt;
     }
 
-    public void setModified_gmt(String modified_gmt) {
-        this.modified_gmt = modified_gmt;
+    public void setModifiedGmt(String modifiedGmt) {
+        this.modifiedGmt = modifiedGmt;
     }
 
     public String getLink() {
@@ -111,6 +123,7 @@ public class Article {
     }
 
     public static class Title {
+        @SerializedName("rendered")
         private String rendered;
 
         public Title(String rendered) {
@@ -130,7 +143,9 @@ public class Article {
     }
 
     public static class Content {
+        @SerializedName("rendered")
         private String rendered;
+        @SerializedName("protected")
         private boolean _protected;
 
         public Content(String rendered, boolean _protected) {
@@ -159,13 +174,17 @@ public class Article {
     }
 
     public static class Links {
+        @SerializedName("author")
         private List<Feature> author;
-        private List<WpAttachment> wp_attachment;
-        private List<Feature> wp_featuredmedia;
-        private List<WpTerm> wp_term;
+        @SerializedName("wp:attachment")
+        private List<WpAttachment> wpAttachment;
+        @SerializedName("wp:featuredmedia")
+        private List<Feature> wpFeaturedMedia;
 
         public static class Feature {
+            @SerializedName("embeddable")
             private boolean embeddable;
+            @SerializedName("href")
             private String href;
 
             public Feature(boolean embeddable, String href) {
@@ -194,6 +213,7 @@ public class Article {
         }
 
         public static class WpAttachment {
+            @SerializedName("href")
             private String href;
 
             public WpAttachment(String href) {
@@ -212,53 +232,13 @@ public class Article {
             }
         }
 
-        public static class WpTerm {
-            private String taxonomy;
-            private boolean embeddable;
-            private String href;
-
-            public WpTerm(String taxonomy, boolean embeddable, String href) {
-                this.taxonomy = taxonomy;
-                this.embeddable = embeddable;
-                this.href = href;
-            }
-
-            public WpTerm() {
-            }
-
-            public String getTaxonomy() {
-                return taxonomy;
-            }
-
-            public void setTaxonomy(String taxonomy) {
-                this.taxonomy = taxonomy;
-            }
-
-            public boolean isEmbeddable() {
-                return embeddable;
-            }
-
-            public void setEmbeddable(boolean embeddable) {
-                this.embeddable = embeddable;
-            }
-
-            public String getHref() {
-                return href;
-            }
-
-            public void setHref(String href) {
-                this.href = href;
-            }
-        }
-
-        public Links(List<Feature> author, List<WpAttachment> wp_attachment, List<Feature> wp_featuredmedia, List<WpTerm> wp_term) {
-            this.author = author;
-            this.wp_attachment = wp_attachment;
-            this.wp_featuredmedia = wp_featuredmedia;
-            this.wp_term = wp_term;
-        }
-
         public Links() {
+        }
+
+        public Links(List<Feature> author, List<WpAttachment> wpAttachment, List<Feature> wpFeaturedMedia) {
+            this.author = author;
+            this.wpAttachment = wpAttachment;
+            this.wpFeaturedMedia = wpFeaturedMedia;
         }
 
         public List<Feature> getAuthor() {
@@ -269,28 +249,20 @@ public class Article {
             this.author = author;
         }
 
-        public List<WpAttachment> getWp_attachment() {
-            return wp_attachment;
+        public List<WpAttachment> getWpAttachment() {
+            return wpAttachment;
         }
 
-        public void setWp_attachment(List<WpAttachment> wp_attachment) {
-            this.wp_attachment = wp_attachment;
+        public void setWpAttachment(List<WpAttachment> wpAttachment) {
+            this.wpAttachment = wpAttachment;
         }
 
-        public List<Feature> getWp_featuredmedia() {
-            return wp_featuredmedia;
+        public List<Feature> getWpFeaturedMedia() {
+            return wpFeaturedMedia;
         }
 
-        public void setWp_featuredmedia(List<Feature> wp_featuredmedia) {
-            this.wp_featuredmedia = wp_featuredmedia;
-        }
-
-        public List<WpTerm> getWp_term() {
-            return wp_term;
-        }
-
-        public void setWp_term(List<WpTerm> wp_term) {
-            this.wp_term = wp_term;
+        public void setWpFeaturedMedia(List<Feature> wpFeaturedMedia) {
+            this.wpFeaturedMedia = wpFeaturedMedia;
         }
     }
 }
