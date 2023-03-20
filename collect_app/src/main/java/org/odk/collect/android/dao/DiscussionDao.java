@@ -11,6 +11,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.odk.collect.android.adapters.model.Discussion;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DiscussionDao {
     private final DatabaseReference discussionsRef;
     private final DatabaseReference topicsRef;
@@ -57,14 +60,36 @@ public class DiscussionDao {
         });
     }
 
-    public void updateDiscussionLikesCount(Discussion discussion) {
+    public void updateDiscussionLikesCount(Discussion discussion, String installID, boolean liked) {
         // Update the comment like count and last comment date in the discussion dao
         discussionsRef.child(discussion.getId()).child("likes").setValue(discussion.getLikes());
+
+        List<String> users;
+        if(discussion.getLikedUsers() != null){
+            users = discussion.getLikedUsers();
+        } else {
+            users = new ArrayList<>();
+        }
+        if(liked){
+            users.add(installID);
+        } else {
+            users.remove(installID);
+        }
+        discussionsRef.child(discussion.getId()).child("likedUsers").setValue(users);
     }
 
-    public void updateDiscussionViewsCount(Discussion discussion) {
+    public void updateDiscussionViewsCount(Discussion discussion, String installID) {
         // Update the comment like count and last comment date in the discussion dao
         discussionsRef.child(discussion.getId()).child("views").setValue(discussion.getViews());
+
+        List<String> users;
+        if(discussion.getViewedUsers() != null){
+            users = discussion.getViewedUsers();
+        } else {
+            users = new ArrayList<>();
+        }
+        users.add(installID);
+        discussionsRef.child(discussion.getId()).child("viewedUsers").setValue(users);
     }
 
     // Other methods for updating and deleting discussions as needed...
