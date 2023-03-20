@@ -27,27 +27,11 @@
             android:id="@+id/discussion_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
+            android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_large"
-            tools:text="@string/none" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Material Design reference: https://material.io/design/components/lists.html#specs -->
-        <TextView
-            android:id="@+id/discussion_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
-            android:textColor="@color/colorOnSurface"
-            android:textSize="@dimen/text_size_standard"
             tools:text="@string/none" />
     </LinearLayout>
 
@@ -76,15 +60,13 @@
                     android:layout_height="@dimen/discussion_icon"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="@dimen/margin_extra_small"
-                    android:layout_weight="0"
                     app:srcCompat="@drawable/thumbs_up" />
 
                 <TextView
-                    android:id="@+id/discussion_like_count"
-                    android:layout_width="match_parent"
+                    android:id="@+id/like_count"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
                     android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
                     android:textColor="@color/colorOnSurface"
                     android:textSize="@dimen/text_size_small"
@@ -104,15 +86,13 @@
                     android:layout_height="@dimen/discussion_icon"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="@dimen/margin_extra_small"
-                    android:layout_weight="0"
                     app:srcCompat="@drawable/eye" />
 
                 <TextView
                     android:id="@+id/discussion_view_count"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
                     android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
                     android:textColor="@color/colorOnSurface"
                     android:textSize="@dimen/text_size_small"
@@ -132,7 +112,6 @@
                     android:layout_height="@dimen/discussion_icon"
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="@dimen/margin_extra_small"
-                    android:layout_weight="0"
                     app:srcCompat="@drawable/ic_message" />
 
                 <TextView
@@ -148,19 +127,35 @@
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/last_comment_date"
+        <LinearLayout
+            android:id="@+id/ll_last_comment_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/rounded_corner"
             android:paddingStart="@dimen/margin_small"
             android:paddingEnd="@dimen/margin_small"
-            android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
-            android:textColor="@color/colorOnPrimary"
-            android:textSize="@dimen/text_size_small"
-            tools:text="@string/none" />
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_alignParentEnd="true"
+            android:orientation="horizontal">
+
+            <!-- Material Design reference: https://material.io/design/components/lists.html#specs -->
+            <ImageView
+                android:layout_width="@dimen/discussion_icon"
+                android:layout_height="@dimen/discussion_icon"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/margin_extra_small"
+                app:srcCompat="@drawable/ic_response_time" />
+
+            <TextView
+                android:id="@+id/last_comment_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_small"
+                tools:text="@string/none" />
+        </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>
