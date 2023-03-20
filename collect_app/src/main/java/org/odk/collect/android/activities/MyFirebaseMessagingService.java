@@ -34,6 +34,12 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
 import org.odk.collect.android.R;
+import org.odk.collect.android.adapters.model.Notification;
+import org.odk.collect.android.database.notification.DatabaseNotificationRepository;
+import org.odk.collect.android.storage.StoragePathProvider;
+import org.odk.collect.android.storage.StorageSubdirectory;
+
+import java.util.Map;
 
 import timber.log.Timber;
 
@@ -51,6 +57,8 @@ import timber.log.Timber;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
+    private StoragePathProvider storagePathProvider = new StoragePathProvider();
+    private DatabaseNotificationRepository repository;
 
     /**
      * Called when message is received.
@@ -83,6 +91,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             Timber.tag(TAG).d("Message data payload: %s", remoteMessage.getData());
+
+
+            String dbPath = storagePathProvider.getOdkDirPath(StorageSubdirectory.METADATA, null);
+            repository = new DatabaseNotificationRepository(this, dbPath);
+            // Get the notification data from the remote message
+            Map<String, String> data = remoteMessage.getData();
+
+            // Create a new notification object from the data
+            Notification notification = new Notification(data.get("title"), data.get("body"),remoteMessage.getSentTime());
+
+            // Save the notification to the local database using a DAO
+            repository.save(notification);
+
 
             if (/* Check if data needs to be processed by long running job */ true) {
                 // For long-running tasks (10 seconds or more) use WorkManager.

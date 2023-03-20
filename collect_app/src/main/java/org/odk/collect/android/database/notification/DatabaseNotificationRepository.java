@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import static android.provider.BaseColumns._ID;
+import static org.odk.collect.android.database.DatabaseConstants.FORMS_TABLE_NAME;
 import static org.odk.collect.android.database.DatabaseConstants.NOTIFICATIONS_TABLE_NAME;
 import static org.odk.collect.android.database.DatabaseObjectMapper.getNotificationFromCurrentCursorPosition;
 import static org.odk.collect.android.database.DatabaseObjectMapper.getValuesFromNotification;
@@ -81,6 +82,10 @@ public class DatabaseNotificationRepository {
     private Long insertNotification(ContentValues values) {
         SQLiteDatabase writeableDatabase = databaseConnection.getWriteableDatabase();
         return writeableDatabase.insertOrThrow(NOTIFICATIONS_TABLE_NAME, null, values);
+    }
+    private void updateNotification(Long id, ContentValues values) {
+        SQLiteDatabase writeableDatabase = databaseConnection.getWriteableDatabase();
+        writeableDatabase.update(NOTIFICATIONS_TABLE_NAME, values, _ID + "=?", new String[]{String.valueOf(id)});
     }
 
     private static List<Notification> getNotificationFromCursor(Cursor cursor) {

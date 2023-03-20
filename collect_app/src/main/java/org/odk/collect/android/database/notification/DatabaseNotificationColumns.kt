@@ -7,6 +7,7 @@ import android.provider.BaseColumns
  */
 object DatabaseNotificationColumns : BaseColumns {
     // These are the only things needed for an insert
+    const val DB_ID = "dbId"
     const val TITLE = "title"
     const val BODY = "body" // can be null
     const val TIMESTAMP = "timestamp"
