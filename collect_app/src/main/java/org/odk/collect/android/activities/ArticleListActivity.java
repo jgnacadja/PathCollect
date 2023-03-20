@@ -1,6 +1,7 @@
 package org.odk.collect.android.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,7 +49,7 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         // create Retrofit instance
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://dssc-cms.000webhostapp.com/wp-json/wp/v2/")
+                .baseUrl(getString(R.string.api_url))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -62,7 +63,6 @@ public class ArticleListActivity extends AppCompatActivity implements
             public void onResponse(Call<List<Article>> call, Response<List<Article>> response) {
                 if (response.isSuccessful()) {
                     articles.addAll(response.body());
-                    Timber.tag("Articles").i(String.valueOf(articles.size()));
                     adapter.notifyDataSetChanged();
                 } else {
                     Timber.tag("ArticleListActivity").e("Response not successful");
@@ -102,7 +102,3 @@ public class ArticleListActivity extends AppCompatActivity implements
         super.onDestroy();
     }
 }
-
-
-
-

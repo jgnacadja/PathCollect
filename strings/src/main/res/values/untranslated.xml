@@ -9,6 +9,7 @@ the specific language governing permissions and limitations under the License. -
     <!-- strings that should not be translated -->
     <string name="collect_app_name" translatable="false">DSSC Collect</string>
     <string name="app_url" translatable="false">https://www.rame-int.org/ </string>
+    <string name="api_url" translatable="false">https://dssc-cms.000webhostapp.com/wp-json/wp/v2/ </string>
     <string name="forum_url" translatable="false">"https://community.kobotoolbox.org"</string>
     <string name="never_value" translatable="false">never</string>
     <string name="every_fifteen_minutes_value" translatable="false">every_fifteen_minutes</string>
