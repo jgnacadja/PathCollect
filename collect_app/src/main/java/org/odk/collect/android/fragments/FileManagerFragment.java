@@ -110,7 +110,6 @@ public abstract class FileManagerFragment extends AppListFragment implements Loa
         listAdapter.swapCursor(cursor);
 
         checkPreviouslyCheckedItems();
-        //toggleButtonLabel(toggleButton, getListView());
         deleteButton.setEnabled(areCheckedItems());
 
         checkToogle();
