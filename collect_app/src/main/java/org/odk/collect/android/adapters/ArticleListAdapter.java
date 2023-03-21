@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.common.eventbus.Subscribe;
 import com.google.gson.Gson;
 
 import org.odk.collect.android.R;
@@ -54,7 +55,7 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
         }
         holder.title.setText(article.getTitle().getRendered());
         String plainString = Html.fromHtml(article.getExcerpt().getRendered()).toString();
-        holder.preview.setText(plainString);
+        holder.preview.setText(plainString.substring(0, Math.min(120, plainString.length())) + "...");
     }
 
     @Override
