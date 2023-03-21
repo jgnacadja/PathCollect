@@ -661,8 +661,8 @@ public class FormEntryActivity extends CollectAbstractActivity implements Animat
 
             if (candidateForms.isEmpty()) {
                 createErrorDialog(getString(
-                        R.string.parent_form_not_present,
-                        instance.getFormId())
+                                R.string.parent_form_not_present,
+                                instance.getFormId())
                                 + ((instance.getFormVersion() == null) ? ""
                                 : "\n" + getString(R.string.version) + " " + instance.getFormVersion()),
                         true);

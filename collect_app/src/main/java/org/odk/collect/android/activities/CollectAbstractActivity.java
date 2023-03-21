@@ -79,7 +79,7 @@ public abstract class CollectAbstractActivity extends LocalizedActivity {
             @Override
             public void onClick(View v) {
                 // This code will be executed when the navigation icon is clicked
-                Intent intent = new Intent(getApplicationContext(), MainMenuActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LandingPageActivity.class);
                 startActivity(intent);
             }
         });
