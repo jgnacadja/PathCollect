@@ -16,9 +16,7 @@ package org.odk.collect.android.activities;
 
 import static org.odk.collect.androidshared.ui.DialogFragmentUtils.showIfNotShowing;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -93,7 +91,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
             setTitle(String.format("%s", getString(R.string.collect_app_name)));
         });
 
-        initToolbar(null, false, null);
+        initToolbar(getString(R.string.collect_app_name), false, null);
         initMapbox();
 
         Button enterDataButtonNew = findViewById(R.id.enter_data);

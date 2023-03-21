@@ -14,10 +14,8 @@
 
 package org.odk.collect.android.activities;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
