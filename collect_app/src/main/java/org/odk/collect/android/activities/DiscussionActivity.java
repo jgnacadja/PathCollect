@@ -72,11 +72,6 @@ public class DiscussionActivity extends CollectAbstractActivity {
     private boolean isCommentsRead;
     private String installID;
 
-    private void initToolbar(String string, boolean b, Object o) {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.collect_app_name));
-        setSupportActionBar(toolbar);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +79,7 @@ public class DiscussionActivity extends CollectAbstractActivity {
         setContentView(R.layout.discussion_layout);
         DaggerUtils.getComponent(this).inject(this);
 
-        initToolbar(getString(R.string.collect_app_name), false, null);
+        initToolbar();
         initComponent();
         ProgressBar progressBar = findViewById(R.id.discussionProgressBar);
         progressBar.setVisibility(View.VISIBLE);
@@ -244,7 +239,11 @@ public class DiscussionActivity extends CollectAbstractActivity {
             return View.VISIBLE;
         }
     }
-
+    private void initToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setTitle(getString(R.string.collect_app_name));
+        setSupportActionBar(toolbar);
+    }
     private void initComponent() {
         errorMessage = findViewById(R.id.comment_creation_error);
         errorMessage.setVisibility(View.GONE);
