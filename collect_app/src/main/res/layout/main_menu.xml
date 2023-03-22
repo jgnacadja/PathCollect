@@ -191,30 +191,25 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="50"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                    android:id="@+id/manage_forms"
-                    style="@style/Widget.Collect.Button.FullWidth"
-                    android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    android:layout_marginStart="@dimen/margin_standard"
-                    android:layout_marginTop="@dimen/margin_extra_small"
-                    android:backgroundTint="@color/surfaceButtonColor"
-                    android:orientation="vertical"
-                    android:textColor="@color/colorPrimary"
-                    app:cornerRadius="@dimen/text_size_small"
-                    app:icon="@drawable/ic_delete"
-                    app:iconGravity="top"
-                    app:iconSize="30dp"
-                    app:iconTint="@color/colorPrimary"
-                    android:text="@string/manage_files"
-                    tools:text="@string/manage_files" />
-            </LinearLayout>
+                    <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
+                        android:id="@+id/manage_forms"
+                        style="@style/Widget.Collect.Button.FullWidth"
+                        android:layout_width="match_parent"
+                        android:layout_height="161dp"
+                        android:layout_marginTop="@dimen/margin_extra_small"
+                        android:layout_marginStart="@dimen/margin_standard"
+                        android:backgroundTint="@color/colorWhite"
+                        android:orientation="vertical"
+                        android:textColor="@color/colorPrimary"
+                        app:cornerRadius="@dimen/text_size_small"
+                        android:textSize="@dimen/text_size_button"
+                        app:icon="@drawable/icon_delete"
+                        app:iconGravity="top"
+                        app:iconSize="@dimen/size_icon"
+                        app:iconTint="@color/colorPrimary"
+                        android:text="@string/manage_files"
+                        tools:text="@string/manage_files" />
+                </LinearLayout>
         </LinearLayout>
 
                 <TextView
@@ -235,4 +230,5 @@
                     android:layout_gravity="center_horizontal"
                     tools:text="commit sha" />
 
+    </LinearLayout>
 </LinearLayout>

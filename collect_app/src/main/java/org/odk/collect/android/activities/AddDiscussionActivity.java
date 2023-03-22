@@ -39,7 +39,7 @@ public class AddDiscussionActivity extends CollectAbstractActivity {
         setContentView(R.layout.add_discussion_layout);
         DaggerUtils.getComponent(this).inject(this);
 
-        initToolbar(getString(R.string.collect_app_name), false, null);
+        initToolbar();
         topicId = getIntent().getStringExtra("topicId");
         // Get a reference to the "discussions" node in Firebase
         dao = new DiscussionDao();
@@ -57,7 +57,7 @@ public class AddDiscussionActivity extends CollectAbstractActivity {
         });
     }
 
-    private void initToolbar(String string, boolean b, Object o) {
+    private void initToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle(getString(R.string.collect_app_name));
         setSupportActionBar(toolbar);
@@ -76,17 +76,10 @@ public class AddDiscussionActivity extends CollectAbstractActivity {
             errorMessage.setText("Veuillez entrer le titre de la question");
         } else {
             Discussion discussion = new Discussion(
-                    null,
-                    null,
                     getString(R.string.anon_user),
                     title,
-                    0,
-                    topicId,
-                    0,
-                    0,
-                    0,
-                    0,
-                    new ArrayList<String>(), new ArrayList<String>());
+                    topicId
+            );
 
             dao.addDiscussion(discussion);
             Intent intent = new Intent(this, DiscussionListActivity.class);
