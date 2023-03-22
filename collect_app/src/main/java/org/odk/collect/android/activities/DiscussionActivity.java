@@ -26,8 +26,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.odk.collect.android.R;
@@ -105,10 +103,9 @@ public class DiscussionActivity extends CollectAbstractActivity {
 
         // Get discussion
         String discussionId = getIntent().getStringExtra("discussionId");
-        DatabaseReference discussionRef = FirebaseDatabase.getInstance().getReference().child("discussions").child(discussionId);
 
         // Attach a listener to the discussion reference to get updates
-        discussionRef.addValueEventListener(new ValueEventListener() {
+        discussionDao.get(discussionId, new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 // Get the Discussion object from the database
