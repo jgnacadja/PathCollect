@@ -71,13 +71,11 @@ public class LandingPageActivity extends CollectAbstractActivity{
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), ArticleListActivity.class);
-                i.putExtra(ApplicationConstants.BundleKeys.FORM_MODE,
-                        ApplicationConstants.FormModes.VIEW_SENT);
                 startActivity(i);
             }
         });
 
-//        // centre Hospital Button
+      // centre Hospital Button
         centreHospitalButton = findViewById(R.id.centre_Hospital);
         centreHospitalButton.setText(getString(R.string.btn_centreHospital));
         centreHospitalButton.setOnClickListener(new View.OnClickListener() {
