@@ -253,15 +253,19 @@ public class MainMenuActivity extends CollectAbstractActivity {
             return true;
         }
 
-        if (item.getItemId() == R.id.action_item_about) {
-            Intent intent = new Intent(this, AboutActivity.class);
-            startActivity(intent);
-            return true;
-        } else if (item.getItemId() == R.id.projects) {
-            showIfNotShowing(ProjectSettingsDialog.class, getSupportFragmentManager());
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_item_about:
+                Intent intent = new Intent(this, AboutActivity.class);
+                startActivity(intent);
+                return true;
+
+            case R.id.projects:
+                showIfNotShowing(ProjectSettingsDialog.class, getSupportFragmentManager());
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+
     }
 
     private void initToolbar() {
