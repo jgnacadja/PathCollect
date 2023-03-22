@@ -31,6 +31,13 @@ public class DiscussionDao {
         query.addValueEventListener(listener);
     }
 
+    public void get(String id, ValueEventListener listener) {
+        // Query the discussions that match the topicId
+        Query query = discussionsRef.child(id);
+        // Attach the listener to the query results
+        query.addValueEventListener(listener);
+    }
+
     public void addDiscussion(Discussion discussion) {
         // Generate a new key for the discussion
         String discussionId = discussionsRef.push().getKey();
