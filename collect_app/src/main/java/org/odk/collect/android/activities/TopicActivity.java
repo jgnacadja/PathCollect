@@ -44,7 +44,7 @@ public class TopicActivity extends CollectAbstractActivity implements
         setContentView(R.layout.topic_layout);
         DaggerUtils.getComponent(this).inject(this);
 
-        initToolbar(getString(R.string.collect_app_name), false, null);
+        initToolbar();
         ProgressBar progressBar = findViewById(R.id.topicProgressBar);
         progressBar.setVisibility(View.VISIBLE);
         TextView tv = findViewById(R.id.topicFetchError);
@@ -116,7 +116,7 @@ public class TopicActivity extends CollectAbstractActivity implements
         getMenuInflater().inflate(R.menu.landing_page_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-    private void initToolbar(String string, boolean b, Object o) {
+    private void initToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setTitle(getString(R.string.collect_app_name));
         setSupportActionBar(toolbar);
