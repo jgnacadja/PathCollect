@@ -78,7 +78,7 @@
                     android:id="@+id/cycle"
                     style="@style/Widget.Collect.Button.BlocButton"
                     android:text="@string/btn_cycle"
-                    app:icon="@drawable/ic_periodical"
+                    app:icon="@drawable/ic_drop"
                     tools:text="@string/btn_cycle" />
 
                 <LinearLayout
