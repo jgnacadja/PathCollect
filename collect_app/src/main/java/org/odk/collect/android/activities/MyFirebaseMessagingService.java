@@ -38,6 +38,7 @@ import org.odk.collect.android.adapters.model.Notification;
 import org.odk.collect.android.database.notification.DatabaseNotificationRepository;
 import org.odk.collect.android.storage.StoragePathProvider;
 import org.odk.collect.android.storage.StorageSubdirectory;
+import org.odk.collect.android.tasks.DownloadNotificationsTask;
 
 import java.util.Map;
 
@@ -102,7 +103,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Notification notification = new Notification(data.get("title"), data.get("body"),remoteMessage.getSentTime());
 
             // Save the notification to the local database using a DAO
-            repository.save(notification);
+            DownloadNotificationsTask task = new DownloadNotificationsTask(null, repository);
+            task.execute(notification);
 
 
             if (/* Check if data needs to be processed by long running job */ true) {

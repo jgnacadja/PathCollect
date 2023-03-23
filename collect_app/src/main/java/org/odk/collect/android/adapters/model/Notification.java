@@ -9,11 +9,19 @@ public class Notification {
     private String body;
     private long timestamp;
 
+    public Notification(Long dbId, String title, String body, long timestamp) {
+        this.dbId = dbId;
+        this.title = title;
+        this.body = body;
+        this.timestamp = timestamp;
+    }
+
     public Notification(String title, String body, long timestamp) {
         this.title = title;
         this.body = body;
         this.timestamp = timestamp;
     }
+
     public Notification(Notification.Builder builder) {
         dbId = builder.dbId;
         title = builder.title;
