@@ -16,117 +16,92 @@
 
     <include layout="@layout/app_bar_with_progress_bar_layout" />
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_standard"
         android:orientation="vertical">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/map_box_initialization_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_standard"
-            android:orientation="vertical">
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/map_box_initialization_fragment"
-                android:layout_width="match_parent"
-                android:layout_height="1dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="381dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/subtitle"
-                    android:textAppearance="?textAppearanceBody1"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/text_size_large"
-                    android:textStyle="bold"
-                    tools:text="@string/subtitle" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/main_menu_bloc"
-                android:orientation="horizontal">
-
-                <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                    android:id="@+id/enter_data"
-                    style="@style/Widget.Collect.Button.BlocButton"
-                    android:text="@string/enter_data_button"
-                    app:icon="@drawable/ic_formulaire"
-                    tools:text="@string/enter_data_button" />
-
-                <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                    android:id="@+id/review_data"
-                    style="@style/Widget.Collect.Button.BlocButton"
-                    android:text="@string/review_data"
-                    app:icon="@drawable/ic_edit_note"
-                    tools:text="@string/review_data" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/main_menu_bloc"
-                android:orientation="horizontal">
-
-                <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                    android:id="@+id/send_data"
-                    style="@style/Widget.Collect.Button.BlocButton"
-                    android:text="@string/send_data"
-                    app:icon="@drawable/ic_send"
-                    tools:text="@string/send_data" />
-
-                <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                    android:id="@+id/get_forms"
-                    style="@style/Widget.Collect.Button.BlocButton"
-                    android:text="@string/get_forms"
-                    app:icon="@drawable/ic_save"
-                    tools:text="@string/get_forms" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/main_menu_bloc"
-                android:orientation="horizontal">
-
-                <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                    android:id="@+id/view_sent_forms"
-                    style="@style/Widget.Collect.Button.BlocButton"
-                    android:text="@string/view_sent_forms"
-                    app:icon="@drawable/ic_align_left"
-                    tools:text="@string/view_sent_forms" />
-
-                <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                    android:id="@+id/manage_forms"
-                    style="@style/Widget.Collect.Button.BlocButton"
-                    android:text="@string/manage_files"
-                    app:icon="@drawable/ic_delete"
-                    tools:text="@string/manage_files" />
-            </LinearLayout>
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/app_name"
-                android:layout_width="wrap_content"
+                android:layout_width="381dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/margin_standard"
+                android:text="@string/subtitle"
                 android:textAppearance="?textAppearanceBody1"
-                android:textColor="@color/color_on_surface_medium_emphasis"
-                tools:text="DSSC Collect v2023.1" />
-
-            <TextView
-                android:id="@+id/version_sha"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textAppearance="?textAppearanceCaption"
-                tools:text="commit sha" />
-
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_large"
+                android:textStyle="bold"
+                tools:text="@string/subtitle" />
         </LinearLayout>
-    </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_menu_bloc"
+            android:orientation="horizontal">
+
+            <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
+                android:id="@+id/enter_data"
+                style="@style/Widget.Collect.Button.BlocButton"
+                android:text="@string/enter_data_button"
+                app:icon="@drawable/ic_formulaire"
+                tools:text="@string/enter_data_button" />
+
+            <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
+                android:id="@+id/review_data"
+                style="@style/Widget.Collect.Button.BlocButton"
+                android:text="@string/review_data"
+                app:icon="@drawable/ic_edit_note"
+                tools:text="@string/review_data" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_menu_bloc"
+            android:orientation="horizontal">
+
+            <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
+                android:id="@+id/send_data"
+                style="@style/Widget.Collect.Button.BlocButton"
+                android:text="@string/send_data"
+                app:icon="@drawable/ic_send"
+                tools:text="@string/send_data" />
+
+            <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
+                android:id="@+id/get_forms"
+                style="@style/Widget.Collect.Button.BlocButton"
+                android:text="@string/get_forms"
+                app:icon="@drawable/ic_save"
+                tools:text="@string/get_forms" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/main_menu_bloc"
+            android:orientation="horizontal">
+
+            <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
+                android:id="@+id/view_sent_forms"
+                style="@style/Widget.Collect.Button.BlocButton"
+                android:text="@string/view_sent_forms"
+                app:icon="@drawable/ic_align_left"
+                tools:text="@string/view_sent_forms" />
+
+            <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
+                android:id="@+id/manage_forms"
+                style="@style/Widget.Collect.Button.BlocButton"
+                android:text="@string/manage_files"
+                app:icon="@drawable/ic_delete"
+                tools:text="@string/manage_files" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

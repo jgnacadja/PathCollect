@@ -178,14 +178,6 @@ public class MainMenuActivity extends CollectAbstractActivity {
         TextView appName = findViewById(R.id.app_name);
         appName.setText(String.format("%s %s", "Dssc Collect", getString(R.string.collect_app_name), mainMenuViewModel.getVersion()));
 
-        TextView versionSHAView = findViewById(R.id.version_sha);
-        String versionSHA = mainMenuViewModel.getVersionCommitDescription();
-        if (versionSHA != null) {
-            versionSHAView.setText(versionSHA);
-        } else {
-            versionSHAView.setVisibility(View.GONE);
-        }
-
         mainMenuViewModel.getSendableInstancesCount().observe(this, finalized -> {
             if (finalized > 0) {
                 sendDataButton.setText(getString(R.string.send_data_button, String.valueOf(finalized)));
@@ -269,7 +261,6 @@ public class MainMenuActivity extends CollectAbstractActivity {
         if (MapboxClassInstanceCreator.isMapboxAvailable()) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .add(R.id.map_box_initialization_fragment, MapboxClassInstanceCreator.createMapBoxInitializationFragment())
                     .commit();
         }
     }
