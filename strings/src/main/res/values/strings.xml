@@ -1154,4 +1154,11 @@
     -->
     <string name="open_settings">Open Settings</string>
 
+    <!--
+     ##############################################
+     # FORMATION
+     ##############################################
+     -->
+    <string name="formation_title">Make an appointment with a center</string>
+    <string name="service_title">By services</string>
 </resources>

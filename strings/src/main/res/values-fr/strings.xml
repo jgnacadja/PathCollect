@@ -951,4 +951,11 @@
     # Permissions
     ##############################################-->
   <string name="open_settings">Ouvrir les paramètres</string>
+  <!--
+     ##############################################
+     # FORMATION
+     ##############################################
+     -->
+  <string name="formation_title">Prendre rendez-vous auprès d\'un centre !</string>
+  <string name="service_title">Par services</string>
 </resources>
