@@ -69,12 +69,8 @@ public class CommentDao {
         // Update the comment like count and last comment date in the discussion dao
         commentsRef.child(comment.getId()).child("likes").setValue(comment.getLikes());
         List<String> users;
-        if(comment.getLikedUsers() != null){
-            users = comment.getLikedUsers();
-        } else {
-            users = new ArrayList<>();
-        }
-        if(liked){
+        users = (comment.getLikedUsers() != null) ? comment.getLikedUsers() : new ArrayList<>();
+        if (liked) {
             users.add(installID);
         } else {
             users.remove(installID);
