@@ -84,7 +84,8 @@ public class LandingPageActivity extends CollectAbstractActivity{
         centreHospitalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(getApplicationContext(), HospitalListActivity.class);
+                startActivity(i);
             }
         });
 
