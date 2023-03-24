@@ -89,13 +89,9 @@ public class DiscussionDao {
         // Update the comment like count and last comment date in the discussion dao
         discussionsRef.child(discussion.getId()).child("views").setValue(discussion.getViews());
 
-        List<String> users;
-        if(discussion.getViewedUsers() != null){
-            users = discussion.getViewedUsers();
-        } else {
-            users = new ArrayList<>();
-        }
+        List<String> users = discussion.getViewedUsers() != null ? discussion.getViewedUsers() : new ArrayList<>();
         users.add(installID);
+
         discussionsRef.child(discussion.getId()).child("viewedUsers").setValue(users);
     }
 
