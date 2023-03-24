@@ -186,7 +186,6 @@ public class MainMenuActivity extends CollectAbstractActivity {
             }
         });
 
-
         mainMenuViewModel.getEditableInstancesCount().observe(this, unsent -> {
             if (unsent > 0) {
                 reviewDataButton.setText(getString(R.string.review_data_button, String.valueOf(unsent)));

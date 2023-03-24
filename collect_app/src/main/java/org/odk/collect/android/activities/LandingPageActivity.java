@@ -135,23 +135,23 @@ public class LandingPageActivity extends CollectAbstractActivity{
     }
 
     private void openPeriodical() {
-        Intent i;
-        String packageName = getString(R.string.periodical_app_package_name);
-        PackageManager manager = getApplicationContext().getPackageManager();
-        try {
-            i = manager.getLaunchIntentForPackage(packageName);
-            if (i == null){
-                throw new PackageManager.NameNotFoundException();
-            }
-            i.addCategory(Intent.CATEGORY_LAUNCHER);
-            startActivity(i);
-        } catch (PackageManager.NameNotFoundException e) {
-            //if not found in device then will come here
-            try {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+packageName)));
-            } catch (ActivityNotFoundException ex) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id="+packageName)));
-            }
-        }
+//        Intent i;
+//        String packageName = getString(R.string.periodical_app_package_name);
+//        PackageManager manager = getApplicationContext().getPackageManager();
+//        try {
+//            i = manager.getLaunchIntentForPackage(packageName);
+//            if (i == null){
+//                throw new PackageManager.NameNotFoundException();
+//            }
+//            i.addCategory(Intent.CATEGORY_LAUNCHER);
+//            startActivity(i);
+//        } catch (PackageManager.NameNotFoundException e) {
+//            //if not found in device then will come here
+//            try {
+//                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+packageName)));
+//            } catch (ActivityNotFoundException ex) {
+//                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id="+packageName)));
+//            }
+//        }
     }
 }
