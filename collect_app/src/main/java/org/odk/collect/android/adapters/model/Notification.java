@@ -1,7 +1,6 @@
 package org.odk.collect.android.adapters.model;
 
 import org.jetbrains.annotations.NotNull;
-import org.odk.collect.forms.Form;
 
 public class Notification {
     private Long dbId;

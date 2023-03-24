@@ -97,7 +97,7 @@ the specific language governing permissions and limitations under the License.
                 android:resource="@xml/provider_paths" />
         </provider>
         <activity
-            android:name=".activities.NotificationActivity"
+            android:name=".activities.OldNotificationActivity"
             android:label="@string/app_name"
             android:exported="true">
             <intent-filter>
@@ -126,6 +126,7 @@ the specific language governing permissions and limitations under the License.
         <activity android:name=".activities.PostListActivity" />
         <activity android:name=".activities.HospitalListActivity" />
         <activity android:name=".activities.HospitalActivity" />
+        <activity android:name=".activities.NotificationActivity" />
         <activity
             android:name=".activities.ScannerWithFlashlightActivity"
             android:screenOrientation="portrait"

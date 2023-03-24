@@ -1,19 +1,3 @@
-/**
- * Copyright 2016 Google Inc. All Rights Reserved.
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package org.odk.collect.android.activities;
 
 import android.app.NotificationChannel;
@@ -25,36 +9,24 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import androidx.core.app.NotificationCompat;
-import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
 import org.odk.collect.android.R;
-import org.odk.collect.android.adapters.model.Notification;
 import org.odk.collect.android.database.notification.DatabaseNotificationRepository;
 import org.odk.collect.android.storage.StoragePathProvider;
-import org.odk.collect.android.storage.StorageSubdirectory;
-import org.odk.collect.android.tasks.DownloadNotificationsTask;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import timber.log.Timber;
 
-/**
- * NOTE: There can only be one service in each app that receives FCM messages. If multiple
- * are declared in the Manifest then the first one will be chosen.
- *
- * In order to make this Java sample functional, you must remove the following from the Kotlin messaging
- * service in the AndroidManifest.xml:
- *
- * <intent-filter>
- *   <action android:name="com.google.firebase.MESSAGING_EVENT" />
- * </intent-filter>
- */
+
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
@@ -69,52 +41,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     // [START receive_message]
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        // [START_EXCLUDE]
-        // There are two types of messages data messages and notification messages. Data messages
-        // are handled
-        // here in onMessageReceived whether the app is in the foreground or background. Data
-        // messages are the type
-        // traditionally used with GCM. Notification messages are only received here in
-        // onMessageReceived when the app
-        // is in the foreground. When the app is in the background an automatically generated
-        // notification is displayed.
-        // When the user taps on the notification they are returned to the app. Messages
-        // containing both notification
-        // and data payloads are treated as notification messages. The Firebase console always
-        // sends notification
-        // messages. For more see: https://firebase.google.com/docs/cloud-messaging/concept-options
-        // [END_EXCLUDE]
-
-        // TODO(developer): Handle FCM messages here.
-        // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         Timber.tag(TAG).d("From: %s", remoteMessage.getFrom());
 
-        // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             Timber.tag(TAG).d("Message data payload: %s", remoteMessage.getData());
-
-
-            String dbPath = storagePathProvider.getOdkDirPath(StorageSubdirectory.METADATA, null);
-            repository = new DatabaseNotificationRepository(this, dbPath);
-            // Get the notification data from the remote message
-            Map<String, String> data = remoteMessage.getData();
-
-            // Create a new notification object from the data
-            Notification notification = new Notification(data.get("title"), data.get("body"),remoteMessage.getSentTime());
-
-            // Save the notification to the local database using a DAO
-            DownloadNotificationsTask task = new DownloadNotificationsTask(null, repository);
-            task.execute(notification);
-
-
-            if (/* Check if data needs to be processed by long running job */ true) {
-                // For long-running tasks (10 seconds or more) use WorkManager.
-                scheduleJob();
-            } else {
-                // Handle message within 10 seconds
-                handleNow();
-            }
-
+            scheduleJob(remoteMessage.getData());
         }
 
         // Check if message contains a notification payload.
@@ -126,42 +57,24 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             }
         }
 
-        // Also if you intend on generating your own notifications as a result of a received FCM
-        // message, here is where that should be initiated. See sendNotification method below.
     }
-    // [END receive_message]
-
-
-    // [START on_new_token]
-    /**
-     * There are two scenarios when onNewToken is called:
-     * 1) When a new token is generated on initial app startup
-     * 2) Whenever an existing token is changed
-     * Under #2, there are three scenarios when the existing token is changed:
-     * A) App is restored to a new device
-     * B) User uninstalls/reinstalls the app
-     * C) User clears app data
-     */
     @Override
     public void onNewToken(String token) {
         Timber.tag(TAG).d("Refreshed token: %s", token);
 
-        // If you want to send messages to this application instance or
-        // manage this apps subscriptions on the server side, send the
-        // FCM registration token to your app server.
         sendRegistrationToServer(token);
     }
-    // [END on_new_token]
-
     /**
      * Schedule async work using WorkManager.
      */
-    private void scheduleJob() {
-        // [START dispatch_job]
+    private void scheduleJob(Map<String, String> data) {
+        Data inputData = new Data.Builder()
+                .putAll(new HashMap<>(data))
+                .build();
         OneTimeWorkRequest work = new OneTimeWorkRequest.Builder(MyWorker.class)
+                .setInputData(inputData)
                 .build();
         WorkManager.getInstance(this).beginWith(work).enqueue();
-        // [END dispatch_job]
     }
 
     /**
@@ -189,7 +102,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      * @param messageBody FCM message body received.
      */
     private void sendNotification(String messageBody) {
-        Intent intent = new Intent(this, NotificationActivity.class);
+        Intent intent = new Intent(this, OldNotificationActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_IMMUTABLE);

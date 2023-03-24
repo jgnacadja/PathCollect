@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright 2018 Shobhit Agarwal
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:padding="@dimen/margin_standard">
+
+    <ImageView
+        android:id="@+id/imageNotification"
+        android:layout_width="@dimen/size_icon"
+        android:layout_height="@dimen/size_icon"
+        android:layout_gravity="center"
+        tools:src="@drawable/ic_notifications" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_extra_large"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/notificationTitle"
+            style="@style/TextAppearance.Collect.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/none" />
+
+        <TextView
+            android:id="@+id/notificationSubtitle"
+            style="@style/TextAppearance.Collect.Body2.MediumEmphasis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_extra_small"
+            android:textColor="@color/color15"
+            tools:text="@string/notification" />
+
+    </LinearLayout>
+</LinearLayout>
