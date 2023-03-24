@@ -1176,4 +1176,10 @@
     <string name="comment_hint">Type a message</string>
     <string name="question_content_hint">Question content</string>
     <string name="question_label_hint">Your question</string>
+     ##############################################
+     # FORMATION
+     ##############################################
+     -->
+    <string name="formation_title">Make an appointment with a center</string>
+    <string name="service_title">By services</string>
 </resources>
