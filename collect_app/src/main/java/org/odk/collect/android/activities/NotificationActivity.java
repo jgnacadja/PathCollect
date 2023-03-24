@@ -1,175 +1,84 @@
+/*
+ * Copyright 2018 Shobhit Agarwal
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.odk.collect.android.activities;
 
-import android.annotation.SuppressLint;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.content.pm.PackageManager;
-import android.os.Build;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.view.View;
-import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.messaging.FirebaseMessaging;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.odk.collect.android.R;
+import org.odk.collect.android.adapters.NotificationListAdapter;
 import org.odk.collect.android.adapters.model.Notification;
 import org.odk.collect.android.database.notification.DatabaseNotificationRepository;
-import org.odk.collect.android.databinding.ActivityMainBinding;
-import org.odk.collect.android.quickstart.SubscribeToWP;
+import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.storage.StoragePathProvider;
 import org.odk.collect.android.storage.StorageSubdirectory;
-import org.odk.collect.android.tasks.DownloadNotificationsTask;
+import org.odk.collect.android.utilities.ExternalWebPageHelper;
+import org.odk.collect.androidshared.system.IntentLauncher;
+import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 
 import java.util.List;
 
-import timber.log.Timber;
+import javax.inject.Inject;
 
-public class NotificationActivity extends AppCompatActivity {
-    private static final String TAG = "NotificationActivity";
-    private static final String POST_NOTIFICATIONS = "POST_NOTIFICATIONS";
+public class NotificationActivity extends CollectAbstractActivity {
 
-    private final ActivityResultLauncher<String> requestPermissionLauncher =
-            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
-                if (isGranted) {
-                    Toast.makeText(this, "Notifications permission granted", Toast.LENGTH_SHORT)
-                            .show();
-                } else {
-                    Toast.makeText(this, "FCM can't post notifications without POST_NOTIFICATIONS permission",
-                            Toast.LENGTH_LONG).show();
-                }
-            });
+    @Inject
+    IntentLauncher intentLauncher;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.notification_layout);
+        DaggerUtils.getComponent(this).inject(this);
+
+        initToolbar();
 
         StoragePathProvider storagePathProvider = new StoragePathProvider();
         String dbPath = storagePathProvider.getOdkDirPath(StorageSubdirectory.METADATA, null);
         DatabaseNotificationRepository repository = new DatabaseNotificationRepository(this, dbPath);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // Create channel to show notifications.
-            String channelId = getString(R.string.default_notification_channel_id);
-            String channelName = getString(R.string.default_notification_channel_name);
-            NotificationManager notificationManager =
-                    getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(new NotificationChannel(channelId,
-                    channelName, NotificationManager.IMPORTANCE_LOW));
-        }
+        List<Notification> items = repository.getAll();
 
-        // If a notification message is tapped, any data accompanying the notification
-        // message is available in the intent extras. In this sample the launcher
-        // intent is fired when the notification is tapped, so any accompanying data would
-        // be handled here. If you want a different intent fired, set the click_action
-        // field of the notification message to the desired intent. The launcher intent
-        // is used when no click_action is specified.
-        //
-        // Handle possible data accompanying notification message.
-        // [START handle_data_extras]
-        if (getIntent().getExtras() != null) {
-            for (String key : getIntent().getExtras().keySet()) {
-                Object value = getIntent().getExtras().get(key);
-                Timber.tag(TAG).d("Key: " + key + " Value: " + value);
-            }
-        }
-        // [END handle_data_extras]
-
-        binding.subscribeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Timber.tag(TAG).d("Subscribing to weather topic");
-                // [START subscribe_topics]
-//                FirebaseMessaging.getInstance().subscribeToTopic("weather")
-//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task) {
-//                                String msg = getString(R.string.msg_subscribed);
-//                                if (!task.isSuccessful()) {
-//                                    msg = getString(R.string.msg_subscribe_failed);
-//                                }
-//                                Timber.tag(TAG).d(msg);
-//                                Toast.makeText(NotificationActivity.this, msg, Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//                // [END subscribe_topics]
-                Notification notif = new Notification("Test notification", "Corps notification", 10054789);
-                DownloadNotificationsTask task = new DownloadNotificationsTask(null, repository);
-                task.execute(notif);
-            }
-        });
-
-        binding.logTokenButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Get token
-                // [START log_reg_token]
-//                FirebaseMessaging.getInstance().getToken()
-//                        .addOnCompleteListener(new OnCompleteListener<String>() {
-//                            @SuppressLint("SetTextI18n")
-//                            @Override
-//                            public void onComplete(@NonNull Task<String> task) {
-//                                if (!task.isSuccessful()) {
-//                                    Timber.tag(TAG).w(task.getException(), "Fetching FCM registration token failed");
-//                                    return;
-//                                }
-//
-//                                // Get new FCM registration token
-//                                String token = task.getResult();
-//                                String android_id = Settings.Secure.getString(getContentResolver(),
-//                                        Settings.Secure.ANDROID_ID);
-//
-//                                // Log and toast
-//                                String msg = "Token = "+getString(R.string.msg_token_fmt, token);
-//                                Timber.tag(TAG).d(msg);
-//
-//                                String msgDId = "Device id = " + android_id;
-//                                Timber.tag(TAG).d(msgDId);
-//
-//                                binding.showInformations.setText(msg+"\n"+msgDId);
-//
-//                                String api_key = "2894p49788.s6s350o0o770q62q-o208ppq997ss2n4q949-242ps9s1150o51s3599r3s433q";
-//                                String subscription = "DSSC";
-//                                String url = String.format(
-//                                        "https://dssc-cms.000webhostapp.com/wp-json/fcm/pn/subscribe?rest_api_key=%s&device_uuid=%s&device_token=%s&subscription=%s",
-//                                        api_key,
-//                                        android_id,
-//                                        token,
-//                                        subscription
-//                                );
-//
-//                                new SubscribeToWP().execute(url);
-//                            }
-//                        });
-                // [END log_reg_token]
-
-                List<Notification> notifications = repository.getAll();
-                Timber.tag(TAG).i("%s", notifications.size());
-            }
-        });
-
-        askNotificationPermission();
+        RecyclerView recyclerView = findViewById(R.id.notificationRecyclerView);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(new NotificationListAdapter(items, this));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
-    private void askNotificationPermission() {
-        // This is only necessary for API Level > 33 (TIRAMISU)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            if (ContextCompat.checkSelfPermission(this, POST_NOTIFICATIONS) ==
-                    PackageManager.PERMISSION_GRANTED) {
-                // FCM SDK (and your app) can post notifications.
-            } else {
-                // Directly ask for the permission
-                requestPermissionLauncher.launch(POST_NOTIFICATIONS);
-            }
-        }
+    private void initToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setTitle(getString(R.string.notification_preferences));
+        setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

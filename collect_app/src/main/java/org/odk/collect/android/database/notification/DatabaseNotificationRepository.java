@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class DatabaseNotificationRepository {
 
-    private final DatabaseConnection databaseConnection;
+    private static DatabaseConnection databaseConnection;
 
     public DatabaseNotificationRepository(Context context, String dbPath) {
         this.databaseConnection = new DatabaseConnection(
@@ -52,10 +52,14 @@ public class DatabaseNotificationRepository {
         return queryForOneNotification(_ID + "=?", new String[]{id.toString()});
     }
 
-    public List<Notification> getAll() {
+    public static List<Notification> getAll() {
         return queryForNotification(null, null);
     }
-
+//    public Notification save(@NotNull Notification notification) {
+//        final ContentValues values = getValuesFromNotification(notification);
+//        Long idFromUri = insertNotification(values, databaseConnection.getWriteableDatabase());
+//        return get(idFromUri);
+//    }
     public Notification save(@NotNull Notification notification) {
         final ContentValues values = getValuesFromNotification(notification);
         Long idFromUri = insertNotification(values);
@@ -71,13 +75,13 @@ public class DatabaseNotificationRepository {
         return !notifications.isEmpty() ? notifications.get(0) : null;
     }
 
-    private List<Notification> queryForNotification(String selection, String[] selectionArgs) {
+    private static List<Notification> queryForNotification(String selection, String[] selectionArgs) {
         try (Cursor cursor = queryAndReturnCursor(null, null, selection, selectionArgs, null, null)) {
             return getNotificationFromCursor(cursor);
         }
     }
 
-    private Cursor queryAndReturnCursor(Map<String, String> projectionMap, String[] projection, String selection, String[] selectionArgs, String sortOrder, String groupBy) {
+    private static Cursor queryAndReturnCursor(Map<String, String> projectionMap, String[] projection, String selection, String[] selectionArgs, String sortOrder, String groupBy) {
         SQLiteDatabase readableDatabase = databaseConnection.getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         qb.setTables(NOTIFICATIONS_TABLE_NAME);
@@ -89,6 +93,9 @@ public class DatabaseNotificationRepository {
         return qb.query(readableDatabase, projection, selection, selectionArgs, groupBy, null, sortOrder);
     }
 
+//    private Long insertNotification(ContentValues values, SQLiteDatabase writeableDatabase) {
+//        return writeableDatabase.insertOrThrow(NOTIFICATIONS_TABLE_NAME, null, values);
+//    }
     private Long insertNotification(ContentValues values) {
         SQLiteDatabase writeableDatabase = databaseConnection.getWriteableDatabase();
         return writeableDatabase.insertOrThrow(NOTIFICATIONS_TABLE_NAME, null, values);

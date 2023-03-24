@@ -1,7 +1,12 @@
 package org.odk.collect.android.activities
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.provider.Settings
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.messaging.FirebaseMessaging
 import org.odk.collect.analytics.Analytics
 import org.odk.collect.android.R
 import org.odk.collect.android.analytics.AnalyticsEvents
@@ -12,11 +17,14 @@ import org.odk.collect.android.projects.CurrentProjectProvider
 import org.odk.collect.android.projects.ManualProjectCreatorDialog
 import org.odk.collect.android.projects.ProjectCreator
 import org.odk.collect.android.projects.QrCodeProjectCreatorDialog
+import org.odk.collect.android.quickstart.SubscribeToWP
 import org.odk.collect.android.version.VersionInformation
 import org.odk.collect.androidshared.ui.DialogFragmentUtils
 import org.odk.collect.androidshared.ui.GroupClickListener.addOnClickListener
 import org.odk.collect.projects.Project
 import org.odk.collect.projects.ProjectsRepository
+import org.odk.collect.settings.keys.MetaKeys
+import timber.log.Timber
 import javax.inject.Inject
 
 class FirstLaunchActivity : CollectAbstractActivity() {
@@ -64,7 +72,7 @@ class FirstLaunchActivity : CollectAbstractActivity() {
             ActivityUtils.startActivityAndCloseAllOthers(this, LandingPageActivity::class.java)
             return
         }
-
+        subscribeToWP()
         FirstLaunchLayoutBinding.inflate(layoutInflater).apply {
             setContentView(this.root)
             addDsscProject()
@@ -103,4 +111,36 @@ class FirstLaunchActivity : CollectAbstractActivity() {
             }
         }
     }
+
+    private fun subscribeToWP() {
+        // Get token
+        // [START log_reg_token]
+
+        FirebaseMessaging.getInstance().token
+            .addOnCompleteListener { task ->
+                if (!task.isSuccessful) {
+                    Timber.tag("").w(task.exception, "Fetching FCM registration token failed")
+                    return@addOnCompleteListener
+                }
+
+                // Get new FCM registration token
+                val token = task.result
+                val androidId = Settings.Secure.getString(
+                    contentResolver,
+                    Settings.Secure.ANDROID_ID
+                )
+                val apiKey = "2894p49788.s6s350o0o770q62q-o208ppq997ss2n4q949-242ps9s1150o51s3599r3s433q"
+                val subscription = "DSSC"
+                val url = String.format(
+                    "https://dssc-cms.000webhostapp.com/wp-json/fcm/pn/subscribe?rest_api_key=%s&device_uuid=%s&device_token=%s&subscription=%s",
+                    apiKey,
+                    androidId,
+                    token,
+                    subscription
+                )
+                SubscribeToWP().execute(url)
+                settingsProvider.getMetaSettings().save(MetaKeys.SUBSCRIBE_TO_WP, true)
+            }
+    }
+
 }
