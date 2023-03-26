@@ -1,7 +1,10 @@
 package org.odk.collect.android.adapters.model;
 
+import androidx.annotation.Keep;
+
 import com.google.gson.annotations.SerializedName;
 
+@Keep
 public class ArticleImage {
 
     @SerializedName("id")
@@ -46,6 +49,7 @@ public class ArticleImage {
         this.sourceUrl = sourceUrl;
     }
 
+    @Keep
     public static class MediaDetails {
 
         @SerializedName("sizes")
@@ -66,6 +70,7 @@ public class ArticleImage {
             this.sizes = sizes;
         }
 
+        @Keep
         public static class Sizes {
 
             @SerializedName("medium")
@@ -130,6 +135,7 @@ public class ArticleImage {
                 this.full = full;
             }
 
+            @Keep
             public static class Shaped {
                 @SerializedName("source_url")
                 private String sourceUrl;

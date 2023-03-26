@@ -175,9 +175,6 @@ public class MainMenuActivity extends CollectAbstractActivity {
             }
         });
 
-        TextView appName = findViewById(R.id.app_name);
-        appName.setText(String.format("%s %s", "Dssc Collect", getString(R.string.collect_app_name), mainMenuViewModel.getVersion()));
-
         mainMenuViewModel.getSendableInstancesCount().observe(this, finalized -> {
             if (finalized > 0) {
                 sendDataButton.setText(getString(R.string.send_data_button, String.valueOf(finalized)));

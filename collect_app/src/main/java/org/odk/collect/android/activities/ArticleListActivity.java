@@ -9,6 +9,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.gson.Gson;
+
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.ArticleListAdapter;
 import org.odk.collect.android.adapters.model.Article;
@@ -30,6 +33,8 @@ public class ArticleListActivity extends AppCompatActivity implements
     private List<Article> articles;
     private RecyclerView recyclerView;
     private ArticleListAdapter adapter;
+
+    private static final String TAG = "ArticleListActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +70,13 @@ public class ArticleListActivity extends AppCompatActivity implements
                     articles.addAll(response.body());
                     adapter.notifyDataSetChanged();
                 } else {
-                    Timber.tag("ArticleListActivity").e("Response not successful");
+                    Timber.tag(TAG).e("Response not successful");
                 }
             }
 
             @Override
             public void onFailure(Call<List<Article>> call, Throwable t) {
-                Timber.tag("ArticleListActivity").e(t);
+                Timber.tag(TAG).e(t);
             }
         });
     }

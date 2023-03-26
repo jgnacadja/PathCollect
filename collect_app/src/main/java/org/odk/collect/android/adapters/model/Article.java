@@ -1,9 +1,12 @@
 package org.odk.collect.android.adapters.model;
 
+import androidx.annotation.Keep;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+@Keep
 public class Article {
     @SerializedName("id")
     private int id;
@@ -122,6 +125,7 @@ public class Article {
         this._links = _links;
     }
 
+    @Keep
     public static class Title {
         @SerializedName("rendered")
         private String rendered;
@@ -142,6 +146,7 @@ public class Article {
         }
     }
 
+    @Keep
     public static class Content {
         @SerializedName("rendered")
         private String rendered;
@@ -167,12 +172,14 @@ public class Article {
         public boolean is_protected() {
             return _protected;
         }
+        @Keep
 
         public void set_protected(boolean _protected) {
             this._protected = _protected;
         }
     }
 
+    @Keep
     public static class Links {
         @SerializedName("author")
         private List<Feature> author;
@@ -181,6 +188,7 @@ public class Article {
         @SerializedName("wp:featuredmedia")
         private List<Feature> wpFeaturedMedia;
 
+        @Keep
         public static class Feature {
             @SerializedName("embeddable")
             private boolean embeddable;
@@ -212,6 +220,7 @@ public class Article {
             }
         }
 
+        @Keep
         public static class WpAttachment {
             @SerializedName("href")
             private String href;
