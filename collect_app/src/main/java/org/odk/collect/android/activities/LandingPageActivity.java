@@ -5,7 +5,6 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,10 +14,15 @@ import android.widget.Button;
 import androidx.appcompat.widget.Toolbar;
 
 import org.odk.collect.android.R;
+import org.odk.collect.android.activities.viewmodels.CurrentProjectViewModel;
+import org.odk.collect.android.activities.viewmodels.MainMenuViewModel;
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.utilities.ApplicationConstants;
 import org.odk.collect.android.utilities.ThemeUtils;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
+import org.odk.collect.settings.SettingsProvider;
+
+import javax.inject.Inject;
 
 public class LandingPageActivity extends CollectAbstractActivity{
     //button
@@ -59,6 +63,9 @@ public class LandingPageActivity extends CollectAbstractActivity{
             @Override
             public void onClick(View v) {
                 confirmOpenForum();
+                Intent i = new Intent(getApplicationContext(),
+                        MainMenuActivity.class);
+                startActivity(i);
             }
         });
 
@@ -67,17 +74,20 @@ public class LandingPageActivity extends CollectAbstractActivity{
         articleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(getApplicationContext(), ArticleListActivity.class);
+                startActivity(i);
             }
         });
 
-//        // centre Hospital Button
+        // centre Hospital Button
         centreHospitalButton = findViewById(R.id.centre_Hospital);
         centreHospitalButton.setText(getString(R.string.btn_centreHospital));
         centreHospitalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(getApplicationContext(),
+                        MainMenuActivity.class);
+                startActivity(i);
             }
         });
 
@@ -179,19 +189,16 @@ public class LandingPageActivity extends CollectAbstractActivity{
         String packageName = getString(R.string.periodical_app_package_name);
         PackageManager manager = getApplicationContext().getPackageManager();
         try {
-            i = manager.getLaunchIntentForPackage(packageName);
-            if (i == null){
-                throw new PackageManager.NameNotFoundException();
+            Intent i = manager.getLaunchIntentForPackage(packageName);
+            if (i == null) {
+                return false;
+                //throw new ActivityNotFoundException();
             }
             i.addCategory(Intent.CATEGORY_LAUNCHER);
             startActivity(i);
-        } catch (PackageManager.NameNotFoundException e) {
-            //if not found in device then will come here
-            try {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+packageName)));
-            } catch (ActivityNotFoundException ex) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id="+packageName)));
-            }
+            return true;
+        } catch (ActivityNotFoundException e) {
+            return false;
         }
     }
 }

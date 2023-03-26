@@ -16,9 +16,11 @@
 
 
     <dimen name="text_size_standard">18sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
 
     <!-- touch target -->
     <dimen name="touch_target_size">48dp</dimen>
+    <dimen name="article_image_size">92dp</dimen>
     <dimen name="divider_accidental_tap">8dp</dimen>
 
     <dimen name="main_menu_icon">30dp</dimen>
