@@ -37,6 +37,13 @@
         <item name="android:layout_marginTop">@dimen/margin_extra_small</item>
     </style>
 
+    <style name="Widget.Collect.Button.CheckableButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/sligthly_rounded_corner</item>
+    </style>
+
     <!-- These use surface color rather than primary as they are secondary options on a page.
     It's likely anything using this should be replaced by a bottom nav bar or something. -->
     <style name="Widget.Collect.Button.BottomOption" parent="Widget.MaterialComponents.Button">
@@ -58,6 +65,24 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@drawable/sligthly_rounded_corner</item>
+    </style>
+    
+    <style name="Widget.Collect.Button.BlocButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:paddingTop">@dimen/margin_standard</item>
+        <item name="android:paddingBottom">@dimen/margin_standard</item>
+        <item name="android:textSize">@dimen/text_size_standard</item>
+        <item name="android:textColor">@color/color_on_surface_high_emphasis</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">@dimen/margin_extra_small</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">50</item>
+        <item name="android:backgroundTint">@color/colorWhite</item>
+        <item name="cornerRadius">@dimen/margin_small</item>
+        <item name="iconGravity">top</item>
+        <item name="iconSize">@dimen/main_menu_icon</item>
+        <item name="iconTint">@null</item>
+        <item name="strokeColor">@color/colorPrimary</item>
+        <item name="strokeWidth">@dimen/stroke_width</item>
     </style>
 
 </resources>

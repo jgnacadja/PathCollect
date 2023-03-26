@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -60,6 +61,7 @@ import org.odk.collect.android.views.DayNightProgressDialog;
 import org.odk.collect.androidshared.network.NetworkStateProvider;
 import org.odk.collect.androidshared.ui.DialogFragmentUtils;
 import org.odk.collect.androidshared.ui.ToastUtils;
+import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 import org.odk.collect.forms.FormSourceException;
 
 import java.io.Serializable;
@@ -110,10 +112,9 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
     private ProgressDialog cancelDialog;
     private Button downloadButton;
     private TextView countSelectedItem;
-
     private DownloadFormListTask downloadFormListTask;
     private DownloadFormsTask downloadFormsTask;
-    private Button toggleButton;
+    private ImageButton toggleButton;
 
     private final ArrayList<HashMap<String, String>> filteredFormList = new ArrayList<>();
 
@@ -193,16 +194,20 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
 
         toggleButton = findViewById(R.id.toggle_button);
         toggleButton.setEnabled(false);
+        checkToogle();
         toggleButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                downloadButton.setEnabled(toggleChecked(listView));
-                toggleButtonLabel(toggleButton, listView);
-                viewModel.clearSelectedFormIds();
-                if (listView.getCheckedItemCount() == listView.getCount()) {
-                    for (HashMap<String, String> map : viewModel.getFormList()) {
-                        viewModel.addSelectedFormId(map.get(FORMDETAIL_KEY));
+                if (MultiClickGuard.allowClick(getClass().getName())) {
+                    downloadButton.setEnabled(toggleChecked(listView));
+                    countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
+                    viewModel.clearSelectedFormIds();
+                    if (listView.getCheckedItemCount() == listView.getCount()) {
+                        for (HashMap<String, String> map : viewModel.getFormList()) {
+                            viewModel.addSelectedFormId(map.get(FORMDETAIL_KEY));
+                        }
                     }
+                    checkToogle();
                 }
             }
         });
@@ -261,9 +266,17 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
         downloadButton.setEnabled(false);
     }
 
+    private void checkToogle(){
+        int iconId = R.drawable.ic_square;
+        if(listView.getCheckedItemCount() == listView.getCount()){
+            iconId = R.drawable.ic_checked;
+        }
+        toggleButton.setImageResource(iconId);
+        toggleButton.setTag(iconId);
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        toggleButtonLabel(toggleButton, listView);
         countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
         downloadButton.setEnabled(listView.getCheckedItemCount() > 0);
 
@@ -272,6 +285,7 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
         } else {
             viewModel.removeSelectedFormId(((HashMap<String, String>) listView.getAdapter().getItem(position)).get(FORMDETAIL_KEY));
         }
+        checkToogle();
     }
 
     /**
@@ -352,7 +366,6 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
         }
         toggleButton.setEnabled(!filteredFormList.isEmpty());
         checkPreviouslyCheckedItems();
-        toggleButtonLabel(toggleButton, listView);
     }
 
     @Override
@@ -539,8 +552,8 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
             updateAdapter();
             selectSupersededForms();
             downloadButton.setEnabled(listView.getCheckedItemCount() > 0);
+            countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
             toggleButton.setEnabled(listView.getCount() > 0);
-            toggleButtonLabel(toggleButton, listView);
 
             if (viewModel.isDownloadOnlyMode()) {
                 performDownloadModeDownload();

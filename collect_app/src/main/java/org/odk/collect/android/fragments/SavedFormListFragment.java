@@ -46,6 +46,7 @@ import org.odk.collect.android.utilities.FormsRepositoryProvider;
 import org.odk.collect.android.utilities.InstancesRepositoryProvider;
 import org.odk.collect.android.views.DayNightProgressDialog;
 import org.odk.collect.androidshared.ui.ToastUtils;
+import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 
 import javax.inject.Inject;
 
@@ -204,10 +205,8 @@ public class SavedFormListFragment extends InstanceListFragment implements Delet
         final int toDeleteCount = deleteInstancesTask.getToDeleteCount();
 
         if (deletedInstances == toDeleteCount) {
-            // all deletes were successful
             ToastUtils.showShortToast(requireContext(), getString(R.string.file_deleted_ok, String.valueOf(deletedInstances)));
         } else {
-            // had some failures
             Timber.e(new Error("Failed to delete " + (toDeleteCount - deletedInstances) + " instances"));
             ToastUtils.showLongToast(requireContext(), getString(R.string.file_deleted_error,
                     String.valueOf(toDeleteCount - deletedInstances),
@@ -238,17 +237,19 @@ public class SavedFormListFragment extends InstanceListFragment implements Delet
                 break;
 
             case R.id.toggle_button:
-                ListView lv = getListView();
-                boolean allChecked = toggleChecked(lv);
-                if (allChecked) {
-                    for (int i = 0; i < lv.getCount(); i++) {
-                        selectedInstances.add(lv.getItemIdAtPosition(i));
+                if (MultiClickGuard.allowClick(getClass().getName())) {
+                    ListView lv = getListView();
+                    boolean allChecked = toggleChecked(lv);
+                    if (allChecked) {
+                        for (int i = 0; i < lv.getCount(); i++) {
+                            selectedInstances.add(lv.getItemIdAtPosition(i));
+                        }
+                    } else {
+                        selectedInstances.clear();
                     }
-                } else {
-                    selectedInstances.clear();
+                    deleteButton.setEnabled(allChecked);
+                    checkToogle();
                 }
-                toggleButtonLabel(toggleButton, getListView());
-                deleteButton.setEnabled(allChecked);
                 break;
         }
     }

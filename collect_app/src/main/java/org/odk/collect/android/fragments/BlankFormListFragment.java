@@ -13,26 +13,20 @@
  */
 
 package org.odk.collect.android.fragments;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.loader.content.CursorLoader;
-
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.FormListAdapter;
 import org.odk.collect.android.dao.CursorLoaderFactory;
 import org.odk.collect.android.database.forms.DatabaseFormColumns;
-import org.odk.collect.android.utilities.ChangeLockProvider;
-import org.odk.collect.material.MaterialProgressDialogFragment;
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.itemsets.FastExternalItemsetsRepository;
 import org.odk.collect.android.listeners.DeleteFormsListener;
@@ -40,13 +34,14 @@ import org.odk.collect.android.listeners.DiskSyncListener;
 import org.odk.collect.android.projects.CurrentProjectProvider;
 import org.odk.collect.android.tasks.DeleteFormsTask;
 import org.odk.collect.android.tasks.FormSyncTask;
+import org.odk.collect.android.utilities.ChangeLockProvider;
 import org.odk.collect.android.utilities.FormsRepositoryProvider;
 import org.odk.collect.android.utilities.InstancesRepositoryProvider;
 import org.odk.collect.androidshared.ui.DialogFragmentUtils;
 import org.odk.collect.androidshared.ui.ToastUtils;
-
+import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
+import org.odk.collect.material.MaterialProgressDialogFragment;
 import javax.inject.Inject;
-
 import timber.log.Timber;
 
 /**
@@ -267,19 +262,20 @@ public class BlankFormListFragment extends FormListFragment implements DiskSyncL
                     ToastUtils.showShortToast(requireContext(), R.string.noselect_error);
                 }
                 break;
-
             case R.id.toggle_button:
-                ListView lv = getListView();
-                boolean allChecked = toggleChecked(lv);
-                if (allChecked) {
-                    for (int i = 0; i < lv.getCount(); i++) {
-                        selectedInstances.add(lv.getItemIdAtPosition(i));
+                if (MultiClickGuard.allowClick(getClass().getName())) {
+                    ListView lv = getListView();
+                    boolean allChecked = toggleChecked(lv);
+                    if (allChecked) {
+                        for (int i = 0; i < lv.getCount(); i++) {
+                            selectedInstances.add(lv.getItemIdAtPosition(i));
+                        }
+                    } else {
+                        selectedInstances.clear();
                     }
-                } else {
-                    selectedInstances.clear();
+                    deleteButton.setEnabled(allChecked);
+                    checkToogle();
                 }
-                toggleButtonLabel(toggleButton, getListView());
-                deleteButton.setEnabled(allChecked);
                 break;
         }
     }
@@ -288,7 +284,7 @@ public class BlankFormListFragment extends FormListFragment implements DiskSyncL
         FormSyncTask formSyncTask;
         DeleteFormsTask deleteFormsTask;
 
-        BackgroundTasks() {
+        BackgroundTasks(){
         }
     }
 }

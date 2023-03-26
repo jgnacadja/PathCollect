@@ -94,9 +94,6 @@ public class AboutActivity extends CollectAbstractActivity implements
                     websiteTabHelper.openWebPageInCustomTab(this, websiteUri);
                     break;
                 case 1:
-                    forumTabHelper.openWebPageInCustomTab(this, forumUri);
-                    break;
-                case 2:
                     Intent shareIntent = new Intent(Intent.ACTION_SEND);
                     shareIntent.setType("text/plain");
                     shareIntent.putExtra(Intent.EXTRA_TEXT,
@@ -105,24 +102,16 @@ public class AboutActivity extends CollectAbstractActivity implements
                     startActivity(Intent.createChooser(shareIntent,
                             getString(R.string.tell_your_friends)));
                     break;
-                case 3:
-                    Intent intent = new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("market://details?id=" + getPackageName()));
-                    intentLauncher.launch(this, intent, () -> {
-                        // Show a list of all available browsers if user doesn't have a default browser
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(GOOGLE_PLAY_URL + getPackageName())));
-                        return null;
-                    });
-                    break;
-                case 4:
-                    intent = new Intent(this, WebViewActivity.class);
+                case 2:
+                    Intent intent = new Intent(this, WebViewActivity.class);
                     intent.putExtra(ExternalWebPageHelper.OPEN_URL, LICENSES_HTML_PATH);
                     startActivity(intent);
                     break;
+
+
             }
         }
     }
-
     @Override
     public void onStart() {
         super.onStart();
