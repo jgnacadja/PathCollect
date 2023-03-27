@@ -57,5 +57,4 @@ the specific language governing permissions and limitations under the License. -
 
     <string name="periodical_app_package_name" translatable="false">de.arnowelzel.android.periodical</string></resources>
 
-    <string name="empty_accuracy" translatable="false">--</string>
 </resources>

@@ -23,6 +23,7 @@
     <dimen name="article_image_size">92dp</dimen>
     <dimen name="divider_accidental_tap">8dp</dimen>
 
+    <!-- touch target -->
     <dimen name="main_menu_icon">30dp</dimen>
     <dimen name="main_menu_bloc">160dp</dimen>
     <dimen name="discussion_icon">20dp</dimen>
