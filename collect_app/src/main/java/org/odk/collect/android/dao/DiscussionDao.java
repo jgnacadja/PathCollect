@@ -53,10 +53,7 @@ public class DiscussionDao {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
                 Integer count = mutableData.getValue(Integer.class);
-                if (count == null) {
-                    count = 0;
-                }
-                mutableData.setValue(count + 1);
+                mutableData.setValue((count == null ? 0 : count) + 1);
                 return Transaction.success(mutableData);
             }
 
@@ -71,17 +68,13 @@ public class DiscussionDao {
         // Update the comment like count and last comment date in the discussion dao
         discussionsRef.child(discussion.getId()).child("likes").setValue(discussion.getLikes());
 
-        List<String> users;
-        if(discussion.getLikedUsers() != null){
-            users = discussion.getLikedUsers();
-        } else {
-            users = new ArrayList<>();
-        }
-        if(liked){
+        List<String> users = discussion.getLikedUsers() != null ? new ArrayList<>(discussion.getLikedUsers()) : new ArrayList<>();
+        if (liked) {
             users.add(installID);
         } else {
             users.remove(installID);
         }
+
         discussionsRef.child(discussion.getId()).child("likedUsers").setValue(users);
     }
 
