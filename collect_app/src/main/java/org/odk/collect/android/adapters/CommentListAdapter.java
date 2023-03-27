@@ -114,7 +114,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         void onClick(int position);
     }
 
-    class ViewHolder extends ForumViewHolder implements View.OnClickListener {
+    class ViewHolder extends ForumViewHolder {
         private final TextView author;
         private final TextView date;
         private final TextView content;
@@ -128,12 +128,6 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
             likes = view.findViewById(R.id.comment_like_count);
             date = view.findViewById(R.id.comment_publication_date);
             likeBtn = view.findViewById(R.id.comment_like_icon);
-            view.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-            //
         }
     }
 }
