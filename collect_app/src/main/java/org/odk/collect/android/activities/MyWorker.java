@@ -22,11 +22,12 @@ public class MyWorker extends Worker {
     private static final String TAG = "MyWorker";
 
     private DatabaseNotificationRepository repository;
-    private StoragePathProvider storagePathProvider;
 
     public MyWorker(@NonNull Context appContext, @NonNull WorkerParameters workerParams) {
         super(appContext, workerParams);
-        this.storagePathProvider = new StoragePathProvider();
+        String dbPath = new StoragePathProvider().getOdkDirPath(StorageSubdirectory.METADATA, null);
+        repository = new DatabaseNotificationRepository(getApplicationContext(), dbPath);
+
     }
 
     @SuppressLint("WrongThread")
@@ -44,8 +45,6 @@ public class MyWorker extends Worker {
         Notification notification = new Notification(title, body, System.currentTimeMillis());
 
         // Save the notification to the local database using a DAO
-        String dbPath = storagePathProvider.getOdkDirPath(StorageSubdirectory.METADATA, null);
-        repository = new DatabaseNotificationRepository(getApplicationContext(), dbPath);
         DownloadNotificationsTask task = new DownloadNotificationsTask(null, repository);
         task.execute(notification);
 
