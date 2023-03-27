@@ -8,21 +8,19 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
+
 import androidx.core.app.NotificationCompat;
-
-import com.google.firebase.messaging.FirebaseMessagingService;
-import com.google.firebase.messaging.RemoteMessage;
-
 import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
-import org.odk.collect.android.R;
-import org.odk.collect.android.database.notification.DatabaseNotificationRepository;
-import org.odk.collect.android.storage.StoragePathProvider;
+import com.google.firebase.messaging.FirebaseMessagingService;
+import com.google.firebase.messaging.RemoteMessage;
+import com.google.gson.Gson;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.odk.collect.android.R;
+import org.odk.collect.android.quickstart.SubscribeToWP;
 
 import timber.log.Timber;
 
@@ -30,8 +28,6 @@ import timber.log.Timber;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
-    private StoragePathProvider storagePathProvider = new StoragePathProvider();
-    private DatabaseNotificationRepository repository;
 
     /**
      * Called when message is received.
@@ -45,32 +41,39 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         if (remoteMessage.getData().size() > 0) {
             Timber.tag(TAG).d("Message data payload: %s", remoteMessage.getData());
-            scheduleJob(remoteMessage.getData());
         }
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
-            Timber.tag(TAG).d("Message Notification Body: %s", remoteMessage.getNotification().getBody());
+            String notificationTitle = remoteMessage.getNotification().getTitle();
             String notificationBody = remoteMessage.getNotification().getBody();
-            if (remoteMessage.getNotification().getBody() != null) {
-                sendNotification(notificationBody);
+
+            Timber.tag(TAG).d("Message Notification Title: %s", notificationTitle);
+            Timber.tag(TAG).d("Message Notification Body: %s", notificationBody);
+
+            if (notificationTitle != null && notificationBody != null) {
+                sendNotification(notificationTitle, notificationBody);
+                saveNotification(notificationTitle.trim(), notificationBody.trim());
             }
         }
-
     }
+
     @Override
     public void onNewToken(String token) {
         Timber.tag(TAG).d("Refreshed token: %s", token);
 
         sendRegistrationToServer(token);
     }
+
     /**
-     * Schedule async work using WorkManager.
+     * Async work for saving received notification using WorkManager.
      */
-    private void scheduleJob(Map<String, String> data) {
+    private void saveNotification(String title, String body) {
         Data inputData = new Data.Builder()
-                .putAll(new HashMap<>(data))
+                .putString("title", title)
+                .putString("body", body)
                 .build();
+        Timber.tag(TAG).d(new Gson().toJson(inputData));
         OneTimeWorkRequest work = new OneTimeWorkRequest.Builder(MyWorker.class)
                 .setInputData(inputData)
                 .build();
@@ -78,15 +81,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     /**
-     * Handle time allotted to BroadcastReceivers.
-     */
-    private void handleNow() {
-        Timber.tag(TAG).d("Short lived task is done.");
-    }
-
-    /**
      * Persist token to third-party servers.
-     *
+     * <p>
      * Modify this method to associate the user's FCM registration token with any
      * server-side account maintained by your application.
      *
@@ -94,6 +90,20 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      */
     private void sendRegistrationToServer(String token) {
         // TODO: Implement this method to send token to your app server.
+        String androidId = Settings.Secure.getString(getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+
+        String apiKey = getString(R.string.fcm_api_key);
+        String subscription = getString(R.string.wp_fcm_subscription);
+        String url = String.format(
+                getString(R.string.wp_fcm_api),
+                apiKey,
+                androidId,
+                token,
+                subscription
+        );
+
+        new SubscribeToWP().execute(url);
     }
 
     /**
@@ -101,8 +111,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      *
      * @param messageBody FCM message body received.
      */
-    private void sendNotification(String messageBody) {
-        Intent intent = new Intent(this, OldNotificationActivity.class);
+    private void sendNotification(String messageTitle, String messageBody) {
+        Intent intent = new Intent(this, NotificationActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_IMMUTABLE);
@@ -112,7 +122,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.drawable.ic_stat_ic_notification)
-                        .setContentTitle(getString(R.string.fcm_message))
+                        .setContentTitle(getString(R.string.fcm_message) + " : " + messageTitle)
                         .setContentText(messageBody)
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
