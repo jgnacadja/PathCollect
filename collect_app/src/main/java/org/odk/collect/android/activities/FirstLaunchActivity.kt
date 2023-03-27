@@ -1,11 +1,8 @@
 package org.odk.collect.android.activities
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.provider.Settings
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.google.firebase.messaging.FirebaseMessaging
 import org.odk.collect.analytics.Analytics
 import org.odk.collect.android.R
@@ -67,12 +64,13 @@ class FirstLaunchActivity : CollectAbstractActivity() {
 
         super.onCreate(savedInstanceState)
         DaggerUtils.getComponent(this).inject(this)
+        subscribeToWP()
 
         if (projectsRepository.getAll().isNotEmpty()) {
             ActivityUtils.startActivityAndCloseAllOthers(this, LandingPageActivity::class.java)
             return
         }
-        subscribeToWP()
+
         FirstLaunchLayoutBinding.inflate(layoutInflater).apply {
             setContentView(this.root)
             addDsscProject()
@@ -129,15 +127,16 @@ class FirstLaunchActivity : CollectAbstractActivity() {
                     contentResolver,
                     Settings.Secure.ANDROID_ID
                 )
-                val apiKey = "2894p49788.s6s350o0o770q62q-o208ppq997ss2n4q949-242ps9s1150o51s3599r3s433q"
-                val subscription = "DSSC"
+                val apiKey = getString(R.string.fcm_api_key)
+                val subscription = getString(R.string.wp_fcm_subscription)
                 val url = String.format(
-                    "https://dssc-cms.000webhostapp.com/wp-json/fcm/pn/subscribe?rest_api_key=%s&device_uuid=%s&device_token=%s&subscription=%s",
+                    getString(R.string.wp_fcm_api),
                     apiKey,
                     androidId,
                     token,
                     subscription
                 )
+
                 SubscribeToWP().execute(url)
                 settingsProvider.getMetaSettings().save(MetaKeys.SUBSCRIBE_TO_WP, true)
             }

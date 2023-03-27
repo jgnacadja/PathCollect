@@ -55,17 +55,9 @@ the specific language governing permissions and limitations under the License. -
     <string name="periodical_app_package_name" translatable="false">com.cyclebeads</string>
     <string name="api_gateway_url" translatable="false">https://store.prod.rintio.com/</string>
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
-    <string name="fcm_message" translatable="false">FCM Message</string>
-    <string name="quickstart_message" translatable="false">Click the SUBSCRIBE TO WEATHER button below to subscribe to the
-        weather topic. Messages sent to the weather topic will be received. The LOG TOKEN button logs the
-        FCM registration token to logcat.</string>
-    <string name="subscribe_to_weather" translatable="false">Subscribe To Weather</string>
-    <string name="log_token" translatable="false">Log Token</string>
-    <string name="phone_info" translatable="false">Afficher ici les informations du telephone</string>
-    <string name="default_notification_channel_name" translatable="false">Weather</string>
-    <string name="msg_subscribed" translatable="false">Subscribed to weather topic</string>
-    <string name="msg_subscribe_failed" translatable="false">Failed to subscribe to weather topic</string>
-    <string name="msg_token_fmt" translatable="false">FCM registration Token: %s</string>
-    <string name="notification" translatable="false">None for Notification</string>
-    <string name="notification_preferences" translatable="false">Notification</string>
+    <string name="fcm_message" translatable="false">Plateforme DSSC</string>
+    <string name="show_notifications" translatable="false">Notifications</string>
+    <string name="fcm_api_key" translatable="false">2894p49788.s6s350o0o770q62q-o208ppq997ss2n4q949-242ps9s1150o51s3599r3s433q</string>
+    <string name="wp_fcm_subscription" translatable="false">DSSC</string>
+    <string name="wp_fcm_api" translatable="false">https://dssc-cms.000webhostapp.com/wp-json/fcm/pn/subscribe?rest_api_key=%s&amp;device_uuid=%s&amp;device_token=%s&amp;subscription=%s</string>
 </resources>
