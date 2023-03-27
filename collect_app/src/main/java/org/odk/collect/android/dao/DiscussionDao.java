@@ -12,6 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.odk.collect.android.adapters.model.Discussion;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DiscussionDao {
@@ -52,8 +53,8 @@ public class DiscussionDao {
         topicsRef.child(discussion.getTopicId()).child("discussionCount").runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
-                Integer count = mutableData.getValue(Integer.class);
-                mutableData.setValue((count == null ? 0 : count) + 1);
+                Integer count = mutableData.getValue(Integer.class) != null ? mutableData.getValue(Integer.class) : 0;
+                mutableData.setValue((count != null ? count : 0) + 1);
                 return Transaction.success(mutableData);
             }
 
@@ -65,18 +66,14 @@ public class DiscussionDao {
     }
 
     public void updateDiscussionLikesCount(Discussion discussion, String installID, boolean liked) {
-        // Update the comment like count and last comment date in the discussion dao
         discussionsRef.child(discussion.getId()).child("likes").setValue(discussion.getLikes());
 
-        List<String> users = discussion.getLikedUsers() != null ? new ArrayList<>(discussion.getLikedUsers()) : new ArrayList<>();
-        if (liked) {
-            users.add(installID);
-        } else {
-            users.remove(installID);
-        }
+        List<String> users = new ArrayList<>(discussion.getLikedUsers() != null ? discussion.getLikedUsers() : Collections.emptyList());
+        users.set(liked ? users.size() : users.indexOf(installID), installID);
 
         discussionsRef.child(discussion.getId()).child("likedUsers").setValue(users);
     }
+
 
     public void updateDiscussionViewsCount(Discussion discussion, String installID) {
         // Update the comment like count and last comment date in the discussion dao

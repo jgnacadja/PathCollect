@@ -48,10 +48,8 @@ public class CommentDao {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
                 Integer count = mutableData.getValue(Integer.class);
-                if (count == null) {
-                    count = 0;
-                }
-                mutableData.setValue(count + 1);
+                count = (count == null) ? 0 : count + 1;
+                mutableData.setValue(count);
                 return Transaction.success(mutableData);
             }
 
