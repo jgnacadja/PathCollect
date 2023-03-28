@@ -55,11 +55,7 @@ public class DatabaseNotificationRepository {
     public static List<Notification> getAll() {
         return queryForNotification(null, null);
     }
-//    public Notification save(@NotNull Notification notification) {
-//        final ContentValues values = getValuesFromNotification(notification);
-//        Long idFromUri = insertNotification(values, databaseConnection.getWriteableDatabase());
-//        return get(idFromUri);
-//    }
+
     public Notification save(@NotNull Notification notification) {
         final ContentValues values = getValuesFromNotification(notification);
         Long idFromUri = insertNotification(values);
@@ -93,9 +89,6 @@ public class DatabaseNotificationRepository {
         return qb.query(readableDatabase, projection, selection, selectionArgs, groupBy, null, sortOrder);
     }
 
-//    private Long insertNotification(ContentValues values, SQLiteDatabase writeableDatabase) {
-//        return writeableDatabase.insertOrThrow(NOTIFICATIONS_TABLE_NAME, null, values);
-//    }
     private Long insertNotification(ContentValues values) {
         SQLiteDatabase writeableDatabase = databaseConnection.getWriteableDatabase();
         return writeableDatabase.insertOrThrow(NOTIFICATIONS_TABLE_NAME, null, values);
@@ -105,5 +98,4 @@ public class DatabaseNotificationRepository {
         SQLiteDatabase writeableDatabase = databaseConnection.getWriteableDatabase();
         writeableDatabase.update(NOTIFICATIONS_TABLE_NAME, values, _ID + "=?", new String[]{String.valueOf(id)});
     }
-
 }
