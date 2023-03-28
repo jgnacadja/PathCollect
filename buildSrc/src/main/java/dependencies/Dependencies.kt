@@ -74,6 +74,9 @@ object Dependencies {
     const val emoji_java = "com.vdurmont:emoji-java:5.1.1"
     const val json_schema_validator = "com.networknt:json-schema-validator:1.0.69"
     const val splashscreen = "androidx.core:core-splashscreen:1.0.0-beta02"
+    const val firebase_bom = "com.google.firebase:firebase-bom:31.2.2"
+    const val firebase_messaging = "com.google.firebase:firebase-messaging"
+    const val firebase_database = "com.google.firebase:firebase-database"
 
     // Test dependencies
     const val junit = "junit:junit:4.13.2"
@@ -96,6 +99,4 @@ object Dependencies {
     const val robolectric = "org.robolectric:robolectric:4.7.3"
     const val robolectric_shadows_multidex = "org.robolectric:shadows-multidex:4.7.3"
     const val uiautomator = "androidx.test.uiautomator:uiautomator:2.2.0"
-    const val firebase_bom = "com.google.firebase:firebase-bom:31.2.2"
-    const val firebase_messaging = "com.google.firebase:firebase-messaging"
 }
