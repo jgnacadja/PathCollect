@@ -96,4 +96,6 @@ object Dependencies {
     const val robolectric = "org.robolectric:robolectric:4.7.3"
     const val robolectric_shadows_multidex = "org.robolectric:shadows-multidex:4.7.3"
     const val uiautomator = "androidx.test.uiautomator:uiautomator:2.2.0"
+    const val firebase_bom = "com.google.firebase:firebase-bom:31.2.2"
+    const val firebase_messaging = "com.google.firebase:firebase-messaging"
 }
