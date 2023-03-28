@@ -55,6 +55,8 @@ public class LandingPageActivity extends CollectAbstractActivity{
         messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), TopicActivity.class);
+                startActivity(i);
             }
         });
 
@@ -63,6 +65,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
         articleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
             }
         });
 
@@ -72,6 +75,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
         centreHospitalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
             }
         });
 
@@ -121,21 +125,24 @@ public class LandingPageActivity extends CollectAbstractActivity{
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
-
-    private boolean openPeriodical() {
-        String packageName = getString(R.string.btn_cycle);
+    private void openPeriodical() {
+        Intent i;
+        String packageName = getString(R.string.periodical_app_package_name);
         PackageManager manager = getApplicationContext().getPackageManager();
         try {
-            Intent i = manager.getLaunchIntentForPackage(packageName);
-            if (i == null) {
-                return false;
-                //throw new ActivityNotFoundException();
+            i = manager.getLaunchIntentForPackage(packageName);
+            if (i == null){
+                throw new PackageManager.NameNotFoundException();
             }
             i.addCategory(Intent.CATEGORY_LAUNCHER);
             startActivity(i);
-            return true;
-        } catch (ActivityNotFoundException e) {
-            return false;
+        } catch (PackageManager.NameNotFoundException e) {
+            //if not found in device then will come here
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+packageName)));
+            } catch (ActivityNotFoundException ex) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id="+packageName)));
+            }
         }
     }
 }
