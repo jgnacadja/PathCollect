@@ -23,17 +23,11 @@ public class DownloadNotificationsTask extends
 
     @Override
     protected Notification doInBackground(Notification... values) {
-//        this.checkOrCreateDb();
         Timber.tag("DownloadNotifTask").i(new Gson().toJson(values));
         Notification n = values[0];
         // Save the notification to the local database using a DAO
         return repository.save(n);
     }
 
-//    private void checkOrCreateDb(){
-//        if (!repository.doesDatabaseExist()) {
-//            repository.createDatabase();
-//        }
-//    }
 }
 

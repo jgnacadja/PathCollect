@@ -16,8 +16,6 @@
 
 package org.odk.collect.android.activities;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
@@ -32,9 +30,7 @@ import org.odk.collect.android.database.notification.DatabaseNotificationReposit
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.storage.StoragePathProvider;
 import org.odk.collect.android.storage.StorageSubdirectory;
-import org.odk.collect.android.utilities.ExternalWebPageHelper;
 import org.odk.collect.androidshared.system.IntentLauncher;
-import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 
 import java.util.List;
 
