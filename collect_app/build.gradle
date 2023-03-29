@@ -366,9 +366,9 @@ dependencies {
     implementation Dependencies.rxjava
 
     // Retrofit 2:
-    implementation (Dependencies.retrofit)
-    implementation (Dependencies.converter_gson)
-    implementation (Dependencies.recyclerview_v7)
+    implementation Dependencies.retrofit
+    implementation Dependencies.converter_gson
+    implementation Dependencies.recyclerview_v7
 
     // Better "Subjects" for Rx:
     implementation Dependencies.rxrelay
