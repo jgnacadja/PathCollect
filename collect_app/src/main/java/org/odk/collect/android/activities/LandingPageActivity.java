@@ -102,6 +102,18 @@ public class LandingPageActivity extends CollectAbstractActivity{
             public void onClick(View v) {
             }
         });
+
+        notificationButton = findViewById(R.id.notification);
+        notificationButton.setText(getString(R.string.btn_notification));
+        notificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),
+                        NotificationActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     @Override
