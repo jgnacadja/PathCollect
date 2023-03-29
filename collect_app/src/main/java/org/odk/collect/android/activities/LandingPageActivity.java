@@ -25,6 +25,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
     private Button articleButton;
     private Button centreHospitalButton;
     private Button cycleButton;
+    private Button notificationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,9 @@ public class LandingPageActivity extends CollectAbstractActivity{
         messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),
+                        MainMenuActivity.class);
+                startActivity(i);
             }
         });
 
@@ -86,6 +90,18 @@ public class LandingPageActivity extends CollectAbstractActivity{
                 openPeriodical();
             }
         });
+
+        notificationButton = findViewById(R.id.notification);
+        notificationButton.setText(getString(R.string.btn_notification));
+        notificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),
+                        NotificationActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     @Override
