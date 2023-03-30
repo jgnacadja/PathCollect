@@ -56,7 +56,10 @@ public class LandingPageActivity extends CollectAbstractActivity{
         messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
                 confirmOpenForum();
+=======
+>>>>>>> e4028c08f (feat: [DSSC#8669mcdrw])
             }
         });
 
