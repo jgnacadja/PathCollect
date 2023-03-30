@@ -1,27 +1,36 @@
 package org.odk.collect.android.activities;
+
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.HospitalListAdapter;
 import org.odk.collect.android.adapters.model.Hospital;
-import org.odk.collect.android.utilities.ExternalWebPageHelper;
+import org.odk.collect.android.dao.ApiGatewayService;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
+
 import java.util.ArrayList;
 import java.util.List;
-//import retrofit2.Call;
-//import retrofit2.Callback;
-//import retrofit2.Response;
-//import retrofit2.Retrofit;
-//import retrofit2.converter.gson.GsonConverterFactory;
-//import timber.log.Timber;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import timber.log.Timber;
 
 public class HospitalListActivity extends AppCompatActivity implements
         HospitalListAdapter.HospitalItemClickListener{
+
+    private static final String TAG = "HospitalListActivity";
     private List<Hospital> hospitals;
     private RecyclerView recyclerView;
     private HospitalListAdapter adapter;
@@ -29,16 +38,10 @@ public class HospitalListActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hospital_layout);
+        setContentView(R.layout.hospital_list_layout);
 
         initToolbar();
         hospitals = new ArrayList<>();
-        Hospital hospital = new Hospital();
-        String name = "zogbo";
-        hospital.setName(name.toUpperCase());
-        hospital.setLevel(Hospital.HospitalType.PRIVATE);
-        hospital.setType(Hospital.CareLevel.CABINET_PRIVEE);
-        hospitals.add(hospital);
 
         // initialize RecyclerView and Adapter
         recyclerView = findViewById(R.id.hospitalRecyclerView);
@@ -49,32 +52,35 @@ public class HospitalListActivity extends AppCompatActivity implements
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         // create Retrofit instance
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(getString(R.string.api_url))
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getString(R.string.api_gateway_url))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-//        // create API service instance
-//        WpApiService apiService = retrofit.create(WpApiService.class);
+        // create API service instance
+        ApiGatewayService apiService = retrofit.create(ApiGatewayService.class);
 
-//        // call API to get data
-//        Call<List<Hospital>> call = apiService.getPosts("publish");
-//        call.enqueue(new Callback<List<Hospital>>() {
-//            @Override
-//            public void onResponse(Call<List<Hospital>> call, Response<List<Hospital>> response) {
-//                if (response.isSuccessful()) {
-//                    Hospital.addAll(response.body());
-//                    adapter.notifyDataSetChanged();
-//                } else {
-//                    Timber.tag("HospitalListActivity").e("Response not successful");
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Hospital>> call, Throwable t) {
-//                Timber.tag("HospitalListActivity").e(t);
-//            }
-//        });
+        // create JSON request body
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), "{}");
+
+        // call API to get data
+        Call<List<Hospital>> call = apiService.searchHospitals(requestBody);
+        call.enqueue(new Callback<List<Hospital>>() {
+            @Override
+            public void onResponse(Call<List<Hospital>> call, Response<List<Hospital>> response) {
+                if (response.isSuccessful()) {
+                    hospitals.addAll(response.body());
+                    adapter.notifyDataSetChanged();
+                } else {
+                    Timber.tag(TAG).e("Response not successful");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Hospital>> call, Throwable t) {
+                Timber.tag(TAG).e(t);
+            }
+        });
     }
 
     private void initToolbar() {
@@ -85,12 +91,12 @@ public class HospitalListActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(int position) {
-//        if (MultiClickGuard.allowClick(getClass().getName())) {
-//            Hospital hospital = hospitals.get(position);
-//            Intent intent = new Intent(this, WebViewActivity.class);
-//            intent.putExtra(ExternalWebPageHelper.OPEN_URL, hospitals.getLink());
-//            startActivity(intent);
-//        }
+        if (MultiClickGuard.allowClick(getClass().getName())) {
+            Hospital hospital = hospitals.get(position);
+            Intent intent = new Intent(this, HospitalActivity.class);
+            intent.putExtra("hospital", hospital);
+            startActivity(intent);
+        }
     }
 
     @Override

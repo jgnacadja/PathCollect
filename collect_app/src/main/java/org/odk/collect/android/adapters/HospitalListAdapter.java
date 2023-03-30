@@ -34,9 +34,9 @@ public class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Hospital hospital = hospitals.get(position);
-        holder.title.setText(hospital.getName());
-        holder.preview.setText(hospital.getType().name());
-        holder.level.setText(hospital.getLevel().name());
+        holder.name.setText(hospital.getName());
+        holder.type.setText(hospital.getType());
+        holder.level.setText(hospital.getLevel());
     }
 
     @Override
@@ -50,15 +50,15 @@ public class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final HospitalItemClickListener listener;
-        private final TextView title;
-        private final TextView preview;
+        private final TextView name;
+        private final TextView type;
         private final TextView level;
 
         ViewHolder(View view, HospitalItemClickListener listener) {
             super(view);
             this.listener = listener;
-            title = view.findViewById(R.id.hospitalTitle);
-            preview = view.findViewById(R.id.hospitalPreview);
+            name = view.findViewById(R.id.hospitalName);
+            type = view.findViewById(R.id.hospitalType);
             level = view.findViewById(R.id.hospitalLevel);
             view.setOnClickListener(this);
         }
