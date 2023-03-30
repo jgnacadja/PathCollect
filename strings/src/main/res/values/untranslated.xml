@@ -44,7 +44,7 @@ the specific language governing permissions and limitations under the License. -
     <string name="btn_cycle" translatable="false">Mon\n Cycle </string>
     <string name="btn_about" translatable="false">About</string>
     <string name="form_selected" translatable="false">(%s)Formulaire sélectionné(s)</string>
-
+    <string name="periodical_app_package_name" translatable="false">de.arnowelzel.android.periodical</string>
     <string name="empty_accuracy" translatable="false">--</string>
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string name="fcm_message" translatable="false">Plateforme DSSC</string>

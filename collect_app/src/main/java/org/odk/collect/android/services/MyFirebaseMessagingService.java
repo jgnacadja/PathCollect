@@ -1,4 +1,4 @@
-package org.odk.collect.android.activities;
+package org.odk.collect.android.services;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -20,6 +20,8 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.google.gson.Gson;
 
 import org.odk.collect.android.R;
+import org.odk.collect.android.tasks.MyWorker;
+import org.odk.collect.android.activities.NotificationActivity;
 import org.odk.collect.android.quickstart.SubscribeToWP;
 
 import timber.log.Timber;
@@ -121,7 +123,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
-                        .setSmallIcon(R.drawable.ic_stat_ic_notification)
+                        .setSmallIcon(R.drawable.notes)
                         .setContentTitle(getString(R.string.fcm_message) + " : " + messageTitle)
                         .setContentText(messageBody)
                         .setAutoCancel(true)
