@@ -6,18 +6,15 @@ import com.google.gson.Gson;
 
 import org.odk.collect.android.adapters.model.Notification;
 import org.odk.collect.android.database.notification.DatabaseNotificationRepository;
-import org.odk.collect.android.formmanagement.NotificationDownloader;
 
 import timber.log.Timber;
 
 public class DownloadNotificationsTask extends
         AsyncTask<Notification, Void, Notification> {
 
-    private final NotificationDownloader notificationDownloader;
     private final DatabaseNotificationRepository repository;
 
-    public DownloadNotificationsTask(NotificationDownloader notificationDownloader, DatabaseNotificationRepository repository) {
-        this.notificationDownloader = notificationDownloader;
+    public DownloadNotificationsTask(DatabaseNotificationRepository repository, DatabaseNotificationRepository databaseNotificationRepository) {
         this.repository = repository;
     }
 
