@@ -1,31 +1,89 @@
 package org.odk.collect.android.adapters.model;
 
+import androidx.annotation.Keep;
+
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-public class Hospital {
-    @SerializedName("id")
+@Keep
+public class Hospital implements Serializable {
     private String id;
-    @SerializedName("name")
     private String name;
-    @SerializedName("longitude")
-    private double longitude;
-    @SerializedName("latitude")
-    private double latitude;
-    @SerializedName("openingTime")
+    private Double longitude;
+    private Double latitude;
     private String openingTime;
-    @SerializedName("closingTime")
     private String closingTime;
-    @SerializedName("phones")
     private List<String> phones;
-    @SerializedName("mails")
     private List<String> mails;
-    private CareLevel type;
-    private HospitalType level;
-    @SerializedName("prestations")
+    private String type;
+    private String level;
     List<Prestation> prestations;
 
-    public Hospital(String id, String name, double longitude, double latitude, String openingTime, String closingTime, List<String> phones, List<String> mails, CareLevel type, HospitalType level, List<Prestation> prestations) {
+    @Keep
+    public static class Prestation implements Serializable  {
+        private String id;
+        private String name;
+        private String type;
+        private Double price;
+        private Boolean available;
+
+        public Prestation(String id, String name, String type, Double price, Boolean available) {
+            this.id = id;
+            this.name = name;
+            this.type = type;
+            this.price = price;
+            this.available = available;
+        }
+
+        public Prestation() {
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public Double getPrice() {
+            return price;
+        }
+
+        public void setPrice(Double price) {
+            this.price = price;
+        }
+
+        public Boolean getAvailable() {
+            return available;
+        }
+
+        public void setAvailable(Boolean available) {
+            this.available = available;
+        }
+    }
+
+    public Hospital() {
+    }
+
+    public Hospital(String id, String name, Double longitude, Double latitude, String openingTime, String closingTime, List<String> phones, List<String> mails, String type, String level, List<Prestation> prestations) {
         this.id = id;
         this.name = name;
         this.longitude = longitude;
@@ -37,25 +95,6 @@ public class Hospital {
         this.type = type;
         this.level = level;
         this.prestations = prestations;
-    }
-
-    public Hospital() {
-    }
-
-    public CareLevel getType() {
-        return type;
-    }
-
-    public void setType(CareLevel type) {
-        this.type = type;
-    }
-
-    public HospitalType getLevel() {
-        return level;
-    }
-
-    public void setLevel(HospitalType level) {
-        this.level = level;
     }
 
     public String getId() {
@@ -74,19 +113,19 @@ public class Hospital {
         this.name = name;
     }
 
-    public double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
-    public double getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
@@ -122,90 +161,27 @@ public class Hospital {
         this.mails = mails;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
     public List<Prestation> getPrestations() {
         return prestations;
     }
 
     public void setPrestations(List<Prestation> prestations) {
         this.prestations = prestations;
-    }
-
-    public static enum CareLevel {
-        CSPS,
-        CMA,
-        DISPENSAIRE,
-        CLINIQUE,
-        CENTRE_COMMUNAUTAIRE,
-        CABINET_PRIVEE
-    }
-
-    public static enum HospitalType {
-        PRIVATE,
-        PUBLIC
-    }
-
-
-    public static class Prestation {
-        private String id;
-        private String name;
-        private PrestationType type;
-        private double price;
-        private boolean available;
-
-        public static enum PrestationType {
-            SERVICE,
-            PRODUCT
-        }
-
-        public Prestation(String id, String name, PrestationType type, double price, boolean available) {
-            this.id = id;
-            this.name = name;
-            this.type = type;
-            this.price = price;
-            this.available = available;
-        }
-
-        public Prestation() {
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public PrestationType getType() {
-            return type;
-        }
-
-        public void setType(PrestationType type) {
-            this.type = type;
-        }
-
-        public double getPrice() {
-            return price;
-        }
-
-        public void setPrice(double price) {
-            this.price = price;
-        }
-
-        public boolean isAvailable() {
-            return available;
-        }
-
-        public void setAvailable(boolean available) {
-            this.available = available;
-        }
     }
 }

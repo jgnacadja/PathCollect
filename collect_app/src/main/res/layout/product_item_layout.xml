@@ -12,45 +12,51 @@
     android:padding="@dimen/margin_small">
 
     <ImageView
+        android:id="@+id/prestationType"
         android:layout_width="92dp"
         android:layout_height="96dp"
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_extra_small"
-        android:src="@drawable/ic_hospital" />
+        android:padding="@dimen/margin_standard"
+        android:src="@drawable/ic_product" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/hospitalName"
-            style="@style/TextAppearance.Collect.Subtitle1"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/none"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/productName"
+                style="@style/TextAppearance.Collect.Subtitle1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/none"
+                android:textColor="@color/colorPrimary"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/productAvailability"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_available" />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/hospitalType"
+            android:id="@+id/productPrice"
             style="@style/TextAppearance.Collect.Body2.MediumEmphasis"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/margin_extra_small"
             android:layout_weight="1"
             android:text="@string/none"
-            android:textColor="@color/color15" />
-
-        <TextView
-            android:id="@+id/hospitalLevel"
-            style="@style/TextAppearance.Collect.Body2.MediumEmphasis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:text="@string/none"
-            android:textColor="@color/colorPrimary"
-            app:drawableStartCompat="@drawable/ic_level_hospital" />
+            android:textColor="@color/colorOnSurface" />
     </LinearLayout>
 </LinearLayout>

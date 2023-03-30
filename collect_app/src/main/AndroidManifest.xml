@@ -117,6 +117,7 @@ the specific language governing permissions and limitations under the License.
         <activity android:name=".activities.LandingPageActivity" />
         <activity android:name=".activities.PostListActivity" />
         <activity android:name=".activities.HospitalListActivity" />
+        <activity android:name=".activities.HospitalActivity" />
         <activity
             android:name=".activities.ScannerWithFlashlightActivity"
             android:screenOrientation="portrait"
