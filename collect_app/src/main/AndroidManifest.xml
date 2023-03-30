@@ -97,15 +97,6 @@ the specific language governing permissions and limitations under the License.
                 android:resource="@xml/provider_paths" />
         </provider>
         <activity
-            android:name=".activities.OldNotificationActivity"
-            android:label="@string/app_name"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".activities.FirstLaunchActivity"
             android:theme="@style/Theme.Collect.SplashScreen"
             android:exported="true">
@@ -340,7 +331,7 @@ the specific language governing permissions and limitations under the License.
         </activity>
 
         <service
-            android:name=".activities.MyFirebaseMessagingService"
+            android:name=".services.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

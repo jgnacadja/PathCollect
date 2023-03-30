@@ -1,4 +1,4 @@
-package org.odk.collect.android.activities;
+package org.odk.collect.android.tasks;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
