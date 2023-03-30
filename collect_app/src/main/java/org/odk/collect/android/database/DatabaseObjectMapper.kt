@@ -37,6 +37,7 @@ object DatabaseObjectMapper {
         values.put(DatabaseFormColumns.GEOMETRY_XPATH, form.geometryXpath)
         return values
     }
+
     @JvmStatic
     fun getValuesFromNotification(notification: Notification): ContentValues {
         val values = ContentValues()

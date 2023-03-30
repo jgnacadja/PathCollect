@@ -78,7 +78,7 @@
                     android:id="@+id/notification"
                     style="@style/Widget.Collect.Button.BlocButton"
                     android:text="@string/btn_notification"
-                    app:icon="@drawable/ic_notif"
+                    app:icon="@drawable/ic_btn_notif"
                     tools:text="@string/btn_notification" />
 
                 <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
