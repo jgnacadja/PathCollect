@@ -22,7 +22,7 @@ import com.google.gson.Gson;
 import org.odk.collect.android.R;
 import org.odk.collect.android.tasks.MyWorker;
 import org.odk.collect.android.activities.NotificationActivity;
-import org.odk.collect.android.quickstart.SubscribeToWP;
+import org.odk.collect.android.tasks.SendRequestToWP;
 
 import timber.log.Timber;
 
@@ -105,7 +105,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 subscription
         );
 
-        new SubscribeToWP().execute(url);
+        new SendRequestToWP().execute(url);
     }
 
     /**
