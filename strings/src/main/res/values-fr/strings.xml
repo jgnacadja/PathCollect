@@ -982,4 +982,18 @@
   <string name="formation_title">Prendre rendez-vous auprès d\'un centre !</string>
   <string name="service_title">Par services</string>
   <string name="product_title">Nos produits</string>
+
+  <!--
+  ##############################################
+  # PAGE TITLE
+  ##############################################
+  -->
+  <string name="screen_topic_list">Forum</string>
+  <string name="screen_topic">%s</string>
+  <string name="screen_question">%s</string>
+  <string name="screen_add_question">Poser une question</string>
+  <string name="screen_notification_list">Notifications</string>
+  <string name="screen_articles_list">Articles</string>
+  <string name="screen_health_center_list">Formations Sanitaires</string>
+  <string name="screen_health_center">%s %s</string>
 </resources>

@@ -28,7 +28,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
-public class HospitalActivity extends AppCompatActivity {
+public class HospitalActivity extends CollectAbstractActivity {
 
     private static final String TAG = "HospitalActivity";
     private List<Hospital.Prestation> prestations;
@@ -43,10 +43,9 @@ public class HospitalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hospital_layout);
 
-        initToolbar();
-
         Serializable s = getIntent().getSerializableExtra("hospital");
         Hospital hospital = (Hospital) s;
+        initToolbar(getString(R.string.screen_health_center, hospital.getType(), hospital.getName()), false, null);
 
         name = findViewById(R.id.hospitalDetailName);
         name.setText(hospital.getName());
@@ -65,12 +64,6 @@ public class HospitalActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-    }
-
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.collect_app_name));
-        setSupportActionBar(toolbar);
     }
 
     @Override

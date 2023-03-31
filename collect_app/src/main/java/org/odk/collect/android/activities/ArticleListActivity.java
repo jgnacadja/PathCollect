@@ -28,7 +28,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
-public class ArticleListActivity extends AppCompatActivity implements
+public class ArticleListActivity extends CollectAbstractActivity implements
         ArticleListAdapter.ArticleItemClickListener {
     private List<Article> articles;
     private RecyclerView recyclerView;
@@ -41,7 +41,7 @@ public class ArticleListActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.article_list);
 
-        initToolbar();
+        initToolbar(getString(R.string.screen_articles_list), false, null);
         articles = new ArrayList<>();
 
         // initialize RecyclerView and Adapter
@@ -79,12 +79,6 @@ public class ArticleListActivity extends AppCompatActivity implements
                 Timber.tag(TAG).e(t);
             }
         });
-    }
-
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.collect_app_name));
-        setSupportActionBar(toolbar);
     }
 
     @Override

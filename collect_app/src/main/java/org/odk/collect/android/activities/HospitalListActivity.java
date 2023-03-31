@@ -27,7 +27,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
-public class HospitalListActivity extends AppCompatActivity implements
+public class HospitalListActivity extends CollectAbstractActivity implements
         HospitalListAdapter.HospitalItemClickListener{
 
     private static final String TAG = "HospitalListActivity";
@@ -40,7 +40,8 @@ public class HospitalListActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hospital_list_layout);
 
-        initToolbar();
+        initToolbar(getString(R.string.screen_health_center_list), false, null);
+
         hospitals = new ArrayList<>();
 
         // initialize RecyclerView and Adapter
@@ -81,12 +82,6 @@ public class HospitalListActivity extends AppCompatActivity implements
                 Timber.tag(TAG).e(t);
             }
         });
-    }
-
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.collect_app_name));
-        setSupportActionBar(toolbar);
     }
 
     @Override

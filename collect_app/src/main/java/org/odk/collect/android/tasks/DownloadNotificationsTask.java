@@ -22,9 +22,12 @@ public class DownloadNotificationsTask extends
     protected Notification doInBackground(Notification... values) {
         Timber.tag("DownloadNotifTask").i(new Gson().toJson(values));
         Notification n = values[0];
-        // Save the notification to the local database using a DAO
-        return repository.save(n);
+        // Save the notification to the local database using a DAO if not null
+        if (n != null) {
+            return repository.save(n);
+        } else {
+            return null;
+        }
     }
 
 }
-

@@ -71,7 +71,8 @@ public class DiscussionActivity extends CollectAbstractActivity {
         setContentView(R.layout.discussion_layout);
         DaggerUtils.getComponent(this).inject(this);
 
-        initToolbar(getString(R.string.collect_app_name), false, null);
+        String discussionName = getIntent().getStringExtra("discussionName");
+        initToolbar(getString(R.string.screen_question, discussionName), false, null);
         initComponent();
         ProgressBar progressBar = findViewById(R.id.discussionProgressBar);
         progressBar.setVisibility(View.VISIBLE);

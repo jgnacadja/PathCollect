@@ -31,7 +31,7 @@ public class NotificationActivity extends CollectAbstractActivity {
         setContentView(R.layout.notification_layout);
         DaggerUtils.getComponent(this).inject(this);
 
-        initToolbar();
+        initToolbar(getString(R.string.screen_notification_list), false, null);
 
         StoragePathProvider storagePathProvider = new StoragePathProvider();
         String dbPath = storagePathProvider.getOdkDirPath(StorageSubdirectory.METADATA, null);

@@ -37,7 +37,7 @@ public class AddDiscussionActivity extends CollectAbstractActivity {
         setContentView(R.layout.add_discussion_layout);
         DaggerUtils.getComponent(this).inject(this);
 
-        initToolbar(getString(R.string.collect_app_name), false, null);
+        initToolbar(getString(R.string.screen_add_question), false, null);
         topicId = getIntent().getStringExtra("topicId");
         // Get a reference to the "discussions" node in Firebase
         dao = new DiscussionDao();
