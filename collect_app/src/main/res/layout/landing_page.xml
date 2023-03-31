@@ -73,20 +73,19 @@
                 android:orientation="horizontal">
 
                 <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
+                    android:id="@+id/notification"
+                    style="@style/Widget.Collect.Button.BlocButton"
+                    android:text="@string/btn_notification"
+                    app:icon="@drawable/ic_btn_notif"
+                    tools:text="@string/btn_notification" />
+
+                <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
                     android:id="@+id/cycle"
                     style="@style/Widget.Collect.Button.BlocButton"
                     android:text="@string/btn_cycle"
                     app:icon="@drawable/ic_periodical"
                     tools:text="@string/btn_cycle" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="50">
-
-                </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -29,6 +29,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.utilities.SnackbarUtils;
@@ -41,7 +42,6 @@ public abstract class FileManagerFragment extends AppListFragment implements Loa
     protected ProgressBar progressBar;
     protected boolean canHideProgressBar;
     private boolean progressBarVisible;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -52,7 +52,6 @@ public abstract class FileManagerFragment extends AppListFragment implements Loa
         toggleButton = rootView.findViewById(R.id.toggle_button);
         llParent = rootView.findViewById(R.id.llParent);
         progressBar = getActivity().findViewById(R.id.progressBar);
-
         setHasOptionsMenu(true);
         return rootView;
     }
@@ -82,7 +81,6 @@ public abstract class FileManagerFragment extends AppListFragment implements Loa
     @Override
     public void onListItemClick(ListView l, View v, int position, long rowId) {
         super.onListItemClick(l, v, position, rowId);
-
         if (getListView().isItemChecked(position)) {
             selectedInstances.add(getListView().getItemIdAtPosition(position));
         } else {
@@ -112,7 +110,6 @@ public abstract class FileManagerFragment extends AppListFragment implements Loa
         listAdapter.swapCursor(cursor);
 
         checkPreviouslyCheckedItems();
-        //toggleButtonLabel(toggleButton, getListView());
         deleteButton.setEnabled(areCheckedItems());
 
         checkToogle();

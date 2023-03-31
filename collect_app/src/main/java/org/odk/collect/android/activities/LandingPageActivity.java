@@ -13,15 +13,10 @@ import android.widget.Button;
 import androidx.appcompat.widget.Toolbar;
 
 import org.odk.collect.android.R;
-import org.odk.collect.android.activities.viewmodels.CurrentProjectViewModel;
-import org.odk.collect.android.activities.viewmodels.MainMenuViewModel;
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.utilities.ApplicationConstants;
 import org.odk.collect.android.utilities.ThemeUtils;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
-import org.odk.collect.settings.SettingsProvider;
-
-import javax.inject.Inject;
 
 public class LandingPageActivity extends CollectAbstractActivity{
     //button
@@ -30,6 +25,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
     private Button articleButton;
     private Button centreHospitalButton;
     private Button cycleButton;
+    private Button notificationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +91,18 @@ public class LandingPageActivity extends CollectAbstractActivity{
                 openPeriodical();
             }
         });
+
+        notificationButton = findViewById(R.id.notification);
+        notificationButton.setText(getString(R.string.btn_notification));
+        notificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),
+                        NotificationActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     @Override

@@ -96,7 +96,6 @@ the specific language governing permissions and limitations under the License.
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-
         <activity
             android:name=".activities.FirstLaunchActivity"
             android:theme="@style/Theme.Collect.SplashScreen"
@@ -118,6 +117,7 @@ the specific language governing permissions and limitations under the License.
         <activity android:name=".activities.ArticleListActivity" />
         <activity android:name=".activities.HospitalListActivity" />
         <activity android:name=".activities.HospitalActivity" />
+        <activity android:name=".activities.NotificationActivity" />
         <activity
             android:name=".activities.ScannerWithFlashlightActivity"
             android:screenOrientation="portrait"
@@ -329,6 +329,14 @@ the specific language governing permissions and limitations under the License.
                 <data android:mimeType="vnd.android.cursor.item/vnd.odk.instance" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".services.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
     </application>
 

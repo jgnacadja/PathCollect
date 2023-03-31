@@ -3,8 +3,10 @@ package org.odk.collect.android.database
 import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
+import org.odk.collect.android.adapters.model.Notification
 import org.odk.collect.android.database.forms.DatabaseFormColumns
 import org.odk.collect.android.database.instances.DatabaseInstanceColumns
+import org.odk.collect.android.database.notification.DatabaseNotificationColumns
 import org.odk.collect.forms.Form
 import org.odk.collect.forms.instances.Instance
 import org.odk.collect.shared.PathUtils.getAbsoluteFilePath
@@ -33,6 +35,16 @@ object DatabaseObjectMapper {
         values.put(DatabaseFormColumns.AUTO_SEND, form.autoSend)
         values.put(DatabaseFormColumns.AUTO_DELETE, form.autoDelete)
         values.put(DatabaseFormColumns.GEOMETRY_XPATH, form.geometryXpath)
+        return values
+    }
+
+    @JvmStatic
+    fun getValuesFromNotification(notification: Notification): ContentValues {
+        val values = ContentValues()
+        values.put(BaseColumns._ID, notification.dbId)
+        values.put(DatabaseNotificationColumns.TITLE, notification.title)
+        values.put(DatabaseNotificationColumns.BODY, notification.body)
+        values.put(DatabaseNotificationColumns.TIMESTAMP, notification.timestamp)
         return values
     }
 
@@ -130,6 +142,22 @@ object DatabaseObjectMapper {
             .autoDelete(cursor.getString(autoDeleteColumnIndex))
             .geometryXpath(cursor.getString(geometryXpathColumnIndex))
             .deleted(!cursor.isNull(deletedDateColumnIndex))
+            .build()
+    }
+
+    @JvmStatic
+    fun getNotificationFromCurrentCursorPosition(
+        cursor: Cursor,
+    ): Notification? {
+        val idColumnIndex = cursor.getColumnIndex(BaseColumns._ID)
+        val titleColumnIndex = cursor.getColumnIndex(DatabaseNotificationColumns.TITLE)
+        val bodyColumnIndex = cursor.getColumnIndex(DatabaseNotificationColumns.BODY)
+        val timestampColumnIndex = cursor.getColumnIndex(DatabaseNotificationColumns.TIMESTAMP)
+        return Notification.Builder()
+            .dbId(cursor.getLong(idColumnIndex))
+            .title(cursor.getString(titleColumnIndex))
+            .body(cursor.getString(bodyColumnIndex))
+            .timestamp(cursor.getLong(timestampColumnIndex))
             .build()
     }
 

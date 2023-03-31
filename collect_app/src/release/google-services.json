@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1060110737856",
+    "firebase_url": "https://dssc-10737-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "dssc-10737",
+    "storage_bucket": "dssc-10737.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060110737856:android:6c1274f7ab2dac434d2825",
+        "android_client_info": {
+          "package_name": "com.rintio.dssc.collect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1060110737856-e3im5lqj4p14pt8765pmceqc8nicutsl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdi810Q0RTk2dPlgf6Vtm-tTi-SS0gicQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1060110737856-e3im5lqj4p14pt8765pmceqc8nicutsl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
