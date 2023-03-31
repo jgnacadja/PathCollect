@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -81,6 +82,7 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
     CurrentProjectProvider currentProjectProvider;
 
     private boolean showAllMode;
+    private TextView countSelectedItem;
 
     // Default to true so the send button is disabled until the worker status is updated by the
     // observer
@@ -131,11 +133,9 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
             // items selected
             uploadSelectedFiles();
             setAllToCheckedState(listView, false);
-            //toggleButtonLabel(findViewById(R.id.toggle_button), listView);
             binding.uploadButton.setEnabled(false);
             checkToogle();
         } else {
-            // no items selected
             ToastUtils.showLongToast(this, R.string.noselect_error);
         }
     }
@@ -150,15 +150,13 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
     }
 
     void init() {
-        //binding.uploadButton.setText(R.string.send_selected_data);
-
         binding.toggleButton.setLongClickable(true);
         binding.toggleButton.setOnClickListener(v -> {
             if (MultiClickGuard.allowClick(getClass().getName())) {
                 ListView lv = listView;
                 boolean allChecked = toggleChecked(lv);
-                //toggleButtonLabel(binding.toggleButton, lv);
                 binding.uploadButton.setEnabled(allChecked);
+                countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
                 if (allChecked) {
                     for (int i = 0; i < lv.getCount(); i++) {
                         selectedInstances.add(lv.getItemIdAtPosition(i));
@@ -169,6 +167,10 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
                 checkToogle();
             }
         });
+
+        countSelectedItem = findViewById(R.id.count_selected_form);
+        countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
+
         binding.toggleButton.setOnLongClickListener(this);
 
         setupAdapter();
@@ -216,7 +218,6 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
     protected void onResume() {
         super.onResume();
         checkToogle();
-//        binding.uploadButton.setText(R.string.send_selected_data);
     }
 
     private void uploadSelectedFiles() {
@@ -272,6 +273,7 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
+        countSelectedItem.setText(getString(R.string.form_selected, String.valueOf(listView.getCheckedItemCount())));
         if (listView.isItemChecked(position)) {
             selectedInstances.add(listView.getItemIdAtPosition(position));
         } else {
@@ -279,8 +281,6 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
         }
 
         binding.uploadButton.setEnabled(areCheckedItems());
-        //ImageButton toggleSelectionsButton = findViewById(R.id.toggle_button);
-        //toggleButtonLabel(toggleSelectionsButton, listView);
         checkToogle();
     }
 
@@ -346,7 +346,6 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
         listAdapter.changeCursor(cursor);
         checkPreviouslyCheckedItems();
         checkToogle();
-        //toggleButtonLabel(findViewById(R.id.toggle_button), listView);
     }
 
     @Override
