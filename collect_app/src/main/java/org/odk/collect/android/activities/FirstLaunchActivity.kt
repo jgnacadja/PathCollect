@@ -14,6 +14,7 @@ import org.odk.collect.android.projects.CurrentProjectProvider
 import org.odk.collect.android.projects.ManualProjectCreatorDialog
 import org.odk.collect.android.projects.QrCodeProjectCreatorDialog
 import org.odk.collect.android.quickstart.SubscribeToWP
+import org.odk.collect.android.projects.ProjectCreator
 import org.odk.collect.android.version.VersionInformation
 import org.odk.collect.androidshared.ui.DialogFragmentUtils
 import org.odk.collect.androidshared.ui.GroupClickListener.addOnClickListener
@@ -42,18 +43,18 @@ class FirstLaunchActivity : CollectAbstractActivity() {
 
     private fun addDsscProject() {
         val settingsJson = appConfigurationGenerator.getAppConfigurationAsJsonWithServerDetails(
-                getString(R.string.dssc_kc_server_url),
-                getString(R.string.dssc_username),
-                getString(R.string.dssc_password)
+            getString(R.string.dssc_kc_server_url),
+            getString(R.string.dssc_username),
+            getString(R.string.dssc_password)
         )
         projectCreator.createNewProject(settingsJson)
     }
 
     private fun otherConfigOptions() {
         val settingsJson = appConfigurationGenerator.getAppConfigurationAsJsonWithServerDetails(
-                getString(R.string.dssc_kc_server_url),
-                getString(R.string.dssc_username),
-                getString(R.string.dssc_password)
+            getString(R.string.dssc_kc_server_url),
+            getString(R.string.dssc_username),
+            getString(R.string.dssc_password)
         )
         projectCreator.createNewProject(settingsJson)
     }
@@ -78,22 +79,22 @@ class FirstLaunchActivity : CollectAbstractActivity() {
                 return
             } else {
                 appName.text = String.format(
-                        "%s %s",
-                        getString(R.string.collect_app_name),
-                        versionInformation.versionToDisplay
+                    "%s %s",
+                    getString(R.string.collect_app_name),
+                    versionInformation.versionToDisplay
                 )
 
                 configureViaQrButton.setOnClickListener {
                     DialogFragmentUtils.showIfNotShowing(
-                            QrCodeProjectCreatorDialog::class.java,
-                            supportFragmentManager
+                        QrCodeProjectCreatorDialog::class.java,
+                        supportFragmentManager
                     )
                 }
 
                 configureManuallyButton.setOnClickListener {
                     DialogFragmentUtils.showIfNotShowing(
-                            ManualProjectCreatorDialog::class.java,
-                            supportFragmentManager
+                        ManualProjectCreatorDialog::class.java,
+                        supportFragmentManager
                     )
                 }
 
