@@ -1,5 +1,6 @@
 package org.odk.collect.android.adapters.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Discussion {
@@ -33,6 +34,21 @@ public class Discussion {
         this.lastCommentTimestamp = lastCommentTimestamp;
         this.likedUsers = likedUsers;
         this.viewedUsers = viewedUsers;
+    }
+
+    public Discussion(String author, String title, String topicId) {
+        this.id = null;
+        this.icon = null;
+        this.author = author;
+        this.title = title;
+        this.timestamp = 0;
+        this.topicId = topicId;
+        this.views = 0;
+        this.likes = 0;
+        this.commentCount = 0;
+        this.lastCommentTimestamp = 0;
+        this.likedUsers = new ArrayList<String>();
+        this.viewedUsers = new ArrayList<String>();
     }
 
     public String getId() {

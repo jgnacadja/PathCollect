@@ -130,5 +130,4 @@ public class TopicActivity extends CollectAbstractActivity implements
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

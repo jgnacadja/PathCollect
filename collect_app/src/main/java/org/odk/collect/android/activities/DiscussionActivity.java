@@ -1,6 +1,7 @@
 package org.odk.collect.android.activities;
 
 import static org.odk.collect.settings.keys.MetaKeys.KEY_INSTALL_ID;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -15,16 +16,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.odk.collect.android.R;
@@ -34,10 +31,8 @@ import org.odk.collect.android.adapters.model.Discussion;
 import org.odk.collect.android.dao.CommentDao;
 import org.odk.collect.android.dao.DiscussionDao;
 import org.odk.collect.android.injection.DaggerUtils;
-import org.odk.collect.android.tasks.DownloadImageTask;
 import org.odk.collect.android.utilities.TimeAgo;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
-import org.odk.collect.settings.SettingsProvider;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -45,9 +40,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import javax.inject.Inject;
-
 import timber.log.Timber;
 
 
@@ -105,10 +97,9 @@ public class DiscussionActivity extends CollectAbstractActivity {
 
         // Get discussion
         String discussionId = getIntent().getStringExtra("discussionId");
-        DatabaseReference discussionRef = FirebaseDatabase.getInstance().getReference().child("discussions").child(discussionId);
 
         // Attach a listener to the discussion reference to get updates
-        discussionRef.addValueEventListener(new ValueEventListener() {
+        discussionDao.get(discussionId, new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 // Get the Discussion object from the database
@@ -125,7 +116,7 @@ public class DiscussionActivity extends CollectAbstractActivity {
                 boolean alreadyViewed;
                 try {
                     alreadyViewed = discussion.getViewedUsers().contains(installID);
-                } catch (NullPointerException e){
+                } catch (NullPointerException e) {
                     alreadyViewed = false;
                 }
                 if (!alreadyViewed) {
@@ -140,15 +131,15 @@ public class DiscussionActivity extends CollectAbstractActivity {
                 boolean alreadyLiked;
                 try {
                     alreadyLiked = discussion.getLikedUsers().contains(installID);
-                } catch (NullPointerException e){
+                } catch (NullPointerException e) {
                     alreadyLiked = false;
                 }
 
-                if(alreadyLiked){
+                if (alreadyLiked) {
                     int iconId = R.drawable.thumb_up_filled;
                     discussionLikeBtn.setImageResource(iconId);
                     discussionLikeBtn.setTag(iconId);
-                }else {
+                } else {
                     int iconId = R.drawable.thumbs_up;
                     discussionLikeBtn.setImageResource(iconId);
                     discussionLikeBtn.setTag(iconId);
@@ -254,6 +245,7 @@ public class DiscussionActivity extends CollectAbstractActivity {
         commentBtn = findViewById(R.id.send_button);
     }
 
+    @SuppressLint("SetTextI18n")
     private void createComment() {
         pgsBar.setVisibility(View.VISIBLE);
         errorMessage.setVisibility(View.GONE);
@@ -354,9 +346,9 @@ public class DiscussionActivity extends CollectAbstractActivity {
 
     }
 
-    private void hideSoftKeyboard(){
+    private void hideSoftKeyboard() {
         try {
-            InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         } catch (Exception e) {
             // TODO: handle exception

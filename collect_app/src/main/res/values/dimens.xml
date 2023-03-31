@@ -6,17 +6,17 @@
     <dimen name="text_size_standard">18sp</dimen>
     <dimen name="text_size_large">22sp</dimen>
     <dimen name="text_size_larger">26sp</dimen>
+    <dimen name="text_size_smaller">13sp</dimen>
     <dimen name="text_size_button">17sp</dimen>
     <dimen name="text_size_subtitle">24dp</dimen>
-    <dimen name="size_icon">30dp</dimen>
 
     <!-- touch target -->
     <dimen name="touch_target_size">48dp</dimen>
     <dimen name="article_image_size">92dp</dimen>
     <dimen name="size_surtitle">28dp</dimen>
-    <dimen name="text_size_smaller">13sp</dimen>
     <dimen name="divider_accidental_tap">8dp</dimen>
     <dimen name="main_menu_icon">30dp</dimen>
     <dimen name="main_menu_bloc">160dp</dimen>
     <dimen name="discussion_icon">20dp</dimen>
+    <dimen name="size_icon">30dp</dimen>
 </resources>

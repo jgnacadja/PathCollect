@@ -1,5 +1,6 @@
 package org.odk.collect.android.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
+import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
 
@@ -54,6 +55,7 @@ public class AddDiscussionActivity extends CollectAbstractActivity {
         });
     }
 
+    @SuppressLint("SetTextI18n")
     private void createDiscussion() {
         pgsBar.setVisibility(View.VISIBLE);
         errorMessage.setVisibility(View.GONE);
@@ -66,17 +68,10 @@ public class AddDiscussionActivity extends CollectAbstractActivity {
             errorMessage.setText("Veuillez entrer le titre de la question");
         } else {
             Discussion discussion = new Discussion(
-                    null,
-                    null,
                     getString(R.string.anon_user),
                     title,
-                    0,
-                    topicId,
-                    0,
-                    0,
-                    0,
-                    0,
-                    new ArrayList<String>(), new ArrayList<String>());
+                    topicId
+            );
 
             dao.addDiscussion(discussion);
             Intent intent = new Intent(this, DiscussionListActivity.class);

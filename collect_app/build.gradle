@@ -294,12 +294,6 @@ dependencies {
 
     implementation Dependencies.firebase_analytics
     implementation Dependencies.firebase_crashlytics
-    // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:31.2.2')
-
-    // Add the dependency for the Realtime Database library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation 'com.google.firebase:firebase-database'
 
     implementation Dependencies.guava
 
@@ -373,10 +367,14 @@ dependencies {
 
     // Add the dependency for the Realtime Database library
     // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation Dependencies.firebase_database
+
     // Firebase Cloud Messaging (Java)
     implementation Dependencies.firebase_messaging
+
     // Import the Firebase BoM (see: https://firebase.google.com/docs/android/learn-more#bom)
     implementation platform(Dependencies.firebase_bom)
+
 
     implementation Dependencies.armen101_audio_recorder_view
 

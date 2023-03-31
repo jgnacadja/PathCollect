@@ -77,6 +77,9 @@ object Dependencies {
     const val retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
     const val converter_gson = "com.squareup.retrofit2:converter-gson:2.9.0"
     const val recyclerview_v7 = "com.android.support:recyclerview-v7:28.0.0"
+    const val firebase_bom = "com.google.firebase:firebase-bom:31.2.2"
+    const val firebase_messaging = "com.google.firebase:firebase-messaging"
+    const val firebase_database = "com.google.firebase:firebase-database"
 
     // Test dependencies
     const val junit = "junit:junit:4.13.2"
