@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginStart="@dimen/margin_extra_small"
+    android:layout_marginTop="@dimen/margin_standard"
+    android:layout_marginEnd="@dimen/margin_extra_small"
+    android:background="@drawable/bg_hospital"
+    android:orientation="horizontal"
+    android:padding="@dimen/margin_small">
+
+    <ImageView
+        android:layout_width="92dp"
+        android:layout_height="96dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/margin_extra_small"
+        android:src="@drawable/ic_hospital" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/hospitalName"
+            style="@style/TextAppearance.Collect.Subtitle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/none"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/hospitalType"
+            style="@style/TextAppearance.Collect.Body2.MediumEmphasis"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_extra_small"
+            android:layout_weight="1"
+            android:text="@string/none"
+            android:textColor="@color/color15" />
+
+        <TextView
+            android:id="@+id/hospitalLevel"
+            style="@style/TextAppearance.Collect.Body2.MediumEmphasis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/none"
+            android:textColor="@color/colorPrimary"
+            app:drawableStartCompat="@drawable/ic_level_hospital" />
+    </LinearLayout>
+</LinearLayout>

@@ -973,4 +973,13 @@
   <string name="comment_hint">Tapez un message</string>
   <string name="question_content_hint">Contenue de la question</string>
   <string name="question_label_hint">Votre question</string>
+
+  <!--
+  ##############################################
+  # FORMATION
+  ##############################################
+  -->
+  <string name="formation_title">Prendre rendez-vous auprès d\'un centre !</string>
+  <string name="service_title">Par services</string>
+  <string name="product_title">Nos produits</string>
 </resources>

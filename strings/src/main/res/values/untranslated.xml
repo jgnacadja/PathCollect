@@ -55,4 +55,5 @@ the specific language governing permissions and limitations under the License. -
     <string name="dssc_username" translatable="false">molympio</string>
     <string name="dssc_password" translatable="false">m@l@n@@2020$</string>
     <string name="periodical_package_name" translatable="false">de.arnowelzel.android.periodical</string>
+    <string name="api_gateway_url" translatable="false">https://store.prod.rintio.com/</string>
 </resources>
