@@ -36,21 +36,11 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         Hospital.Prestation prestation = prestations.get(position);
         holder.name.setText(prestation.getName());
         holder.price.setText(prestation.getPrice()+" cfa");
-        int availabilityIcon;
-        if(prestation.getAvailable()){
-            availabilityIcon = R.drawable.ic_available;
-        } else {
-            availabilityIcon = R.drawable.ic_unavailable;
-        }
+        int availabilityIcon = prestation.getAvailable() ? R.drawable.ic_available : R.drawable.ic_unavailable;
         holder.availability.setImageResource(availabilityIcon);
         holder.availability.setTag(availabilityIcon);
 
-        int typeIcon;
-        if(prestation.getType().equals("Produit")){
-            typeIcon = R.drawable.ic_product;
-        } else {
-            typeIcon = R.drawable.ic_service;
-        }
+        int typeIcon = prestation.getType().equals("Produit") ? R.drawable.ic_product : R.drawable.ic_service;
         holder.prestationType.setImageResource(typeIcon);
         holder.prestationType.setTag(typeIcon);
     }
