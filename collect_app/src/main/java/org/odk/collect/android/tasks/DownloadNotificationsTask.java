@@ -14,7 +14,7 @@ public class DownloadNotificationsTask extends
 
     private final DatabaseNotificationRepository repository;
 
-    public DownloadNotificationsTask(DatabaseNotificationRepository repository, DatabaseNotificationRepository databaseNotificationRepository) {
+    public DownloadNotificationsTask(DatabaseNotificationRepository repository) {
         this.repository = repository;
     }
 

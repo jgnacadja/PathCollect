@@ -52,7 +52,7 @@ public class DatabaseNotificationRepository {
         return queryForOneNotification(_ID + "=?", new String[]{id.toString()});
     }
 
-    public static List<Notification> getAll() {
+    public List<Notification> getAll() {
         return queryForNotification(null, null);
     }
 

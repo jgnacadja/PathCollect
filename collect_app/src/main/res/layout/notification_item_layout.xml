@@ -12,16 +12,15 @@ You may obtain a copy of the License at
     android:padding="@dimen/margin_standard">
 
     <ImageView
-        android:id="@+id/imageNotification"
         android:layout_width="@dimen/size_icon"
         android:layout_height="@dimen/size_icon"
         android:layout_gravity="center"
-        tools:src="@drawable/ic_notifications" />
+        tools:src="@drawable/ic_fcm_notification" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_extra_large"
+        android:layout_marginStart="@dimen/margin_standard"
         android:orientation="vertical">
 
         <TextView
@@ -38,7 +37,7 @@ You may obtain a copy of the License at
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_extra_small"
             android:textColor="@color/color15"
-            tools:text="@string/notification" />
+            tools:text="@string/none" />
 
     </LinearLayout>
 </LinearLayout>
