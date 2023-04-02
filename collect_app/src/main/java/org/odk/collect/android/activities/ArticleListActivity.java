@@ -16,6 +16,7 @@ import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.ArticleListAdapter;
 import org.odk.collect.android.adapters.model.Article;
 import org.odk.collect.android.dao.WpApiService;
+import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.utilities.ExternalWebPageHelper;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class ArticleListActivity extends CollectAbstractActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.article_list);
+        DaggerUtils.getComponent(this).inject(this);
 
         initToolbar(getString(R.string.screen_articles_list), false, null);
         articles = new ArrayList<>();

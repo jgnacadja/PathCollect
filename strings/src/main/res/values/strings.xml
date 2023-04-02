@@ -1199,5 +1199,5 @@
     <string name="screen_notification_list">Notifications</string>
     <string name="screen_articles_list">Posts</string>
     <string name="screen_health_center_list">Health Centers</string>
-    <string name="screen_health_center">%s %s</string>
+    <string name="screen_health_center">%s</string>
 </resources>

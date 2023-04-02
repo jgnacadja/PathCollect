@@ -89,6 +89,7 @@ public class HospitalListActivity extends CollectAbstractActivity implements
         if (MultiClickGuard.allowClick(getClass().getName())) {
             Hospital hospital = hospitals.get(position);
             Intent intent = new Intent(this, HospitalActivity.class);
+            intent.putExtra("screenTitle", hospital.getLevel() + " " +hospital.getName());
             intent.putExtra("hospital", hospital);
             startActivity(intent);
         }

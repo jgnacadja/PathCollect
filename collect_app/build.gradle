@@ -85,14 +85,14 @@ android {
     }
 
     signingConfigs {
-        release {
-            if (secrets.getProperty('RELEASE_STORE_FILE')) {
-                storeFile file(secrets.getProperty('RELEASE_STORE_FILE'))
-                storePassword secrets.getProperty('RELEASE_STORE_PASSWORD')
-                keyAlias secrets.getProperty('RELEASE_KEY_ALIAS')
-                keyPassword secrets.getProperty('RELEASE_KEY_PASSWORD')
-            }
-        }
+//        release {
+//            if (secrets.getProperty('RELEASE_STORE_FILE')) {
+//                storeFile file(secrets.getProperty('RELEASE_STORE_FILE'))
+//                storePassword secrets.getProperty('RELEASE_STORE_PASSWORD')
+//                keyAlias secrets.getProperty('RELEASE_KEY_ALIAS')
+//                keyPassword secrets.getProperty('RELEASE_KEY_PASSWORD')
+//            }
+//        }
 
         selfSignedRelease {
             storeFile file('../debug.keystore')

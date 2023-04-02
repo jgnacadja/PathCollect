@@ -1,22 +1,35 @@
 package org.odk.collect.android.activities;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
+
 import org.odk.collect.android.R;
+import org.odk.collect.android.adapters.DiscussionListAdapter;
 import org.odk.collect.android.adapters.HospitalListAdapter;
 import org.odk.collect.android.adapters.ProductListAdapter;
+import org.odk.collect.android.adapters.model.Discussion;
 import org.odk.collect.android.adapters.model.Hospital;
 import org.odk.collect.android.dao.ApiGatewayService;
+import org.odk.collect.android.dao.DiscussionDao;
+import org.odk.collect.android.injection.DaggerUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -34,24 +47,24 @@ public class HospitalActivity extends CollectAbstractActivity {
     private List<Hospital.Prestation> prestations;
     private RecyclerView recyclerView;
     private ProductListAdapter adapter;
-    private TextView name;
-    private TextView type;
-    private TextView level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hospital_layout);
+        DaggerUtils.getComponent(this).inject(this);
+
+        String screenTitle = getIntent().getStringExtra("screenTitle");
+        initToolbar(getString(R.string.screen_health_center, screenTitle), false, null);
 
         Serializable s = getIntent().getSerializableExtra("hospital");
         Hospital hospital = (Hospital) s;
-        initToolbar(getString(R.string.screen_health_center, hospital.getType(), hospital.getName()), false, null);
 
-        name = findViewById(R.id.hospitalDetailName);
+        TextView name = findViewById(R.id.hospitalDetailName);
         name.setText(hospital.getName());
-        type = findViewById(R.id.hospitalDetailType);
+        TextView type = findViewById(R.id.hospitalDetailType);
         type.setText(hospital.getType());
-        level = findViewById(R.id.hospitalDetailLevel);
+        TextView level = findViewById(R.id.hospitalDetailLevel);
         level.setText(hospital.getLevel());
 
         prestations = hospital.getPrestations();
@@ -63,7 +76,6 @@ public class HospitalActivity extends CollectAbstractActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
     }
 
     @Override
