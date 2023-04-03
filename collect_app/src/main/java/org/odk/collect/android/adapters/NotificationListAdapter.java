@@ -37,6 +37,8 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
         Notification notification = items.get(position);
         holder.notificationTitle.setText(notification.getTitle());
         holder.notificationSubtitle.setText(notification.getBody());
+        holder.image.setImageResource(R.drawable.ic_fcm_notification);
+        holder.image.setTag(R.drawable.ic_fcm_notification);
     }
 
     @Override
@@ -44,20 +46,16 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
         return items.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView notificationTitle;
         private final TextView notificationSubtitle;
+        private final ImageView image;
 
         ViewHolder(View view) {
             super(view);
+            image = view.findViewById(R.id.imageNotification);
             notificationTitle = view.findViewById(R.id.notificationTitle);
             notificationSubtitle = view.findViewById(R.id.notificationSubtitle);
-            view.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-
         }
 
     }

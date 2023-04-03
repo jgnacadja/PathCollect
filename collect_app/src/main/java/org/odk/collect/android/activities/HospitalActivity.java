@@ -1,6 +1,9 @@
 package org.odk.collect.android.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +12,8 @@ import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.ProductListAdapter;
 import org.odk.collect.android.adapters.model.Hospital;
 import org.odk.collect.android.injection.DaggerUtils;
+import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -47,6 +52,32 @@ public class HospitalActivity extends CollectAbstractActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.about_menu_icon).setVisible(true).setEnabled(true);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.landing_page_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (!MultiClickGuard.allowClick(getClass().getName())) {
+            return true;
+        }
+
+        if (item.getItemId() == R.id.about_menu_icon) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

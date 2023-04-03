@@ -1,6 +1,9 @@
 package org.odk.collect.android.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -15,6 +18,7 @@ import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.storage.StoragePathProvider;
 import org.odk.collect.android.storage.StorageSubdirectory;
 import org.odk.collect.androidshared.system.IntentLauncher;
+import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 
 import java.util.List;
 
@@ -46,10 +50,30 @@ public class NotificationActivity extends CollectAbstractActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.show_notifications));
-        setSupportActionBar(toolbar);
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.about_menu_icon).setVisible(true).setEnabled(true);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.landing_page_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (!MultiClickGuard.allowClick(getClass().getName())) {
+            return true;
+        }
+
+        if (item.getItemId() == R.id.about_menu_icon) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/margin_standard"
     android:orientation="vertical">
 
     <include layout="@layout/app_bar_with_progress_bar_layout"/>
@@ -11,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_standard"
         android:orientation="horizontal">
 
         <TextView
@@ -40,14 +40,13 @@
         style="@style/TextAppearance.Collect.Body2.MediumEmphasis"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_standard"
-        android:layout_marginBottom="@dimen/margin_standard"
+        android:layout_margin="@dimen/margin_standard"
         android:text="@string/none"
         android:textColor="@color/color15" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="@dimen/divider_hospital_details"
         android:background="@color/color15" />
 
     <LinearLayout
@@ -72,6 +71,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productRecyclerView"
             android:scrollbars="vertical"
+            android:layout_margin="@dimen/margin_small"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

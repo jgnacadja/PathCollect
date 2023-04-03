@@ -2,9 +2,15 @@ package org.odk.collect.android.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.gson.Gson;
+
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.ArticleListAdapter;
 import org.odk.collect.android.adapters.model.Article;
@@ -49,7 +55,7 @@ public class ArticleListActivity extends CollectAbstractActivity implements
 
         // create Retrofit instance
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getString(R.string.api_url))
+                .baseUrl(getString(R.string.api_gateway_url))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -84,6 +90,32 @@ public class ArticleListActivity extends CollectAbstractActivity implements
             intent.putExtra(ExternalWebPageHelper.OPEN_URL, article.getLink());
             startActivity(intent);
         }
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.about_menu_icon).setVisible(true).setEnabled(true);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.landing_page_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (!MultiClickGuard.allowClick(getClass().getName())) {
+            return true;
+        }
+
+        if (item.getItemId() == R.id.about_menu_icon) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

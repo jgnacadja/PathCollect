@@ -20,4 +20,5 @@
     <dimen name="discussion_icon">20dp</dimen>
     <dimen name="size_icon">40dp</dimen>
     <dimen name="hospital_logo">94dp</dimen>
+    <dimen name="divider_hospital_details">3dp</dimen>
 </resources>
