@@ -1,21 +1,14 @@
 package org.odk.collect.android.activities;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.gson.Gson;
-
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.ArticleListAdapter;
 import org.odk.collect.android.adapters.model.Article;
-import org.odk.collect.android.dao.WpApiService;
+import org.odk.collect.android.dao.ApiGatewayService;
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.utilities.ExternalWebPageHelper;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
@@ -61,10 +54,10 @@ public class ArticleListActivity extends CollectAbstractActivity implements
                 .build();
 
         // create API service instance
-        WpApiService apiService = retrofit.create(WpApiService.class);
+        ApiGatewayService apiService = retrofit.create(ApiGatewayService.class);
 
         // call API to get data
-        Call<List<Article>> call = apiService.getPosts("publish");
+        Call<List<Article>> call = apiService.getWpPosts();
         call.enqueue(new Callback<List<Article>>() {
             @Override
             public void onResponse(Call<List<Article>> call, Response<List<Article>> response) {

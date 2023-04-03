@@ -15,7 +15,7 @@
         android:maxLines="2"
         android:text="@string/formation_title"
         android:textColor="@color/colorPrimary"
-        android:textSize="24sp"
+        android:textSize="@dimen/text_size_larger"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView

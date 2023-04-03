@@ -44,8 +44,8 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Article article = articles.get(position);
-        if(article.get_links().getWpFeaturedMedia() != null){
-            String image = article.get_links().getWpFeaturedMedia().get(0).getHref();
+        if(article.getMedia() != null){
+            String image = article.getMedia();
             DownloadArticleImageTask task = new DownloadArticleImageTask(holder);
             task.execute(image);
         } else {
@@ -53,8 +53,8 @@ public class ArticleListAdapter extends RecyclerView.Adapter<ArticleListAdapter.
             holder.imageView.setImageResource(iconId);
             holder.imageView.setTag(iconId);
         }
-        holder.title.setText(article.getTitle().getRendered());
-        String plainString = Html.fromHtml(article.getExcerpt().getRendered()).toString();
+        holder.title.setText(article.getTitle());
+        String plainString = Html.fromHtml(article.getSummary()).toString();
         holder.preview.setText(plainString.substring(0, Math.min(120, plainString.length())) + "...");
     }
 

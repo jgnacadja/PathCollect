@@ -252,7 +252,6 @@ public class MainMenuActivity extends CollectAbstractActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     private void initMapbox() {

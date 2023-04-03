@@ -18,5 +18,6 @@
     <dimen name="main_menu_icon">30dp</dimen>
     <dimen name="main_menu_bloc">160dp</dimen>
     <dimen name="discussion_icon">20dp</dimen>
-    <dimen name="size_icon">30dp</dimen>
+    <dimen name="size_icon">40dp</dimen>
+    <dimen name="hospital_logo">94dp</dimen>
 </resources>

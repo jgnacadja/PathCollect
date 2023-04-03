@@ -2,22 +2,16 @@ package org.odk.collect.android.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.HospitalListAdapter;
 import org.odk.collect.android.adapters.model.Hospital;
 import org.odk.collect.android.dao.ApiGatewayService;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -41,7 +35,6 @@ public class HospitalListActivity extends CollectAbstractActivity implements
         setContentView(R.layout.hospital_list_layout);
 
         initToolbar(getString(R.string.screen_health_center_list), false, null);
-
         hospitals = new ArrayList<>();
 
         // initialize RecyclerView and Adapter

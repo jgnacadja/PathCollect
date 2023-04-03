@@ -59,7 +59,6 @@
         <item name="android:paddingBottom">@dimen/margin_standard</item>
         <item name="android:textSize">21sp</item>
     </style>
-
     <style name="Widget.Collect.Button.BlocButton" parent="Widget.MaterialComponents.Button">
         <item name="android:paddingTop">@dimen/margin_standard</item>
         <item name="android:paddingBottom">@dimen/margin_standard</item>
