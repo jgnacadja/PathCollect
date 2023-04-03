@@ -45,7 +45,7 @@ public class MyWorker extends Worker {
         Notification notification = new Notification(title, body, System.currentTimeMillis());
 
         // Save the notification to the local database using a DAO
-        DownloadNotificationsTask task = new DownloadNotificationsTask(null, repository);
+        DownloadNotificationsTask task = new DownloadNotificationsTask(repository);
         task.execute(notification);
 
         return Result.success();
