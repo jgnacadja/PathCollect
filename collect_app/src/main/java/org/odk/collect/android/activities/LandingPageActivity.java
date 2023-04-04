@@ -12,12 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.utilities.ApplicationConstants;
-import org.odk.collect.android.utilities.ThemeUtils;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 
 public class LandingPageActivity extends CollectAbstractActivity{
@@ -31,7 +31,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        new ThemeUtils(this).setDarkModeForCurrentProject();
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         super.onCreate(savedInstanceState);
         DaggerUtils.getComponent(this).inject(this);
