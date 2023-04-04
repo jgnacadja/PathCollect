@@ -1,6 +1,7 @@
 package org.odk.collect.android.activities
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import org.odk.collect.analytics.Analytics
 import org.odk.collect.android.R
@@ -55,6 +56,8 @@ class FirstLaunchActivity : CollectAbstractActivity() {
     }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
         installSplashScreen()
 
         super.onCreate(savedInstanceState)
