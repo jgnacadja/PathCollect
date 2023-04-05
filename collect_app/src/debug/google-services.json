@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1060110737856:android:6c1274f7ab2dac434d2825",
         "android_client_info": {
-          "package_name": "com.rintio.dssc.collect"
+          "package_name": "org.dssc.collect.android"
         }
       },
       "oauth_client": [
