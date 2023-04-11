@@ -1,6 +1,8 @@
 package org.odk.collect.android.activities;
 
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -25,6 +27,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
     private Button articleButton;
     private Button centreHospitalButton;
     private Button cycleButton;
+    private Button notificationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +87,15 @@ public class LandingPageActivity extends CollectAbstractActivity{
         cycleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openPeriodical();
+                confirmOpenPeriodical();
+            }
+        });
+
+        notificationButton = findViewById(R.id.notification);
+        notificationButton.setText(getString(R.string.btn_notification));
+        notificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
             }
         });
     }
@@ -124,6 +135,26 @@ public class LandingPageActivity extends CollectAbstractActivity{
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
+
+    private void confirmOpenPeriodical(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(LandingPageActivity.this);
+        builder.setTitle("AVERTISSEMENTS");
+        builder.setMessage("Pour accéder à la fonctionnalité de gestion de cycle menstruel, vous serez redirigée vers l'application mobile Periodical. Si vous n’avez pas encore l’application Periodical installée, vous serez redirigée vers Google Play Store pour l’installer.\n\nCette application utilise la méthode Knaus-Ogino, une méthode de contraception naturelle, pour déterminer les jours fertiles, mais elle présente un taux d'échec supérieur à 14%. L'abstinence sexuelle est la seule méthode de contraception efficace à 100% pour éviter complètement une grossesse.\n\nBien qu'elle donne une indication sur les jours non fertiles, il n’est pas recommandé d’utiliser cette application pour éviter une grossesse. Les utilisatrices doivent s'adresser aux formations sanitaires habilitées si elles ont besoin de conseils sur l'utilisation de cette application avec des méthodes contraceptives modernes.\n\nLes informations fournies par cette application ne doivent pas être considérées comme des conseils médicaux.\n\nL’objectif principal de cette application est d'aider les femmes à suivre leur cycle et santé menstruel.\n\nAfin d'éviter tout risque de préjudice ou d'erreur de diagnostic, il est fortement recommandé aux utilisatrices de ne pas tenter de s'auto-diagnostiquer ou de s'auto-traiter. En cas de symptômes ou d'irrégularités identifiés, elles doivent consulter des formations sanitaires habilitées.");
+        builder.setIcon(R.drawable.notes);
+        builder.setPositiveButton("J’ai lu et bien", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Action à effectuer lorsque l'utilisateur clique sur le bouton "J'accepte continuer"
+                // Par exemple, vous pouvez lancer l'application Periodical ici
+                dialog.dismiss();
+                openPeriodical();
+            }
+        });
+        builder.setNegativeButton("Annuler", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
     private void openPeriodical() {
         Intent i;
         String packageName = getString(R.string.periodical_app_package_name);
