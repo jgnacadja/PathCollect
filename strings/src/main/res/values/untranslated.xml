@@ -39,10 +39,15 @@ the specific language governing permissions and limitations under the License. -
     <string name="btn_sondage" translatable="false">Sondage</string>
     <string name="btn_messsage" translatable="false">Forum</string>
     <string name="btn_article" translatable="false">Article</string>
+    <string name="btn_notification" translatable="false">Notification</string>
     <string name="btn_centreHospital" translatable="false">Formation\n Sanitaires</string>
     <string name="btn_cycle" translatable="false">Mon\n Cycle </string>
     <string name="btn_about" translatable="false">About</string>
     <string name="form_selected" translatable="false">(%s)Formulaire sélectionné(s)</string>
-    <string name="upload_answer" translatable="false">Envoie du Formulaire</string>
+    <string name="get_quest" translatable="false">Télécharger un Questionnaire Vierge</string>
+    <string name="fill_quest" translatable="false">Remplir un Questionnaire</string>
+
+
+
     <string name="empty_accuracy" translatable="false">--</string>
     <string name="periodical_app_package_name" translatable="false">de.arnowelzel.android.periodical</string></resources>

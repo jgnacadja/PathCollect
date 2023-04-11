@@ -37,6 +37,7 @@
                         style="@style/Widget.Collect.Button.BlocButton"
                         android:text="@string/btn_sondage"
                         app:icon="@drawable/ic_formulaire"
+                        android:background="@drawable/bloc_btn_bg"
                         tools:text="@string/btn_sondage" />
 
                     <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
@@ -44,6 +45,7 @@
                         style="@style/Widget.Collect.Button.BlocButton"
                         android:text="@string/btn_messsage"
                         app:icon="@drawable/ic_mes"
+                        android:background="@drawable/bloc_btn_bg"
                         tools:text="@string/btn_messsage" />
 
             </LinearLayout>
@@ -58,6 +60,7 @@
                         style="@style/Widget.Collect.Button.BlocButton"
                         android:text="@string/btn_article"
                         app:icon="@drawable/icon_article"
+                        android:background="@drawable/bloc_btn_bg"
                         tools:text="@string/btn_article" />
 
                     <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
@@ -65,6 +68,7 @@
                         style="@style/Widget.Collect.Button.BlocButton"
                         android:text="@string/btn_centreHospital"
                         app:icon="@drawable/icon_hospital"
+                        android:background="@drawable/bloc_btn_bg"
                         tools:text="@string/btn_centreHospital" />
 
             </LinearLayout>
@@ -75,20 +79,22 @@
                 android:orientation="horizontal">
 
                 <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
+                    android:id="@+id/notification"
+                    style="@style/Widget.Collect.Button.BlocButton"
+                    android:text="@string/btn_notification"
+                    app:icon="@drawable/ic_btn_notif"
+                    android:background="@drawable/bloc_btn_bg"
+                    tools:text="@string/btn_notification" />
+
+                <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
                     android:id="@+id/cycle"
                     style="@style/Widget.Collect.Button.BlocButton"
                     android:text="@string/btn_cycle"
-                    app:icon="@drawable/ic_drop"
+                    app:icon="@drawable/ic_periodical"
+                    android:background="@drawable/btn_cycle_bg"
                     tools:text="@string/btn_cycle" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="50">
 
                 </LinearLayout>
             </LinearLayout>
-
-        </LinearLayout>
     </ScrollView>
 </LinearLayout>
