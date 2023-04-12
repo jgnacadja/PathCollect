@@ -3,8 +3,8 @@ package org.odk.collect.android.tasks;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import com.google.gson.Gson;
-import org.odk.collect.android.adapters.ArticleListAdapter;
-import org.odk.collect.android.adapters.model.ArticleImage;
+import org.odk.collect.android.adapters.PostListAdapter;
+import org.odk.collect.android.adapters.model.PostImage;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -13,15 +13,15 @@ import java.net.URL;
 import timber.log.Timber;
 
 
-public class DownloadArticleImageTask extends AsyncTask<String, Void, Drawable> {
+public class DownloadPostImageTask extends AsyncTask<String, Void, Drawable> {
 
-    private ArticleListAdapter.ViewHolder holder;
+    private PostListAdapter.ViewHolder holder;
 
-    public DownloadArticleImageTask() {
+    public DownloadPostImageTask() {
 
     }
 
-    public DownloadArticleImageTask(ArticleListAdapter.ViewHolder holder) {
+    public DownloadPostImageTask(PostListAdapter.ViewHolder holder) {
         this.holder = holder;
     }
 
@@ -49,7 +49,7 @@ public class DownloadArticleImageTask extends AsyncTask<String, Void, Drawable> 
                         br.close();
                         return this.getImageDrawable(sb.toString());
                     default:
-                        Timber.tag("DownloadArticleImageTask").i("Request failure");
+                        Timber.tag("DownloadArticleImageTas").i("Request failure");
                         return null;
                 }
             } catch (Exception e) {
@@ -62,7 +62,7 @@ public class DownloadArticleImageTask extends AsyncTask<String, Void, Drawable> 
     }
 
     private Drawable getImageDrawable(String jsonObject){
-        ArticleImage articleImage = new Gson().fromJson(jsonObject, ArticleImage.class);
+        PostImage articleImage = new Gson().fromJson(jsonObject, PostImage.class);
 
         try {
             URL urlConnection = new URL(articleImage.getMediaDetails().getSizes().getThumbnail().getSourceUrl());

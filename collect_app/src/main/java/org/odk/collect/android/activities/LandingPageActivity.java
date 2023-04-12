@@ -72,7 +72,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(getApplicationContext(), ArticleListActivity.class);
+                Intent i = new Intent(getApplicationContext(), PostListActivity.class);
                 startActivity(i);
             }
         });

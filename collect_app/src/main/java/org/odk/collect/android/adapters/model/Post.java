@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 @Keep
-public class Article {
+public class Post {
     @SerializedName("id")
     private int id;
     @SerializedName("date_gmt")
@@ -29,7 +29,7 @@ public class Article {
     @SerializedName("_links")
     private Links _links;
 
-    public Article(int id, String dateGmt, String modifiedGmt, String link, Title title, Content content, Content excerpt, List<Integer> categories, List<Integer> tags, Links _links) {
+    public Post(int id, String dateGmt, String modifiedGmt, String link, Title title, Content content, Content excerpt, List<Integer> categories, List<Integer> tags, Links _links) {
         this.id = id;
         this.dateGmt = dateGmt;
         this.modifiedGmt = modifiedGmt;
@@ -42,7 +42,7 @@ public class Article {
         this._links = _links;
     }
 
-    public Article() {
+    public Post() {
     }
 
     public int getId() {
