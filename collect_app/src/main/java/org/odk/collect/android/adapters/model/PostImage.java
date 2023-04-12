@@ -5,7 +5,7 @@ import androidx.annotation.Keep;
 import com.google.gson.annotations.SerializedName;
 
 @Keep
-public class ArticleImage {
+public class PostImage {
 
     @SerializedName("id")
     private int id;
@@ -16,13 +16,13 @@ public class ArticleImage {
     @SerializedName("media_details")
     private MediaDetails mediaDetails;
 
-    public ArticleImage(Integer id, MediaDetails mediaDetails, String sourceUrl) {
+    public PostImage(Integer id, MediaDetails mediaDetails, String sourceUrl) {
         this.id = id;
         this.mediaDetails = mediaDetails;
         this.sourceUrl = sourceUrl;
     }
 
-    public ArticleImage() {
+    public PostImage() {
     }
 
     public Integer getId() {

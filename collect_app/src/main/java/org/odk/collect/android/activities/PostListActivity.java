@@ -1,17 +1,16 @@
 package org.odk.collect.android.activities;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import org.odk.collect.android.R;
-import org.odk.collect.android.adapters.ArticleListAdapter;
-import org.odk.collect.android.adapters.model.Article;
+import org.odk.collect.android.adapters.PostListAdapter;
+import org.odk.collect.android.adapters.model.Post;
 import org.odk.collect.android.dao.WpApiService;
 import org.odk.collect.android.utilities.ExternalWebPageHelper;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
@@ -25,11 +24,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
-public class ArticleListActivity extends AppCompatActivity implements
-        ArticleListAdapter.ArticleItemClickListener {
-    private List<Article> articles;
+public class PostListActivity extends AppCompatActivity implements
+        PostListAdapter.ArticleItemClickListener {
+    private List<Post> articles;
     private RecyclerView recyclerView;
-    private ArticleListAdapter adapter;
+    private PostListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +40,7 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         // initialize RecyclerView and Adapter
         recyclerView = findViewById(R.id.articleRecyclerView);
-        adapter = new ArticleListAdapter(articles, this, this);
+        adapter = new PostListAdapter(articles, this, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
@@ -57,10 +56,10 @@ public class ArticleListActivity extends AppCompatActivity implements
         WpApiService apiService = retrofit.create(WpApiService.class);
 
         // call API to get data
-        Call<List<Article>> call = apiService.getPosts("publish");
-        call.enqueue(new Callback<List<Article>>() {
+        Call<List<Post>> call = apiService.getPosts("publish");
+        call.enqueue(new Callback<List<Post>>() {
             @Override
-            public void onResponse(Call<List<Article>> call, Response<List<Article>> response) {
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
                 if (response.isSuccessful()) {
                     articles.addAll(response.body());
                     adapter.notifyDataSetChanged();
@@ -70,7 +69,7 @@ public class ArticleListActivity extends AppCompatActivity implements
             }
 
             @Override
-            public void onFailure(Call<List<Article>> call, Throwable t) {
+            public void onFailure(Call<List<Post>> call, Throwable t) {
                 Timber.tag("ArticleListActivity").e(t);
             }
         });
@@ -85,7 +84,7 @@ public class ArticleListActivity extends AppCompatActivity implements
     @Override
     public void onClick(int position) {
         if (MultiClickGuard.allowClick(getClass().getName())) {
-            Article article = articles.get(position);
+            Post article = articles.get(position);
             Intent intent = new Intent(this, WebViewActivity.class);
             intent.putExtra(ExternalWebPageHelper.OPEN_URL, article.getLink());
             startActivity(intent);

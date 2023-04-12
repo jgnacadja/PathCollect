@@ -1,6 +1,6 @@
 package org.odk.collect.android.dao;
 
-import org.odk.collect.android.adapters.model.Article;
+import org.odk.collect.android.adapters.model.Post;
 
 import java.util.List;
 
@@ -10,6 +10,6 @@ import retrofit2.http.Query;
 
 public interface WpApiService {
     @GET("posts")
-    Call<List<Article>> getPosts(@Query("status") String status);
+    Call<List<Post>> getPosts(@Query("status") String status);
 }
 
