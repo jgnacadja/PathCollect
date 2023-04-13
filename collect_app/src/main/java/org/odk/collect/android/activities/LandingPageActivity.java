@@ -58,8 +58,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
         messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), TopicActivity.class);
-                startActivity(i);
+                confirmOpenPeriodical();
             }
         });
 
@@ -149,6 +148,8 @@ public class LandingPageActivity extends CollectAbstractActivity{
                 // Par exemple, vous pouvez lancer l'application Periodical ici
                 dialog.dismiss();
                 openPeriodical();
+                Intent i = new Intent(getApplicationContext(), TopicActivity.class);
+                startActivity(i);
             }
         });
         builder.setNegativeButton("Annuler", null);
