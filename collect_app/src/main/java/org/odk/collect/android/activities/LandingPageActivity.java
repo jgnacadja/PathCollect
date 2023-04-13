@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 
@@ -24,14 +24,14 @@ public class LandingPageActivity extends CollectAbstractActivity{
     //button
     private Button sondageButton;
     private Button messageButton;
-    private Button articleButton;
+    private Button postButton;
     private Button centreHospitalButton;
     private Button cycleButton;
     private Button notificationButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        new ThemeUtils(this).setDarkModeForCurrentProject();
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         super.onCreate(savedInstanceState);
         DaggerUtils.getComponent(this).inject(this);
@@ -58,22 +58,21 @@ public class LandingPageActivity extends CollectAbstractActivity{
         messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), TopicActivity.class);
-                startActivity(i);
+                confirmOpenForum();
             }
         });
 
-        //article Button
-        articleButton = findViewById(R.id.article);
-        articleButton.setOnClickListener(new View.OnClickListener() {
+        //post Button
+        postButton = findViewById(R.id.post);
+        postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), ArticleListActivity.class);
+                Intent i = new Intent(getApplicationContext(), PostListActivity.class);
                 startActivity(i);
             }
         });
 
-      // centre Hospital Button
+        // centre Hospital Button
         centreHospitalButton = findViewById(R.id.centre_Hospital);
         centreHospitalButton.setText(getString(R.string.btn_centreHospital));
         centreHospitalButton.setOnClickListener(new View.OnClickListener() {
@@ -138,12 +137,32 @@ public class LandingPageActivity extends CollectAbstractActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    private void confirmOpenForum(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(LandingPageActivity.this);
+        builder.setTitle(getString(R.string.warning_modal_title));
+        builder.setMessage(getString(R.string.btn_forum_warning));
+        builder.setIcon(R.drawable.notes);
+        builder.setPositiveButton(getString(R.string.btn_warning_agree), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Action à effectuer lorsque l'utilisateur clique sur le bouton "J'accepte continuer"
+                // Par exemple, vous pouvez lancer l'application Periodical ici
+                dialog.dismiss();
+                Intent i = new Intent(getApplicationContext(), TopicActivity.class);
+                startActivity(i);
+            }
+        });
+        builder.setNegativeButton(getString(R.string.btn_warning_disagree), null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
     private void confirmOpenPeriodical(){
         AlertDialog.Builder builder = new AlertDialog.Builder(LandingPageActivity.this);
-        builder.setTitle("AVERTISSEMENTS");
-        builder.setMessage("Pour accéder à la fonctionnalité de gestion de cycle menstruel, vous serez redirigée vers l'application mobile Periodical. Si vous n’avez pas encore l’application Periodical installée, vous serez redirigée vers Google Play Store pour l’installer.\n\nCette application utilise la méthode Knaus-Ogino, une méthode de contraception naturelle, pour déterminer les jours fertiles, mais elle présente un taux d'échec supérieur à 14%. L'abstinence sexuelle est la seule méthode de contraception efficace à 100% pour éviter complètement une grossesse.\n\nBien qu'elle donne une indication sur les jours non fertiles, il n’est pas recommandé d’utiliser cette application pour éviter une grossesse. Les utilisatrices doivent s'adresser aux formations sanitaires habilitées si elles ont besoin de conseils sur l'utilisation de cette application avec des méthodes contraceptives modernes.\n\nLes informations fournies par cette application ne doivent pas être considérées comme des conseils médicaux.\n\nL’objectif principal de cette application est d'aider les femmes à suivre leur cycle et santé menstruel.\n\nAfin d'éviter tout risque de préjudice ou d'erreur de diagnostic, il est fortement recommandé aux utilisatrices de ne pas tenter de s'auto-diagnostiquer ou de s'auto-traiter. En cas de symptômes ou d'irrégularités identifiés, elles doivent consulter des formations sanitaires habilitées.");
+        builder.setTitle(getString(R.string.warning_modal_title));
+        builder.setMessage(getString(R.string.btn_periodical_warning));
         builder.setIcon(R.drawable.notes);
-        builder.setPositiveButton("J’ai lu et compris", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getString(R.string.btn_warning_agree), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Action à effectuer lorsque l'utilisateur clique sur le bouton "J'accepte continuer"
@@ -152,7 +171,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
                 openPeriodical();
             }
         });
-        builder.setNegativeButton("Annuler", null);
+        builder.setNegativeButton(getString(R.string.btn_warning_disagree), null);
         AlertDialog dialog = builder.create();
         dialog.show();
     }

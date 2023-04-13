@@ -1197,7 +1197,19 @@
     <string name="screen_question">%s</string>
     <string name="screen_add_question">Ask a question</string>
     <string name="screen_notification_list">Notifications</string>
-    <string name="screen_articles_list">Posts</string>
+    <string name="screen_posts_list">Posts</string>
     <string name="screen_health_center_list">Health Centers</string>
     <string name="screen_health_center">%s</string>
+
+    <!--
+    ##############################################
+    # WARNING
+    ##############################################
+    -->
+    <string name="warning_modal_title">WARNING</string>
+    <string name="btn_periodical_warning">To access the menstrual cycle management feature, you will be redirected to the Periodical mobile app. If you don\'t have the Periodical app installed yet, you will be redirected to Google Play Store to install it.\n\nThis app uses the Knaus-Ogino method, a natural birth control method, to determine fertile days, but it has a failure rate of over 14%. Sexual abstinence is the only method of contraception that is 100% effective in completely avoiding pregnancy.\n\nAlthough it gives an indication of non-fertile days, it is not recommended to use this application to avoid pregnancy. Users should contact authorized health facilities if they need advice on using this application with modern contraceptive methods.\n\nThe information provided by this app should not be taken as medical advice.\n\nThe main purpose of this app is to help women track their menstrual cycle and health.\n\nTo avoid any risk of harm or misdiagnosis, users are strongly advised not to attempt self-diagnosis or self-treatment. In the event of symptoms or irregularities identified, they must consult authorized health facilities.</string>
+    <string name="btn_forum_warning">Although this discussion forum can be useful for obtaining information and support, you are advised not to consider the information received as medical advice. Before making a medical decision, it is always recommended to consult an authorized health facility.\n\nThe information on this forum is provided by users of family planning products and services and is not verified by qualified health professionals. Therefore, it may be inaccurate and unreliable.\n\nAdvice given on this forum may not take into account your medical history, condition or needs. Therefore, they may not be appropriate for your personal situation.\n\nAvoid advice on this discussion forum should never replace the advice, diagnosis or treatment of a qualified healthcare professional. Before making a medical decision, taking medication, or undergoing treatment, it is always recommended to consult an authorized health facility.\n\nIt is important to be careful about the personal experiences shared on this forum. Their reliability may be questionable.\n\nYou should never rely solely on information obtained from this discussion forum to make medical decisions. It is recommended that you seek several sources of information and consult an authorized health facility before taking a decision.</string>
+    <string name="discussion_warning">The information on this forum comes from users of family planning products and services and is not verified by healthcare professionals. It is dangerous to rely solely on this information to make medical decisions. Thus, it is recommended to research several sources and consult an authorized health facility before making a decision.</string>
+    <string name="btn_warning_agree">I have read and understood</string>
+    <string name="btn_warning_disagree">Cancel</string>
 </resources>

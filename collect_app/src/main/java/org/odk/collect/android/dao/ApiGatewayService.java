@@ -1,6 +1,6 @@
 package org.odk.collect.android.dao;
 
-import org.odk.collect.android.adapters.model.Article;
+import org.odk.collect.android.adapters.model.Post;
 import org.odk.collect.android.adapters.model.Hospital;
 
 import java.util.List;
@@ -16,5 +16,5 @@ public interface ApiGatewayService {
     Call<List<Hospital>> searchHospitals(@Body RequestBody request);
 
     @GET("wp-apis")
-    Call<List<Article>> getWpPosts();
+    Call<List<Post>> getWpPosts();
 }
