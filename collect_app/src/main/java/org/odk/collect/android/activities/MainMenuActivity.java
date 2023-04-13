@@ -140,7 +140,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
 
         // manage forms button. no result expected.
         getFormsButton = findViewById(R.id.get_forms);
-        getFormsButton.setText(getString(R.string.get_quest));
+        getFormsButton.setText(getString(R.string.questionnaire_form));
         getFormsButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
