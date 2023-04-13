@@ -58,7 +58,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
         messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                confirmOpenPeriodical();
+                confirmOpenForum();
             }
         });
 
@@ -135,11 +135,10 @@ public class LandingPageActivity extends CollectAbstractActivity{
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
-
-    private void confirmOpenPeriodical(){
+    private void confirmOpenForum(){
         AlertDialog.Builder builder = new AlertDialog.Builder(LandingPageActivity.this);
         builder.setTitle(getString(R.string.title_avertissement));
-        builder.setMessage(getString(R.string.message_avertissement));
+        builder.setMessage(getString(R.string.avertissement_forum));
         builder.setIcon(R.drawable.notes);
         builder.setPositiveButton("J’ai lu et compris", new DialogInterface.OnClickListener() {
             @Override

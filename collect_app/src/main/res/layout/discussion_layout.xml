@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#A4FFC107"
+        android:background="@color/bg_discussion"
         android:gravity="center_vertical">
 
         <ImageView
@@ -59,7 +59,7 @@
                 android:scrollbarStyle="outsideOverlay"
                 android:fadeScrollbars="false"
                 tools:ignore="HardcodedText"
-                android:paddingBottom="10dp"
+                android:paddingBottom="@dimen/size_padding"
                 />
         </ScrollView>
     </LinearLayout>
