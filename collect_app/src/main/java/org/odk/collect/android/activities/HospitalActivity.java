@@ -10,23 +10,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.odk.collect.android.R;
-import org.odk.collect.android.adapters.HospitalListAdapter;
 import org.odk.collect.android.adapters.ProductListAdapter;
 import org.odk.collect.android.adapters.model.Hospital;
-import org.odk.collect.android.dao.ApiGatewayService;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import timber.log.Timber;
 
 public class HospitalActivity extends AppCompatActivity {
 
@@ -43,10 +37,9 @@ public class HospitalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hospital_layout);
 
-        initToolbar();
-
         Serializable s = getIntent().getSerializableExtra("hospital");
         Hospital hospital = (Hospital) s;
+        initToolbar(hospital.getName());
 
         name = findViewById(R.id.hospitalDetailName);
         name.setText(hospital.getName());
@@ -64,12 +57,11 @@ public class HospitalActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
     }
 
-    private void initToolbar() {
+    private void initToolbar(String name) {
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.collect_app_name));
+        setTitle(name);
         setSupportActionBar(toolbar);
     }
 

@@ -56,8 +56,6 @@ class FirstLaunchActivity : CollectAbstractActivity() {
     }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-
         installSplashScreen()
 
         super.onCreate(savedInstanceState)
