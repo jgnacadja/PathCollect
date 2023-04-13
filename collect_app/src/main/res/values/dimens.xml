@@ -24,4 +24,6 @@
     <dimen name="text_size_button">17sp</dimen>
     <dimen name="text_size_subtitle">24dp</dimen>
     <dimen name="size_icon">30dp</dimen>
+    <dimen name="size_padding">10dp</dimen>
+
 </resources>
