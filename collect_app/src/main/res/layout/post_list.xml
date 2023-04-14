@@ -7,7 +7,7 @@
     <include layout="@layout/app_bar_with_progress_bar_layout"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/articleRecyclerView"
+        android:id="@+id/postRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical" />
