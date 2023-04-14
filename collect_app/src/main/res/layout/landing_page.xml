@@ -56,7 +56,7 @@
                 android:orientation="horizontal">
 
                     <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                        android:id="@+id/article"
+                        android:id="@+id/post"
                         style="@style/Widget.Collect.Button.BlocButton"
                         android:text="@string/btn_article"
                         app:icon="@drawable/icon_article"
