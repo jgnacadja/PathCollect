@@ -34,9 +34,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorOnSurface"
             android:padding="@dimen/margin_small"
-            android:background="@color/colorPrimary"
             android:textStyle="bold"
             android:textSize="@dimen/text_size_large"
             tools:text="Avortement" />
@@ -47,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_extra_small"
             android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_size_standard"
+            android:textSize="@dimen/text_size_small"
             android:textAppearance="@style/TextAppearance.Collect.Body2.MediumEmphasis"
             tools:text="(20548 questions)" />
     </LinearLayout>

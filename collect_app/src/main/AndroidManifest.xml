@@ -111,7 +111,8 @@ the specific language governing permissions and limitations under the License.
             android:name=".activities.DiscussionActivity"
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".activities.DiscussionListActivity" />
-        <activity android:name=".activities.AddDiscussionActivity" />
+        <activity android:name=".activities.AddDiscussionActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".activities.MainMenuActivity" />
         <activity android:name=".activities.LandingPageActivity" />
         <activity android:name=".activities.PostListActivity" />
