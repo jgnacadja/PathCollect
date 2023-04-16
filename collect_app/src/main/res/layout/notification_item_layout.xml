@@ -29,7 +29,7 @@ You may obtain a copy of the License at
             style="@style/TextAppearance.Collect.Subtitle1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_large"
+            android:textSize="@dimen/text_size_standard"
             android:textStyle="bold"
             tools:text="@string/none" />
 

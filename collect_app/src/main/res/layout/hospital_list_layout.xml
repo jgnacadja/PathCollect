@@ -14,7 +14,7 @@
         android:ellipsize="end"
         android:maxLines="2"
         android:text="@string/formation_title"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@android:color/darker_gray"
         android:textSize="@dimen/text_size_larger"
         android:textStyle="bold" />
 

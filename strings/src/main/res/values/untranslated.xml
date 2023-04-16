@@ -41,6 +41,7 @@ the specific language governing permissions and limitations under the License. -
     <string name="btn_cycle" translatable="false">Mon\n Cycle </string>
     <string name="btn_about" translatable="false">About</string>
     <string name="form_selected" translatable="false">(%s)Formulaire sélectionné(s)</string>
+    <string name="text_dots" translatable="false">%s...</string>
 
     <!--
     ##############################################

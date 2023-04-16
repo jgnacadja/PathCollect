@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.model.Notification;
+import org.odk.collect.android.utilities.TextUtils;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Notification notification = items.get(position);
         holder.notificationTitle.setText(notification.getTitle());
-        holder.notificationSubtitle.setText(notification.getBody());
+        holder.notificationSubtitle.setText(TextUtils.cropText(notification.getBody()));
         holder.image.setImageResource(R.drawable.ic_fcm_notification);
         holder.image.setTag(R.drawable.ic_fcm_notification);
     }

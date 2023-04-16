@@ -47,6 +47,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
+            Timber.tag(TAG).d("Message Notification link: %s", remoteMessage.getNotification().getLink());
+
             String notificationTitle = remoteMessage.getNotification().getTitle();
             String notificationBody = remoteMessage.getNotification().getBody();
 
@@ -124,7 +126,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.drawable.notes)
-                        .setContentTitle(getString(R.string.fcm_message) + " : " + messageTitle)
+                        .setContentTitle(messageTitle)
                         .setContentText(messageBody)
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
