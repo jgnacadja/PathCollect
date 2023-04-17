@@ -257,7 +257,6 @@ public class MainMenuActivity extends CollectAbstractActivity {
                 Intent intent = new Intent(this, AboutActivity.class);
                 startActivity(intent);
                 return true;
-
             case R.id.projects:
                 showIfNotShowing(ProjectSettingsDialog.class, getSupportFragmentManager());
                 return true;
