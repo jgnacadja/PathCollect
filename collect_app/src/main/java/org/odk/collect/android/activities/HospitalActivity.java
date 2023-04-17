@@ -22,7 +22,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class HospitalActivity extends AppCompatActivity {
+public class HospitalActivity extends CollectAbstractActivity {
 
     private static final String TAG = "HospitalActivity";
     private List<Hospital.Prestation> prestations;

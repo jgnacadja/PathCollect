@@ -19,7 +19,7 @@
             android:text="@string/none"
             android:textColor="@color/colorPrimary"
             android:layout_weight="1"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_size_hospital"
             android:textStyle="bold" />
 
         <TextView
@@ -44,7 +44,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="@dimen/size_layout"
         android:background="@color/colorOnSurface" />
 
     <LinearLayout
@@ -63,7 +63,7 @@
             android:maxLines="2"
             android:text="@string/product_title"
             android:textColor="@color/colorPrimary"
-            android:textSize="24sp"
+            android:textSize="@dimen/text_size"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
