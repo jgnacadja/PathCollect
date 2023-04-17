@@ -19,7 +19,7 @@
             android:text="@string/none"
             android:textColor="@color/colorPrimary"
             android:layout_weight="1"
-            android:textSize="@dimen/text_size_hospital"
+            android:textSize="@dimen/title_size"
             android:textStyle="bold" />
 
         <TextView
@@ -44,7 +44,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_layout"
+        android:layout_height="@dimen/space_size"
         android:background="@color/colorOnSurface" />
 
     <LinearLayout

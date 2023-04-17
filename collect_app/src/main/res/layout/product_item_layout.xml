@@ -13,8 +13,8 @@
 
     <ImageView
         android:id="@+id/prestationType"
-        android:layout_width="@dimen/size_layout_width"
-        android:layout_height="@dimen/size_layout_height"
+        android:layout_width="@dimen/image_width"
+        android:layout_height="@dimen/image_height"
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_extra_small"
         android:padding="@dimen/margin_standard"
@@ -38,13 +38,13 @@
                 android:text="@string/none"
                 android:textColor="@color/colorPrimary"
                 android:layout_weight="1"
-                android:textSize="@dimen/text_size_hospital"
+                android:textSize="@dimen/title_size"
                 android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/productAvailability"
-                android:layout_width="@dimen/text_size_product"
-                android:layout_height="@dimen/text_size_product"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_available" />
         </LinearLayout>
