@@ -8,6 +8,11 @@
     <dimen name="text_size_subtitle">24dp</dimen>
     <dimen name="size_icon">30dp</dimen>
     <dimen name="text_size">24sp</dimen>
+    <dimen name="size_layout_width">92dp</dimen>
+    <dimen name="size_layout_height">96dp</dimen>
+    <dimen name="size_layout">2dp</dimen>
+
+
 
 
 

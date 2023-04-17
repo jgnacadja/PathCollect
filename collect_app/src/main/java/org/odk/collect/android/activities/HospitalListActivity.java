@@ -27,7 +27,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
-public class HospitalListActivity extends AppCompatActivity implements
+public class HospitalListActivity extends CollectAbstractActivity implements
         HospitalListAdapter.HospitalItemClickListener{
 
     private static final String TAG = "HospitalListActivity";
