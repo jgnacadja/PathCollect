@@ -31,7 +31,7 @@
             android:layout_weight="1"
             android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
             android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_size_large"
+            android:textSize="@dimen/text_size_standard"
             tools:text="@string/none" />
     </LinearLayout>
 

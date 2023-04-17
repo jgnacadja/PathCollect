@@ -110,7 +110,8 @@ the specific language governing permissions and limitations under the License.
         <activity android:name=".activities.TopicActivity" />
         <activity android:name=".activities.DiscussionActivity" />
         <activity android:name=".activities.DiscussionListActivity" />
-        <activity android:name=".activities.AddDiscussionActivity" />
+        <activity android:name=".activities.AddDiscussionActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".activities.MainMenuActivity" />
         <activity android:name=".activities.LandingPageActivity" />
         <activity
