@@ -31,8 +31,6 @@ public class LandingPageActivity extends CollectAbstractActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        new ThemeUtils(this).setDarkModeForCurrentProject();
-
         super.onCreate(savedInstanceState);
         DaggerUtils.getComponent(this).inject(this);
         setContentView(R.layout.landing_page);

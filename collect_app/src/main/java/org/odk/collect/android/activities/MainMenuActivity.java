@@ -81,8 +81,6 @@ public class MainMenuActivity extends CollectAbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        new ThemeUtils(this).setDarkModeForCurrentProject();
-
         super.onCreate(savedInstanceState);
         DaggerUtils.getComponent(this).inject(this);
         setContentView(R.layout.main_menu);
