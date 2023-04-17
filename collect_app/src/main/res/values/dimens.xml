@@ -22,7 +22,6 @@
     <dimen name="touch_target_size">48dp</dimen>
     <dimen name="post_image_size">92dp</dimen>
     <dimen name="divider_accidental_tap">8dp</dimen>
-<<<<<<< HEAD
 
     <!-- touch target -->
     <dimen name="main_menu_icon">30dp</dimen>
@@ -31,12 +30,9 @@
     <dimen name="text_size_smaller">13sp</dimen>
     <dimen name="size_padding">10dp</dimen>
     <dimen name="size_surtitle">28dp</dimen>
-=======
     <dimen name="size_width">92dp</dimen>
-    <dimen name="size_height">96dp</dimen>
     <dimen name="text_size_hospital">20sp</dimen>
 
->>>>>>> f9c9f6219 (feat: [DSSC#8669xdjgx] ajout des corrections)
 
 
 </resources>
