@@ -7,11 +7,7 @@
     <dimen name="text_size_button">17sp</dimen>
     <dimen name="text_size_subtitle">24dp</dimen>
     <dimen name="size_icon">30dp</dimen>
-    <dimen name="text_size_large">22sp</dimen>
-    <dimen name="text_size_larger">26sp</dimen>
-    <dimen name="size_height">70dp</dimen>
-    <dimen name="size_layout">48dp</dimen>
-    <dimen name="size_marginTop">20dp</dimen>
+    <dimen name="text_size">24sp</dimen>
 
 
 
@@ -31,7 +27,10 @@
     <dimen name="size_padding">10dp</dimen>
     <dimen name="size_surtitle">28dp</dimen>
     <dimen name="size_width">92dp</dimen>
+    <dimen name="size_height">96dp</dimen>
     <dimen name="text_size_hospital">20sp</dimen>
+    <dimen name="text_size_product">20dp</dimen>
+
 
 
 

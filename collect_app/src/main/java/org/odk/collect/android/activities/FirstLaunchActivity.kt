@@ -1,7 +1,6 @@
 package org.odk.collect.android.activities
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import org.odk.collect.analytics.Analytics
 import org.odk.collect.android.R
