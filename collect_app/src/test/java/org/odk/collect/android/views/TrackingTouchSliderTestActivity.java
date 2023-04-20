@@ -17,7 +17,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 @RunWith(AndroidJUnit4.class)
-public class TrackingTouchSliderTest {
+public class TrackingTouchSliderTestActivity {
 
     private TrackingTouchSlider slider;
 

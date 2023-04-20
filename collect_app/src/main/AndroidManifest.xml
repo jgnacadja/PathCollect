@@ -113,6 +113,35 @@ the specific language governing permissions and limitations under the License.
         <activity android:name=".activities.DiscussionListActivity" />
         <activity android:name=".activities.AddDiscussionActivity"
             android:windowSoftInputMode="adjustResize"/>
+
+        <activity android:name=".activities.SliderOpinionActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activities.SliderForumActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activities.SliderHospitalActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activities.SliderArticleActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".activities.MainMenuActivity" />
         <activity android:name=".activities.LandingPageActivity" />
         <activity android:name=".activities.PostListActivity" />

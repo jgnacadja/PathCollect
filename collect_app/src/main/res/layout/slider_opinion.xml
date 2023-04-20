@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/logo_opinion_poll"
-            android:layout_width="match_parent"
-            android:layout_height="346dp"
-            android:layout_marginTop="84dp"
-            android:src="@drawable/ic_enquete"/>
+    <ImageView
+        android:id="@+id/logo_opinion_poll"
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
+        android:layout_marginTop="84dp"
+        android:src="@drawable/ic_enquete"
+        tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/center"
-        android:layout_width="450dp"
+        android:layout_width="match_parent"
         android:layout_height="426dp"
         android:background="@color/colorSlider"
-        android:paddingHorizontal="@dimen/margin_large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo_opinion_poll"
@@ -33,11 +36,10 @@
             android:id="@+id/id_title"
             android:layout_width="246dp"
             android:layout_height="107dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="55dp"
             android:text="@string/opinion_title"
             android:textColor="@color/colorWhite"
-            android:textSize="43dp"
+            android:textSize="40dp"
             android:gravity="center"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +47,7 @@
 
         <TextView
             android:id="@+id/id_surtitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="120dp"
             android:text="@string/opinion_surtitle"
@@ -53,57 +55,40 @@
             android:textSize="17dp"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.278"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-            android:id="@+id/sound"
-            style="@style/Widget.Collect.Button.FullWidth"
-            android:layout_width="58dp"
-            android:layout_height="45dp"
-            android:backgroundTint="@color/surfaceButtonColor"
-            android:drawableTop="@drawable/ic_volume"
-            android:padding="5dp"
-            app:cornerRadius="@dimen/preference_thumbnail_size"
+        <ImageButton
+            android:id="@+id/next_enq"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@color/colorWhite"
+            android:src="@drawable/ic_double"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.228"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.471" />
+            app:layout_constraintVertical_bias="0.5"
+            />
 
         <Button
-            android:id="@+id/next_op"
+            android:id="@+id/skip_op"
             style="@style/Widget.Collect.Button.FullWidth"
-            android:layout_width="139dp"
-            android:layout_height="46dp"
+            android:layout_width="80dp"
+            android:layout_height="42dp"
             android:backgroundTint="@color/surfaceButtonColor"
-            android:padding="5dp"
+            android:padding="1dp"
             android:text="@string/skip"
+            android:textSize="@dimen/margin_standard"
             android:textColor="@color/colorOnSurface"
             app:cornerRadius="@dimen/preference_thumbnail_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.813"
+            app:layout_constraintHorizontal_bias="0.893"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.644" />
-
-        <EditText
-            android:id="@+id/skip"
-            android:layout_width="65dp"
-            android:layout_height="44dp"
-            android:backgroundTint="@color/colorWhite"
-            android:inputType="textPersonName"
-            android:text="@string/skip"
-            android:textColor="@color/colorWhite"
-            android:textSize="20sp"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="173dp"
-            tools:layout_editor_absoluteY="180dp" />
+            app:layout_constraintVertical_bias="0.694" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

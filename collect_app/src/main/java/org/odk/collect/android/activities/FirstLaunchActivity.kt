@@ -61,7 +61,7 @@ class FirstLaunchActivity : CollectAbstractActivity() {
         DaggerUtils.getComponent(this).inject(this)
 
         if (projectsRepository.getAll().isNotEmpty()) {
-            ActivityUtils.startActivityAndCloseAllOthers(this, LandingPageActivity::class.java)
+            ActivityUtils.startActivityAndCloseAllOthers(this, SliderOpinionActivity::class.java)
             return
         }
 
@@ -98,8 +98,7 @@ class FirstLaunchActivity : CollectAbstractActivity() {
                     projectsRepository.save(Project.DEMO_PROJECT)
                     currentProjectProvider.setCurrentProject(Project.DEMO_PROJECT_ID)
 
-                    ActivityUtils.startActivityAndCloseAllOthers(this@FirstLaunchActivity, LandingPageActivity::class.java)
-                }
+                ActivityUtils.startActivityAndCloseAllOthers(this@FirstLaunchActivity, SliderOpinionActivity::class.java)
             }
         }
     }
