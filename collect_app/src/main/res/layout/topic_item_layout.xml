@@ -37,7 +37,7 @@
             android:textColor="@color/colorOnSurface"
             android:padding="@dimen/margin_small"
             android:textStyle="bold"
-            android:textSize="@dimen/text_size_large"
+            android:textSize="@dimen/text_size_standard"
             tools:text="Avortement" />
 
         <TextView

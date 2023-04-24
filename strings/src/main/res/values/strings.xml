@@ -36,20 +36,20 @@
     <string name="version_number">Version: %s</string>
     <string name="id_number">ID: %s</string>
     <!-- Please format date appropriately for your language: http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html -->
-    <string name="added_on_date_at_time">\'Added on\' EEE, MMM dd, yyyy \'at\' HH:mm</string>
+    <string name="added_on_date_at_time">\'Added on\' EEEE, dd MMMM, yyyy \'at\' HH:mm</string>
     <!-- Please format date appropriately for your language: http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html -->
-    <string name="saved_on_date_at_time">\'Saved on\' EEE, MMM dd, yyyy \'at\' HH:mm</string>
+    <string name="saved_on_date_at_time">\'Saved on\' EEEE, dd MMMM, yyyy \'at\' HH:mm</string>
     <!-- Please format date appropriately for your language: http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html -->
-    <string name="finalized_on_date_at_time">\'Finalized on\' EEE, MMM dd, yyyy \'at\' HH:mm</string>
+    <string name="finalized_on_date_at_time">\'Finalized on\' EEEE, dd MMMM, yyyy \'at\' HH:mm</string>
     <!-- Please format date appropriately for your language: http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html -->
-    <string name="sent_on_date_at_time">\'Sent on\' EEE, MMM dd, yyyy \'at\' HH:mm</string>
+    <string name="sent_on_date_at_time">\'Sent on\' EEEE, dd MMMM, yyyy \'at\' HH:mm</string>
     <!-- Please format date appropriately for your language: http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html -->
-    <string name="sending_failed_on_date_at_time">\'Sending failed on\' EEE, MMM dd, yyyy \'at\' HH:mm</string>
+    <string name="sending_failed_on_date_at_time">\'Sending failed on\' EEEE, dd MMMM, yyyy \'at\' HH:mm</string>
     <!-- Please format date appropriately for your language: http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html -->
-    <string name="deleted_on_date_at_time">\'Deleted on\' EEE, MMM dd, yyyy \'at\' HH:mm</string>
+    <string name="deleted_on_date_at_time">\'Deleted on\' EEEE, dd MMMM, yyyy \'at\' HH:mm</string>
     <string name="submission_deleted">Submission deleted</string>
     <!-- Please format date appropriately for your language: http://docs.oracle.com/javase/6/docs/api/java/text/SimpleDateFormat.html -->
-    <string name="modified_on_date_at_time">\'Modified on\' EEE, MMM dd, yyyy \'at\' HH:mm</string>
+    <string name="modified_on_date_at_time">\'Modified on\' EEEE, dd MMMM, yyyy \'at\' HH:mm</string>
     <string name="encrypted_form">Encrypted form</string>
     <string name="deleted_form">Deleted form</string>
 

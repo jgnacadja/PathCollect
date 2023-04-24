@@ -167,7 +167,7 @@
                 android:gravity="start"
                 android:text="@string/title_text_example"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/text_size_larger"
+                android:textSize="@dimen/text_size_standard"
                 android:textStyle="bold" />
         </LinearLayout>
 

@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_extra_small"
-        android:background="@color/color15"
+        android:background="@color/colorSecondaryVariant"
         android:textAppearance="@style/TextAppearance.Collect.Body2.MediumEmphasis"
         android:textColor="@color/colorOnPrimary"
         tools:text="Version: 2019051301" />
