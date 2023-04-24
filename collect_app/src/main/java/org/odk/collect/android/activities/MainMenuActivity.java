@@ -27,9 +27,13 @@ import android.widget.TextView;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.odk.collect.android.R;
 import org.odk.collect.android.activities.viewmodels.CurrentProjectViewModel;
 import org.odk.collect.android.activities.viewmodels.MainMenuViewModel;
+import org.odk.collect.android.adapters.model.Topic;
 import org.odk.collect.android.application.MapboxClassInstanceCreator;
 import org.odk.collect.android.formlists.blankformlist.BlankFormListActivity;
 import org.odk.collect.android.gdrive.GoogleDriveActivity;
@@ -274,7 +278,7 @@ public class MainMenuActivity extends CollectAbstractActivity {
         }
     }
 
-}
+
     private void initTopics() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference topicsRef = database.getReference("topics");

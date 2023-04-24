@@ -146,9 +146,27 @@ public class LandingPageActivity extends CollectAbstractActivity{
                 // Action à effectuer lorsque l'utilisateur clique sur le bouton "J'accepte continuer"
                 // Par exemple, vous pouvez lancer l'application Periodical ici
                 dialog.dismiss();
-                openPeriodical();
                 Intent i = new Intent(getApplicationContext(), TopicActivity.class);
                 startActivity(i);
+            }
+        });
+        builder.setNegativeButton("Annuler", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void confirmOpenPeriodical(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(LandingPageActivity.this);
+        builder.setTitle(getString(R.string.title_avertissement));
+        builder.setMessage(getString(R.string.message_avertissement));
+        builder.setIcon(R.drawable.notes);
+        builder.setPositiveButton("J’ai lu et compris", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Action à effectuer lorsque l'utilisateur clique sur le bouton "J'accepte continuer"
+                // Par exemple, vous pouvez lancer l'application Periodical ici
+                dialog.dismiss();
+                openPeriodical();
             }
         });
         builder.setNegativeButton("Annuler", null);

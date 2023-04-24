@@ -67,22 +67,6 @@ class FirstLaunchActivity : CollectAbstractActivity() {
 
         FirstLaunchLayoutBinding.inflate(layoutInflater).apply {
             setContentView(this.root)
-<<<<<<< HEAD
-
-            appName.text = String.format(
-                "%s %s",
-                getString(R.string.collect_app_name),
-                versionInformation.versionToDisplay
-            )
-
-            configureLater.addOnClickListener {
-                Analytics.log(AnalyticsEvents.TRY_DEMO)
-
-                projectsRepository.save(Project.DEMO_PROJECT)
-                currentProjectProvider.setCurrentProject(Project.DEMO_PROJECT_ID)
-
-                ActivityUtils.startActivityAndCloseAllOthers(this@FirstLaunchActivity, LandingPageActivity::class.java)
-=======
             addDsscProject()
             if (projectsRepository.getAll().isNotEmpty()) {
                 ActivityUtils.startActivityAndCloseAllOthers(this@FirstLaunchActivity, LandingPageActivity::class.java)
@@ -116,7 +100,6 @@ class FirstLaunchActivity : CollectAbstractActivity() {
 
                     ActivityUtils.startActivityAndCloseAllOthers(this@FirstLaunchActivity, LandingPageActivity::class.java)
                 }
->>>>>>> a965b769b (feat: [DSSC#8669hw7qz] Optimisation de l'intégration du toolbar & Ajout des options de configuration manuelle de projet)
             }
         }
     }

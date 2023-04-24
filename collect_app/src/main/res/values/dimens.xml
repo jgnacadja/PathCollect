@@ -3,15 +3,19 @@
 <resources>
     <!-- Custom font sizes -->
     <dimen name="text_size_small">16sp</dimen>
-<<<<<<< HEAD
+
     <dimen name="text_size_button">17sp</dimen>
     <dimen name="text_size_subtitle">24dp</dimen>
     <dimen name="size_icon">30dp</dimen>
-=======
-    <dimen name="text_size_standard">18sp</dimen>
     <dimen name="text_size_large">22sp</dimen>
     <dimen name="text_size_larger">26sp</dimen>
->>>>>>> 2e50b2d0a (feat: [DSSC#8669k820v] Intégration des pages du forum de discussion)
+    <dimen name="size_height">70dp</dimen>
+    <dimen name="size_layout">48dp</dimen>
+    <dimen name="size_marginTop">20dp</dimen>
+
+
+
+    <dimen name="text_size_standard">18sp</dimen>
 
     <!-- touch target -->
     <dimen name="touch_target_size">48dp</dimen>
@@ -21,9 +25,8 @@
     <dimen name="main_menu_bloc">160dp</dimen>
     <dimen name="discussion_icon">20dp</dimen>
     <dimen name="text_size_smaller">13sp</dimen>
-    <dimen name="text_size_button">17sp</dimen>
-    <dimen name="text_size_subtitle">24dp</dimen>
-    <dimen name="size_icon">30dp</dimen>
     <dimen name="size_padding">10dp</dimen>
+    <dimen name="size_surtitle">28dp</dimen>
+
 
 </resources>
