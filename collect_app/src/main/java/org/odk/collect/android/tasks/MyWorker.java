@@ -13,7 +13,6 @@ import org.odk.collect.android.adapters.model.Notification;
 import org.odk.collect.android.database.notification.DatabaseNotificationRepository;
 import org.odk.collect.android.storage.StoragePathProvider;
 import org.odk.collect.android.storage.StorageSubdirectory;
-import org.odk.collect.android.tasks.DownloadNotificationsTask;
 
 import timber.log.Timber;
 
@@ -44,9 +43,9 @@ public class MyWorker extends Worker {
         // Create a new notification object from the data
         Notification notification = new Notification(title, body, System.currentTimeMillis());
 
-        // Save the notification to the local database using a DAO
-        DownloadNotificationsTask task = new DownloadNotificationsTask(repository);
-        task.execute(notification);
+//         Save the notification to the local database using a DAO
+        Timber.tag(TAG).i("Saving notification to local database using DAO");
+        repository.save(notification);
 
         return Result.success();
     }

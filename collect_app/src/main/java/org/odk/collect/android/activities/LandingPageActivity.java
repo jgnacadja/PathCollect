@@ -1,5 +1,7 @@
 package org.odk.collect.android.activities;
 
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
+
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -95,14 +97,6 @@ public class LandingPageActivity extends CollectAbstractActivity{
             @Override
             public void onClick(View v) {
                 openCycleBeads();
-            }
-        });
-
-        notificationButton = findViewById(R.id.notification);
-        notificationButton.setText(getString(R.string.btn_notification));
-        notificationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
             }
         });
 
