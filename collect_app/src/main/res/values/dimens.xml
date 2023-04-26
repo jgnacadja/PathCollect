@@ -11,6 +11,16 @@
     <dimen name="image_width">92dp</dimen>
     <dimen name="image_height">96dp</dimen>
     <dimen name="space_size">2dp</dimen>
+    <dimen name="text_size_large">22sp</dimen>
+    <dimen name="text_size_larger">26sp</dimen>
+    <dimen name="size_height">70dp</dimen>
+    <dimen name="size_layout">48dp</dimen>
+    <dimen name="size_marginTop">20dp</dimen>
+    <dimen name="size_marginStart">55dp</dimen>
+    <dimen name="textview_marginTop">120dp</dimen>
+    <dimen name="text_size_surtitle">17dp</dimen>
+    <dimen name="text_size_title">40dp</dimen>
+    <dimen name="btn_width">80dp</dimen>
 
     <dimen name="text_size_standard">18sp</dimen>
 
@@ -36,6 +46,14 @@
     <dimen name="size_marginTop">20dp</dimen>
     <dimen name="space_img_height">390dp</dimen>
     <dimen name="space_marginTop">84dp</dimen>
+    <dimen name="layout_constraint">426dp</dimen>
+    <dimen name="textView_title_width">246dp</dimen>
+    <dimen name="textView_title_height">107dp</dimen>
+    <dimen name="size_imgbutton_height">30dp</dimen>
+    <dimen name="size_button_height">42dp</dimen>
+    <dimen name="size_padding_button">1dp</dimen>
+    <dimen name="textView_title">296dp</dimen>
+    <dimen name="size_textView_hospital">45dp</dimen>
 
 
 </resources>
