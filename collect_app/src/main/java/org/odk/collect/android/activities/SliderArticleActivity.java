@@ -20,7 +20,7 @@ public class SliderArticleActivity extends AppCompatActivity {
         setContentView(R.layout.slider_article_reading);
 
         // Récupération du bouton
-        ImageButton nextButton = findViewById(R.id.next_art);
+        ImageButton nextButton = findViewById(R.id.next_article);
 
         // Définition de l'action du bouton
         nextButton.setOnClickListener(new View.OnClickListener() {

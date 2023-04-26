@@ -21,7 +21,7 @@ public class SliderForumActivity extends AppCompatActivity {
         setContentView(R.layout.slider_discussion_forum);
 
         // Récupération du bouton
-        ImageButton nextButton = findViewById(R.id.next_for);
+        ImageButton nextButton = findViewById(R.id.next_forum);
 
         // Définition de l'action du bouton
         nextButton.setOnClickListener(new View.OnClickListener() {

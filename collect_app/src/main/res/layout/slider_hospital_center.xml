@@ -6,19 +6,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/pager"
+        android:id="@+id/center_hospital"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent" />
 
     <ImageView
-        android:id="@+id/logo_opinion_poll"
+        android:id="@+id/logo_center_hospital"
         android:layout_width="match_parent"
-        android:layout_height="390dp"
-        android:layout_marginTop="84dp"
+        android:layout_height="@dimen/space_img_height"
+        android:layout_marginTop="@dimen/space_marginTop"
         android:src="@drawable/centre"
         tools:ignore="MissingConstraints" />
 
@@ -27,10 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="426dp"
         android:background="@color/colorSlider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_opinion_poll"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/logo_center_hospital">
 
         <TextView
             android:id="@+id/id_title"
@@ -54,12 +47,10 @@
             android:textColor="@color/colorWhite"
             android:textSize="17dp"
             android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/next_hosp"
+            android:id="@+id/next_hospital"
             android:layout_width="80dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"

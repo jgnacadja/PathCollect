@@ -34,6 +34,8 @@
     <dimen name="image_size">20dp</dimen>
     <dimen name="size_layout">48dp</dimen>
     <dimen name="size_marginTop">20dp</dimen>
+    <dimen name="space_img_height">390dp</dimen>
+    <dimen name="space_marginTop">84dp</dimen>
 
 
 </resources>

@@ -83,7 +83,7 @@ public class SliderHospitalActivity extends AppCompatActivity {
         setContentView(R.layout.slider_hospital_center);
 
         // Récupération du bouton
-        ImageButton nextButton = findViewById(R.id.next_hosp);
+        ImageButton nextButton = findViewById(R.id.next_hospital);
 
         // Définition de l'action du bouton
         nextButton.setOnClickListener(new View.OnClickListener() {
