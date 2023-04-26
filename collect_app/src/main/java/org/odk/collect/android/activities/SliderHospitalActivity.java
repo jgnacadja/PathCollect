@@ -3,6 +3,7 @@ package org.odk.collect.android.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -89,6 +90,15 @@ public class SliderHospitalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Lancement de la nouvelle activité
+                Intent intent = new Intent(SliderHospitalActivity.this, MainMenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button skipButton = findViewById(R.id.skip_hospital);
+        skipButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent intent = new Intent(SliderHospitalActivity.this, MainMenuActivity.class);
                 startActivity(intent);
             }

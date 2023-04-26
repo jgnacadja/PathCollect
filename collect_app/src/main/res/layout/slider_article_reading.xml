@@ -71,6 +71,25 @@
             app:layout_constraintVertical_bias="0.5"
             />
 
+        <Button
+            android:id="@+id/skip_article"
+            style="@style/Widget.Collect.Button.FullWidth"
+            android:layout_width="80dp"
+            android:layout_height="42dp"
+            android:backgroundTint="@color/surfaceButtonColor"
+            android:padding="1dp"
+            android:text="@string/skip"
+            android:textSize="@dimen/margin_standard"
+            android:textColor="@color/colorOnSurface"
+            app:cornerRadius="@dimen/preference_thumbnail_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.893"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.694" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
