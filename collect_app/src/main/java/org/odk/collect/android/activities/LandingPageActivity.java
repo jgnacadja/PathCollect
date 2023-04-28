@@ -57,15 +57,11 @@ public class LandingPageActivity extends CollectAbstractActivity{
             @Override
             public void onClick(View v) {
                 confirmOpenForum();
-                Intent i = new Intent(getApplicationContext(),
-                        MainMenuActivity.class);
-                startActivity(i);
-
             }
         });
 
         //article Button
-        articleButton = findViewById(R.id.article);
+        articleButton = findViewById(R.id.post);
         articleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

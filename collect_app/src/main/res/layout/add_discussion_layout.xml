@@ -46,9 +46,9 @@
         <ProgressBar
             android:id="@+id/discussionpBar"
             style="?android:attr/progressBarStyleLarge"
-            android:layout_width="@dimen/size_layout"
-            android:layout_height="@dimen/size_layout"
-            android:layout_marginTop="@dimen/size_marginTop"
+            android:layout_width="@dimen/size_width"
+            android:layout_height="@dimen/size_height"
+            android:layout_marginTop="@dimen/size_padding"
             android:visibility="gone"/>
     </LinearLayout>
 

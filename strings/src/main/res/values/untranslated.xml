@@ -35,6 +35,8 @@ the specific language governing permissions and limitations under the License. -
     <string name="subtitle" translatable="false">SONDAGE</string>
     <string name="btn_sondage" translatable="false">Sondage</string>
     <string name="btn_messsage" translatable="false">Forum</string>
+    <string name="btn_notification" translatable="false">Notification</string>
+    <string name="btn_article" translatable="false">Article</string>
     <string name="btn_post" translatable="false">Article</string>
     <string name="btn_centreHospital" translatable="false">Formation\n Sanitaires</string>
     <string name="btn_cycle" translatable="false">Mon\n Cycle </string>
@@ -52,7 +54,7 @@ the specific language governing permissions and limitations under the License. -
     <string name="upload_answer" translatable="false">Envoie du Formulaire</string>
     <string name="alert_msg" translatable="false">Les informations sur ce forum viennent d\’utilisatrices de produits et services de planification familiale et ne sont pas vérifiées par des professionnels de la santé. Il est dangereux de se fier seulement à ces informations pour prendre des décisions médicales. Ainsi, il est recommandé de rechercher plusieurs sources et de consulter une formation sanitaire habilitée avant de prendre une décision.</string>
 
-    <string name="periodical_app_package_name" translatable="false">de.arnowelzel.android.periodical</string></resources>
+    <string name="periodical_app_package_name" translatable="false">de.arnowelzel.android.periodical</string>
 
     <string name="api_gateway_url" translatable="false">https://store.prod.rintio.com/</string>
 </resources>

@@ -36,8 +36,6 @@ public class Hospital implements Serializable {
             this.available = available;
         }
 
-        public Prestation() {
-        }
 
         public String getId() {
             return id;
@@ -80,8 +78,6 @@ public class Hospital implements Serializable {
         }
     }
 
-    public Hospital() {
-    }
 
     public Hospital(String id, String name, Double longitude, Double latitude, String openingTime, String closingTime, List<String> phones, List<String> mails, String type, String level, List<Prestation> prestations) {
         this.id = id;
