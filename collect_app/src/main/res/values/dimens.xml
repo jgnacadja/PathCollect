@@ -11,6 +11,7 @@
     <dimen name="image_width">92dp</dimen>
     <dimen name="image_height">96dp</dimen>
     <dimen name="space_size">2dp</dimen>
+    <dimen name="text_size_larger">26sp</dimen>
 
     <dimen name="text_size_standard">18sp</dimen>
 
