@@ -13,7 +13,6 @@
     <dimen name="space_size">2dp</dimen>
 
     <dimen name="text_size_standard">18sp</dimen>
-    <dimen name="text_size_large">20sp</dimen>
 
     <!-- touch target -->
     <dimen name="touch_target_size">48dp</dimen>
