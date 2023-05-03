@@ -33,8 +33,8 @@
     <dimen name="text_size_product">20dp</dimen>
     <dimen name="title_size">20sp</dimen>
     <dimen name="image_size">20dp</dimen>
-
-
+    <dimen name="size_layout">48dp</dimen>
+    <dimen name="size_marginTop">20dp</dimen>
 
 
 </resources>
