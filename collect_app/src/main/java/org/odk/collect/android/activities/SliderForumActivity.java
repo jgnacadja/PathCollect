@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import org.odk.collect.android.R;
 
-public class SliderForumActivity extends AppCompatActivity {
+public class SliderForumActivity extends CollectAbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class SliderForumActivity extends AppCompatActivity {
         skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SliderForumActivity.this, MainMenuActivity.class);
+                Intent intent = new Intent(SliderForumActivity.this, LandingPageActivity.class);
                 startActivity(intent);
             }
         });

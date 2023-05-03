@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import org.odk.collect.android.R;
 
-public class SliderOpinionActivity extends AppCompatActivity {
+public class SliderOpinionActivity extends CollectAbstractActivity {
 
     private SharedPreferences sharedPreferences;
 
@@ -46,7 +46,7 @@ public class SliderOpinionActivity extends AppCompatActivity {
             skipButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(SliderOpinionActivity.this, MainMenuActivity.class);
+                    Intent intent = new Intent(SliderOpinionActivity.this, LandingPageActivity.class);
                     startActivity(intent);
                 }
             });
@@ -55,7 +55,7 @@ public class SliderOpinionActivity extends AppCompatActivity {
             editor.putBoolean("hasAlreadyStarted", true);
             editor.apply();
         } else {
-            Intent intent = new Intent(SliderOpinionActivity.this, MainMenuActivity.class);
+            Intent intent = new Intent(SliderOpinionActivity.this, LandingPageActivity.class);
             startActivity(intent);
             finish();
         }

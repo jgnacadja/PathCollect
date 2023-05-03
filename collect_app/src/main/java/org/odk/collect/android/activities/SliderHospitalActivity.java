@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import org.odk.collect.android.R;
 
-public class SliderHospitalActivity extends AppCompatActivity {
+public class SliderHospitalActivity extends CollectAbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class SliderHospitalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Lancement de la nouvelle activité
-                Intent intent = new Intent(SliderHospitalActivity.this, MainMenuActivity.class);
+                Intent intent = new Intent(SliderHospitalActivity.this, LandingPageActivity.class);
                 startActivity(intent);
             }
         });
@@ -36,7 +36,7 @@ public class SliderHospitalActivity extends AppCompatActivity {
         skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SliderHospitalActivity.this, MainMenuActivity.class);
+                Intent intent = new Intent(SliderHospitalActivity.this, LandingPageActivity.class);
                 startActivity(intent);
             }
         });

@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import org.odk.collect.android.R;
 
-public class SliderArticleActivity extends AppCompatActivity {
+public class SliderArticleActivity extends CollectAbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class SliderArticleActivity extends AppCompatActivity {
         skipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SliderArticleActivity.this, MainMenuActivity.class);
+                Intent intent = new Intent(SliderArticleActivity.this, LandingPageActivity.class);
                 startActivity(intent);
             }
         });
