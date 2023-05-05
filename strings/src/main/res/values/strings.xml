@@ -1181,6 +1181,5 @@
      ##############################################
      -->
     <string name="formation_title">Make an appointment with a center</string>
-    <string name="service_title">By services</string>
     <string name="product_title">Our products</string>
 </resources>
