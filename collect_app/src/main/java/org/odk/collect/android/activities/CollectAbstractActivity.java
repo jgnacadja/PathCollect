@@ -17,7 +17,6 @@
 package org.odk.collect.android.activities;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 
@@ -30,8 +29,6 @@ import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.permissions.PermissionsProvider;
 import org.odk.collect.settings.SettingsProvider;
 import org.odk.collect.strings.localization.LocalizedActivity;
-
-import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -49,14 +46,6 @@ public abstract class CollectAbstractActivity extends LocalizedActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
-        // Set default locale to French
-        Locale.setDefault(new Locale("fr", "FR"));
-
-        // Use "values-fr" resources
-        Configuration config = new Configuration();
-        config.setLocale(new Locale("fr", "FR"));
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-
         DaggerUtils.getComponent(this).inject(this);
     }
 
