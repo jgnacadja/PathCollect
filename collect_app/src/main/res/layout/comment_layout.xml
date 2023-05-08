@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
     android:orientation="horizontal"
-    android:padding="@dimen/margin_standard">
+    android:padding="@dimen/margin_small">
 
     <!-- Material Design reference: https://material.io/design/components/lists.html#specs -->
     <ImageView
@@ -52,7 +52,7 @@
                 android:layout_gravity="center_vertical"
                 android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
                 android:textColor="@color/color15"
-                android:textSize="@dimen/text_size_small"
+                android:textSize="@dimen/text_size_smaller"
                 tools:text="@string/title_text_example" />
         </LinearLayout>
 
