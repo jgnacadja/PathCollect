@@ -114,21 +114,13 @@ the specific language governing permissions and limitations under the License.
         <activity android:name=".activities.AddDiscussionActivity"
             android:windowSoftInputMode="adjustResize"/>
 
-        <activity android:name=".activities.SliderOpinionActivity"
-            android:exported="true">
-        </activity>
+        <activity android:name=".activities.SliderOpinionActivity"/>
 
-        <activity android:name=".activities.SliderForumActivity"
-            android:exported="true">
-        </activity>
+        <activity android:name=".activities.SliderForumActivity"/>
 
-        <activity android:name=".activities.SliderHospitalActivity"
-            android:exported="true">
-        </activity>
+        <activity android:name=".activities.SliderHospitalActivity"/>
 
-        <activity android:name=".activities.SliderArticleActivity"
-            android:exported="true">
-        </activity>
+        <activity android:name=".activities.SliderArticleActivity"/>
 
         <activity android:name=".activities.MainMenuActivity" />
         <activity android:name=".activities.LandingPageActivity" />

@@ -6,16 +6,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-
 import org.odk.collect.android.R;
 
 public class SliderArticleActivity extends CollectAbstractActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.slider_article_reading);
 

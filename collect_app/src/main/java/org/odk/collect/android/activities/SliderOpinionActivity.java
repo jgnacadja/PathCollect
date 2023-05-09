@@ -1,32 +1,19 @@
 package org.odk.collect.android.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-
 import org.odk.collect.android.R;
 
 public class SliderOpinionActivity extends CollectAbstractActivity {
 
-    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-
-        boolean hasAlreadyStarted = sharedPreferences.getBoolean("hasAlreadyStarted", false);
-
-        if (!hasAlreadyStarted) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            super.onCreate(savedInstanceState);
             setContentView(R.layout.slider_opinion);
 
             // Récupération du bouton
@@ -50,14 +37,5 @@ public class SliderOpinionActivity extends CollectAbstractActivity {
                     startActivity(intent);
                 }
             });
-
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("hasAlreadyStarted", true);
-            editor.apply();
-        } else {
-            Intent intent = new Intent(SliderOpinionActivity.this, LandingPageActivity.class);
-            startActivity(intent);
-            finish();
-        }
     }
 }
