@@ -17,7 +17,6 @@
 package org.odk.collect.android.activities;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 
