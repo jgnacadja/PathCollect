@@ -1,24 +1,24 @@
 package org.odk.collect.android.adapters;
-        import android.content.Context;
-        import android.text.Html;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.TextView;
-        import androidx.recyclerview.widget.RecyclerView;
-        import org.odk.collect.android.R;
-        import org.odk.collect.android.adapters.model.Hospital;
-        import java.util.List;
-        import com.google.common.eventbus.Subscribe;
-        import com.google.gson.Gson;
-        import timber.log.Timber;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
+
+import org.odk.collect.android.R;
+import org.odk.collect.android.adapters.model.Hospital;
+
+import java.util.List;
+
 public class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewHolder> {
 
     private final Context context;
     private List<Hospital> hospitals;
     private final HospitalItemClickListener listener;
 
-    public  HospitalListAdapter(List<Hospital> hospitals, Context context, HospitalItemClickListener listener) {
+    public HospitalListAdapter(List<Hospital> hospitals, Context context, HospitalItemClickListener listener) {
         this.context = context;
         this.hospitals = hospitals;
         this.listener = listener;

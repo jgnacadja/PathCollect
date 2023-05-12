@@ -8,17 +8,33 @@
     <dimen name="text_size_larger">26sp</dimen>
     <dimen name="text_size_smaller">13sp</dimen>
     <dimen name="text_size_button">17sp</dimen>
-    <dimen name="text_size_subtitle">24dp</dimen>
+    <dimen name="text_size_subtitle">24sp</dimen>
+    <dimen name="text_size">24sp</dimen>
+    <dimen name="image_width">92dp</dimen>
+    <dimen name="image_height">96dp</dimen>
+    <dimen name="space_size">2dp</dimen>
+
 
     <!-- touch target -->
     <dimen name="touch_target_size">48dp</dimen>
     <dimen name="post_image_size">92dp</dimen>
     <dimen name="size_surtitle">28dp</dimen>
     <dimen name="divider_accidental_tap">8dp</dimen>
+    <dimen name="size_icon">30dp</dimen>
+    <dimen name="hospital_logo">94dp</dimen>
+    <dimen name="divider_hospital_details">3dp</dimen>
+
+    <!-- touch target -->
     <dimen name="main_menu_icon">30dp</dimen>
     <dimen name="main_menu_bloc">160dp</dimen>
     <dimen name="discussion_icon">20dp</dimen>
-    <dimen name="size_icon">40dp</dimen>
-    <dimen name="hospital_logo">94dp</dimen>
-    <dimen name="divider_hospital_details">3dp</dimen>
+    <dimen name="size_padding">10dp</dimen>
+    <dimen name="size_width">92dp</dimen>
+    <dimen name="size_height">96dp</dimen>
+    <dimen name="text_size_hospital">20sp</dimen>
+    <dimen name="text_size_product">20dp</dimen>
+    <dimen name="title_size">20sp</dimen>
+    <dimen name="image_size">20dp</dimen>
+    <dimen name="size_layout">48dp</dimen>
+    <dimen name="size_marginTop">20dp</dimen>
 </resources>

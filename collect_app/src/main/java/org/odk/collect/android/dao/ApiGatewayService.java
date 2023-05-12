@@ -1,7 +1,7 @@
 package org.odk.collect.android.dao;
 
-import org.odk.collect.android.adapters.model.Post;
 import org.odk.collect.android.adapters.model.Hospital;
+import org.odk.collect.android.adapters.model.Post;
 
 import java.util.List;
 

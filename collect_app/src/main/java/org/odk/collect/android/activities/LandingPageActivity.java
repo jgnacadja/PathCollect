@@ -1,5 +1,6 @@
 package org.odk.collect.android.activities;
 
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import androidx.appcompat.app.AlertDialog;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.injection.DaggerUtils;
@@ -154,10 +154,10 @@ public class LandingPageActivity extends CollectAbstractActivity{
 
     private void confirmOpenPeriodical(){
         AlertDialog.Builder builder = new AlertDialog.Builder(LandingPageActivity.this);
-        builder.setTitle(getString(R.string.warning_modal_title));
-        builder.setMessage(getString(R.string.btn_periodical_warning));
+        builder.setTitle(getString(R.string.title_avertissement));
+        builder.setMessage(getString(R.string.message_avertissement));
         builder.setIcon(R.drawable.notes);
-        builder.setPositiveButton(getString(R.string.btn_warning_agree), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("J’ai lu et compris", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // Action à effectuer lorsque l'utilisateur clique sur le bouton "J'accepte continuer"
@@ -166,7 +166,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
                 openPeriodical();
             }
         });
-        builder.setNegativeButton(getString(R.string.btn_warning_disagree), null);
+        builder.setNegativeButton("Annuler", null);
         AlertDialog dialog = builder.create();
         dialog.show();
     }

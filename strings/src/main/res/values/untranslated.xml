@@ -42,20 +42,14 @@ the specific language governing permissions and limitations under the License. -
     <string name="btn_about" translatable="false">About</string>
     <string name="form_selected" translatable="false">(%s)Formulaire sélectionné(s)</string>
     <string name="text_dots" translatable="false">%s...</string>
+    <string name="title_avertissement" translatable="false">AVERTISSEMENTS</string>
+    <string name="message_avertissement" translatable="false">Pour accéder à la fonctionnalité de gestion de cycle menstruel, vous serez redirigée vers l\'application mobile Periodical. Si vous n\'avez pas encore l\'application Periodical installée, vous serez redirigée vers Google Play Store pour l\'installer.\n\nCette application utilise la méthode Knaus-Ogino, une méthode de contraception naturelle, pour déterminer les jours fertiles, mais elle présente un taux d\'échec supérieur à 14%. L\'abstinence sexuelle est la seule méthode de contraception efficace à 100% pour éviter complètement une grossesse.\n\nBien qu\'elle donne une indication sur les jours non fertiles, il n’est pas recommandé d’utiliser cette application pour éviter une grossesse. Les utilisatrices doivent s\'adresser aux formations sanitaires habilitées si elles ont besoin de conseils sur l\'utilisation de cette application avec des méthodes contraceptives modernes.\n\nLes informations fournies par cette application ne doivent pas être considérées comme des conseils médicaux.\n\nL’objectif principal de cette application est d\'aider les femmes à suivre leur cycle et santé menstruel.\n\nAfin d\'éviter tout risque de préjudice ou d\'erreur de diagnostic, il est fortement recommandé aux utilisatrices de ne pas tenter de s\'auto-diagnostiquer ou de s\'auto-traiter. En cas de symptômes ou d\'irrégularités identifiés, elles doivent consulter des formations sanitaires habilitées</string>
 
     <!--
     ##############################################
     # APP CONFIG
     ##############################################
     -->
-    <string name="dssc_kc_server_url" translatable="false">http://kc.kobo.dev.rintio.com</string>
-    <string name="dssc_username" translatable="false">molympio</string>
-    <string name="dssc_password" translatable="false">m@l@n@@2020$</string>
-    <string name="periodical_package_name" translatable="false">de.arnowelzel.android.periodical</string>
-    <string name="periodical_app_package_name" translatable="false">de.arnowelzel.android.periodical</string>
-    <string name="periodical_app_link" translatable="false">https://play.google.com/store/apps/details?id=de.arnowelzel.android.periodical</string>
-    <string name="api_gateway_url" translatable="false">https://store.prod.rintio.com/</string>
-    <string name="upload_answer" translatable="false">Envoie du Formulaire</string>
     <string name="empty_accuracy" translatable="false">--</string>
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string name="fcm_message" translatable="false">Plateforme DSSC</string>
@@ -63,4 +57,12 @@ the specific language governing permissions and limitations under the License. -
     <string name="fcm_api_key" translatable="false">2894p49788.s6s350o0o770q62q-o208ppq997ss2n4q949-242ps9s1150o51s3599r3s433q</string>
     <string name="wp_fcm_subscription" translatable="false">DSSC</string>
     <string name="wp_fcm_api" translatable="false">https://dssc-cms.000webhostapp.com/wp-json/fcm/pn/subscribe?rest_api_key=%s&amp;device_uuid=%s&amp;device_token=%s&amp;subscription=%s</string>
+    <string name="dssc_kc_server_url" translatable="false">http://kc.kobo.dev.rintio.com</string>
+    <string name="dssc_username" translatable="false">molympio</string>
+    <string name="dssc_password" translatable="false">m@l@n@@2020$</string>
+    <string name="avertissement_forum" translatable="false">Bien que ce forum de discussion puisse être utile pour obtenir des informations et du soutien, il est conseillé de ne pas considérer les informations reçues comme des conseils médicaux. Avant de prendre une décision médicale, il est toujours recommandé de consulter une formation sanitaire habilitée.\n\nLes informations sur ce forum sont fournies par des utilisatrices de produits et services de planification familiale et ne sont pas vérifiées par des professionnels de la santé qualifiés. Par conséquent, elles peuvent être inexactes et non fiables. \n\n Les conseils donnés sur ce forum peuvent ne pas tenir compte de votre historique médical, de votre état ou de vos besoins. Par conséquent, ils pourraient être inappropriés pour votre situation personnelle. \n\nLes conseils sur ce forum de discussions ne devraient jamais remplacer les conseils, le diagnostic ou le traitement d\'un professionnel de la santé qualifié. Avant de prendre une décision médicale, de prendre des médicaments, ou de suivre un traitement, il est toujours recommandé de consulter une formation sanitaire habilitée.\n\n Il est important d\'être prudent face aux expériences personnelles partagées sur ce forum. Leur fiabilité peut être douteuse.\n\nIl ne faut jamais se fier uniquement aux informations obtenues sur ce forum de discussion pour prendre des décisions médicales.Il est recommandé de rechercher plusieurs sources d\'information et de consulter une formation sanitaire habilitée avant de prendre une décision.</string>
+    <string name="upload_answer" translatable="false">Envoie du Formulaire</string>
+    <string name="alert_msg" translatable="false">Les informations sur ce forum viennent d\’utilisatrices de produits et services de planification familiale et ne sont pas vérifiées par des professionnels de la santé. Il est dangereux de se fier seulement à ces informations pour prendre des décisions médicales. Ainsi, il est recommandé de rechercher plusieurs sources et de consulter une formation sanitaire habilitée avant de prendre une décision.</string>
+    <string name="periodical_app_package_name" translatable="false">com.cyclebeads</string>
+    <string name="api_gateway_url" translatable="false">https://store.prod.rintio.com/</string>
 </resources>

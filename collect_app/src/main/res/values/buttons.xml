@@ -77,4 +77,5 @@
         <item name="strokeColor">@color/colorPrimary</item>
         <item name="strokeWidth">@dimen/stroke_width</item>
     </style>
+
 </resources>

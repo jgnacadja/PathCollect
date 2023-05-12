@@ -5,16 +5,21 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.HospitalListAdapter;
 import org.odk.collect.android.adapters.model.Hospital;
 import org.odk.collect.android.dao.ApiGatewayService;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -90,6 +95,7 @@ public class HospitalListActivity extends CollectAbstractActivity implements
             startActivity(intent);
         }
     }
+
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {

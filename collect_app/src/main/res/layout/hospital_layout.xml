@@ -10,7 +10,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_standard"
         android:orientation="horizontal">
 
         <TextView
@@ -21,7 +20,7 @@
             android:text="@string/none"
             android:textColor="@color/colorPrimary"
             android:layout_weight="1"
-            android:textSize="@dimen/text_size_large"
+            android:textSize="@dimen/title_size"
             android:textStyle="bold" />
 
         <TextView
@@ -39,15 +38,15 @@
         android:id="@+id/hospitalDetailType"
         style="@style/TextAppearance.Collect.Body2.MediumEmphasis"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_standard"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/margin_standard"
         android:text="@string/none"
         android:textColor="@color/color15" />
 
-    <View
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="@dimen/divider_hospital_details"
-        android:background="@color/color15" />
+        android:layout_height="@dimen/space_size"
+        android:background="@color/colorOnSurface" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,13 +64,12 @@
             android:maxLines="2"
             android:text="@string/product_title"
             android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_size_larger"
+            android:textSize="@dimen/text_size"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productRecyclerView"
             android:scrollbars="vertical"
-            android:layout_margin="@dimen/margin_small"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

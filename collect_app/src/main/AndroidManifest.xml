@@ -107,8 +107,7 @@ the specific language governing permissions and limitations under the License.
             </intent-filter>
         </activity>
         <activity android:name=".activities.TopicActivity" />
-        <activity
-            android:name=".activities.DiscussionActivity"
+        <activity android:name=".activities.DiscussionActivity"
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".activities.DiscussionListActivity" />
         <activity android:name=".activities.AddDiscussionActivity"

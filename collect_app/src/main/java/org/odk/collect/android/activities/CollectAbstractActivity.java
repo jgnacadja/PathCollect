@@ -21,7 +21,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import org.odk.collect.android.R;
@@ -44,7 +43,6 @@ public abstract class CollectAbstractActivity extends LocalizedActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
         DaggerUtils.getComponent(this).inject(this);
     }

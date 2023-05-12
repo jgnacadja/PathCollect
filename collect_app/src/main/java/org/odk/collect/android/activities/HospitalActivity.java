@@ -23,6 +23,9 @@ public class HospitalActivity extends CollectAbstractActivity {
     private List<Hospital.Prestation> prestations;
     private RecyclerView recyclerView;
     private ProductListAdapter adapter;
+    private TextView name;
+    private TextView type;
+    private TextView level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +39,11 @@ public class HospitalActivity extends CollectAbstractActivity {
         Serializable s = getIntent().getSerializableExtra("hospital");
         Hospital hospital = (Hospital) s;
 
-        TextView name = findViewById(R.id.hospitalDetailName);
+        name = findViewById(R.id.hospitalDetailName);
         name.setText(hospital.getName());
-        TextView type = findViewById(R.id.hospitalDetailType);
+        type = findViewById(R.id.hospitalDetailType);
         type.setText(hospital.getType());
-        TextView level = findViewById(R.id.hospitalDetailLevel);
+        level = findViewById(R.id.hospitalDetailLevel);
         level.setText(hospital.getLevel());
 
         prestations = hospital.getPrestations();

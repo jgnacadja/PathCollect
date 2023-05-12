@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.PostListAdapter;
 import org.odk.collect.android.adapters.model.Post;
@@ -32,7 +31,7 @@ public class PostListActivity extends CollectAbstractActivity implements
     private RecyclerView recyclerView;
     private PostListAdapter adapter;
 
-    private static final String TAG = "PostListActivity";
+    private static String TAG = "PostListActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
