@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/lecture_article"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/logo_lecture_article"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_img_height"
+        android:layout_marginTop="@dimen/space_marginTop"
+        android:src="@drawable/article"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_constraint"
+        android:background="@color/colorSlider"
+        app:layout_constraintTop_toBottomOf="@+id/logo_lecture_article">
+
+        <TextView
+            android:id="@+id/id_title"
+            android:layout_width="@dimen/textView_title_width"
+            android:layout_height="@dimen/textView_title_height"
+            android:layout_marginStart="@dimen/size_marginStart"
+            android:text="@string/article"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_title"
+            android:gravity="center"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/id_surtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/textview_marginTop"
+            android:text="@string/article_reading"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_size_surtitle"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/next_article"
+            android:layout_width="@dimen/btn_width"
+            android:layout_height="@dimen/size_imgbutton_height"
+            android:background="@color/colorWhite"
+            android:src="@drawable/ic_double"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            />
+
+        <Button
+            android:id="@+id/skip_article"
+            style="@style/Widget.Collect.Button.FullWidth"
+            android:layout_width="@dimen/btn_width"
+            android:layout_height="@dimen/size_button_height"
+            android:backgroundTint="@color/colorOnPrimary"
+            android:padding="@dimen/size_padding_button"
+            android:text="@string/skip"
+            android:textSize="@dimen/margin_standard"
+            android:textColor="@color/colorOnSurface"
+            app:cornerRadius="@dimen/preference_thumbnail_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.893"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.694" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

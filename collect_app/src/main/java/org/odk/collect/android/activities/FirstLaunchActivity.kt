@@ -1,6 +1,10 @@
 package org.odk.collect.android.activities
 
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import org.odk.collect.analytics.Analytics
 import org.odk.collect.android.R
@@ -36,6 +40,8 @@ class FirstLaunchActivity : CollectAbstractActivity() {
     @Inject
     lateinit var appConfigurationGenerator: AppConfigurationGenerator
 
+    private lateinit var sharedPreferences: SharedPreferences
+
     private fun addDsscProject() {
         val settingsJson = appConfigurationGenerator.getAppConfigurationAsJsonWithServerDetails(
             getString(R.string.dssc_kc_server_url),
@@ -45,62 +51,70 @@ class FirstLaunchActivity : CollectAbstractActivity() {
         projectCreator.createNewProject(settingsJson)
     }
 
-    private fun otherConfigOptions() {
-        val settingsJson = appConfigurationGenerator.getAppConfigurationAsJsonWithServerDetails(
-            getString(R.string.dssc_kc_server_url),
-            getString(R.string.dssc_username),
-            getString(R.string.dssc_password)
+    private fun startSliderOpinionActivity() {
+        ActivityUtils.startActivityAndCloseAllOthers(
+            this@FirstLaunchActivity, SliderOpinionActivity::class.java
         )
-        projectCreator.createNewProject(settingsJson)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("hasAlreadyStarted", true)
+        editor.apply()
+    }
+
+    private fun startLandingPageActivity() {
+        startActivity(Intent(this, LandingPageActivity::class.java))
+        finish()
     }
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
 
         super.onCreate(savedInstanceState)
+        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val hasAlreadyStarted = sharedPreferences.getBoolean("hasAlreadyStarted", false)
         DaggerUtils.getComponent(this).inject(this)
 
-        if (projectsRepository.getAll().isNotEmpty()) {
-            ActivityUtils.startActivityAndCloseAllOthers(this, LandingPageActivity::class.java)
-            return
-        }
-
-        FirstLaunchLayoutBinding.inflate(layoutInflater).apply {
-            setContentView(this.root)
-            addDsscProject()
-            if (projectsRepository.getAll().isNotEmpty()) {
-                ActivityUtils.startActivityAndCloseAllOthers(this@FirstLaunchActivity, LandingPageActivity::class.java)
-                return
-            } else {
-                appName.text = String.format(
-                    "%s %s",
-                    getString(R.string.collect_app_name),
-                    versionInformation.versionToDisplay
-                )
-
-                configureViaQrButton.setOnClickListener {
-                    DialogFragmentUtils.showIfNotShowing(
-                        QrCodeProjectCreatorDialog::class.java,
-                        supportFragmentManager
+        if (!hasAlreadyStarted) {
+            FirstLaunchLayoutBinding.inflate(layoutInflater).apply {
+                setContentView(this.root)
+                addDsscProject()
+                if (projectsRepository.getAll().isNotEmpty()) {
+                    startSliderOpinionActivity()
+                } else {
+                    appName.text = String.format(
+                        "%s %s",
+                        getString(R.string.collect_app_name),
+                        versionInformation.versionToDisplay
                     )
+
+                    configureViaQrButton.setOnClickListener {
+                        DialogFragmentUtils.showIfNotShowing(
+                            QrCodeProjectCreatorDialog::class.java,
+                            supportFragmentManager
+                        )
+                    }
+
+                    configureManuallyButton.setOnClickListener {
+                        DialogFragmentUtils.showIfNotShowing(
+                            ManualProjectCreatorDialog::class.java,
+                            supportFragmentManager
+                        )
+                    }
+
+                    configureLater.addOnClickListener {
+                        Analytics.log(AnalyticsEvents.TRY_DEMO)
+
+                        projectsRepository.save(Project.DEMO_PROJECT)
+                        currentProjectProvider.setCurrentProject(Project.DEMO_PROJECT_ID)
+
+                        startSliderOpinionActivity()
+                    }
                 }
-
-                configureManuallyButton.setOnClickListener {
-                    DialogFragmentUtils.showIfNotShowing(
-                        ManualProjectCreatorDialog::class.java,
-                        supportFragmentManager
-                    )
-                }
-
-                configureLater.addOnClickListener {
-                    Analytics.log(AnalyticsEvents.TRY_DEMO)
-
-                    projectsRepository.save(Project.DEMO_PROJECT)
-                    currentProjectProvider.setCurrentProject(Project.DEMO_PROJECT_ID)
-
-                    ActivityUtils.startActivityAndCloseAllOthers(this@FirstLaunchActivity, LandingPageActivity::class.java)
-                }
+                val editor = sharedPreferences.edit()
+                editor.putBoolean("hasAlreadyStarted", true)
+                editor.apply()
             }
+        } else {
+            startLandingPageActivity()
         }
     }
 }
