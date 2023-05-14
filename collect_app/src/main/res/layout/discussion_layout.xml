@@ -34,7 +34,7 @@
         android:gravity="center_vertical">
 
         <ImageView
-            android:id="@+id/alerte_ion"
+            android:id="@+id/alert_icon"
             android:layout_width="@dimen/main_menu_icon"
             android:layout_height="@dimen/main_menu_icon"
             android:layout_marginEnd="@dimen/margin_small"
@@ -42,7 +42,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="85dp">
+            android:layout_height="50dp">
 
             <TextView
                 android:id="@+id/message_alert"
@@ -65,10 +65,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/ll_dtitle"
+        android:id="@+id/ll_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_standard"
+        android:layout_marginTop="@dimen/margin_extra_small"
         android:layout_weight="0"
         android:gravity="start"
         android:orientation="vertical">
@@ -84,8 +84,8 @@
                 android:id="@+id/author_icon"
                 android:layout_width="@dimen/touch_target_size"
                 android:layout_height="@dimen/touch_target_size"
-                android:layout_marginStart="@dimen/margin_small"
-                android:layout_marginEnd="@dimen/margin_small"
+                android:layout_marginStart="@dimen/margin_extra_small"
+                android:layout_marginEnd="@dimen/margin_extra_small"
                 android:layout_weight="0"
                 android:scaleType="centerCrop"
                 tools:src="@drawable/ic_anonymous_user" />
@@ -116,7 +116,7 @@
                     android:layout_gravity="center_vertical"
                     android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
                     android:textColor="@color/color15"
-                    android:textSize="@dimen/text_size_small"
+                    android:textSize="@dimen/text_size_smaller"
                     tools:text="@string/title_text_example" />
             </LinearLayout>
 
@@ -172,10 +172,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_extra_small"
             android:background="@drawable/square_corner"
             android:ellipsize="end"
-            android:padding="@dimen/margin_standard"
+            android:padding="@dimen/margin_extra_small"
             android:singleLine="true"
             android:text="@string/responses"
             android:textColor="@color/colorOnSurface"
@@ -222,7 +222,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="@dimen/margin_standard">
+            android:padding="@dimen/margin_extra_small">
 
             <EditText
                 android:id="@+id/message_input_text"
