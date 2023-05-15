@@ -2,11 +2,9 @@ package org.odk.collect.android.activities;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -22,7 +20,6 @@ import androidx.appcompat.widget.Toolbar;
 import org.odk.collect.android.R;
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.utilities.ApplicationConstants;
-import org.odk.collect.android.utilities.ThemeUtils;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 
 public class LandingPageActivity extends CollectAbstractActivity{
