@@ -94,7 +94,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
         cycleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                confirmOpenCycleBeads();
+                openCycleBeads();
             }
         });
 
@@ -156,29 +156,6 @@ public class LandingPageActivity extends CollectAbstractActivity{
         int colorSurface = getResources().getColor(R.color.colorSurface);
         SpannableString title = new SpannableString(getString(R.string.title_avertissement));
         SpannableString message = new SpannableString(getString(R.string.avertissement_forum));
-
-        if (isDarkMode) {
-            title.setSpan(new ForegroundColorSpan(colorSurface), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            message.setSpan(new ForegroundColorSpan(colorSurface), 0, message.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
-        builder.setTitle(title).setMessage(message);
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
-
-    private void confirmOpenCycleBeads() {
-        boolean isDarkMode = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
-        AlertDialog.Builder builder = new AlertDialog.Builder(LandingPageActivity.this)
-                .setIcon(R.drawable.notes)
-                .setPositiveButton("J’ai lu et compris", (dialog, which) -> {
-                    dialog.dismiss();
-                    openCycleBeads();
-                })
-                .setNegativeButton("Annuler", null);
-
-        int colorSurface = getResources().getColor(R.color.colorSurface);
-        SpannableString title = new SpannableString(getString(R.string.title_avertissement));
-        SpannableString message = new SpannableString(getString(R.string.message_avertissement));
 
         if (isDarkMode) {
             title.setSpan(new ForegroundColorSpan(colorSurface), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
