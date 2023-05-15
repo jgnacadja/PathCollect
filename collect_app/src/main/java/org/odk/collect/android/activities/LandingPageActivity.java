@@ -5,8 +5,13 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -89,7 +94,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
         cycleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                confirmOpenPeriodical();
+                confirmOpenCycleBeads();
             }
         });
 
@@ -137,46 +142,54 @@ public class LandingPageActivity extends CollectAbstractActivity{
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
-    private void confirmOpenForum(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(LandingPageActivity.this);
-        builder.setTitle(getString(R.string.title_avertissement));
-        builder.setMessage(getString(R.string.avertissement_forum));
-        builder.setIcon(R.drawable.notes);
-        builder.setPositiveButton("J’ai lu et compris", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Action à effectuer lorsque l'utilisateur clique sur le bouton "J'accepte continuer"
-                // Par exemple, vous pouvez lancer l'application Periodical ici
-                dialog.dismiss();
-                Intent i = new Intent(getApplicationContext(), TopicActivity.class);
-                startActivity(i);
-            }
-        });
-        builder.setNegativeButton("Annuler", null);
+    private void confirmOpenForum() {
+        boolean isDarkMode = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+        AlertDialog.Builder builder = new AlertDialog.Builder(LandingPageActivity.this)
+                .setIcon(R.drawable.notes)
+                .setPositiveButton("J’ai lu et compris", (dialog, which) -> {
+                    dialog.dismiss();
+                    Intent i = new Intent(getApplicationContext(), TopicActivity.class);
+                    startActivity(i);
+                })
+                .setNegativeButton("Annuler", null);
+
+        int colorSurface = getResources().getColor(R.color.colorSurface);
+        SpannableString title = new SpannableString(getString(R.string.title_avertissement));
+        SpannableString message = new SpannableString(getString(R.string.avertissement_forum));
+
+        if (isDarkMode) {
+            title.setSpan(new ForegroundColorSpan(colorSurface), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            message.setSpan(new ForegroundColorSpan(colorSurface), 0, message.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        builder.setTitle(title).setMessage(message);
         AlertDialog dialog = builder.create();
         dialog.show();
     }
 
-    private void confirmOpenPeriodical(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(LandingPageActivity.this);
-        builder.setTitle(getString(R.string.title_avertissement));
-        builder.setMessage(getString(R.string.message_avertissement));
-        builder.setIcon(R.drawable.notes);
-        builder.setPositiveButton("J’ai lu et compris", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // Action à effectuer lorsque l'utilisateur clique sur le bouton "J'accepte continuer"
-                // Par exemple, vous pouvez lancer l'application Periodical ici
-                dialog.dismiss();
-                openPeriodical();
-            }
-        });
-        builder.setNegativeButton("Annuler", null);
+    private void confirmOpenCycleBeads() {
+        boolean isDarkMode = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+        AlertDialog.Builder builder = new AlertDialog.Builder(LandingPageActivity.this)
+                .setIcon(R.drawable.notes)
+                .setPositiveButton("J’ai lu et compris", (dialog, which) -> {
+                    dialog.dismiss();
+                    openCycleBeads();
+                })
+                .setNegativeButton("Annuler", null);
+
+        int colorSurface = getResources().getColor(R.color.colorSurface);
+        SpannableString title = new SpannableString(getString(R.string.title_avertissement));
+        SpannableString message = new SpannableString(getString(R.string.message_avertissement));
+
+        if (isDarkMode) {
+            title.setSpan(new ForegroundColorSpan(colorSurface), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            message.setSpan(new ForegroundColorSpan(colorSurface), 0, message.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        builder.setTitle(title).setMessage(message);
         AlertDialog dialog = builder.create();
         dialog.show();
     }
 
-    private void openPeriodical() {
+    private void openCycleBeads() {
         Intent i;
         String packageName = getString(R.string.periodical_app_package_name);
         PackageManager manager = getApplicationContext().getPackageManager();
