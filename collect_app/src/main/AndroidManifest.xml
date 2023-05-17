@@ -60,12 +60,6 @@
         android:smallScreens="true"
         android:xlargeScreens="true" />
 
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.MAIN" />
-        </intent>
-    </queries>
-
     <application
         android:name=".application.Collect"
         android:allowBackup="true"
@@ -77,10 +71,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Collect"
         android:usesCleartextTraffic="true">
-        <receiver
-            android:name=".UninstallReceiver"
-            android:enabled="true"
-            android:exported="true"></receiver>
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -113,33 +113,34 @@ class FirstLaunchActivity : CollectAbstractActivity() {
     private fun subscribeToWP() {
         // Get token
         // [START log_reg_token]
+        if (!settingsProvider.getMetaSettings().getBoolean(MetaKeys.SUBSCRIBE_TO_WP)) {
+            FirebaseMessaging.getInstance().token
+                .addOnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        Timber.tag("").w(task.exception, "Fetching FCM registration token failed")
+                        return@addOnCompleteListener
+                    }
 
-        FirebaseMessaging.getInstance().token
-            .addOnCompleteListener { task ->
-                if (!task.isSuccessful) {
-                    Timber.tag("FCM Registration").w(task.exception, "Fetching FCM registration token failed")
-                    return@addOnCompleteListener
+                    // Get new FCM registration token
+                    val token = task.result
+                    val androidId = Settings.Secure.getString(
+                        contentResolver,
+                        Settings.Secure.ANDROID_ID
+                    )
+                    val apiKey = getString(R.string.fcm_api_key)
+                    val subscription = getString(R.string.wp_fcm_subscription)
+                    val url = String.format(
+                        getString(R.string.wp_fcm_api),
+                        apiKey,
+                        androidId,
+                        token,
+                        subscription
+                    )
+
+                    SendRequestToWP().execute(url)
+                    settingsProvider.getMetaSettings().save(MetaKeys.SUBSCRIBE_TO_WP, true)
                 }
-
-                // Get new FCM registration token
-                val token = task.result
-                val androidId = Settings.Secure.getString(
-                    contentResolver,
-                    Settings.Secure.ANDROID_ID
-                )
-                val apiKey = getString(R.string.fcm_api_key)
-                val subscription = getString(R.string.wp_fcm_subscription)
-                val url = String.format(
-                    getString(R.string.wp_fcm_api),
-                    apiKey,
-                    androidId,
-                    token,
-                    subscription
-                )
-
-                SendRequestToWP().execute(url)
-                settingsProvider.getMetaSettings().save(MetaKeys.SUBSCRIBE_TO_WP, true)
-            }
+        }
     }
 
 }
