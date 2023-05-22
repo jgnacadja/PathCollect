@@ -75,7 +75,7 @@ android {
         applicationId('com.rintio.dssc.collect')
         minSdkVersion Versions.android_min_sdk
         targetSdkVersion Versions.android_target_sdk
-        versionCode 4140
+        versionCode 4142
         versionName getVersionName()
         testInstrumentationRunner('androidx.test.runner.AndroidJUnitRunner')
         multiDexEnabled true
