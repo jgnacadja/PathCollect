@@ -1,10 +1,11 @@
 package org.odk.collect.android.adapters;
 
 import android.content.Context;
-import android.text.Html;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,11 +14,6 @@ import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.model.Hospital;
 
 import java.util.List;
-
-import com.google.common.eventbus.Subscribe;
-import com.google.gson.Gson;
-
-import timber.log.Timber;
 
 public class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewHolder> {
 
@@ -44,6 +40,14 @@ public class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapte
         holder.name.setText(hospital.getName());
         holder.type.setText(hospital.getType());
         holder.level.setText(hospital.getLevel());
+
+        holder.boutonAudio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.audio_file); // Remplacez "audio_file" par le nom de votre fichier audio dans le dossier res/raw
+                mediaPlayer.start();
+            }
+        });
     }
 
     @Override
@@ -60,6 +64,7 @@ public class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapte
         private final TextView name;
         private final TextView type;
         private final TextView level;
+        private final Button boutonAudio;
 
         ViewHolder(View view, HospitalItemClickListener listener) {
             super(view);
@@ -67,6 +72,7 @@ public class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapte
             name = view.findViewById(R.id.hospitalName);
             type = view.findViewById(R.id.hospitalType);
             level = view.findViewById(R.id.hospitalLevel);
+            boutonAudio = view.findViewById(R.id.boutonaudio);
             view.setOnClickListener(this);
         }
 

@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_alignParentTop="true"
     android:layout_centerHorizontal="true"
     android:layout_marginStart="@dimen/margin_extra_small"
@@ -23,15 +24,28 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/hospitalName"
-            style="@style/TextAppearance.Collect.Subtitle1"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/none"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/title_size"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/hospitalName"
+                style="@style/TextAppearance.Collect.Subtitle1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/none"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/title_size"
+                android:layout_weight="1"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/boutonaudio"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:background="@drawable/icon_volume" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/hospitalType"
