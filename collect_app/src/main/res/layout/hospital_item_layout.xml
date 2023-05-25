@@ -2,7 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_alignParentTop="true"
     android:layout_centerHorizontal="true"
     android:layout_marginStart="@dimen/margin_extra_small"
@@ -44,7 +43,7 @@
                 android:id="@+id/boutonaudio"
                 android:layout_width="@dimen/image_size"
                 android:layout_height="@dimen/image_size"
-                android:background="@drawable/icon_volume" />
+                android:background="@drawable/ic_volume_up_black_24dp" />
         </LinearLayout>
 
         <TextView
