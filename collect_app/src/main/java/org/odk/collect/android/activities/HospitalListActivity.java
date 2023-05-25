@@ -16,6 +16,8 @@ import org.odk.collect.android.dao.ApiGatewayService;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -70,6 +72,13 @@ public class HospitalListActivity extends CollectAbstractActivity implements
             public void onResponse(Call<List<Hospital>> call, Response<List<Hospital>> response) {
                 if (response.isSuccessful()) {
                     hospitals.addAll(response.body());
+                    adapter.notifyDataSetChanged();// Sort hospitals by name in alphabetical order
+                    Collections.sort(hospitals, new Comparator<Hospital>() {
+                        @Override
+                        public int compare(Hospital hospital1, Hospital hospital2) {
+                            return hospital1.getName().compareToIgnoreCase(hospital2.getName());
+                        }
+                    });
                     adapter.notifyDataSetChanged();
                 } else {
                     Timber.tag(TAG).e("Response not successful");
