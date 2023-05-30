@@ -1,7 +1,9 @@
 package org.odk.collect.android.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.model.Hospital;
 
+import java.io.IOException;
 import java.util.List;
 
 public class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewHolder> {
@@ -20,6 +23,9 @@ public class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapte
     private final Context context;
     private List<Hospital> hospitals;
     private final HospitalItemClickListener listener;
+
+    private MediaPlayer mediaPlayer;
+
 
     public HospitalListAdapter(List<Hospital> hospitals, Context context, HospitalItemClickListener listener) {
         this.context = context;
@@ -44,11 +50,31 @@ public class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapte
         holder.boutonAudio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.audio_file); // Remplacez "audio_file" par le nom de votre fichier audio dans le dossier res/raw
-                mediaPlayer.start();
+                if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+                    mediaPlayer.stop();
+                }
+
+                mediaPlayer = new MediaPlayer();
+                try {
+                    mediaPlayer.setDataSource("URL de l'audio"); // Remplacez "URL de l'audio" par votre URL réelle
+                    mediaPlayer.prepare();
+                    mediaPlayer.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
+
+    @Override
+    public void onViewDetachedFromWindow(ViewHolder holder) {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
 
     @Override
     public int getItemCount() {
