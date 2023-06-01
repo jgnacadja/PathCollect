@@ -91,6 +91,13 @@ the specific language governing permissions and limitations under the License.
             android:layout_height="wrap_content"
             android:text="@string/quit_entry" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/view_button"
+            style="@style/Widget.Collect.Button.FullWidth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/button_view" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

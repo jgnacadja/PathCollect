@@ -1,10 +1,12 @@
 package org.odk.collect.android.formentry;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,7 +14,11 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.core.widget.NestedScrollView;
 
+import com.google.android.material.button.MaterialButton;
+
 import org.odk.collect.android.R;
+import org.odk.collect.android.activities.FormHierarchyActivity;
+import org.odk.collect.android.activities.MainMenuActivity;
 import org.odk.collect.android.listeners.SwipeHandler;
 import org.odk.collect.android.utilities.FormNameUtils;
 
@@ -62,6 +68,15 @@ public class FormEndView extends SwipeHandler.View {
 
         findViewById(R.id.save_exit_button).setOnClickListener(v -> {
             listener.onSaveClicked(markAsFinalized.isChecked());
+        });
+
+        MaterialButton viewButton = findViewById(R.id.view_button);
+        viewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, FormHierarchyActivity.class);
+                context.startActivity(intent);
+            }
         });
     }
 
