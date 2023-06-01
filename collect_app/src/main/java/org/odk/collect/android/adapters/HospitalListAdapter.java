@@ -1,9 +1,7 @@
 package org.odk.collect.android.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +54,7 @@ public class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapte
 
                 mediaPlayer = new MediaPlayer();
                 try {
-                    mediaPlayer.setDataSource("URL de l'audio"); // Remplacez "URL de l'audio" par votre URL réelle
+                    mediaPlayer.setDataSource(context.getString(R.string.url_audio));
                     mediaPlayer.prepare();
                     mediaPlayer.start();
                 } catch (IOException e) {

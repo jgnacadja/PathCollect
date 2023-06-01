@@ -62,4 +62,5 @@ the specific language governing permissions and limitations under the License. -
     <string name="wp_fcm_subscription" translatable="false">DSSC</string>
     <string name="wp_fcm_api" translatable="false">https://dssc-cms.000webhostapp.com/wp-json/fcm/pn/subscribe?rest_api_key=%s&amp;device_uuid=%s&amp;device_token=%s&amp;subscription=%s</string>
     <string name="wp_fcm_api_unsubscribe" translatable="false">https://dssc-cms.000webhostapp.com/wp-json/fcm/pn/unsubscribe?rest_api_key=%s&amp;device_uuid=%s</string>
+    <string name="url_audio" translatable="false">https://btones.b-cdn.net/fetch/34/3455a265763150b0de75b7352a662184.mp3</string>
 </resources>
