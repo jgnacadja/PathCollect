@@ -2,6 +2,8 @@
 <resources>
     <color name="colorSurface">#121212</color>
     <color name="colorOnSurface">#FFFFFF</color>
+    <color name="colorSecondary">@color/colorOnSurface</color>
+    <color name="colorGray">#753081</color>
 
     <bool name="lightStatusBar">false</bool>
 

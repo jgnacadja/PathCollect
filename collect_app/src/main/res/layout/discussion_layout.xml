@@ -104,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/text_size_standard"
                     android:textStyle="bold"
                     tools:text="@string/title_text_example" />
@@ -164,7 +164,7 @@
                 android:ellipsize="end"
                 android:gravity="start"
                 android:text="@string/title_text_example"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorSecondary"
                 android:textSize="@dimen/text_size_standard"
                 android:textStyle="bold" />
         </LinearLayout>

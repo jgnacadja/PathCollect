@@ -30,7 +30,7 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorSecondary"
             android:textSize="@dimen/text_size_standard"
             tools:text="@string/none" />
     </LinearLayout>
