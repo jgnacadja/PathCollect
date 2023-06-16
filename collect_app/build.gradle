@@ -75,7 +75,7 @@ android {
         applicationId('com.rintio.dssc.collect')
         minSdkVersion Versions.android_min_sdk
         targetSdkVersion Versions.android_target_sdk
-        versionCode 4142
+        versionCode 4143
         versionName getVersionName()
         testInstrumentationRunner('androidx.test.runner.AndroidJUnitRunner')
         multiDexEnabled true
@@ -383,7 +383,6 @@ dependencies {
 
     // Import the Firebase BoM (see: https://firebase.google.com/docs/android/learn-more#bom)
     implementation platform(Dependencies.firebase_bom)
-
 
     implementation Dependencies.armen101_audio_recorder_view
 

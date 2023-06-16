@@ -2,19 +2,14 @@ package org.odk.collect.android.tasks;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
-
 import com.google.gson.Gson;
-
 import org.odk.collect.android.adapters.model.Notification;
 import org.odk.collect.android.database.notification.DatabaseNotificationRepository;
 import org.odk.collect.android.storage.StoragePathProvider;
 import org.odk.collect.android.storage.StorageSubdirectory;
-import org.odk.collect.android.tasks.DownloadNotificationsTask;
-
 import timber.log.Timber;
 
 public class MyWorker extends Worker {
@@ -45,8 +40,8 @@ public class MyWorker extends Worker {
         Notification notification = new Notification(title, body, System.currentTimeMillis());
 
         // Save the notification to the local database using a DAO
-        DownloadNotificationsTask task = new DownloadNotificationsTask(repository);
-        task.execute(notification);
+        Timber.tag(TAG).i("Saving notification to local database using DAO");
+        repository.save(notification);
 
         return Result.success();
     }

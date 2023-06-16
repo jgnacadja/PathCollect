@@ -14,7 +14,7 @@ import org.odk.collect.android.projects.CurrentProjectProvider
 import org.odk.collect.android.projects.ManualProjectCreatorDialog
 import org.odk.collect.android.projects.ProjectCreator
 import org.odk.collect.android.projects.QrCodeProjectCreatorDialog
-import org.odk.collect.android.quickstart.SubscribeToWP
+import org.odk.collect.android.tasks.SendRequestToWP
 import org.odk.collect.android.version.VersionInformation
 import org.odk.collect.androidshared.ui.DialogFragmentUtils
 import org.odk.collect.androidshared.ui.GroupClickListener.addOnClickListener
@@ -137,7 +137,7 @@ class FirstLaunchActivity : CollectAbstractActivity() {
                         subscription
                     )
 
-                    SubscribeToWP().execute(url)
+                    SendRequestToWP().execute(url)
                     settingsProvider.getMetaSettings().save(MetaKeys.SUBSCRIBE_TO_WP, true)
                 }
         }

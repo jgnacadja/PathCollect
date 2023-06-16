@@ -21,7 +21,7 @@ You may obtain a copy of the License at
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_standard"
+        android:layout_marginStart="@dimen/margin_extra_large"
         android:orientation="vertical">
 
         <TextView
@@ -29,8 +29,6 @@ You may obtain a copy of the License at
             style="@style/TextAppearance.Collect.Subtitle1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_standard"
-            android:textStyle="bold"
             tools:text="@string/none" />
 
         <TextView

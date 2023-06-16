@@ -1,5 +1,7 @@
 package org.odk.collect.android.activities;
 
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
+
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package org.odk.collect.android.quickstart;
+package org.odk.collect.android.tasks;
 
 
 import android.annotation.SuppressLint;
@@ -12,7 +12,7 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import timber.log.Timber;
 
-public class SubscribeToWP extends AsyncTask<String, Void, ResponseBody> {
+public class SendRequestToWP extends AsyncTask<String, Void, ResponseBody> {
 
     private Exception exception;
 
@@ -26,7 +26,7 @@ public class SubscribeToWP extends AsyncTask<String, Void, ResponseBody> {
         try (Response response = client.newCall(request).execute()) {
             return response.body();
         } catch (IOException e) {
-            Timber.tag("SubscribeToWP").d(e.getMessage());
+            Timber.tag("SendRequestToWP").d(e.getMessage());
             return null;
         }
     }

@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class DatabaseNotificationRepository {
 
-    private static DatabaseConnection databaseConnection;
+    private DatabaseConnection databaseConnection;
 
     public DatabaseNotificationRepository(Context context, String dbPath) {
         this.databaseConnection = new DatabaseConnection(
@@ -71,13 +71,13 @@ public class DatabaseNotificationRepository {
         return !notifications.isEmpty() ? notifications.get(0) : null;
     }
 
-    private static List<Notification> queryForNotification(String selection, String[] selectionArgs) {
+    private List<Notification> queryForNotification(String selection, String[] selectionArgs) {
         try (Cursor cursor = queryAndReturnCursor(null, null, selection, selectionArgs, null, null)) {
             return getNotificationFromCursor(cursor);
         }
     }
 
-    private static Cursor queryAndReturnCursor(Map<String, String> projectionMap, String[] projection, String selection, String[] selectionArgs, String sortOrder, String groupBy) {
+    private Cursor queryAndReturnCursor(Map<String, String> projectionMap, String[] projection, String selection, String[] selectionArgs, String sortOrder, String groupBy) {
         SQLiteDatabase readableDatabase = databaseConnection.getReadableDatabase();
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         qb.setTables(NOTIFICATIONS_TABLE_NAME);
