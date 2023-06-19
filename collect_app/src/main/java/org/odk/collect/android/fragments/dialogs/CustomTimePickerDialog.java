@@ -32,10 +32,6 @@ public class CustomTimePickerDialog extends DialogFragment {
     private DateTimeViewModel viewModel;
     private TimeChangeListener timeChangeListener;
 
-    public interface TimeChangeListener {
-        void onTimeChanged(DateTime selectedTime);
-    }
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -164,5 +160,9 @@ public class CustomTimePickerDialog extends DialogFragment {
             }
         }
         return null;
+    }
+
+    public interface TimeChangeListener {
+        void onTimeChanged(DateTime selectedTime);
     }
 }

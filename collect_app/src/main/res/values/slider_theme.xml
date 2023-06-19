@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="SliderTheme" parent="Base.Widget.MaterialComponents.Slider">
         <item name="thumbColor">@color/slider_track_tint_list</item>
         <item name="tickColor">@color/slider_tick_tint_list</item>

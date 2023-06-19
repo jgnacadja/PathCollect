@@ -1,5 +1,9 @@
 package org.odk.collect.android.widgets.items;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static java.util.Arrays.asList;
+
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,10 +20,6 @@ import org.odk.collect.android.formentry.questions.QuestionDetails;
 import org.odk.collect.android.support.MockFormEntryPromptBuilder;
 
 import java.util.List;
-
-import static java.util.Arrays.asList;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 
 public class SelectMultiImageMapWidgetTest extends SelectImageMapWidgetTest<SelectMultiImageMapWidget, SelectMultiData> {
     @NonNull

@@ -1,12 +1,10 @@
 package org.odk.collect.android.formmanagement
 
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
-import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.equalTo
+import org.hamcrest.Matchers.`is`
 import org.junit.Test
-import org.mockito.Mockito.any
-import org.mockito.Mockito.doAnswer
-import org.mockito.Mockito.never
+import org.mockito.Mockito.*
 import org.mockito.invocation.InvocationOnMock
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify

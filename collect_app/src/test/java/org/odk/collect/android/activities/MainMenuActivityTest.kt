@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModel
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Rule
@@ -60,8 +60,20 @@ class MainMenuActivityTest {
     @Before
     fun setup() {
         CollectHelpers.overrideAppDependencyModule(object : AppDependencyModule() {
-            override fun providesMainMenuViewModelFactory(versionInformation: VersionInformation, application: Application, settingsProvider: SettingsProvider, instancesAppState: InstancesAppState, scheduler: Scheduler): MainMenuViewModel.Factory {
-                return object : MainMenuViewModel.Factory(versionInformation, application, settingsProvider, instancesAppState, scheduler) {
+            override fun providesMainMenuViewModelFactory(
+                versionInformation: VersionInformation,
+                application: Application,
+                settingsProvider: SettingsProvider,
+                instancesAppState: InstancesAppState,
+                scheduler: Scheduler
+            ): MainMenuViewModel.Factory {
+                return object : MainMenuViewModel.Factory(
+                    versionInformation,
+                    application,
+                    settingsProvider,
+                    instancesAppState,
+                    scheduler
+                ) {
                     override fun <T : ViewModel> create(modelClass: Class<T>): T {
                         return mainMenuViewModel as T
                     }
@@ -125,7 +137,10 @@ class MainMenuActivityTest {
 
             val button: Button = activity.findViewById(R.id.enter_data)
             button.performClick()
-            assertThat(Intents.getIntents()[0], hasComponent(BlankFormListActivity::class.java.name))
+            assertThat(
+                Intents.getIntents()[0],
+                hasComponent(BlankFormListActivity::class.java.name)
+            )
 
             Intents.release()
         }
@@ -149,7 +164,10 @@ class MainMenuActivityTest {
             val button: Button = activity.findViewById(R.id.review_data)
             button.performClick()
             assertThat(Intents.getIntents()[0], hasComponent(InstanceChooserList::class.java.name))
-            assertThat(Intents.getIntents()[0].extras!!.get(ApplicationConstants.BundleKeys.FORM_MODE), `is`(ApplicationConstants.FormModes.EDIT_SAVED))
+            assertThat(
+                Intents.getIntents()[0].extras!!.get(ApplicationConstants.BundleKeys.FORM_MODE),
+                `is`(ApplicationConstants.FormModes.EDIT_SAVED)
+            )
 
             Intents.release()
         }
@@ -172,7 +190,10 @@ class MainMenuActivityTest {
 
             val button: Button = activity.findViewById(R.id.send_data)
             button.performClick()
-            assertThat(Intents.getIntents()[0], hasComponent(InstanceUploaderListActivity::class.java.name))
+            assertThat(
+                Intents.getIntents()[0],
+                hasComponent(InstanceUploaderListActivity::class.java.name)
+            )
 
             Intents.release()
         }
@@ -196,7 +217,10 @@ class MainMenuActivityTest {
             val button: Button = activity.findViewById(R.id.view_sent_forms)
             button.performClick()
             assertThat(Intents.getIntents()[0], hasComponent(InstanceChooserList::class.java.name))
-            assertThat(Intents.getIntents()[0].extras!!.get(ApplicationConstants.BundleKeys.FORM_MODE), `is`(ApplicationConstants.FormModes.VIEW_SENT))
+            assertThat(
+                Intents.getIntents()[0].extras!!.get(ApplicationConstants.BundleKeys.FORM_MODE),
+                `is`(ApplicationConstants.FormModes.VIEW_SENT)
+            )
 
             Intents.release()
         }
@@ -219,7 +243,10 @@ class MainMenuActivityTest {
 
             val button: Button = activity.findViewById(R.id.get_forms)
             button.performClick()
-            assertThat(Intents.getIntents()[0], hasComponent(FormDownloadListActivity::class.java.name))
+            assertThat(
+                Intents.getIntents()[0],
+                hasComponent(FormDownloadListActivity::class.java.name)
+            )
 
             Intents.release()
         }
@@ -242,7 +269,10 @@ class MainMenuActivityTest {
 
             val button: Button = activity.findViewById(R.id.manage_forms)
             button.performClick()
-            assertThat(Intents.getIntents()[0], hasComponent(DeleteSavedFormActivity::class.java.name))
+            assertThat(
+                Intents.getIntents()[0],
+                hasComponent(DeleteSavedFormActivity::class.java.name)
+            )
 
             Intents.release()
         }

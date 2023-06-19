@@ -9,12 +9,12 @@
         android:id="@+id/answer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/margin_small"
-        android:paddingHorizontal="@dimen/margin_small"
-        android:text="@string/select_answer"
-        android:focusable="false"
-        android:drawableEnd="@drawable/ic_arrow_drop_down"
         android:cursorVisible="false"
+        android:drawableEnd="@drawable/ic_arrow_drop_down"
+        android:focusable="false"
         android:inputType="textMultiLine|textNoSuggestions"
-        android:saveEnabled="false"/>
+        android:paddingHorizontal="@dimen/margin_small"
+        android:paddingVertical="@dimen/margin_small"
+        android:saveEnabled="false"
+        android:text="@string/select_answer" />
 </FrameLayout>

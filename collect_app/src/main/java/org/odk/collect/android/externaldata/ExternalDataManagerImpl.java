@@ -18,6 +18,8 @@
 
 package org.odk.collect.android.externaldata;
 
+import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
+
 import org.odk.collect.android.R;
 import org.odk.collect.android.application.Collect;
 import org.odk.collect.android.exception.ExternalDataException;
@@ -27,8 +29,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import timber.log.Timber;
-
-import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
 
 /**
  * Author: Meletis Margaritis

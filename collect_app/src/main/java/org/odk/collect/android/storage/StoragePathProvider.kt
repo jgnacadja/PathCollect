@@ -10,8 +10,10 @@ import timber.log.Timber
 import java.io.File
 
 class StoragePathProvider(
-    private val currentProjectProvider: CurrentProjectProvider = DaggerUtils.getComponent(Collect.getInstance()).currentProjectProvider(),
-    private val projectsRepository: ProjectsRepository = DaggerUtils.getComponent(Collect.getInstance()).projectsRepository(),
+    private val currentProjectProvider: CurrentProjectProvider = DaggerUtils.getComponent(Collect.getInstance())
+        .currentProjectProvider(),
+    private val projectsRepository: ProjectsRepository = DaggerUtils.getComponent(Collect.getInstance())
+        .projectsRepository(),
     val odkRootDirPath: String = Collect.getInstance().getExternalFilesDir(null)!!.absolutePath
 ) {
 
@@ -24,7 +26,8 @@ class StoragePathProvider(
             File(path).mkdirs()
 
             try {
-                val sanitizedProjectName = PathUtils.getPathSafeFileName(projectsRepository.get(uuid)!!.name)
+                val sanitizedProjectName =
+                    PathUtils.getPathSafeFileName(projectsRepository.get(uuid)!!.name)
                 File(path + File.separator + sanitizedProjectName).createNewFile()
             } catch (e: Exception) {
                 Timber.e(

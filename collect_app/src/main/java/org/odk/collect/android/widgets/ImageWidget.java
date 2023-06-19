@@ -14,6 +14,9 @@
 
 package org.odk.collect.android.widgets;
 
+import static org.odk.collect.android.formentry.questions.WidgetViewUtils.createSimpleButton;
+import static org.odk.collect.android.utilities.ApplicationConstants.RequestCodes;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -40,9 +43,6 @@ import java.io.File;
 import java.util.Locale;
 
 import timber.log.Timber;
-
-import static org.odk.collect.android.formentry.questions.WidgetViewUtils.createSimpleButton;
-import static org.odk.collect.android.utilities.ApplicationConstants.RequestCodes;
 
 /**
  * Widget that allows user to take pictures, sounds or video and add them to the form.

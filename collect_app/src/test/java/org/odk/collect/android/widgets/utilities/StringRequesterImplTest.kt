@@ -19,7 +19,6 @@ import org.odk.collect.android.R
 import org.odk.collect.android.utilities.ExternalAppIntentProvider
 import org.odk.collect.androidshared.system.IntentLauncher
 import org.robolectric.Robolectric
-import java.lang.Exception
 
 @RunWith(AndroidJUnit4::class)
 class StringRequesterImplTest {

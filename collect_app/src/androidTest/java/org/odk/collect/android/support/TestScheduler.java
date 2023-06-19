@@ -22,10 +22,9 @@ public class TestScheduler implements Scheduler {
     private final Scheduler wrappedScheduler;
 
     private final Object lock = new Object();
+    private final List<DeferredTask> deferredTasks = new ArrayList<>();
     private int tasks;
     private Runnable finishedCallback;
-
-    private final List<DeferredTask> deferredTasks = new ArrayList<>();
 
     public TestScheduler() {
         WorkManager workManager = WorkManager.getInstance(ApplicationProvider.getApplicationContext());

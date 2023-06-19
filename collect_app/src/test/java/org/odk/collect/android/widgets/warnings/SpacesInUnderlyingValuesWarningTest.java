@@ -1,18 +1,19 @@
 package org.odk.collect.android.widgets.warnings;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import com.google.common.collect.Lists;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.odk.collect.android.widgets.warnings.SpacesInUnderlyingValuesWarning.UnderlyingValuesChecker;
 import org.odk.collect.android.widgets.warnings.SpacesInUnderlyingValuesWarning.WarningRenderer;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class SpacesInUnderlyingValuesWarningTest {
 

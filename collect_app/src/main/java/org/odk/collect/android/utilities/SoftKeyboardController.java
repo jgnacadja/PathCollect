@@ -17,9 +17,10 @@
 package org.odk.collect.android.utilities;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+
+import androidx.annotation.NonNull;
 
 import org.odk.collect.android.application.Collect;
 

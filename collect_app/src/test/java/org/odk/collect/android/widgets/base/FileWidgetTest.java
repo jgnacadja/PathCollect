@@ -1,5 +1,9 @@
 package org.odk.collect.android.widgets.base;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import androidx.annotation.NonNull;
 
 import net.bytebuddy.utility.RandomString;
@@ -10,10 +14,6 @@ import org.mockito.Mock;
 import org.odk.collect.android.widgets.interfaces.FileWidget;
 
 import java.io.File;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public abstract class FileWidgetTest<W extends FileWidget> extends BinaryWidgetTest<W, StringData> {
 

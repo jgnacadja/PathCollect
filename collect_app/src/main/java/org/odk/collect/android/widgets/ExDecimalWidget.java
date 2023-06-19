@@ -14,6 +14,8 @@
 
 package org.odk.collect.android.widgets;
 
+import static org.odk.collect.android.utilities.ApplicationConstants.RequestCodes;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 
@@ -24,8 +26,6 @@ import org.odk.collect.android.formentry.questions.QuestionDetails;
 import org.odk.collect.android.widgets.utilities.StringRequester;
 import org.odk.collect.android.widgets.utilities.StringWidgetUtils;
 import org.odk.collect.android.widgets.utilities.WaitingForDataRegistry;
-
-import static org.odk.collect.android.utilities.ApplicationConstants.RequestCodes;
 
 import java.io.Serializable;
 

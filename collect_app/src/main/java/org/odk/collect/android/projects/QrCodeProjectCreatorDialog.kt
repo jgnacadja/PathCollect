@@ -169,7 +169,10 @@ class QrCodeProjectCreatorDialog :
                 R.id.menu_item_scan_sd_card -> {
                     val photoPickerIntent = Intent(Intent.ACTION_GET_CONTENT)
                     photoPickerIntent.type = "image/*"
-                    intentLauncher.launchForResult(imageQrCodeImportResultLauncher, photoPickerIntent) {
+                    intentLauncher.launchForResult(
+                        imageQrCodeImportResultLauncher,
+                        photoPickerIntent
+                    ) {
                         showShortToast(
                             requireContext(),
                             getString(

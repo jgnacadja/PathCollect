@@ -17,9 +17,10 @@ object BitmapDescriptorCache {
     @JvmStatic
     fun getBitmapDescriptor(@DrawableRes drawable: Int, context: Context): BitmapDescriptor {
         if (cache[drawable] == null) {
-            BitmapDescriptorFactory.fromBitmap(MapsMarkerCache.getMarkerBitmap(drawable, context)).also {
-                cache.put(drawable, it)
-            }
+            BitmapDescriptorFactory.fromBitmap(MapsMarkerCache.getMarkerBitmap(drawable, context))
+                .also {
+                    cache.put(drawable, it)
+                }
         }
         return cache[drawable]
     }

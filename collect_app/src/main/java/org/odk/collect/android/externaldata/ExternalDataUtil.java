@@ -18,6 +18,8 @@
 
 package org.odk.collect.android.externaldata;
 
+import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
+
 import android.widget.Toast;
 
 import org.javarosa.core.model.SelectChoice;
@@ -50,8 +52,6 @@ import java.util.regex.Pattern;
 
 import timber.log.Timber;
 
-import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
-
 /**
  * Author: Meletis Margaritis
  * Date: 30/04/13
@@ -67,9 +67,9 @@ public final class ExternalDataUtil {
     public static final String COLUMN_MD5_HASH = "md5Hash";
 
     public static final Pattern SEARCH_FUNCTION_REGEX = Pattern.compile("search\\(.+\\)");
+    public static final String JR_IMAGES_PREFIX = "jr://images/";
     private static final String COLUMN_SEPARATOR = ",";
     private static final String FALLBACK_COLUMN_SEPARATOR = " ";
-    public static final String JR_IMAGES_PREFIX = "jr://images/";
 
     private ExternalDataUtil() {
 
@@ -165,7 +165,7 @@ public final class ExternalDataUtil {
     }
 
     public static ArrayList<SelectChoice> populateExternalChoices(FormEntryPrompt formEntryPrompt,
-            XPathFuncExpr xpathfuncexpr) throws FileNotFoundException {
+                                                                  XPathFuncExpr xpathfuncexpr) throws FileNotFoundException {
         try {
             List<SelectChoice> selectChoices = formEntryPrompt.getSelectChoices();
             ArrayList<SelectChoice> returnedChoices = new ArrayList<>();
@@ -243,7 +243,7 @@ public final class ExternalDataUtil {
      * columns as values
      */
     public static LinkedHashMap<String, String> createMapWithDisplayingColumns(String valueColumn,
-            String displayColumns) {
+                                                                               String displayColumns) {
         valueColumn = valueColumn.trim();
 
         LinkedHashMap<String, String> columns = new LinkedHashMap<>();
@@ -278,7 +278,7 @@ public final class ExternalDataUtil {
     }
 
     private static List<String> splitTrimmed(String displayColumns, String separator,
-            String fallbackSeparator) {
+                                             String fallbackSeparator) {
         List<String> commaSplitParts = splitTrimmed(displayColumns, separator);
 
         // SCTO-584: Fall back to a space-separated list

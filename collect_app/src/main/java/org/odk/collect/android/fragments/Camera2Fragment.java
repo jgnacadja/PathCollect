@@ -40,8 +40,6 @@ import android.media.ImageReader;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
-import androidx.annotation.NonNull;
-import androidx.legacy.app.FragmentCompat;
 import android.util.Size;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
@@ -49,6 +47,9 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.legacy.app.FragmentCompat;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.fragments.dialogs.ErrorDialog;
@@ -75,6 +76,34 @@ public class Camera2Fragment extends Fragment
      */
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
     private static final String FRAGMENT_DIALOG = "dialog";
+    /**
+     * Camera state: Showing camera preview.
+     */
+    private static final int STATE_PREVIEW = 0;
+    /**
+     * Camera state: Waiting for the focus to be locked.
+     */
+    private static final int STATE_WAITING_LOCK = 1;
+    /**
+     * Camera state: Waiting for the exposure to be precapture state.
+     */
+    private static final int STATE_WAITING_PRECAPTURE = 2;
+    /**
+     * Camera state: Waiting for the exposure state to be something other than precapture.
+     */
+    private static final int STATE_WAITING_NON_PRECAPTURE = 3;
+    /**
+     * Camera state: Picture was taken.
+     */
+    private static final int STATE_PICTURE_TAKEN = 4;
+    /**
+     * Max preview width that is guaranteed by Camera2 API
+     */
+    private static final int MAX_PREVIEW_WIDTH = 1920;
+    /**
+     * Max preview height that is guaranteed by Camera2 API
+     */
+    private static final int MAX_PREVIEW_HEIGHT = 1080;
 
     static {
         ORIENTATIONS.append(Surface.ROTATION_0, 0);
@@ -84,43 +113,10 @@ public class Camera2Fragment extends Fragment
     }
 
     /**
-     * Camera state: Showing camera preview.
+     * A {@link Semaphore} to prevent the app from exiting before closing the camera.
      */
-    private static final int STATE_PREVIEW = 0;
-
-    /**
-     * Camera state: Waiting for the focus to be locked.
-     */
-    private static final int STATE_WAITING_LOCK = 1;
-
-    /**
-     * Camera state: Waiting for the exposure to be precapture state.
-     */
-    private static final int STATE_WAITING_PRECAPTURE = 2;
-
-    /**
-     * Camera state: Waiting for the exposure state to be something other than precapture.
-     */
-    private static final int STATE_WAITING_NON_PRECAPTURE = 3;
-
-    /**
-     * Camera state: Picture was taken.
-     */
-    private static final int STATE_PICTURE_TAKEN = 4;
-
-    /**
-     * Max preview width that is guaranteed by Camera2 API
-     */
-    private static final int MAX_PREVIEW_WIDTH = 1920;
-
-    /**
-     * Max preview height that is guaranteed by Camera2 API
-     */
-    private static final int MAX_PREVIEW_HEIGHT = 1080;
-
-    private boolean autoFocusSupported;
-
-    /**
+    private final Semaphore cameraOpenCloseLock = new Semaphore(1);
+    private boolean autoFocusSupported;    /**
      * {@link TextureView.SurfaceTextureListener} handles several lifecycle events on a
      * {@link TextureView}.
      */
@@ -146,7 +142,6 @@ public class Camera2Fragment extends Fragment
         public void onSurfaceTextureUpdated(SurfaceTexture texture) {
         }
     };
-
     /**
      * ID of the current {@link CameraDevice}.
      */
@@ -171,8 +166,10 @@ public class Camera2Fragment extends Fragment
      * The {@link android.util.Size} of camera preview.
      */
     private Size previewSize;
-
     /**
+     * An additional thread for running tasks that shouldn't block the UI.
+     */
+    private HandlerThread backgroundThread;    /**
      * {@link CameraDevice.StateCallback} is called when {@link CameraDevice} changes its state.
      */
     private final CameraDevice.StateCallback stateCallback = new CameraDevice.StateCallback() {
@@ -203,22 +200,10 @@ public class Camera2Fragment extends Fragment
             }
         }
     };
-
-    /**
-     * An additional thread for running tasks that shouldn't block the UI.
-     */
-    private HandlerThread backgroundThread;
-
     /**
      * A {@link Handler} for running tasks in the background.
      */
     private Handler backgroundHandler;
-
-    /**
-     * An {@link ImageReader} that handles still image capture.
-     */
-    private ImageReader imageReader;
-
     /**
      * This a callback object for the {@link ImageReader}. "onImageAvailable" will be called when a
      * still image is ready to be saved.
@@ -236,40 +221,90 @@ public class Camera2Fragment extends Fragment
         }
 
     };
-
+    /**
+     * An {@link ImageReader} that handles still image capture.
+     */
+    private ImageReader imageReader;
     /**
      * {@link CaptureRequest.Builder} for the camera preview
      */
     private CaptureRequest.Builder previewRequestBuilder;
-
     /**
      * {@link CaptureRequest} generated by {@link #previewRequestBuilder}
      */
     private CaptureRequest previewRequest;
-
     /**
      * The current state of camera state for taking pictures.
      *
      * @see #captureCallback
      */
     private int state = STATE_PREVIEW;
-
-    /**
-     * A {@link Semaphore} to prevent the app from exiting before closing the camera.
-     */
-    private final Semaphore cameraOpenCloseLock = new Semaphore(1);
-
     /**
      * Whether the current camera device supports Flash or not.
      */
     private boolean flashSupported;
-
     /**
      * Orientation of the camera sensor
      */
     private int sensorOrientation;
 
     /**
+     * Given {@code choices} of {@code Size}s supported by a camera, choose the smallest one that
+     * is at least as large as the respective texture view size, and that is at most as large as the
+     * respective max size, and whose aspect ratio matches with the specified value. If such size
+     * doesn't exist, choose the largest one that is at most as large as the respective max size,
+     * and whose aspect ratio matches with the specified value.
+     *
+     * @param choices           The list of sizes that the camera supports for the intended output
+     *                          class
+     * @param textureViewWidth  The width of the texture view relative to sensor coordinate
+     * @param textureViewHeight The height of the texture view relative to sensor coordinate
+     * @param maxWidth          The maximum width that can be chosen
+     * @param maxHeight         The maximum height that can be chosen
+     * @param aspectRatio       The aspect ratio
+     * @return The optimal {@code Size}, or an arbitrary one if none were big enough
+     */
+    private static Size chooseOptimalSize(Size[] choices, int textureViewWidth,
+                                          int textureViewHeight, int maxWidth, int maxHeight, Size aspectRatio) {
+
+        // Collect the supported resolutions that are at least as big as the preview Surface
+        List<Size> bigEnough = new ArrayList<>();
+        // Collect the supported resolutions that are smaller than the preview Surface
+        List<Size> notBigEnough = new ArrayList<>();
+        int w = aspectRatio.getWidth();
+        int h = aspectRatio.getHeight();
+        for (Size option : choices) {
+            if (option.getWidth() <= maxWidth && option.getHeight() <= maxHeight
+                    && option.getHeight() == option.getWidth() * h / w) {
+                if (option.getWidth() >= textureViewWidth
+                        && option.getHeight() >= textureViewHeight) {
+                    bigEnough.add(option);
+                } else {
+                    notBigEnough.add(option);
+                }
+            }
+        }
+
+        // Pick the smallest of those big enough. If there is no one big enough, pick the
+        // largest of those not big enough.
+        if (!bigEnough.isEmpty()) {
+            return Collections.min(bigEnough, new CompareSizesByArea());
+        } else if (!notBigEnough.isEmpty()) {
+            return Collections.max(notBigEnough, new CompareSizesByArea());
+        } else {
+            return choices[0];
+        }
+    }
+
+    public static Camera2Fragment newInstance() {
+        return new Camera2Fragment();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_camera2, container, false);
+    }    /**
      * A {@link CameraCaptureSession.CaptureCallback} that handles events related to JPEG capture.
      */
     private final CameraCaptureSession.CaptureCallback captureCallback
@@ -335,64 +370,6 @@ public class Camera2Fragment extends Fragment
             process(result);
         }
     };
-
-    /**
-     * Given {@code choices} of {@code Size}s supported by a camera, choose the smallest one that
-     * is at least as large as the respective texture view size, and that is at most as large as the
-     * respective max size, and whose aspect ratio matches with the specified value. If such size
-     * doesn't exist, choose the largest one that is at most as large as the respective max size,
-     * and whose aspect ratio matches with the specified value.
-     *
-     * @param choices           The list of sizes that the camera supports for the intended output
-     *                          class
-     * @param textureViewWidth  The width of the texture view relative to sensor coordinate
-     * @param textureViewHeight The height of the texture view relative to sensor coordinate
-     * @param maxWidth          The maximum width that can be chosen
-     * @param maxHeight         The maximum height that can be chosen
-     * @param aspectRatio       The aspect ratio
-     * @return The optimal {@code Size}, or an arbitrary one if none were big enough
-     */
-    private static Size chooseOptimalSize(Size[] choices, int textureViewWidth,
-                                          int textureViewHeight, int maxWidth, int maxHeight, Size aspectRatio) {
-
-        // Collect the supported resolutions that are at least as big as the preview Surface
-        List<Size> bigEnough = new ArrayList<>();
-        // Collect the supported resolutions that are smaller than the preview Surface
-        List<Size> notBigEnough = new ArrayList<>();
-        int w = aspectRatio.getWidth();
-        int h = aspectRatio.getHeight();
-        for (Size option : choices) {
-            if (option.getWidth() <= maxWidth && option.getHeight() <= maxHeight
-                    && option.getHeight() == option.getWidth() * h / w) {
-                if (option.getWidth() >= textureViewWidth
-                        && option.getHeight() >= textureViewHeight) {
-                    bigEnough.add(option);
-                } else {
-                    notBigEnough.add(option);
-                }
-            }
-        }
-
-        // Pick the smallest of those big enough. If there is no one big enough, pick the
-        // largest of those not big enough.
-        if (!bigEnough.isEmpty()) {
-            return Collections.min(bigEnough, new CompareSizesByArea());
-        } else if (!notBigEnough.isEmpty()) {
-            return Collections.max(notBigEnough, new CompareSizesByArea());
-        } else {
-            return choices[0];
-        }
-    }
-
-    public static Camera2Fragment newInstance() {
-        return new Camera2Fragment();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_camera2, container, false);
-    }
 
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
@@ -872,4 +849,10 @@ public class Camera2Fragment extends Fragment
                     - (long) rhs.getWidth() * rhs.getHeight());
         }
     }
+
+
+
+
+
+
 }

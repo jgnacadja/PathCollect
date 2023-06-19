@@ -57,11 +57,23 @@ class ProjectPreferencesFragmentTest {
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
             assertThat(fragment.findPreference<Preference>("protocol")!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>("project_display")!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>("user_interface")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("project_display")!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>("user_interface")!!.isVisible,
+                `is`(true)
+            )
             assertThat(fragment.findPreference<Preference>("maps")!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>("form_management")!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>("user_and_device_identity")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("form_management")!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>("user_and_device_identity")!!.isVisible,
+                `is`(true)
+            )
         }
 
         adminSettings.save(ProtectedProjectKeys.KEY_CHANGE_SERVER, false)
@@ -90,11 +102,23 @@ class ProjectPreferencesFragmentTest {
         scenario.recreate()
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
             assertThat(fragment.findPreference<Preference>("protocol")!!.isVisible, `is`(false))
-            assertThat(fragment.findPreference<Preference>("project_display")!!.isVisible, `is`(false))
-            assertThat(fragment.findPreference<Preference>("user_interface")!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>("project_display")!!.isVisible,
+                `is`(false)
+            )
+            assertThat(
+                fragment.findPreference<Preference>("user_interface")!!.isVisible,
+                `is`(false)
+            )
             assertThat(fragment.findPreference<Preference>("maps")!!.isVisible, `is`(false))
-            assertThat(fragment.findPreference<Preference>("form_management")!!.isVisible, `is`(false))
-            assertThat(fragment.findPreference<Preference>("user_and_device_identity")!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>("form_management")!!.isVisible,
+                `is`(false)
+            )
+            assertThat(
+                fragment.findPreference<Preference>("user_and_device_identity")!!.isVisible,
+                `is`(false)
+            )
         }
     }
 
@@ -167,7 +191,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("project_display")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("project_display")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -178,7 +205,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("project_display")!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>("project_display")!!.isVisible,
+                `is`(false)
+            )
         }
     }
 
@@ -188,7 +218,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("project_display")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("project_display")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -199,7 +232,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("project_display")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("project_display")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -209,7 +245,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("project_display")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("project_display")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -220,7 +259,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("project_display")!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>("project_display")!!.isVisible,
+                `is`(false)
+            )
         }
     }
 
@@ -235,7 +277,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("user_interface")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("user_interface")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -250,7 +295,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("user_interface")!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>("user_interface")!!.isVisible,
+                `is`(false)
+            )
         }
     }
 
@@ -265,7 +313,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("user_interface")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("user_interface")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -280,7 +331,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("user_interface")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("user_interface")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -295,7 +349,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("user_interface")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("user_interface")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -310,7 +367,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("user_interface")!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>("user_interface")!!.isVisible,
+                `is`(false)
+            )
         }
     }
 
@@ -397,7 +457,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("form_management")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("form_management")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -421,7 +484,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("form_management")!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>("form_management")!!.isVisible,
+                `is`(false)
+            )
         }
     }
 
@@ -445,7 +511,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("form_management")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("form_management")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -469,7 +538,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("form_management")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("form_management")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -493,7 +565,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("form_management")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("form_management")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -517,7 +592,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("form_management")!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>("form_management")!!.isVisible,
+                `is`(false)
+            )
         }
     }
 
@@ -530,7 +608,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("user_and_device_identity")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("user_and_device_identity")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -543,7 +624,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("user_and_device_identity")!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>("user_and_device_identity")!!.isVisible,
+                `is`(false)
+            )
         }
     }
 
@@ -556,7 +640,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("user_and_device_identity")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("user_and_device_identity")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -569,7 +656,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("user_and_device_identity")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("user_and_device_identity")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -582,7 +672,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("user_and_device_identity")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("user_and_device_identity")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -595,7 +688,10 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("user_and_device_identity")!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>("user_and_device_identity")!!.isVisible,
+                `is`(false)
+            )
         }
     }
 
@@ -605,21 +701,45 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("unlock_protected_settings")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("unlock_protected_settings")!!.isVisible,
+                `is`(true)
+            )
 
-            assertThat(fragment.findPreference<Preference>("admin_password")!!.isVisible, `is`(false))
-            assertThat(fragment.findPreference<Preference>("project_management")!!.isVisible, `is`(false))
-            assertThat(fragment.findPreference<Preference>("access_control")!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>("admin_password")!!.isVisible,
+                `is`(false)
+            )
+            assertThat(
+                fragment.findPreference<Preference>("project_management")!!.isVisible,
+                `is`(false)
+            )
+            assertThat(
+                fragment.findPreference<Preference>("access_control")!!.isVisible,
+                `is`(false)
+            )
         }
 
         scenario.recreate()
 
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("unlock_protected_settings")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("unlock_protected_settings")!!.isVisible,
+                `is`(true)
+            )
 
-            assertThat(fragment.findPreference<Preference>("admin_password")!!.isVisible, `is`(false))
-            assertThat(fragment.findPreference<Preference>("project_management")!!.isVisible, `is`(false))
-            assertThat(fragment.findPreference<Preference>("access_control")!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>("admin_password")!!.isVisible,
+                `is`(false)
+            )
+            assertThat(
+                fragment.findPreference<Preference>("project_management")!!.isVisible,
+                `is`(false)
+            )
+            assertThat(
+                fragment.findPreference<Preference>("access_control")!!.isVisible,
+                `is`(false)
+            )
         }
     }
 
@@ -629,21 +749,45 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("unlock_protected_settings")!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>("unlock_protected_settings")!!.isVisible,
+                `is`(false)
+            )
 
-            assertThat(fragment.findPreference<Preference>("admin_password")!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>("project_management")!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>("access_control")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("admin_password")!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>("project_management")!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>("access_control")!!.isVisible,
+                `is`(true)
+            )
         }
 
         scenario.recreate()
 
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("unlock_protected_settings")!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>("unlock_protected_settings")!!.isVisible,
+                `is`(false)
+            )
 
-            assertThat(fragment.findPreference<Preference>("admin_password")!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>("project_management")!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>("access_control")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("admin_password")!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>("project_management")!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>("access_control")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -653,21 +797,45 @@ class ProjectPreferencesFragmentTest {
 
         val scenario = launcherRule.launch(ProjectPreferencesFragment::class.java)
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("unlock_protected_settings")!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>("unlock_protected_settings")!!.isVisible,
+                `is`(false)
+            )
 
-            assertThat(fragment.findPreference<Preference>("admin_password")!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>("project_management")!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>("access_control")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("admin_password")!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>("project_management")!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>("access_control")!!.isVisible,
+                `is`(true)
+            )
         }
 
         scenario.recreate()
 
         scenario.onFragment { fragment: ProjectPreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>("unlock_protected_settings")!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>("unlock_protected_settings")!!.isVisible,
+                `is`(false)
+            )
 
-            assertThat(fragment.findPreference<Preference>("admin_password")!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>("project_management")!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>("access_control")!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>("admin_password")!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>("project_management")!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>("access_control")!!.isVisible,
+                `is`(true)
+            )
         }
     }
 }

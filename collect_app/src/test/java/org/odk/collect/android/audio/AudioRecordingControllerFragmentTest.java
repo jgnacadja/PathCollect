@@ -45,14 +45,13 @@ import java.io.IOException;
 public class AudioRecordingControllerFragmentTest {
 
     public StubAudioRecorder audioRecorder;
+    @Rule
+    public FragmentScenarioLauncherRule launcherRule = new FragmentScenarioLauncherRule(R.style.Theme_MaterialComponents);
     private BackgroundAudioViewModel backgroundAudioViewModel;
     private FormEntryViewModel formEntryViewModel;
     private MutableNonNullLiveData<Boolean> hasBackgroundRecording;
     private MutableNonNullLiveData<Boolean> isBackgroundRecordingEnabled;
     private ExternalWebPageHelper externalWebPageHelper;
-
-    @Rule
-    public FragmentScenarioLauncherRule launcherRule = new FragmentScenarioLauncherRule(R.style.Theme_MaterialComponents);
 
     @Before
     public void setup() throws IOException {

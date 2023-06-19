@@ -5,8 +5,8 @@ import org.hamcrest.CoreMatchers.`is`
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
+import org.mockito.Mockito.`when`
 import org.odk.collect.android.projects.CurrentProjectProvider
 import org.odk.collect.projects.Project
 import org.odk.collect.projects.ProjectsRepository
@@ -36,7 +36,8 @@ class StoragePathProviderTest {
                 "#ffffff"
             )
         )
-        storagePathProvider = StoragePathProvider(currentProjectProvider, projectsRepository, root.absolutePath)
+        storagePathProvider =
+            StoragePathProvider(currentProjectProvider, projectsRepository, root.absolutePath)
     }
 
     @After

@@ -1,5 +1,17 @@
 package org.odk.collect.android.widgets.items;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.odk.collect.android.support.CollectHelpers.setupFakeReferenceManager;
+import static org.odk.collect.testshared.RobolectricHelpers.populateRecyclerView;
+import static java.util.Arrays.asList;
+
 import android.app.Application;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,31 +54,15 @@ import org.odk.collect.audioclips.Clip;
 
 import java.util.List;
 
-import static java.util.Arrays.asList;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.odk.collect.android.support.CollectHelpers.setupFakeReferenceManager;
-import static org.odk.collect.testshared.RobolectricHelpers.populateRecyclerView;
-
 /**
  * @author James Knight
  */
 public class SelectMultiWidgetTest extends GeneralSelectMultiWidgetTest<SelectMultiWidget> {
 
-    @NonNull
-    @Override
-    public SelectMultiWidget createWidget() {
-        SelectMultiWidget selectMultiWidget = new SelectMultiWidget(activity, new QuestionDetails(formEntryPrompt));
-        selectMultiWidget.setFocus(activity);
-        return selectMultiWidget;
-    }
-
+    private static final List<Pair<String, String>> REFERENCES = asList(
+            new Pair<>("ref", "file://audio.mp3"),
+            new Pair<>("ref1", "file://audio1.mp3")
+    );
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
 
@@ -75,6 +71,14 @@ public class SelectMultiWidgetTest extends GeneralSelectMultiWidgetTest<SelectMu
 
     @Mock
     public Analytics analytics;
+
+    @NonNull
+    @Override
+    public SelectMultiWidget createWidget() {
+        SelectMultiWidget selectMultiWidget = new SelectMultiWidget(activity, new QuestionDetails(formEntryPrompt));
+        selectMultiWidget.setFocus(activity);
+        return selectMultiWidget;
+    }
 
     @Before
     public void setup() throws Exception {
@@ -238,9 +242,4 @@ public class SelectMultiWidgetTest extends GeneralSelectMultiWidgetTest<SelectMu
     private ViewGroup getChoiceView(SelectMultiWidget widget, int index) {
         return (ViewGroup) widget.binding.choicesRecyclerView.getChildAt(index);
     }
-
-    private static final List<Pair<String, String>> REFERENCES = asList(
-            new Pair<>("ref", "file://audio.mp3"),
-            new Pair<>("ref1", "file://audio1.mp3")
-    );
 }

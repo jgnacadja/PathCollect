@@ -11,9 +11,9 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 4142,
-      "versionName": "1.0-221-gc8ad73361-dirty",
-      "outputFile": "collect-release-1.0-221-gc8ad73361-dirty.apk"
+      "versionCode": 4143,
+      "versionName": "1.0-255-g719fc2e0b-dirty",
+      "outputFile": "collect-release-1.0-255-g719fc2e0b-dirty.apk"
     }
   ],
   "elementType": "File"

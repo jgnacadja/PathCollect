@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:jr="http://openrosa.org/javarosa" xmlns:odk="http://www.opendatakit.org/xforms" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:odk="http://www.opendatakit.org/xforms"
+    xmlns="http://www.w3.org/2002/xforms">
     <h:head>
         <h:title>selectOneExternal</h:title>
         <model odk:xforms-version="1.0.0">
@@ -88,7 +89,8 @@
             <bind nodeset="/data/state2" type="string" />
             <bind nodeset="/data/county2" type="string" />
             <bind nodeset="/data/city2" type="string" />
-            <bind jr:preload="uid" nodeset="/data/meta/instanceID" readonly="true()" type="string" />
+            <bind nodeset="/data/meta/instanceID" readonly="true()" type="string"
+                jr:preload="uid" />
         </model>
     </h:head>
     <h:body>
@@ -106,7 +108,8 @@
         <input query="instance('counties')/root/item[state= /data/state ]" ref="/data/county">
             <label ref="jr:itext('/data/county:label')" />
         </input>
-        <input query="instance('cities')/root/item[state= /data/state  and county= /data/county ]" ref="/data/city">
+        <input query="instance('cities')/root/item[state= /data/state  and county= /data/county ]"
+            ref="/data/city">
             <label ref="jr:itext('/data/city:label')" />
         </input>
         <select1 appearance="minimal" ref="/data/state2">
@@ -121,11 +124,14 @@
                 <value>a2</value>
             </item>
         </select1>
-        <input appearance="minimal" query="instance('counties')/root/item[state= /data/state2 ]" ref="/data/county2">
+        <input appearance="minimal" query="instance('counties')/root/item[state= /data/state2 ]"
+            ref="/data/county2">
             <label ref="jr:itext('/data/county2:label')" />
             <hint>minimal</hint>
         </input>
-        <input appearance="minimal autocomplete" query="instance('cities')/root/item[state= /data/state2  and county= /data/county2 ]" ref="/data/city2">
+        <input appearance="minimal autocomplete"
+            query="instance('cities')/root/item[state= /data/state2  and county= /data/county2 ]"
+            ref="/data/city2">
             <label ref="jr:itext('/data/city2:label')" />
             <hint>minimal autocomplete</hint>
         </input>

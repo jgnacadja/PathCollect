@@ -1,5 +1,7 @@
 package org.odk.collect.android.feature.settings;
 
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,14 +18,14 @@ import org.odk.collect.android.R;
 import org.odk.collect.android.configure.qr.AppConfigurationGenerator;
 import org.odk.collect.android.configure.qr.QRCodeGenerator;
 import org.odk.collect.android.injection.config.AppDependencyModule;
+import org.odk.collect.android.support.StubBarcodeViewDecoder;
+import org.odk.collect.android.support.TestScheduler;
+import org.odk.collect.android.support.pages.MainMenuPage;
+import org.odk.collect.android.support.pages.ProjectSettingsPage;
+import org.odk.collect.android.support.pages.QRCodePage;
 import org.odk.collect.android.support.rules.CollectTestRule;
 import org.odk.collect.android.support.rules.ResetStateRule;
 import org.odk.collect.android.support.rules.RunnableRule;
-import org.odk.collect.android.support.StubBarcodeViewDecoder;
-import org.odk.collect.android.support.TestScheduler;
-import org.odk.collect.android.support.pages.ProjectSettingsPage;
-import org.odk.collect.android.support.pages.MainMenuPage;
-import org.odk.collect.android.support.pages.QRCodePage;
 import org.odk.collect.android.support.rules.TestRuleChain;
 import org.odk.collect.android.views.BarcodeViewDecoder;
 import org.odk.collect.async.Scheduler;
@@ -31,8 +33,6 @@ import org.odk.collect.async.Scheduler;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Collection;
-
-import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 
 @RunWith(AndroidJUnit4.class)
 public class ConfigureWithQRCodeTest {

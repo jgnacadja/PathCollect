@@ -16,13 +16,6 @@
 
 package org.odk.collect.android.support.pages;
 
-import android.widget.RelativeLayout;
-
-import androidx.appcompat.widget.Toolbar;
-
-import org.odk.collect.android.R;
-import org.odk.collect.android.adapters.InstanceListCursorAdapter;
-
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
@@ -36,6 +29,13 @@ import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.Matchers.not;
+
+import android.widget.RelativeLayout;
+
+import androidx.appcompat.widget.Toolbar;
+
+import org.odk.collect.android.R;
+import org.odk.collect.android.adapters.InstanceListCursorAdapter;
 
 public class EditSavedFormPage extends Page<EditSavedFormPage> {
 

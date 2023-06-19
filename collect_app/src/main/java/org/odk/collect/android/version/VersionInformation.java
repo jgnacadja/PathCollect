@@ -29,7 +29,7 @@ public class VersionInformation {
 
     @Nullable
     public String getCommitSHA() {
-         String[] components = getVersionDescriptionComponents();
+        String[] components = getVersionDescriptionComponents();
 
         if (isBeta() && components.length > 3) {
             return components[3];

@@ -35,7 +35,10 @@ import java.io.File
  * @author mitchellsundt@gmail.com
  * @author paulburke
  */
-class MediaUtils(private val intentLauncher: IntentLauncher, private val contentUriProvider: ContentUriProvider) {
+class MediaUtils(
+    private val intentLauncher: IntentLauncher,
+    private val contentUriProvider: ContentUriProvider
+) {
     fun deleteMediaFile(imageFile: String) {
         FileUtils.deleteAndReport(File(imageFile))
     }
@@ -55,7 +58,10 @@ class MediaUtils(private val intentLauncher: IntentLauncher, private val content
         )
 
         if (contentUri == null) {
-            ToastUtils.showLongToast(context, "Can't open file. If you are on a Huawei device, this is expected and will not be fixed.")
+            ToastUtils.showLongToast(
+                context,
+                "Can't open file. If you are on a Huawei device, this is expected and will not be fixed."
+            )
             return
         }
 

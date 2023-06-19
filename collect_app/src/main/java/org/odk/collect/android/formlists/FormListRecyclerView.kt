@@ -15,7 +15,12 @@ class FormListRecyclerView(context: Context, attrs: AttributeSet?) : RecyclerVie
     init {
         layoutManager = LinearLayoutManager(context)
         val itemDecoration = DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL)
-        itemDecoration.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.list_item_divider)!!)
+        itemDecoration.setDrawable(
+            ContextCompat.getDrawable(
+                getContext(),
+                R.drawable.list_item_divider
+            )!!
+        )
         addItemDecoration(itemDecoration)
     }
 }

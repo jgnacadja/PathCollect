@@ -1,9 +1,8 @@
 package org.odk.collect.android.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.annotation.SuppressLint;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +21,8 @@ import java.util.List;
 public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHolder> {
 
     private final Context context;
-    private List<Post> posts;
     private final PostItemClickListener listener;
+    private List<Post> posts;
 
     public PostListAdapter(List<Post> posts, Context context, PostItemClickListener listener) {
         this.context = context;
@@ -42,7 +41,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Post post = posts.get(position);
-        if(post.getMedia() != null){
+        if (post.getMedia() != null) {
             String image = post.getMedia();
             DownloadPostImageTask task = new DownloadPostImageTask(holder);
             task.execute(image);
@@ -79,8 +78,8 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
             view.setOnClickListener(this);
         }
 
-        public void setIconDrawable(Drawable drawable){
-            if(drawable != null){
+        public void setIconDrawable(Drawable drawable) {
+            if (drawable != null) {
                 this.imageView.setImageDrawable(drawable);
             } else {
                 int iconId = R.drawable.ic_outline_website_24;
@@ -88,6 +87,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
                 this.imageView.setTag(iconId);
             }
         }
+
         @Override
         public void onClick(View v) {
             listener.onClick(getAdapterPosition());

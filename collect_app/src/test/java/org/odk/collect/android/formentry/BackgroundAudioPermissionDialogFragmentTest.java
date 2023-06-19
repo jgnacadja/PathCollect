@@ -35,13 +35,12 @@ import org.odk.collect.testshared.RobolectricHelpers;
 @RunWith(AndroidJUnit4.class)
 public class BackgroundAudioPermissionDialogFragmentTest {
 
-    private BackgroundAudioViewModel backgroundAudioViewModel;
-    private FakePermissionsProvider fakePermissionsProvider;
-
     @Rule
     public FragmentScenarioLauncherRule launcherRule = new FragmentScenarioLauncherRule(
             R.style.Theme_MaterialComponents
     );
+    private BackgroundAudioViewModel backgroundAudioViewModel;
+    private FakePermissionsProvider fakePermissionsProvider;
 
     @Before
     public void setup() {

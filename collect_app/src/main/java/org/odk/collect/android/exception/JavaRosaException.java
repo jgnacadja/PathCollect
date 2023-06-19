@@ -20,7 +20,7 @@ package org.odk.collect.android.exception;
 
 /**
  * This exception wraps all exceptions that come from JR.
- *
+ * <p>
  * Author: Meletis Margaritis
  * Date: 2/13/14
  * Time: 11:39 AM

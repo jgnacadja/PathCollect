@@ -1,4 +1,5 @@
 package org.odk.collect.android.adapters;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +16,8 @@ import java.util.List;
 public class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewHolder> {
 
     private final Context context;
-    private List<Hospital> hospitals;
     private final HospitalItemClickListener listener;
+    private List<Hospital> hospitals;
 
     public HospitalListAdapter(List<Hospital> hospitals, Context context, HospitalItemClickListener listener) {
         this.context = context;

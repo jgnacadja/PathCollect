@@ -47,7 +47,7 @@ public class AllWidgetsFormTest {
 
     //region Main test block.
     @Test
-    public void testActivityOpen()  {
+    public void testActivityOpen() {
         skipInitialLabel();
 
         testStringWidget();

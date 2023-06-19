@@ -24,17 +24,17 @@ public class FakeGoogleAccountPicker implements GoogleAccountPicker {
     }
 
     @Override
-    public Account[] getAllAccounts() {
-        if (deviceAccount != null) {
-            return new Account[] {new Account(deviceAccount, "com.google")};
-        } else {
-            return new Account[]{};
-        }
+    public void setSelectedAccountName(String accountName) {
+        this.selectedAccountName = accountName;
     }
 
     @Override
-    public void setSelectedAccountName(String accountName) {
-        this.selectedAccountName = accountName;
+    public Account[] getAllAccounts() {
+        if (deviceAccount != null) {
+            return new Account[]{new Account(deviceAccount, "com.google")};
+        } else {
+            return new Account[]{};
+        }
     }
 
     @Override

@@ -20,10 +20,11 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import androidx.fragment.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.NumberPicker;
+
+import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -35,11 +36,6 @@ public class NumberPickerDialog extends DialogFragment {
     public static final String WIDGET_ID = "widgetId";
     public static final String DISPLAYED_VALUES = "displayedValues";
     public static final String PROGRESS = "progress";
-
-    public interface NumberPickerListener {
-        void onNumberPickerValueSelected(int widgetId, int value);
-    }
-
     private NumberPickerListener listener;
 
     public static NumberPickerDialog newInstance(int widgetId, String[] displayedValues, int progress) {
@@ -89,5 +85,9 @@ public class NumberPickerDialog extends DialogFragment {
                             }
                         })
                 .create();
+    }
+
+    public interface NumberPickerListener {
+        void onNumberPickerValueSelected(int widgetId, int value);
     }
 }

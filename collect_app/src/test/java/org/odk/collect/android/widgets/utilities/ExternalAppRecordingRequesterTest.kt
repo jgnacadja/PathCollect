@@ -4,9 +4,7 @@ import android.app.Activity
 import android.provider.MediaStore
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.CoreMatchers.equalTo
-import org.hamcrest.CoreMatchers.nullValue
+import org.hamcrest.CoreMatchers.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -36,7 +34,12 @@ class ExternalAppRecordingRequesterTest {
     }
 
     private fun setupRequester() {
-        requester = ExternalAppRecordingRequester(activity, intentLauncher, waitingForDataRegistry, permissionsProvider)
+        requester = ExternalAppRecordingRequester(
+            activity,
+            intentLauncher,
+            waitingForDataRegistry,
+            permissionsProvider
+        )
     }
 
     @Test

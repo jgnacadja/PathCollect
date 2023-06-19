@@ -14,7 +14,6 @@
 package org.odk.collect.android.upload
 
 import android.net.Uri
-import java.lang.Exception
 
 /**
  * Thrown to indicate that a problem with submitting the current finalized form has occurred.

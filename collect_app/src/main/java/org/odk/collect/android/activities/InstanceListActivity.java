@@ -1,13 +1,13 @@
 package org.odk.collect.android.activities;
 
-import org.odk.collect.android.database.instances.DatabaseInstanceColumns;
-
 import static org.odk.collect.android.utilities.ApplicationConstants.SortingOrder.BY_DATE_ASC;
 import static org.odk.collect.android.utilities.ApplicationConstants.SortingOrder.BY_DATE_DESC;
 import static org.odk.collect.android.utilities.ApplicationConstants.SortingOrder.BY_NAME_ASC;
 import static org.odk.collect.android.utilities.ApplicationConstants.SortingOrder.BY_NAME_DESC;
 import static org.odk.collect.android.utilities.ApplicationConstants.SortingOrder.BY_STATUS_ASC;
 import static org.odk.collect.android.utilities.ApplicationConstants.SortingOrder.BY_STATUS_DESC;
+
+import org.odk.collect.android.database.instances.DatabaseInstanceColumns;
 
 abstract class InstanceListActivity extends AppListActivity {
     protected String getSortingOrder() {

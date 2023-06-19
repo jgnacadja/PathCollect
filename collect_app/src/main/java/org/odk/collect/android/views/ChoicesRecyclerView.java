@@ -16,8 +16,8 @@ import com.google.android.flexbox.FlexboxLayoutManager;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.AbstractSelectListAdapter;
-import org.odk.collect.androidshared.utils.ScreenUtils;
 import org.odk.collect.android.utilities.ThemeUtils;
+import org.odk.collect.androidshared.utils.ScreenUtils;
 
 public class ChoicesRecyclerView extends RecyclerView {
     /**

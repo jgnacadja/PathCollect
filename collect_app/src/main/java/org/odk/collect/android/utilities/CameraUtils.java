@@ -44,6 +44,16 @@ public class CameraUtils {
         return -1;
     }
 
+    public static void savePhoto(String path, byte[] data) {
+        File tempFile = new File(path);
+        try (FileOutputStream fos = new FileOutputStream(tempFile)) {
+            fos.write(data);
+            fos.flush();
+        } catch (IOException e) {
+            Timber.e(e);
+        }
+    }
+
     public boolean isFrontCameraAvailable() {
         try {
             //https://developer.android.com/reference/android/hardware/camera2/CameraCharacteristics.html
@@ -63,15 +73,5 @@ public class CameraUtils {
             Timber.e(e);
         }
         return false; // No front-facing camera found
-    }
-
-    public static void savePhoto(String path, byte[] data) {
-        File tempFile = new File(path);
-        try (FileOutputStream fos = new FileOutputStream(tempFile)) {
-            fos.write(data);
-            fos.flush();
-        } catch (IOException e) {
-            Timber.e(e);
-        }
     }
 }

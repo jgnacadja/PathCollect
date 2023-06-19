@@ -1,21 +1,5 @@
 package org.odk.collect.android.database;
 
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.odk.collect.android.database.forms.FormDatabaseMigrator;
-import org.odk.collect.android.utilities.SQLiteUtils;
-
-import java.util.List;
-
-import static java.util.Arrays.asList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.odk.collect.android.database.DatabaseConstants.FORMS_TABLE_NAME;
@@ -36,6 +20,22 @@ import static org.odk.collect.android.database.forms.DatabaseFormColumns.LANGUAG
 import static org.odk.collect.android.database.forms.DatabaseFormColumns.MD5_HASH;
 import static org.odk.collect.android.database.forms.DatabaseFormColumns.SUBMISSION_URI;
 import static org.odk.collect.android.database.forms.DatabaseFormColumns._ID;
+import static java.util.Arrays.asList;
+
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.odk.collect.android.database.forms.FormDatabaseMigrator;
+import org.odk.collect.android.utilities.SQLiteUtils;
+
+import java.util.List;
 
 @RunWith(AndroidJUnit4.class)
 public class FormDatabaseMigratorTest {

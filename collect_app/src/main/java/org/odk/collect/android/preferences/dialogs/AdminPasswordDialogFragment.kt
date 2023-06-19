@@ -36,7 +36,8 @@ class AdminPasswordDialogFragment : DialogFragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         DaggerUtils.getComponent(context).inject(this)
-        projectPreferencesViewModel = ViewModelProvider(requireActivity(), factory)[ProjectPreferencesViewModel::class.java]
+        projectPreferencesViewModel =
+            ViewModelProvider(requireActivity(), factory)[ProjectPreferencesViewModel::class.java]
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -50,7 +51,8 @@ class AdminPasswordDialogFragment : DialogFragment() {
             if (isChecked) {
                 binding.editText.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
             } else {
-                binding.editText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                binding.editText.inputType =
+                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
         }
 

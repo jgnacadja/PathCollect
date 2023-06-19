@@ -39,22 +39,19 @@ import java.util.List;
  */
 @SuppressLint("ViewConstructor")
 public class OSMWidget extends QuestionWidget implements WidgetDataReceiver {
-    OsmWidgetAnswerBinding binding;
-
     public static final String FORM_ID = "FORM_ID";
     public static final String INSTANCE_ID = "INSTANCE_ID";
     public static final String INSTANCE_DIR = "INSTANCE_DIR";
     public static final String FORM_FILE_NAME = "FORM_FILE_NAME";
     public static final String OSM_EDIT_FILE_NAME = "OSM_EDIT_FILE_NAME";
-
     private final WaitingForDataRegistry waitingForDataRegistry;
     private final IntentLauncher intentLauncher;
-
     private final List<OSMTag> osmRequiredTags;
     private final String instanceId;
     private final String instanceDirectory;
     private final String formFileName;
     private final int formId;
+    OsmWidgetAnswerBinding binding;
 
     public OSMWidget(Context context, QuestionDetails questionDetails, WaitingForDataRegistry waitingForDataRegistry,
                      IntentLauncher intentLauncher, FormController formController) {

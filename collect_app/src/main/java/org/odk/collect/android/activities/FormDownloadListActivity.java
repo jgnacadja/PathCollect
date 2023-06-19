@@ -32,19 +32,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatCheckBox;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.odk.collect.analytics.Analytics;
 import org.odk.collect.android.R;
 import org.odk.collect.android.activities.viewmodels.FormDownloadListViewModel;
 import org.odk.collect.android.adapters.FormDownloadListAdapter;
-import org.odk.collect.android.button.CheckableButton;
-import org.odk.collect.android.button.MaterialButtonCheckable;
 import org.odk.collect.android.formentry.RefreshFormListDialogFragment;
 import org.odk.collect.android.formmanagement.FormDownloadException;
 import org.odk.collect.android.formmanagement.FormDownloader;
@@ -101,18 +96,26 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
         DownloadFormsTaskListener, AuthDialogUtility.AuthDialogUtilityResultListener,
         AdapterView.OnItemClickListener, RefreshFormListDialogFragment.RefreshFormListDialogFragmentListener,
         FormsDownloadResultDialog.FormDownloadResultDialogListener {
-    private static final String FORM_DOWNLOAD_LIST_SORTING_ORDER = "formDownloadListSortingOrder";
-
     public static final String DISPLAY_ONLY_UPDATED_FORMS = "displayOnlyUpdatedForms";
-    private static final String BUNDLE_SELECTED_COUNT = "selectedcount";
-
     public static final String FORMNAME = "formname";
-    private static final String FORMDETAIL_KEY = "formdetailkey";
     public static final String FORMID_DISPLAY = "formiddisplay";
-
     public static final String FORM_ID_KEY = "formid";
+    private static final String FORM_DOWNLOAD_LIST_SORTING_ORDER = "formDownloadListSortingOrder";
+    private static final String BUNDLE_SELECTED_COUNT = "selectedcount";
+    private static final String FORMDETAIL_KEY = "formdetailkey";
     private static final String FORM_VERSION_KEY = "formversion";
-
+    private static final boolean DO_NOT_EXIT = false;
+    private final ArrayList<HashMap<String, String>> filteredFormList = new ArrayList<>();
+    @Inject
+    WebCredentialsUtils webCredentialsUtils;
+    @Inject
+    ServerFormsDetailsFetcher serverFormsDetailsFetcher;
+    @Inject
+    NetworkStateProvider connectivityProvider;
+    @Inject
+    Analytics analytics;
+    @Inject
+    FormDownloader formDownloader;
     private AlertDialog alertDialog;
     private ProgressDialog cancelDialog;
     private Button downloadButton;
@@ -120,29 +123,8 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
     private DownloadFormListTask downloadFormListTask;
     private DownloadFormsTask downloadFormsTask;
     private ImageButton toggleButton;
-
-    private final ArrayList<HashMap<String, String>> filteredFormList = new ArrayList<>();
-
-    private static final boolean DO_NOT_EXIT = false;
-
     private boolean displayOnlyUpdatedForms;
-
     private FormDownloadListViewModel viewModel;
-
-    @Inject
-    WebCredentialsUtils webCredentialsUtils;
-
-    @Inject
-    ServerFormsDetailsFetcher serverFormsDetailsFetcher;
-
-    @Inject
-    NetworkStateProvider connectivityProvider;
-
-    @Inject
-    Analytics analytics;
-
-    @Inject
-    FormDownloader formDownloader;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -271,9 +253,9 @@ public class FormDownloadListActivity extends FormListActivity implements FormLi
         downloadButton.setEnabled(false);
     }
 
-    private void checkToogle(){
+    private void checkToogle() {
         int iconId = R.drawable.ic_square;
-        if(listView.getCheckedItemCount() == listView.getCount()){
+        if (listView.getCheckedItemCount() == listView.getCount()) {
             iconId = R.drawable.ic_checked;
         }
         toggleButton.setImageResource(iconId);

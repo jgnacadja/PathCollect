@@ -54,10 +54,18 @@ class NotificationDrawer {
     ): D {
         val device = waitForNotification(appName)
 
-        var actionElement = device.findObject(By.text(actionText)) ?: device.findObject(By.text(actionText.uppercase()))
+        var actionElement = device.findObject(By.text(actionText)) ?: device.findObject(
+            By.text(
+                actionText.uppercase()
+            )
+        )
         if (actionElement == null) {
             device.findObject(By.text(appName)).click() // Expand notification to show actions
-            actionElement = device.findObject(By.text(actionText)) ?: device.findObject(By.text(actionText.uppercase()))
+            actionElement = device.findObject(By.text(actionText)) ?: device.findObject(
+                By.text(
+                    actionText.uppercase()
+                )
+            )
         }
 
         actionElement.click()

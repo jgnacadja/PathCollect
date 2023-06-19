@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
 import androidx.lifecycle.ViewModelProvider;
 
 import org.odk.collect.android.R;
@@ -51,22 +52,18 @@ import javax.inject.Inject;
  * @author Yaw Anokwa (yanokwa@gmail.com)
  */
 public class MainMenuActivity extends CollectAbstractActivity {
+    @Inject
+    MainMenuViewModel.Factory viewModelFactory;
+    @Inject
+    CurrentProjectViewModel.Factory currentProjectViewModelFactory;
+    @Inject
+    SettingsProvider settingsProvider;
     // buttons
     private Button manageFilesButton;
     private Button sendDataButton;
     private Button viewSentFormsButton;
     private Button reviewDataButton;
     private Button getFormsButton;
-
-    @Inject
-    MainMenuViewModel.Factory viewModelFactory;
-
-    @Inject
-    CurrentProjectViewModel.Factory currentProjectViewModelFactory;
-
-    @Inject
-    SettingsProvider settingsProvider;
-
     private MainMenuViewModel mainMenuViewModel;
 
     private CurrentProjectViewModel currentProjectViewModel;

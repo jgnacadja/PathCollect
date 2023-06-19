@@ -1,16 +1,16 @@
 package org.odk.collect.android.database.notification;
 
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-
-import org.odk.collect.android.database.DatabaseMigrator;
-import org.odk.collect.android.utilities.SQLiteUtils;
-
 import static android.provider.BaseColumns._ID;
 import static org.odk.collect.android.database.DatabaseConstants.NOTIFICATIONS_TABLE_NAME;
 import static org.odk.collect.android.database.notification.DatabaseNotificationColumns.BODY;
 import static org.odk.collect.android.database.notification.DatabaseNotificationColumns.TIMESTAMP;
 import static org.odk.collect.android.database.notification.DatabaseNotificationColumns.TITLE;
+
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+
+import org.odk.collect.android.database.DatabaseMigrator;
+import org.odk.collect.android.utilities.SQLiteUtils;
 
 public class NotificationDatabaseMigrator implements DatabaseMigrator {
 
@@ -52,6 +52,7 @@ public class NotificationDatabaseMigrator implements DatabaseMigrator {
         SQLiteUtils.dropTable(db, NOTIFICATIONS_TABLE_NAME);
         createNotificationsTableV11(db);
     }
+
     private void upgradeToVersion2(SQLiteDatabase db) {
         SQLiteUtils.dropTable(db, NOTIFICATIONS_TABLE_NAME);
         onCreate(db);
@@ -158,6 +159,7 @@ public class NotificationDatabaseMigrator implements DatabaseMigrator {
                 TIMESTAMP}, NOTIFICATIONS_TABLE_NAME);
         SQLiteUtils.dropTable(db, temporaryTable);
     }
+
     private void createNotificationsTableV4(SQLiteDatabase db, String tableName) {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + tableName + " ("
                 + _ID + " integer primary key, "
@@ -183,6 +185,7 @@ public class NotificationDatabaseMigrator implements DatabaseMigrator {
                 + TIMESTAMP + " integer, "
                 + "deleted" + " boolean default(0));");
     }
+
     private void createNotificationsTableV10(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + NOTIFICATIONS_TABLE_NAME + " ("
                 + _ID + " integer primary key, "
@@ -190,6 +193,7 @@ public class NotificationDatabaseMigrator implements DatabaseMigrator {
                 + BODY + " text, "
                 + TIMESTAMP + " integer);");
     }
+
     private void createNotificationsTableV11(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + NOTIFICATIONS_TABLE_NAME + " ("
                 + _ID + " integer primary key, "

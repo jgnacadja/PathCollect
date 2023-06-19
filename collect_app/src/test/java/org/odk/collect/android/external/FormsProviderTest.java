@@ -1,5 +1,22 @@
 package org.odk.collect.android.external;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isOneOf;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.odk.collect.android.database.forms.DatabaseFormColumns.DATE;
+import static org.odk.collect.android.database.forms.DatabaseFormColumns.DISPLAY_NAME;
+import static org.odk.collect.android.database.forms.DatabaseFormColumns.FORM_FILE_PATH;
+import static org.odk.collect.android.database.forms.DatabaseFormColumns.FORM_MEDIA_PATH;
+import static org.odk.collect.android.database.forms.DatabaseFormColumns.JRCACHE_FILE_PATH;
+import static org.odk.collect.android.database.forms.DatabaseFormColumns.JR_FORM_ID;
+import static org.odk.collect.android.database.forms.DatabaseFormColumns.JR_VERSION;
+import static org.odk.collect.android.database.forms.DatabaseFormColumns.LANGUAGE;
+import static org.odk.collect.android.database.forms.DatabaseFormColumns.MD5_HASH;
+import static org.odk.collect.android.external.FormsContract.CONTENT_ITEM_TYPE;
+import static org.odk.collect.android.external.FormsContract.CONTENT_TYPE;
+import static org.odk.collect.android.external.FormsContract.getUri;
+
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -24,23 +41,6 @@ import org.odk.collect.shared.strings.Md5;
 
 import java.io.File;
 import java.io.IOException;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isOneOf;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.odk.collect.android.database.forms.DatabaseFormColumns.DATE;
-import static org.odk.collect.android.database.forms.DatabaseFormColumns.DISPLAY_NAME;
-import static org.odk.collect.android.database.forms.DatabaseFormColumns.FORM_FILE_PATH;
-import static org.odk.collect.android.database.forms.DatabaseFormColumns.FORM_MEDIA_PATH;
-import static org.odk.collect.android.database.forms.DatabaseFormColumns.JRCACHE_FILE_PATH;
-import static org.odk.collect.android.database.forms.DatabaseFormColumns.JR_FORM_ID;
-import static org.odk.collect.android.database.forms.DatabaseFormColumns.JR_VERSION;
-import static org.odk.collect.android.database.forms.DatabaseFormColumns.LANGUAGE;
-import static org.odk.collect.android.database.forms.DatabaseFormColumns.MD5_HASH;
-import static org.odk.collect.android.external.FormsContract.CONTENT_ITEM_TYPE;
-import static org.odk.collect.android.external.FormsContract.CONTENT_TYPE;
-import static org.odk.collect.android.external.FormsContract.getUri;
 
 @RunWith(AndroidJUnit4.class)
 public class FormsProviderTest {

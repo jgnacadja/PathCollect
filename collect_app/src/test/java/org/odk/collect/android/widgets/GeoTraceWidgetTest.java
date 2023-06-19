@@ -1,21 +1,5 @@
 package org.odk.collect.android.widgets;
 
-import android.view.View;
-
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-
-import org.javarosa.core.model.data.StringData;
-import org.javarosa.form.api.FormEntryPrompt;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.odk.collect.android.R;
-import org.odk.collect.android.formentry.questions.QuestionDetails;
-import org.odk.collect.maps.MapConfigurator;
-import org.odk.collect.android.listeners.WidgetValueChangedListener;
-import org.odk.collect.android.widgets.interfaces.GeoDataRequester;
-import org.odk.collect.android.widgets.utilities.WaitingForDataRegistry;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -29,6 +13,22 @@ import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.prom
 import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.promptWithReadOnly;
 import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.promptWithReadOnlyAndAnswer;
 import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.widgetTestActivity;
+
+import android.view.View;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import org.javarosa.core.model.data.StringData;
+import org.javarosa.form.api.FormEntryPrompt;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.odk.collect.android.R;
+import org.odk.collect.android.formentry.questions.QuestionDetails;
+import org.odk.collect.android.listeners.WidgetValueChangedListener;
+import org.odk.collect.android.widgets.interfaces.GeoDataRequester;
+import org.odk.collect.android.widgets.utilities.WaitingForDataRegistry;
+import org.odk.collect.maps.MapConfigurator;
 
 @RunWith(AndroidJUnit4.class)
 public class GeoTraceWidgetTest {
@@ -177,7 +177,7 @@ public class GeoTraceWidgetTest {
         when(mapConfigurator.isAvailable(widget.getContext())).thenReturn(false);
         widget.binding.simpleButton.performClick();
 
-        verify(geoDataRequester, never()).requestGeoTrace(prompt, "",  waitingForDataRegistry);
+        verify(geoDataRequester, never()).requestGeoTrace(prompt, "", waitingForDataRegistry);
         verify(mapConfigurator).showUnavailableMessage(widget.getContext());
     }
 

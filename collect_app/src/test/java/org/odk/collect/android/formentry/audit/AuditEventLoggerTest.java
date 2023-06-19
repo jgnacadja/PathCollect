@@ -16,17 +16,6 @@
 
 package org.odk.collect.android.formentry.audit;
 
-import android.location.Location;
-
-import org.javarosa.form.api.FormEntryPrompt;
-import org.junit.Before;
-import org.junit.Test;
-import org.odk.collect.android.javarosawrapper.FormController;
-import org.odk.collect.android.support.MockFormEntryPromptBuilder;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -57,6 +46,17 @@ import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.
 import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.REPEAT;
 import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.SAVE_ERROR;
 import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.UNKNOWN_EVENT_TYPE;
+
+import android.location.Location;
+
+import org.javarosa.form.api.FormEntryPrompt;
+import org.junit.Before;
+import org.junit.Test;
+import org.odk.collect.android.javarosawrapper.FormController;
+import org.odk.collect.android.support.MockFormEntryPromptBuilder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AuditEventLoggerTest {
 

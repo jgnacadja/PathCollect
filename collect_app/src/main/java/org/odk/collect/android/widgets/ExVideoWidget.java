@@ -27,12 +27,10 @@ import timber.log.Timber;
 
 @SuppressLint("ViewConstructor")
 public class ExVideoWidget extends QuestionWidget implements FileWidget, WidgetDataReceiver {
-    ExVideoWidgetAnswerBinding binding;
-
     private final WaitingForDataRegistry waitingForDataRegistry;
     private final QuestionMediaManager questionMediaManager;
     private final FileRequester fileRequester;
-
+    ExVideoWidgetAnswerBinding binding;
     File answerFile;
 
     public ExVideoWidget(Context context, QuestionDetails questionDetails, QuestionMediaManager questionMediaManager,

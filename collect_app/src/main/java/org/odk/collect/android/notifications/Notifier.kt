@@ -8,7 +8,11 @@ import org.odk.collect.forms.instances.Instance
 
 interface Notifier {
     fun onUpdatesAvailable(updates: List<ServerFormDetails>, projectId: String)
-    fun onUpdatesDownloaded(result: Map<ServerFormDetails, FormDownloadException?>, projectId: String)
+    fun onUpdatesDownloaded(
+        result: Map<ServerFormDetails, FormDownloadException?>,
+        projectId: String
+    )
+
     fun onSync(exception: FormSourceException?, projectId: String)
     fun onSubmission(result: Map<Instance, FormUploadException?>, projectId: String)
 }

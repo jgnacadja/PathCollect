@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<h:html
-    xmlns:h="http://www.w3.org/1999/xhtml">
+<h:html xmlns:h="http://www.w3.org/1999/xhtml">
     <h:head>
         <h:title>numberInCSV</h:title>
         <model>
@@ -23,7 +22,8 @@
             <bind nodeset="/data/new_section/number/a0R1C00000anTbn" type="select1" />
             <bind nodeset="/data/new_section/number/a0R1C00000anTbo" type="string" />
             <bind nodeset="/data/new_section/number/a0R1C00000anTbp" type="string" />
-            <bind nodeset="/data/closemessage" type="string" readonly="true()" relevant="not(null)" />
+            <bind nodeset="/data/closemessage" readonly="true()" relevant="not(null)"
+                type="string" />
         </model>
     </h:head>
     <h:body>
@@ -53,8 +53,10 @@
                         <value>Pensão</value>
                     </item>
                     <item>
-                        <label>Enviu de dinheiro de algum familiar/amigo que não vive na casa</label>
-                        <value>Enviu de dinheiro de algum familiar/amigo que não vive na casa</value>
+                        <label>Enviu de dinheiro de algum familiar/amigo que não vive na casa
+                        </label>
+                        <value>Enviu de dinheiro de algum familiar/amigo que não vive na casa
+                        </value>
                     </item>
                     <item>
                         <label>Cobrança de rendas</label>
@@ -69,10 +71,12 @@
                         <value>Outro</value>
                     </item>
                 </select1>
-                <input ref="/data/new_section/number/a0R1C00000anTbo" query="instance('2a')/root/item[1a=/data/new_section/number/a0R1C00000anTbn]">
+                <input query="instance('2a')/root/item[1a=/data/new_section/number/a0R1C00000anTbn]"
+                    ref="/data/new_section/number/a0R1C00000anTbo">
                     <label>2a</label>
                 </input>
-                <input ref="/data/new_section/number/a0R1C00000anTbp" query="instance('3a')/root/item[1a=/data/new_section/number/a0R1C00000anTbn and 2a=/data/new_section/number/a0R1C00000anTbo]">
+                <input query="instance('3a')/root/item[1a=/data/new_section/number/a0R1C00000anTbn and 2a=/data/new_section/number/a0R1C00000anTbo]"
+                    ref="/data/new_section/number/a0R1C00000anTbp">
                     <label>3a</label>
                 </input>
             </group>

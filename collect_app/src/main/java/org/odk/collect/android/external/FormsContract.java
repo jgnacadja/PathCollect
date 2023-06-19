@@ -29,9 +29,12 @@ import org.odk.collect.android.database.forms.DatabaseFormColumns;
  */
 public final class FormsContract {
 
-    static final String AUTHORITY = "com.rintio.dssc.collect.provider.odk.forms";
     public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.odk.form";
     public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.odk.form";
+    static final String AUTHORITY = "com.rintio.dssc.collect.provider.odk.forms";
+
+    private FormsContract() {
+    }
 
     /**
      * The content:// style URL for accessing Forms.
@@ -55,8 +58,5 @@ public final class FormsContract {
     @Deprecated
     public static Uri getContentNewestFormsByFormIdUri(String projectId) {
         return Uri.parse("content://" + AUTHORITY + "/newest_forms_by_form_id?projectId=" + projectId);
-    }
-
-    private FormsContract() {
     }
 }

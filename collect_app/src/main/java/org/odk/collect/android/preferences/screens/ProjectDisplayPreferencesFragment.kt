@@ -30,7 +30,8 @@ import java.io.File
 import javax.inject.Inject
 
 class ProjectDisplayPreferencesFragment :
-    BaseAdminPreferencesFragment(), Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener {
+    BaseAdminPreferencesFragment(), Preference.OnPreferenceClickListener,
+    Preference.OnPreferenceChangeListener {
 
     @Inject
     lateinit var projectsRepository: ProjectsRepository

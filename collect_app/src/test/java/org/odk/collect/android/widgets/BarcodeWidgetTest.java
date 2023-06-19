@@ -1,5 +1,18 @@
 package org.odk.collect.android.widgets;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.mockValueChangedListener;
+import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.promptWithAnswer;
+import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.promptWithAppearance;
+import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.promptWithReadOnly;
+import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.widgetTestActivity;
+import static org.robolectric.Shadows.shadowOf;
+
 import android.view.View;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -20,19 +33,6 @@ import org.odk.collect.android.utilities.CameraUtils;
 import org.odk.collect.android.widgets.support.FakeWaitingForDataRegistry;
 import org.robolectric.shadows.ShadowActivity;
 import org.robolectric.shadows.ShadowToast;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.mockValueChangedListener;
-import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.promptWithAnswer;
-import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.promptWithAppearance;
-import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.promptWithReadOnly;
-import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.widgetTestActivity;
-import static org.robolectric.Shadows.shadowOf;
 
 /**
  * @author James Knight

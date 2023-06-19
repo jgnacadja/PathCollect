@@ -18,10 +18,10 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             style="@style/Widget.AndroidShared.Toolbar.Surface.HighEmphasisControls"
-            app:title="@string/add_project"
-            app:menu="@menu/qr_code_scan_menu"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/qr_code_scan_menu"
+            app:title="@string/add_project" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -41,33 +41,33 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/title"
+                style="@style/TextAppearance.Collect.Subtitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/scan_configuration_qr_code"
                 android:layout_marginTop="@dimen/margin_standard"
-                style="@style/TextAppearance.Collect.Subtitle1"
+                android:text="@string/scan_configuration_qr_code"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <org.odk.collect.android.views.DecoratedBarcodeView
                 android:id="@+id/barcode_view"
-                app:layout_constraintWidth_percent="0.75"
-                app:layout_constraintDimensionRatio="w,1:1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/margin_extra_large"
+                app:layout_constraintDimensionRatio="w,1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title" />
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:layout_constraintWidth_percent="0.75" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/or"
+                style="@style/TextAppearance.Collect.Subtitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/or"
                 android:layout_marginTop="@dimen/margin_standard"
-                style="@style/TextAppearance.Collect.Subtitle1"
+                android:text="@string/or"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/barcode_view" />

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:jr="http://openrosa.org/javarosa" xmlns:odk="http://www.opendatakit.org/xforms" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns="http://www.w3.org/2002/xforms">
     <h:head>
         <h:title>formHierarchy2</h:title>
         <model>
@@ -21,11 +21,16 @@
             </instance>
             <bind constraint=". &lt;= 8" nodeset="/formHierarchy2/number_in_party" type="int" />
             <bind nodeset="/formHierarchy2/party_names_note" readonly="true()" type="string" />
-            <bind calculate=" /formHierarchy2/number_in_party " nodeset="/formHierarchy2/guest_details_count" readonly="true()" type="string" />
-            <bind nodeset="/formHierarchy2/guest_details/guest_details_gr" relevant="position(..)&lt;= /formHierarchy2/number_in_party " />
-            <bind nodeset="/formHierarchy2/guest_details/guest_details_gr/guest_name" type="string" />
-            <bind nodeset="/formHierarchy2/guest_details/guest_details_gr/guest_dietary" type="string" />
-            <bind calculate="concat('uuid:', uuid())" nodeset="/formHierarchy2/meta/instanceID" readonly="true()" type="string" />
+            <bind calculate=" /formHierarchy2/number_in_party "
+                nodeset="/formHierarchy2/guest_details_count" readonly="true()" type="string" />
+            <bind nodeset="/formHierarchy2/guest_details/guest_details_gr"
+                relevant="position(..)&lt;= /formHierarchy2/number_in_party " />
+            <bind nodeset="/formHierarchy2/guest_details/guest_details_gr/guest_name"
+                type="string" />
+            <bind nodeset="/formHierarchy2/guest_details/guest_details_gr/guest_dietary"
+                type="string" />
+            <bind calculate="concat('uuid:', uuid())" nodeset="/formHierarchy2/meta/instanceID"
+                readonly="true()" type="string" />
         </model>
     </h:head>
     <h:body>
@@ -37,7 +42,8 @@
         </input>
         <group ref="/formHierarchy2/guest_details">
             <label>Guest details</label>
-            <repeat jr:count=" /formHierarchy2/guest_details_count " nodeset="/formHierarchy2/guest_details">
+            <repeat nodeset="/formHierarchy2/guest_details"
+                jr:count=" /formHierarchy2/guest_details_count ">
                 <group ref="/formHierarchy2/guest_details/guest_details_gr">
                     <input ref="/formHierarchy2/guest_details/guest_details_gr/guest_name">
                         <label>Guest's name</label>

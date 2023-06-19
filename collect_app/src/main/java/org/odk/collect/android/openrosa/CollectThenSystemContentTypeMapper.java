@@ -36,9 +36,9 @@ public class CollectThenSystemContentTypeMapper implements OpenRosaHttpInterface
     }
 
     private enum CollectContentTypeMappings {
-        AMR("amr",  "audio/amr"),
-        OGA("oga",  "audio/ogg"),
-        OGV("ogv",  "video/ogg"),
+        AMR("amr", "audio/amr"),
+        OGA("oga", "audio/ogg"),
+        OGV("ogv", "video/ogg"),
         WEBM("webm", "video/webm");
 
         private String extension;

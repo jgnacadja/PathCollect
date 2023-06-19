@@ -1,5 +1,22 @@
 package org.odk.collect.android.database.instances;
 
+import static android.provider.BaseColumns._ID;
+import static org.odk.collect.android.database.DatabaseConstants.INSTANCES_TABLE_NAME;
+import static org.odk.collect.android.database.DatabaseObjectMapper.getInstanceFromCurrentCursorPosition;
+import static org.odk.collect.android.database.DatabaseObjectMapper.getValuesFromInstance;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.CAN_EDIT_WHEN_COMPLETE;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.DELETED_DATE;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.DISPLAY_NAME;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.GEOMETRY;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.GEOMETRY_TYPE;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.INSTANCE_FILE_PATH;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.JR_FORM_ID;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.JR_VERSION;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.LAST_STATUS_CHANGE_DATE;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.STATUS;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.SUBMISSION_URI;
+import static org.odk.collect.shared.PathUtils.getRelativeFilePath;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -17,23 +34,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
-
-import static android.provider.BaseColumns._ID;
-import static org.odk.collect.android.database.DatabaseConstants.INSTANCES_TABLE_NAME;
-import static org.odk.collect.android.database.DatabaseObjectMapper.getInstanceFromCurrentCursorPosition;
-import static org.odk.collect.android.database.DatabaseObjectMapper.getValuesFromInstance;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.CAN_EDIT_WHEN_COMPLETE;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.DELETED_DATE;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.DISPLAY_NAME;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.GEOMETRY;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.GEOMETRY_TYPE;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.INSTANCE_FILE_PATH;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.JR_FORM_ID;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.JR_VERSION;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.LAST_STATUS_CHANGE_DATE;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.STATUS;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.SUBMISSION_URI;
-import static org.odk.collect.shared.PathUtils.getRelativeFilePath;
 
 /**
  * Mediates between {@link Instance} objects and the underlying SQLite database that stores them.
@@ -55,6 +55,17 @@ public final class DatabaseInstancesRepository implements InstancesRepository {
 
         this.clock = clock;
         this.instancesPath = instancesPath;
+    }
+
+    private static List<Instance> getInstancesFromCursor(Cursor cursor, String instancesPath) {
+        List<Instance> instances = new ArrayList<>();
+        cursor.moveToPosition(-1);
+        while (cursor.moveToNext()) {
+            Instance instance = getInstanceFromCurrentCursorPosition(cursor, instancesPath);
+            instances.add(instance);
+        }
+
+        return instances;
     }
 
     @Override
@@ -109,7 +120,6 @@ public final class DatabaseInstancesRepository implements InstancesRepository {
             return cursorForAllByStatus.getCount();
         }
     }
-
 
     @Override
     public List<Instance> getAllByFormId(String formId) {
@@ -265,16 +275,5 @@ public final class DatabaseInstancesRepository implements InstancesRepository {
         } catch (IOException e) {
             // Ignored
         }
-    }
-
-    private static List<Instance> getInstancesFromCursor(Cursor cursor, String instancesPath) {
-        List<Instance> instances = new ArrayList<>();
-        cursor.moveToPosition(-1);
-        while (cursor.moveToNext()) {
-            Instance instance = getInstanceFromCurrentCursorPosition(cursor, instancesPath);
-            instances.add(instance);
-        }
-
-        return instances;
     }
 }

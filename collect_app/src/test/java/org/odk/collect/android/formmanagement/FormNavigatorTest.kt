@@ -3,10 +3,7 @@ package org.odk.collect.android.formmanagement
 import android.app.Activity
 import android.content.Intent.ACTION_EDIT
 import androidx.test.espresso.intent.Intents.intended
-import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
-import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
-import androidx.test.espresso.intent.matcher.IntentMatchers.hasData
-import androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra
+import androidx.test.espresso.intent.matcher.IntentMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.hamcrest.Matchers.not
 import org.junit.Rule

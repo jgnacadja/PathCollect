@@ -1,5 +1,7 @@
 package org.odk.collect.android.fragments.dialogs;
 
+import static org.odk.collect.android.injection.DaggerUtils.getComponent;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,24 +26,15 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import static org.odk.collect.android.injection.DaggerUtils.getComponent;
-
 public abstract class SelectMinimalDialog extends MaterialFullScreenDialogFragment {
-    private SelectMinimalDialogLayoutBinding binding;
-
-    private boolean isFlex;
-    private boolean isAutocomplete;
-
+    @Inject
+    public AudioHelperFactory audioHelperFactory;
     protected SelectMinimalViewModel viewModel;
     protected SelectMinimalDialogListener listener;
     protected AbstractSelectListAdapter adapter;
-
-    @Inject
-    public AudioHelperFactory audioHelperFactory;
-
-    public interface SelectMinimalDialogListener {
-        void updateSelectedItems(List<Selection> items);
-    }
+    private SelectMinimalDialogLayoutBinding binding;
+    private boolean isFlex;
+    private boolean isAutocomplete;
 
     public SelectMinimalDialog() {
     }
@@ -146,5 +139,9 @@ public abstract class SelectMinimalDialog extends MaterialFullScreenDialogFragme
 
     public void setListener(SelectMinimalDialogListener listener) {
         this.listener = listener;
+    }
+
+    public interface SelectMinimalDialogListener {
+        void updateSelectedItems(List<Selection> items);
     }
 }

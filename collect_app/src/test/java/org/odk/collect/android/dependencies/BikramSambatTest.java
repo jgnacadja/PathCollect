@@ -16,14 +16,14 @@
 
 package org.odk.collect.android.dependencies;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 import bikramsambat.BikramSambatDate;
 import bikramsambat.BsCalendar;
 import bikramsambat.BsException;
 import bikramsambat.BsGregorianDate;
-
-import static org.junit.Assert.assertEquals;
 
 // Results confirmed with https://www.ashesh.com.np/nepali-date-converter.php
 public class BikramSambatTest {

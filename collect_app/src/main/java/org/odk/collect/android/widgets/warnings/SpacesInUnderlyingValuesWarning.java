@@ -44,16 +44,16 @@ public class SpacesInUnderlyingValuesWarning {
     private final UnderlyingValuesChecker valuesChecker;
     private final WarningRenderer warningRenderer;
 
-    public static SpacesInUnderlyingValuesWarning forQuestionWidget(QuestionWidget questionWidget) {
-        WarningRenderer renderer = new RenderIntoQuestionWidget(questionWidget);
-        UnderlyingValuesChecker valuesChecker = new SpacesInUnderlyingValues();
-        return new SpacesInUnderlyingValuesWarning(valuesChecker, renderer);
-    }
-
     @VisibleForTesting
     SpacesInUnderlyingValuesWarning(UnderlyingValuesChecker valuesChecker, WarningRenderer warningRenderer) {
         this.valuesChecker = valuesChecker;
         this.warningRenderer = warningRenderer;
+    }
+
+    public static SpacesInUnderlyingValuesWarning forQuestionWidget(QuestionWidget questionWidget) {
+        WarningRenderer renderer = new RenderIntoQuestionWidget(questionWidget);
+        UnderlyingValuesChecker valuesChecker = new SpacesInUnderlyingValues();
+        return new SpacesInUnderlyingValuesWarning(valuesChecker, renderer);
     }
 
     public void renderWarningIfNecessary(List<SelectChoice> items) {
@@ -66,6 +66,18 @@ public class SpacesInUnderlyingValuesWarning {
 
     interface WarningRenderer {
         void render(List<SelectChoice> items);
+    }
+
+    interface UnderlyingValuesChecker {
+        void check(List<SelectChoice> items);
+
+        boolean hasInvalidValues();
+
+        List<SelectChoice> getInvalidValues();
+    }
+
+    public interface WarningTextCreator {
+        String create(List<SelectChoice> invalidValues, Context context);
     }
 
     private static class RenderIntoQuestionWidget implements WarningRenderer {
@@ -82,14 +94,6 @@ public class SpacesInUnderlyingValuesWarning {
         public void render(List<SelectChoice> invalidItems) {
             questionWidget.showWarning(warningCreator.create(invalidItems, questionWidget.getContext()));
         }
-    }
-
-    interface UnderlyingValuesChecker {
-        void check(List<SelectChoice> items);
-
-        boolean hasInvalidValues();
-
-        List<SelectChoice> getInvalidValues();
     }
 
     public static class SpacesInUnderlyingValues implements UnderlyingValuesChecker {
@@ -123,10 +127,6 @@ public class SpacesInUnderlyingValuesWarning {
                 throw new IllegalStateException("check() must be called before other methods first");
             }
         }
-    }
-
-    public interface WarningTextCreator {
-        String create(List<SelectChoice> invalidValues, Context context);
     }
 
     private static class SpacesInUnderlyingValuesTextCreator implements WarningTextCreator {

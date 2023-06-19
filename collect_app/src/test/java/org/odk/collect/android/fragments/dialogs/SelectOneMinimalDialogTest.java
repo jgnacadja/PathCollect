@@ -1,5 +1,10 @@
 package org.odk.collect.android.fragments.dialogs;
 
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
 import androidx.test.core.app.ApplicationProvider;
 
 import org.javarosa.core.model.SelectChoice;
@@ -8,11 +13,6 @@ import org.odk.collect.android.utilities.MediaUtils;
 import org.odk.collect.testshared.RobolectricHelpers;
 
 import java.util.List;
-
-import static org.mockito.ArgumentMatchers.anyList;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 public class SelectOneMinimalDialogTest extends SelectMinimalDialogTest {
     @Test

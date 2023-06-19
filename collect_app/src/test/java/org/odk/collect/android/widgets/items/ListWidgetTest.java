@@ -1,5 +1,9 @@
 package org.odk.collect.android.widgets.items;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.when;
+
 import android.view.View;
 import android.widget.RadioButton;
 
@@ -8,10 +12,6 @@ import androidx.annotation.NonNull;
 import org.junit.Test;
 import org.odk.collect.android.formentry.questions.QuestionDetails;
 import org.odk.collect.android.widgets.base.GeneralSelectOneWidgetTest;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.when;
 
 /**
  * @author James Knight

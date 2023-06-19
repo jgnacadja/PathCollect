@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.model.Notification;
 import org.odk.collect.android.utilities.TextUtils;
+
 import java.util.List;
 
 public class NotificationListAdapter extends RecyclerView.Adapter<NotificationListAdapter.ViewHolder> {

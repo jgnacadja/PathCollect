@@ -1,5 +1,12 @@
 package org.odk.collect.android.widgets.utilities;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.promptWithAnswer;
+
 import androidx.activity.ComponentActivity;
 import androidx.lifecycle.MutableLiveData;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -13,13 +20,6 @@ import org.odk.collect.android.support.MockFormEntryPromptBuilder;
 import org.odk.collect.audiorecorder.recorder.Output;
 import org.odk.collect.audiorecorder.recording.AudioRecorder;
 import org.robolectric.Robolectric;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.promptWithAnswer;
 
 @RunWith(AndroidJUnit4.class)
 public class InternalRecordingRequesterTest {

@@ -20,7 +20,7 @@ import org.odk.collect.settings.keys.ProtectedProjectKeys
 import org.odk.collect.shared.TempFiles
 import org.odk.collect.testshared.FakeScheduler
 import java.text.SimpleDateFormat
-import java.util.Locale
+import java.util.*
 
 @RunWith(AndroidJUnit4::class)
 class FormMapViewModelTest {

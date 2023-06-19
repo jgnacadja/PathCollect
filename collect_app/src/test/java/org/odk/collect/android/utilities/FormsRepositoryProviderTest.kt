@@ -10,9 +10,7 @@ import org.junit.runner.RunWith
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.odk.collect.android.storage.StoragePathProvider
-import org.odk.collect.android.storage.StorageSubdirectory.CACHE
-import org.odk.collect.android.storage.StorageSubdirectory.FORMS
-import org.odk.collect.android.storage.StorageSubdirectory.METADATA
+import org.odk.collect.android.storage.StorageSubdirectory.*
 import org.odk.collect.formstest.FormUtils.buildForm
 import org.odk.collect.shared.TempFiles.createTempDir
 

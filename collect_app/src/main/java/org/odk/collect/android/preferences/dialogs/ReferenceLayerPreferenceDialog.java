@@ -40,7 +40,9 @@ public class ReferenceLayerPreferenceDialog extends ListPreferenceDialogFragment
         builder.setPositiveButton(null, null);
     }
 
-    /** Called just after the dialog's main view has been created. */
+    /**
+     * Called just after the dialog's main view has been created.
+     */
     @Override
     protected void onBindDialogView(View view) {
         CaptionedListPreference preference = null;

@@ -16,9 +16,8 @@ import org.odk.collect.android.widgets.utilities.WaitingForDataRegistry;
 
 @SuppressLint("ViewConstructor")
 public class ExArbitraryFileWidget extends BaseArbitraryFileWidget {
-    ExArbitraryFileWidgetAnswerBinding binding;
-
     private final FileRequester fileRequester;
+    ExArbitraryFileWidgetAnswerBinding binding;
 
     public ExArbitraryFileWidget(Context context, QuestionDetails questionDetails,
                                  QuestionMediaManager questionMediaManager, WaitingForDataRegistry waitingForDataRegistry,

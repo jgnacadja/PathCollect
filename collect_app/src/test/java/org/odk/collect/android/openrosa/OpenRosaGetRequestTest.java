@@ -1,5 +1,9 @@
 package org.odk.collect.android.openrosa;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.nullValue;
+import static org.junit.Assert.assertThat;
+
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
 import org.junit.Rule;
@@ -19,21 +23,27 @@ import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
 import okio.Buffer;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertThat;
-
 public abstract class OpenRosaGetRequestTest {
 
     static final String USER_AGENT = "Test Agent";
-
-    protected abstract OpenRosaHttpInterface buildSubject();
-
     @Rule
     public MockWebServerRule mockWebServerRule = new MockWebServerRule();
-
     private MockWebServer mockWebServer;
     private OpenRosaHttpInterface subject;
+
+    private static byte[] gzip(String data) throws IOException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length());
+        GZIPOutputStream gzipStream = new GZIPOutputStream(outputStream);
+        gzipStream.write(data.getBytes());
+        gzipStream.close();
+
+        byte[] compressed = outputStream.toByteArray();
+        outputStream.close();
+
+        return compressed;
+    }
+
+    protected abstract OpenRosaHttpInterface buildSubject();
 
     @Before
     public void setup() throws Exception {
@@ -150,17 +160,5 @@ public abstract class OpenRosaGetRequestTest {
         HttpGetResult result2 = subject.executeGetRequest(mockWebServer.url("").uri(), null, null);
         assertThat(result2.getInputStream(), nullValue());
         assertThat(result2.getStatusCode(), equalTo(304));
-    }
-
-    private static byte[] gzip(String data) throws IOException {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length());
-        GZIPOutputStream gzipStream = new GZIPOutputStream(outputStream);
-        gzipStream.write(data.getBytes());
-        gzipStream.close();
-
-        byte[] compressed = outputStream.toByteArray();
-        outputStream.close();
-
-        return compressed;
     }
 }

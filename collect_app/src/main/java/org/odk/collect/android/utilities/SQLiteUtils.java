@@ -47,27 +47,27 @@ public final class SQLiteUtils {
     public static void addColumn(SQLiteDatabase db, String table, String column, String type) {
         if (!doesColumnExist(db, table, column)) {
             CustomSQLiteQueryExecutor.begin(db)
-                .alter().table(table).addColumn(column, type)
-                .end();
+                    .alter().table(table).addColumn(column, type)
+                    .end();
         }
     }
 
     public static void renameTable(SQLiteDatabase db, String table, String newTable) {
         CustomSQLiteQueryExecutor.begin(db)
-            .renameTable(table).to(newTable)
-            .end();
+                .renameTable(table).to(newTable)
+                .end();
     }
 
     public static void copyRows(SQLiteDatabase db, String srcTable, String[] columns, String dstTable) {
         CustomSQLiteQueryExecutor.begin(db)
-            .insertInto(dstTable).columnsForInsert(columns)
+                .insertInto(dstTable).columnsForInsert(columns)
                 .select().columnsForSelect(columns).from(srcTable)
-            .end();
+                .end();
     }
 
     public static void dropTable(SQLiteDatabase db, String table) {
         CustomSQLiteQueryExecutor.begin(db)
-            .dropIfExists(table)
-            .end();
+                .dropIfExists(table)
+                .end();
     }
 }

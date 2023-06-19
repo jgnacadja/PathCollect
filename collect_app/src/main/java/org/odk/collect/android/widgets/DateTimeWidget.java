@@ -40,10 +40,8 @@ import org.odk.collect.android.widgets.utilities.DateTimeWidgetUtils;
  */
 @SuppressLint("ViewConstructor")
 public class DateTimeWidget extends QuestionWidget implements WidgetDataReceiver {
-    DateTimeWidgetAnswerBinding binding;
-
     private final DateTimeWidgetUtils widgetUtils;
-
+    DateTimeWidgetAnswerBinding binding;
     private LocalDateTime selectedDateTime;
     private DatePickerDetails datePickerDetails;
 

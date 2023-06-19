@@ -1,5 +1,7 @@
 package org.odk.collect.android.widgets.items;
 
+import static org.odk.collect.android.formentry.media.FormMediaUtils.getPlayColor;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 
@@ -11,16 +13,14 @@ import org.odk.collect.android.activities.FormEntryActivity;
 import org.odk.collect.android.formentry.questions.QuestionDetails;
 import org.odk.collect.android.fragments.dialogs.SelectMinimalDialog;
 import org.odk.collect.android.fragments.dialogs.SelectMultiMinimalDialog;
-import org.odk.collect.android.utilities.HtmlUtils;
 import org.odk.collect.android.utilities.Appearances;
+import org.odk.collect.android.utilities.HtmlUtils;
 import org.odk.collect.android.widgets.utilities.WaitingForDataRegistry;
 import org.odk.collect.android.widgets.warnings.SpacesInUnderlyingValuesWarning;
 import org.odk.collect.androidshared.ui.DialogFragmentUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.odk.collect.android.formentry.media.FormMediaUtils.getPlayColor;
 
 @SuppressLint("ViewConstructor")
 public class SelectMultiMinimalWidget extends SelectMinimalWidget {

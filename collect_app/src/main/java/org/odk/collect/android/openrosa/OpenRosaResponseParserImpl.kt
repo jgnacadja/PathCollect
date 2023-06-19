@@ -6,7 +6,6 @@ import org.kxml2.kdom.Element
 import org.odk.collect.forms.FormListItem
 import org.odk.collect.forms.MediaFile
 import org.odk.collect.shared.strings.StringUtils.isBlank
-import java.util.ArrayList
 
 class OpenRosaResponseParserImpl : OpenRosaResponseParser {
 
@@ -100,7 +99,10 @@ class OpenRosaResponseParserImpl : OpenRosaResponseParser {
                     }
                     "hash" -> {
                         hash = XFormParser.getXMLText(child, true)
-                        hash = if (hash != null && (hash.isEmpty() || !hash.startsWith(MD5_STRING_PREFIX))) {
+                        hash = if (hash != null && (hash.isEmpty() || !hash.startsWith(
+                                MD5_STRING_PREFIX
+                            ))
+                        ) {
                             null
                         } else {
                             hash.substring(MD5_STRING_PREFIX.length)

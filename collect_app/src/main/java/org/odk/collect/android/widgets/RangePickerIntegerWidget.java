@@ -17,7 +17,7 @@ import org.odk.collect.android.widgets.utilities.RangeWidgetUtils;
 
 import java.math.BigDecimal;
 
-public class RangePickerIntegerWidget extends QuestionWidget  {
+public class RangePickerIntegerWidget extends QuestionWidget {
     RangePickerWidgetAnswerBinding binding;
     String[] displayedValuesForNumberPicker;
 

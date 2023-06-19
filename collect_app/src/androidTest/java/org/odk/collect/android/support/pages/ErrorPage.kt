@@ -22,7 +22,12 @@ class ErrorPage : Page<ErrorPage>() {
     }
 
     fun navigateBack(): MainMenuPage {
-        onView(allOf(instanceOf(AppCompatImageButton::class.java), withParent(withId(R.id.toolbar)))).perform(click())
+        onView(
+            allOf(
+                instanceOf(AppCompatImageButton::class.java),
+                withParent(withId(R.id.toolbar))
+            )
+        ).perform(click())
         return MainMenuPage()
     }
 }

@@ -20,15 +20,10 @@ public class SwipeHandler {
 
     private final GestureDetector gestureDetector;
     private final OnSwipeListener onSwipe;
+    private final Settings generalSettings;
     private View view;
     private boolean allowSwiping = true;
     private boolean beenSwiped;
-    private final Settings generalSettings;
-
-    public interface OnSwipeListener {
-        void onSwipeBackward();
-        void onSwipeForward();
-    }
 
     public SwipeHandler(Context context, Settings generalSettings) {
         gestureDetector = new GestureDetector(context, new GestureListener());
@@ -54,6 +49,23 @@ public class SwipeHandler {
 
     public GestureDetector getGestureDetector() {
         return gestureDetector;
+    }
+
+    public interface OnSwipeListener {
+        void onSwipeBackward();
+
+        void onSwipeForward();
+    }
+
+    public abstract static class View extends FrameLayout {
+        public View(@NonNull Context context) {
+            super(context);
+        }
+
+        public abstract boolean shouldSuppressFlingGesture(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY);
+
+        @Nullable
+        public abstract NestedScrollView getVerticalScrollView();
     }
 
     public class GestureListener implements GestureDetector.OnGestureListener {
@@ -158,16 +170,5 @@ public class SwipeHandler {
                 return false;
             }
         }
-    }
-
-    public abstract static class View extends FrameLayout {
-        public View(@NonNull Context context) {
-            super(context);
-        }
-
-        public abstract boolean shouldSuppressFlingGesture(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY);
-
-        @Nullable
-        public abstract NestedScrollView getVerticalScrollView();
     }
 }

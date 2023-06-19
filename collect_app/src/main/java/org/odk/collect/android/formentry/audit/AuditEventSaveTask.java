@@ -1,5 +1,6 @@
-
 package org.odk.collect.android.formentry.audit;
+
+import static org.odk.collect.android.formentry.audit.AuditEventCSVLine.toCSVLine;
 
 import android.os.AsyncTask;
 
@@ -13,24 +14,21 @@ import java.io.IOException;
 
 import timber.log.Timber;
 
-import static org.odk.collect.android.formentry.audit.AuditEventCSVLine.toCSVLine;
-
 /**
  * Background task for appending events to the event log
  */
 public class AuditEventSaveTask extends AsyncTask<AuditEvent, Void, Void> {
+    private static final String DEFAULT_COLUMNS = "event,node,start,end";
+    private static final String LOCATION_COORDINATES_COLUMNS = ",latitude,longitude,accuracy";
+    private static final String ANSWER_VALUES_COLUMNS = ",old-value,new-value";
+    private static final String USER_COLUMNS = ",user";
+    private static final String CHANGE_REASON_COLUMNS = ",change-reason";
     private final @NonNull
     File file;
     private final boolean isLocationEnabled;
     private final boolean isTrackingChangesEnabled;
     private final boolean isUserRequired;
     private final boolean isTrackChangesReasonEnabled;
-
-    private static final String DEFAULT_COLUMNS = "event,node,start,end";
-    private static final String LOCATION_COORDINATES_COLUMNS = ",latitude,longitude,accuracy";
-    private static final String ANSWER_VALUES_COLUMNS = ",old-value,new-value";
-    private static final String USER_COLUMNS = ",user";
-    private static final String CHANGE_REASON_COLUMNS = ",change-reason";
 
     public AuditEventSaveTask(@NonNull File file, boolean isLocationEnabled, boolean isTrackingChangesEnabled, boolean isUserRequired, boolean isTrackChangesReasonEnabled) {
         this.file = file;

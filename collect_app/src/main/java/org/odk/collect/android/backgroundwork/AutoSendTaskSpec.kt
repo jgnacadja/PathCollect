@@ -68,18 +68,29 @@ class AutoSendTaskSpec : TaskSpec {
      * If the network type doesn't match the auto-send settings, retry next time a connection is
      * available.
      */
-    override fun getTask(context: Context, inputData: Map<String, String>, isLastUniqueExecution: Boolean): Supplier<Boolean> {
+    override fun getTask(
+        context: Context,
+        inputData: Map<String, String>,
+        isLastUniqueExecution: Boolean
+    ): Supplier<Boolean> {
         DaggerUtils.getComponent(context).inject(this)
         return Supplier {
             val projectId = inputData[TaskData.DATA_PROJECT_ID]
             if (projectId != null) {
                 val currentNetworkInfo = connectivityProvider.networkInfo
                 if (Environment.getExternalStorageState() != Environment.MEDIA_MOUNTED ||
-                    !(networkTypeMatchesAutoSendSetting(currentNetworkInfo, projectId) || atLeastOneFormSpecifiesAutoSend(projectId))
+                    !(networkTypeMatchesAutoSendSetting(
+                        currentNetworkInfo,
+                        projectId
+                    ) || atLeastOneFormSpecifiesAutoSend(projectId))
                 ) {
                     networkTypeMatchesAutoSendSetting(currentNetworkInfo, projectId)
                 }
-                instanceAutoSender.autoSendInstances(projectDependencyProviderFactory.create(projectId))
+                instanceAutoSender.autoSendInstances(
+                    projectDependencyProviderFactory.create(
+                        projectId
+                    )
+                )
             } else {
                 throw IllegalArgumentException("No project ID provided!")
             }
@@ -104,7 +115,8 @@ class AutoSendTaskSpec : TaskSpec {
         if (currentNetworkInfo == null) {
             return false
         }
-        val autosend = settingsProvider.getUnprotectedSettings(projectId).getString(ProjectKeys.KEY_AUTOSEND)
+        val autosend =
+            settingsProvider.getUnprotectedSettings(projectId).getString(ProjectKeys.KEY_AUTOSEND)
 
         var sendwifi = autosend == "wifi_only"
         var sendnetwork = (autosend == "cellular_only").also {
@@ -116,7 +128,7 @@ class AutoSendTaskSpec : TaskSpec {
             sendnetwork = true
         }
         return currentNetworkInfo.type == ConnectivityManager.TYPE_WIFI &&
-            sendwifi || currentNetworkInfo.type == ConnectivityManager.TYPE_MOBILE && sendnetwork
+                sendwifi || currentNetworkInfo.type == ConnectivityManager.TYPE_MOBILE && sendnetwork
     }
 
     /**

@@ -44,7 +44,10 @@ class NotificationManagerNotifier(
         }
     }
 
-    override fun onUpdatesDownloaded(result: Map<ServerFormDetails, FormDownloadException?>, projectId: String) {
+    override fun onUpdatesDownloaded(
+        result: Map<ServerFormDetails, FormDownloadException?>,
+        projectId: String
+    ) {
         notificationManager.notify(
             FORM_UPDATE_NOTIFICATION_ID,
             FormUpdatesDownloadedNotificationBuilder.build(

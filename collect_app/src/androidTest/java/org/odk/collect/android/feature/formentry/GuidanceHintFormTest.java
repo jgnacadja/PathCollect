@@ -31,17 +31,15 @@ import tools.fastlane.screengrab.UiAutomatorScreenshotStrategy;
 
 public class GuidanceHintFormTest {
     private static final String GUIDANCE_SAMPLE_FORM = "guidance_hint_form.xml";
+    public FormActivityTestRule activityTestRule = new FormActivityTestRule(GUIDANCE_SAMPLE_FORM, "Guidance Form Sample");
+    @Rule
+    public RuleChain copyFormChain = TestRuleChain.chain()
+            .around(activityTestRule);
 
     @BeforeClass
     public static void beforeAll() {
         Screengrab.setDefaultScreenshotStrategy(new UiAutomatorScreenshotStrategy());
     }
-
-    public FormActivityTestRule activityTestRule = new FormActivityTestRule(GUIDANCE_SAMPLE_FORM, "Guidance Form Sample");
-
-    @Rule
-    public RuleChain copyFormChain = TestRuleChain.chain()
-            .around(activityTestRule);
 
     @Test
     public void guidanceHint_ShouldBeHiddenByDefault() {

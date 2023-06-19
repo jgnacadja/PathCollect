@@ -16,9 +16,6 @@
 
 package org.odk.collect.android.formentry.audit;
 
-import org.javarosa.form.api.FormEntryController;
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.BEGINNING_OF_FORM;
 import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.END_OF_FORM;
@@ -26,6 +23,9 @@ import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.
 import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.PROMPT_NEW_REPEAT;
 import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.REPEAT;
 import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.UNKNOWN_EVENT_TYPE;
+
+import org.javarosa.form.api.FormEntryController;
+import org.junit.Test;
 
 public class AuditEventTest {
 

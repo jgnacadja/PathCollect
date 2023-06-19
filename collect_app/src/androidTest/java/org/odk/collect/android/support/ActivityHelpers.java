@@ -1,5 +1,8 @@
 package org.odk.collect.android.support;
 
+import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+
 import android.app.Activity;
 import android.view.View;
 
@@ -10,9 +13,6 @@ import androidx.test.espresso.matcher.ViewMatchers;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.core.AllOf;
-
-import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
-import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 
 public final class ActivityHelpers {
 

@@ -26,6 +26,10 @@ public class IdentityPromptViewModel extends ViewModel implements RequiresFormCo
         updateRequiresIdentity();
     }
 
+    private static boolean userIsValid(String user) {
+        return user != null && !user.isEmpty() && !isBlank(user);
+    }
+
     @Override
     public void formLoaded(@NonNull FormController formController) {
         this.formName = formController.getFormTitle();
@@ -53,7 +57,7 @@ public class IdentityPromptViewModel extends ViewModel implements RequiresFormCo
         if (auditEventLogger != null) {
             auditEventLogger.setUser(identity);
         }
-        
+
         updateRequiresIdentity();
     }
 
@@ -65,10 +69,6 @@ public class IdentityPromptViewModel extends ViewModel implements RequiresFormCo
         this.requiresIdentity.setValue(
                 auditEventLogger != null && auditEventLogger.isUserRequired() && !userIsValid(auditEventLogger.getUser())
         );
-    }
-
-    private static boolean userIsValid(String user) {
-        return user != null && !user.isEmpty() && !isBlank(user);
     }
 
     public String getFormTitle() {

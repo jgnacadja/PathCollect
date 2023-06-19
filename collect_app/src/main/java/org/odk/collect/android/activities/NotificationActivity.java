@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.NotificationListAdapter;
 import org.odk.collect.android.adapters.model.Notification;
@@ -16,7 +18,9 @@ import org.odk.collect.android.storage.StoragePathProvider;
 import org.odk.collect.android.storage.StorageSubdirectory;
 import org.odk.collect.androidshared.system.IntentLauncher;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
+
 import java.util.List;
+
 import javax.inject.Inject;
 
 public class NotificationActivity extends CollectAbstractActivity {

@@ -1,13 +1,13 @@
 package org.odk.collect.android.openrosa;
 
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertFalse;
+
 import org.junit.Test;
 import org.odk.collect.android.openrosa.okhttp.OkHttpOpenRosaServerClientProvider;
 
 import okhttp3.OkHttpClient;
 import okhttp3.tls.internal.TlsUtil;
-
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertFalse;
 
 public class OkHttpOpenRosaServerClientProviderTest extends OpenRosaServerClientProviderTest {
 
@@ -18,7 +18,7 @@ public class OkHttpOpenRosaServerClientProviderTest extends OpenRosaServerClient
                         TlsUtil.localhost().sslSocketFactory(),
                         TlsUtil.localhost().trustManager())
                 .build();
-        
+
         return new OkHttpOpenRosaServerClientProvider(baseClient);
     }
 

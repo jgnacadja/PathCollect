@@ -21,56 +21,34 @@ import timber.log.Timber;
 
 public class ItemsetDbAdapter implements Closeable {
 
-    private DatabaseHelper dbHelper;
-    private SQLiteDatabase db;
-
     public static final String DATABASE_NAME = "itemsets.db";
+    public static final String KEY_ITEMSET_HASH = "hash";
+    public static final String KEY_PATH = "path";
     private static final String DATABASE_TABLE = "itemset_";
     private static final int DATABASE_VERSION = 3;
 
     private static final String ITEMSET_TABLE = "itemsets";
-    public static final String KEY_ITEMSET_HASH = "hash";
-    public static final String KEY_PATH = "path";
-
     private static final String CREATE_ITEMSET_TABLE =
             "CREATE TABLE IF NOT EXISTS " + ITEMSET_TABLE + " (_id integer primary key autoincrement, "
                     + KEY_ITEMSET_HASH + " text, "
                     + KEY_PATH + " text "
                     + ");";
+    private DatabaseHelper dbHelper;
+    private SQLiteDatabase db;
 
-    /**
-     * This class helps open, create, and upgrade the database file.
-     */
-    private static class DatabaseHelper extends SQLiteOpenHelper {
-        DatabaseHelper() {
-            super(new AltDatabasePathContext(new StoragePathProvider().getOdkDirPath(StorageSubdirectory.METADATA), Collect.getInstance()), DATABASE_NAME, null, DATABASE_VERSION);
+    public static String getMd5FromString(String toEncode) {
+        MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            Timber.e(e, "Unable to get MD5 algorithm due to : %s ", e.getMessage());
+            return null;
         }
 
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-            // create table to keep track of the itemsets
-            db.execSQL(CREATE_ITEMSET_TABLE);
-
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            Timber.w("Upgrading database from version %d to %d, which will destroy all old data", oldVersion, newVersion);
-            // first drop all of our generated itemset tables
-            Cursor c = db.query(ITEMSET_TABLE, null, null, null, null, null, null);
-            if (c != null) {
-                c.move(-1);
-                while (c.moveToNext()) {
-                    String table = c.getString(c.getColumnIndex(KEY_ITEMSET_HASH));
-                    db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE + table);
-                }
-                c.close();
-            }
-
-            // then drop the table tracking itemsets itself
-            db.execSQL("DROP TABLE IF EXISTS " + ITEMSET_TABLE);
-            onCreate(db);
-        }
+        md.update(toEncode.getBytes());
+        byte[] digest = md.digest();
+        BigInteger bigInt = new BigInteger(1, digest);
+        return bigInt.toString(16);
     }
 
     /**
@@ -202,18 +180,38 @@ public class ItemsetDbAdapter implements Closeable {
         db.delete(ITEMSET_TABLE, where, whereArgs);
     }
 
-    public static String getMd5FromString(String toEncode) {
-        MessageDigest md;
-        try {
-            md = MessageDigest.getInstance("MD5");
-        } catch (NoSuchAlgorithmException e) {
-            Timber.e(e, "Unable to get MD5 algorithm due to : %s ", e.getMessage());
-            return null;
+    /**
+     * This class helps open, create, and upgrade the database file.
+     */
+    private static class DatabaseHelper extends SQLiteOpenHelper {
+        DatabaseHelper() {
+            super(new AltDatabasePathContext(new StoragePathProvider().getOdkDirPath(StorageSubdirectory.METADATA), Collect.getInstance()), DATABASE_NAME, null, DATABASE_VERSION);
         }
 
-        md.update(toEncode.getBytes());
-        byte[] digest = md.digest();
-        BigInteger bigInt = new BigInteger(1, digest);
-        return bigInt.toString(16);
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            // create table to keep track of the itemsets
+            db.execSQL(CREATE_ITEMSET_TABLE);
+
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            Timber.w("Upgrading database from version %d to %d, which will destroy all old data", oldVersion, newVersion);
+            // first drop all of our generated itemset tables
+            Cursor c = db.query(ITEMSET_TABLE, null, null, null, null, null, null);
+            if (c != null) {
+                c.move(-1);
+                while (c.moveToNext()) {
+                    String table = c.getString(c.getColumnIndex(KEY_ITEMSET_HASH));
+                    db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE + table);
+                }
+                c.close();
+            }
+
+            // then drop the table tracking itemsets itself
+            db.execSQL("DROP TABLE IF EXISTS " + ITEMSET_TABLE);
+            onCreate(db);
+        }
     }
 }

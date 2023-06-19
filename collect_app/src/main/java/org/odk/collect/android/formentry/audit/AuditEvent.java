@@ -23,6 +23,160 @@ import org.javarosa.form.api.FormEntryController;
 
 public class AuditEvent {
 
+    private final long start;
+    private final String changeReason;
+    private AuditEventType auditEventType;
+    private String latitude;
+    private String longitude;
+    private String accuracy;
+    @NonNull
+    private String oldValue;
+    private String user;
+    @NonNull
+    private String newValue = "";
+    private long end;
+    private boolean endTimeSet;
+    private FormIndex formIndex;
+    /*
+     * Create a new event
+     */
+    public AuditEvent(long start, AuditEventType auditEventType) {
+        this(start, auditEventType, null, null, null, null);
+    }
+
+    public AuditEvent(long start, AuditEventType auditEventType,
+                      FormIndex formIndex, String oldValue, String user, String changeReason) {
+        this.start = start;
+        this.auditEventType = auditEventType;
+        this.formIndex = formIndex;
+        this.oldValue = oldValue == null ? "" : oldValue;
+        this.user = user;
+        this.changeReason = changeReason;
+    }
+
+    // Get event type based on a Form Controller event
+    public static AuditEventType getAuditEventTypeFromFecType(int fcEvent) {
+        AuditEventType auditEventType;
+        switch (fcEvent) {
+            case FormEntryController.EVENT_BEGINNING_OF_FORM:
+                auditEventType = AuditEventType.BEGINNING_OF_FORM;
+                break;
+            case FormEntryController.EVENT_GROUP:
+                auditEventType = AuditEventType.GROUP;
+                break;
+            case FormEntryController.EVENT_REPEAT:
+                auditEventType = AuditEventType.REPEAT;
+                break;
+            case FormEntryController.EVENT_PROMPT_NEW_REPEAT:
+                auditEventType = AuditEventType.PROMPT_NEW_REPEAT;
+                break;
+            case FormEntryController.EVENT_END_OF_FORM:
+                auditEventType = AuditEventType.END_OF_FORM;
+                break;
+            default:
+                auditEventType = AuditEventType.UNKNOWN_EVENT_TYPE;
+        }
+        return auditEventType;
+    }
+
+    /**
+     * @return true if this event's type is an interval event type.
+     */
+    public boolean isIntervalAuditEventType() {
+        return auditEventType.isInterval();
+    }
+
+    public boolean isEndTimeSet() {
+        return endTimeSet;
+    }
+
+    public AuditEventType getAuditEventType() {
+        return auditEventType;
+    }
+
+    public FormIndex getFormIndex() {
+        return formIndex;
+    }
+
+    public boolean hasNewAnswer() {
+        return !oldValue.equals(newValue);
+    }
+
+    public boolean isLocationAlreadySet() {
+        return latitude != null && !latitude.isEmpty()
+                && longitude != null && !longitude.isEmpty()
+                && accuracy != null && !accuracy.isEmpty();
+    }
+
+    public void setLocationCoordinates(String latitude, String longitude, String accuracy) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.accuracy = accuracy;
+    }
+
+    public boolean recordValueChange(String newValue) {
+        this.newValue = newValue != null ? newValue : "";
+
+        // Clear values if they are equal
+        if (this.oldValue.equals(this.newValue)) {
+            this.oldValue = "";
+            this.newValue = "";
+            return false;
+        }
+
+        return true;
+    }
+
+    public String getChangeReason() {
+        return changeReason;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public String getAccuracy() {
+        return accuracy;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public long getStart() {
+        return start;
+    }
+
+    @NonNull
+    public String getOldValue() {
+        return oldValue;
+    }
+
+    @NonNull
+    public String getNewValue() {
+        return newValue;
+    }
+
+    public long getEnd() {
+        return end;
+    }
+
+    /*
+     * Mark the end of an interval event
+     */
+    public void setEnd(long endTime) {
+        this.end = endTime;
+        this.endTimeSet = true;
+    }
+
     public enum AuditEventType {
         // Beginning of the form
         BEGINNING_OF_FORM("beginning of form", false, false, false),
@@ -119,160 +273,5 @@ public class AuditEvent {
         public boolean isLocationRelated() {
             return isLocationRelated;
         }
-    }
-
-    private final long start;
-    private AuditEventType auditEventType;
-    private String latitude;
-    private String longitude;
-    private String accuracy;
-    @NonNull
-    private String oldValue;
-    private String user;
-    private final String changeReason;
-    @NonNull
-    private String newValue = "";
-    private long end;
-    private boolean endTimeSet;
-    private FormIndex formIndex;
-
-    /*
-     * Create a new event
-     */
-    public AuditEvent(long start, AuditEventType auditEventType) {
-        this(start, auditEventType, null, null, null, null);
-    }
-
-    public AuditEvent(long start, AuditEventType auditEventType,
-                      FormIndex formIndex, String oldValue, String user, String changeReason) {
-        this.start = start;
-        this.auditEventType = auditEventType;
-        this.formIndex = formIndex;
-        this.oldValue = oldValue == null ? "" : oldValue;
-        this.user = user;
-        this.changeReason = changeReason;
-    }
-
-    /**
-     * @return true if this event's type is an interval event type.
-     */
-    public boolean isIntervalAuditEventType() {
-        return auditEventType.isInterval();
-    }
-
-    /*
-     * Mark the end of an interval event
-     */
-    public void setEnd(long endTime) {
-        this.end = endTime;
-        this.endTimeSet = true;
-    }
-
-    public boolean isEndTimeSet() {
-        return endTimeSet;
-    }
-
-    public AuditEventType getAuditEventType() {
-        return auditEventType;
-    }
-
-    public FormIndex getFormIndex() {
-        return formIndex;
-    }
-
-    public boolean hasNewAnswer() {
-        return !oldValue.equals(newValue);
-    }
-
-    public boolean isLocationAlreadySet() {
-        return latitude != null && !latitude.isEmpty()
-                && longitude != null && !longitude.isEmpty()
-                && accuracy != null && !accuracy.isEmpty();
-    }
-
-    public void setLocationCoordinates(String latitude, String longitude, String accuracy) {
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.accuracy = accuracy;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public boolean recordValueChange(String newValue) {
-        this.newValue = newValue != null ? newValue : "";
-
-        // Clear values if they are equal
-        if (this.oldValue.equals(this.newValue)) {
-            this.oldValue = "";
-            this.newValue = "";
-            return false;
-        }
-
-        return true;
-    }
-
-    public String getChangeReason() {
-        return changeReason;
-    }
-
-    public String getLatitude() {
-        return latitude;
-    }
-
-    public String getLongitude() {
-        return longitude;
-    }
-
-    public String getAccuracy() {
-        return accuracy;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public long getStart() {
-        return start;
-    }
-
-    @NonNull
-    public String getOldValue() {
-        return oldValue;
-    }
-
-    @NonNull
-    public String getNewValue() {
-        return newValue;
-    }
-
-    public long getEnd() {
-        return end;
-    }
-
-    // Get event type based on a Form Controller event
-    public static AuditEventType getAuditEventTypeFromFecType(int fcEvent) {
-        AuditEventType auditEventType;
-        switch (fcEvent) {
-            case FormEntryController.EVENT_BEGINNING_OF_FORM:
-                auditEventType = AuditEventType.BEGINNING_OF_FORM;
-                break;
-            case FormEntryController.EVENT_GROUP:
-                auditEventType = AuditEventType.GROUP;
-                break;
-            case FormEntryController.EVENT_REPEAT:
-                auditEventType = AuditEventType.REPEAT;
-                break;
-            case FormEntryController.EVENT_PROMPT_NEW_REPEAT:
-                auditEventType = AuditEventType.PROMPT_NEW_REPEAT;
-                break;
-            case FormEntryController.EVENT_END_OF_FORM:
-                auditEventType = AuditEventType.END_OF_FORM;
-                break;
-            default:
-                auditEventType = AuditEventType.UNKNOWN_EVENT_TYPE;
-        }
-        return auditEventType;
     }
 }

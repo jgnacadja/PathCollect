@@ -20,19 +20,17 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.RuleChain;
 import org.odk.collect.android.R;
-import org.odk.collect.android.support.rules.CollectTestRule;
 import org.odk.collect.android.support.TestDependencies;
-import org.odk.collect.android.support.rules.TestRuleChain;
 import org.odk.collect.android.support.pages.MainMenuPage;
 import org.odk.collect.android.support.pages.SendFinalizedFormPage;
+import org.odk.collect.android.support.rules.CollectTestRule;
+import org.odk.collect.android.support.rules.TestRuleChain;
 import org.odk.collect.forms.instances.Instance;
 
 public class EncryptedFormTest {
 
-    TestDependencies testDependencies = new TestDependencies();
-
     public CollectTestRule rule = new CollectTestRule();
-
+    TestDependencies testDependencies = new TestDependencies();
     @Rule
     public RuleChain copyFormChain = TestRuleChain.chain(testDependencies)
             .around(rule);

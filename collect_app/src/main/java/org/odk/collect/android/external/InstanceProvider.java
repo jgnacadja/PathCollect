@@ -63,20 +63,53 @@ public class InstanceProvider extends ContentProvider {
     private static final int INSTANCE_ID = 2;
     private static final UriMatcher URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
 
+    static {
+        URI_MATCHER.addURI(InstancesContract.AUTHORITY, "instances", INSTANCES);
+        URI_MATCHER.addURI(InstancesContract.AUTHORITY, "instances/#", INSTANCE_ID);
+    }
+
     @Inject
     InstancesRepositoryProvider instancesRepositoryProvider;
-
     @Inject
     FormsRepositoryProvider formsRepositoryProvider;
-
     @Inject
     StoragePathProvider storagePathProvider;
-
     @Inject
     ProjectsRepository projectsRepository;
-
     @Inject
     SettingsProvider settingsProvider;
+
+    public static String getDisplaySubtext(Context context, String state, Date date) {
+        return getDisplaySubtext(context.getResources(), state, date);
+    }
+
+    public static String getDisplaySubtext(Resources resources, String state, Date date) {
+        try {
+            if (state == null) {
+                return new SimpleDateFormat(resources.getString(R.string.added_on_date_at_time),
+                        Locale.getDefault()).format(date);
+            } else if (Instance.STATUS_INCOMPLETE.equalsIgnoreCase(state)) {
+                return new SimpleDateFormat(resources.getString(R.string.saved_on_date_at_time),
+                        Locale.getDefault()).format(date);
+            } else if (Instance.STATUS_COMPLETE.equalsIgnoreCase(state)) {
+                return new SimpleDateFormat(resources.getString(R.string.finalized_on_date_at_time),
+                        Locale.getDefault()).format(date);
+            } else if (Instance.STATUS_SUBMITTED.equalsIgnoreCase(state)) {
+                return new SimpleDateFormat(resources.getString(R.string.sent_on_date_at_time),
+                        Locale.getDefault()).format(date);
+            } else if (Instance.STATUS_SUBMISSION_FAILED.equalsIgnoreCase(state)) {
+                return new SimpleDateFormat(
+                        resources.getString(R.string.sending_failed_on_date_at_time),
+                        Locale.getDefault()).format(date);
+            } else {
+                return new SimpleDateFormat(resources.getString(R.string.added_on_date_at_time),
+                        Locale.getDefault()).format(date);
+            }
+        } catch (IllegalArgumentException e) {
+            Timber.e(e);
+            return "";
+        }
+    }
 
     @Override
     public boolean onCreate() {
@@ -147,38 +180,6 @@ public class InstanceProvider extends ContentProvider {
 
         Instance newInstance = instancesRepositoryProvider.get(projectId).save(getInstanceFromValues(initialValues));
         return getUri(projectId, newInstance.getDbId());
-    }
-
-    public static String getDisplaySubtext(Context context, String state, Date date) {
-        return getDisplaySubtext(context.getResources(), state, date);
-    }
-
-    public static String getDisplaySubtext(Resources resources, String state, Date date) {
-        try {
-            if (state == null) {
-                return new SimpleDateFormat(resources.getString(R.string.added_on_date_at_time),
-                        Locale.getDefault()).format(date);
-            } else if (Instance.STATUS_INCOMPLETE.equalsIgnoreCase(state)) {
-                return new SimpleDateFormat(resources.getString(R.string.saved_on_date_at_time),
-                        Locale.getDefault()).format(date);
-            } else if (Instance.STATUS_COMPLETE.equalsIgnoreCase(state)) {
-                return new SimpleDateFormat(resources.getString(R.string.finalized_on_date_at_time),
-                        Locale.getDefault()).format(date);
-            } else if (Instance.STATUS_SUBMITTED.equalsIgnoreCase(state)) {
-                return new SimpleDateFormat(resources.getString(R.string.sent_on_date_at_time),
-                        Locale.getDefault()).format(date);
-            } else if (Instance.STATUS_SUBMISSION_FAILED.equalsIgnoreCase(state)) {
-                return new SimpleDateFormat(
-                        resources.getString(R.string.sending_failed_on_date_at_time),
-                        Locale.getDefault()).format(date);
-            } else {
-                return new SimpleDateFormat(resources.getString(R.string.added_on_date_at_time),
-                        Locale.getDefault()).format(date);
-            }
-        } catch (IllegalArgumentException e) {
-            Timber.e(e);
-            return "";
-        }
     }
 
     /**
@@ -313,10 +314,5 @@ public class InstanceProvider extends ContentProvider {
 
     private void logServerEvent(String projectId, String event) {
         AnalyticsUtils.logServerEvent(event, settingsProvider.getUnprotectedSettings(projectId));
-    }
-
-    static {
-        URI_MATCHER.addURI(InstancesContract.AUTHORITY, "instances", INSTANCES);
-        URI_MATCHER.addURI(InstancesContract.AUTHORITY, "instances/#", INSTANCE_ID);
     }
 }

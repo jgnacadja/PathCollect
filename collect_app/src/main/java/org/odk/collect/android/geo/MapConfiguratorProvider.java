@@ -2,7 +2,6 @@ package org.odk.collect.android.geo;
 
 import static org.odk.collect.settings.keys.ProjectKeys.BASEMAP_SOURCE_CARTO;
 import static org.odk.collect.settings.keys.ProjectKeys.BASEMAP_SOURCE_GOOGLE;
-import static org.odk.collect.settings.keys.ProjectKeys.BASEMAP_SOURCE_MAPBOX;
 import static org.odk.collect.settings.keys.ProjectKeys.BASEMAP_SOURCE_OSM;
 import static org.odk.collect.settings.keys.ProjectKeys.BASEMAP_SOURCE_STAMEN;
 import static org.odk.collect.settings.keys.ProjectKeys.BASEMAP_SOURCE_USGS;
@@ -30,14 +29,14 @@ import java.util.ArrayList;
 
 public class MapConfiguratorProvider {
 
-    private static final SourceOption[] SOURCE_OPTIONS = initOptions();
     private static final String USGS_URL_BASE =
-        "https://basemap.nationalmap.gov/arcgis/rest/services";
+            "https://basemap.nationalmap.gov/arcgis/rest/services";
     private static final String OSM_COPYRIGHT = "© OpenStreetMap contributors";
     private static final String CARTO_COPYRIGHT = "© CARTO";
     private static final String CARTO_ATTRIBUTION = OSM_COPYRIGHT + ", " + CARTO_COPYRIGHT;
     private static final String STAMEN_ATTRIBUTION = "Map tiles by Stamen Design, under CC BY 3.0.\nData by OpenStreetMap, under ODbL.";
     private static final String USGS_ATTRIBUTION = "Map services and data available from U.S. Geological Survey,\nNational Geospatial Program.";
+    private static final SourceOption[] SOURCE_OPTIONS = initOptions();
 
     private MapConfiguratorProvider() {
 
@@ -112,7 +111,9 @@ public class MapConfiguratorProvider {
         return sourceOptions.toArray(new SourceOption[]{});
     }
 
-    /** Gets the currently selected MapConfigurator. */
+    /**
+     * Gets the currently selected MapConfigurator.
+     */
     public static @NonNull
     MapConfigurator getConfigurator() {
         return getOption(null).cftor;
@@ -126,7 +127,9 @@ public class MapConfiguratorProvider {
         return getOption(id).cftor;
     }
 
-    /** Gets a list of the IDs of the basemap sources, in order. */
+    /**
+     * Gets a list of the IDs of the basemap sources, in order.
+     */
     public static String[] getIds() {
         String[] ids = new String[SOURCE_OPTIONS.length];
         for (int i = 0; i < ids.length; i++) {
@@ -135,7 +138,9 @@ public class MapConfiguratorProvider {
         return ids;
     }
 
-    /** Gets a list of the label string IDs of the basemap sources, in order. */
+    /**
+     * Gets a list of the label string IDs of the basemap sources, in order.
+     */
     public static int[] getLabelIds() {
         int[] labelIds = new int[SOURCE_OPTIONS.length];
         for (int i = 0; i < labelIds.length; i++) {

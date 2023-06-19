@@ -43,10 +43,9 @@ import javax.inject.Inject;
 @Deprecated
 public final class ThemeUtils {
 
+    private final Context context;
     @Inject
     SettingsProvider settingsProvider;
-
-    private final Context context;
 
     public ThemeUtils(Context context) {
         DaggerUtils.getComponent(context).inject(this);

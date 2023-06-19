@@ -1,5 +1,22 @@
 package org.odk.collect.android.widgets;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.mockValueChangedListener;
+import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.promptWithAnswer;
+import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.promptWithReadOnly;
+import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.promptWithReadOnlyAndAnswer;
+import static org.odk.collect.testshared.RobolectricHelpers.setupMediaPlayerDataSource;
+import static org.robolectric.shadows.ShadowDialog.getLatestDialog;
+
 import android.util.Pair;
 import android.view.View;
 
@@ -32,23 +49,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
-
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.hamcrest.Matchers.nullValue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.odk.collect.testshared.RobolectricHelpers.setupMediaPlayerDataSource;
-import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.mockValueChangedListener;
-import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.promptWithAnswer;
-import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.promptWithReadOnly;
-import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.promptWithReadOnlyAndAnswer;
-import static org.robolectric.shadows.ShadowDialog.getLatestDialog;
 
 @RunWith(AndroidJUnit4.class)
 public class AudioWidgetTest {
@@ -573,9 +573,9 @@ public class AudioWidgetTest {
 
     private static class FakeRecordingRequester implements RecordingRequester, RecordingStatusHandler {
 
+        private final Map<String, Consumer<Pair<Long, Integer>>> inProgressListeners = new HashMap<>();
         FormEntryPrompt requestedRecordingFor;
         private Consumer<Boolean> isRecordingListener;
-        private final Map<String, Consumer<Pair<Long, Integer>>> inProgressListeners = new HashMap<>();
 
         @Override
         public void requestRecording(FormEntryPrompt prompt) {

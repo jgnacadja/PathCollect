@@ -14,6 +14,8 @@
 
 package org.odk.collect.android.widgets;
 
+import static org.odk.collect.android.formentry.questions.WidgetViewUtils.createSimpleButton;
+
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -28,11 +30,9 @@ import org.javarosa.core.model.data.IAnswerData;
 import org.odk.collect.android.R;
 import org.odk.collect.android.formentry.questions.QuestionDetails;
 import org.odk.collect.android.formentry.questions.WidgetViewUtils;
-import org.odk.collect.android.widgets.interfaces.WidgetDataReceiver;
 import org.odk.collect.android.widgets.interfaces.ButtonClickListener;
+import org.odk.collect.android.widgets.interfaces.WidgetDataReceiver;
 import org.odk.collect.android.widgets.utilities.WaitingForDataRegistry;
-
-import static org.odk.collect.android.formentry.questions.WidgetViewUtils.createSimpleButton;
 
 /**
  * <p>Use the ODK Sensors framework to print data to a connected printer.</p>
@@ -235,7 +235,7 @@ public class ExPrinterWidget extends QuestionWidget implements WidgetDataReceive
         } catch (ActivityNotFoundException e) {
             waitingForDataRegistry.cancelWaitingForData();
             Toast.makeText(getContext(),
-                    errorString, Toast.LENGTH_SHORT)
+                            errorString, Toast.LENGTH_SHORT)
                     .show();
         }
     }

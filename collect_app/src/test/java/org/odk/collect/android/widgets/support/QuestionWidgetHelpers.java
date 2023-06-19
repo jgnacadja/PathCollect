@@ -1,5 +1,7 @@
 package org.odk.collect.android.widgets.support;
 
+import static org.mockito.Mockito.mock;
+
 import org.javarosa.core.model.QuestionDef;
 import org.javarosa.core.model.data.IAnswerData;
 import org.javarosa.form.api.FormEntryPrompt;
@@ -8,8 +10,6 @@ import org.odk.collect.android.support.CollectHelpers;
 import org.odk.collect.android.support.MockFormEntryPromptBuilder;
 import org.odk.collect.android.support.WidgetTestActivity;
 import org.odk.collect.android.widgets.QuestionWidget;
-
-import static org.mockito.Mockito.mock;
 
 public final class QuestionWidgetHelpers {
 

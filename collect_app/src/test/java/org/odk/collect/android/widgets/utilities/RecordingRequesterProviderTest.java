@@ -1,12 +1,12 @@
 package org.odk.collect.android.widgets.utilities;
 
-import org.javarosa.form.api.FormEntryPrompt;
-import org.junit.Test;
-import org.odk.collect.android.support.MockFormEntryPromptBuilder;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.mockito.Mockito.mock;
+
+import org.javarosa.form.api.FormEntryPrompt;
+import org.junit.Test;
+import org.odk.collect.android.support.MockFormEntryPromptBuilder;
 
 public class RecordingRequesterProviderTest {
 

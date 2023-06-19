@@ -15,7 +15,10 @@ import java.io.FileNotFoundException
 object ItemsWidgetUtils {
 
     @JvmStatic
-    fun loadItemsAndHandleErrors(widget: QuestionWidget, prompt: FormEntryPrompt): List<SelectChoice> {
+    fun loadItemsAndHandleErrors(
+        widget: QuestionWidget,
+        prompt: FormEntryPrompt
+    ): List<SelectChoice> {
         return try {
             loadItems(prompt)
         } catch (e: FileNotFoundException) {

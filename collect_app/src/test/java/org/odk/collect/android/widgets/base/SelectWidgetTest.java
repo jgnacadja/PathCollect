@@ -1,5 +1,7 @@
 package org.odk.collect.android.widgets.base;
 
+import static org.mockito.Mockito.when;
+
 import net.bytebuddy.utility.RandomString;
 
 import org.javarosa.core.model.SelectChoice;
@@ -8,8 +10,6 @@ import org.odk.collect.android.widgets.interfaces.Widget;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.mockito.Mockito.when;
 
 /**
  * @author James Knight

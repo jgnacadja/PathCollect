@@ -31,15 +31,35 @@ class FormsDownloadResultInterpreterTest {
 
     @Test
     fun `When all forms downloaded successfully getFailures() should return an empty list`() {
-        assertThat(FormsDownloadResultInterpreter.getFailures(resultWithoutErrors, context).size, `is`(0))
+        assertThat(
+            FormsDownloadResultInterpreter.getFailures(resultWithoutErrors, context).size,
+            `is`(0)
+        )
     }
 
     @Test
     fun `When not all forms downloaded successfully getFailures() should return list of failures`() {
-        assertThat(FormsDownloadResultInterpreter.getFailures(resultWithOneError, context).size, `is`(1))
-        assertThat(FormsDownloadResultInterpreter.getFailures(resultWithOneError, context)[0].title, `is`("Form 2"))
-        assertThat(FormsDownloadResultInterpreter.getFailures(resultWithOneError, context)[0].secondaryText, `is`(context.getString(R.string.form_details, "5", "4")))
-        assertThat(FormsDownloadResultInterpreter.getFailures(resultWithOneError, context)[0].supportingText, `is`(FormDownloadExceptionMapper(context).getMessage(resultWithOneError[formDetails2])))
+        assertThat(
+            FormsDownloadResultInterpreter.getFailures(resultWithOneError, context).size,
+            `is`(1)
+        )
+        assertThat(
+            FormsDownloadResultInterpreter.getFailures(resultWithOneError, context)[0].title,
+            `is`("Form 2")
+        )
+        assertThat(
+            FormsDownloadResultInterpreter.getFailures(
+                resultWithOneError,
+                context
+            )[0].secondaryText, `is`(context.getString(R.string.form_details, "5", "4"))
+        )
+        assertThat(
+            FormsDownloadResultInterpreter.getFailures(
+                resultWithOneError,
+                context
+            )[0].supportingText,
+            `is`(FormDownloadExceptionMapper(context).getMessage(resultWithOneError[formDetails2]))
+        )
     }
 
     @Test
@@ -54,11 +74,17 @@ class FormsDownloadResultInterpreterTest {
 
     @Test
     fun `When all forms downloaded successfully allFormsDownloadedSuccessfully() should return true`() {
-        assertThat(FormsDownloadResultInterpreter.allFormsDownloadedSuccessfully(resultWithoutErrors), `is`(true))
+        assertThat(
+            FormsDownloadResultInterpreter.allFormsDownloadedSuccessfully(resultWithoutErrors),
+            `is`(true)
+        )
     }
 
     @Test
     fun `When not all forms downloaded successfully allFormsDownloadedSuccessfully() should return false`() {
-        assertThat(FormsDownloadResultInterpreter.allFormsDownloadedSuccessfully(resultWithOneError), `is`(false))
+        assertThat(
+            FormsDownloadResultInterpreter.allFormsDownloadedSuccessfully(resultWithOneError),
+            `is`(false)
+        )
     }
 }

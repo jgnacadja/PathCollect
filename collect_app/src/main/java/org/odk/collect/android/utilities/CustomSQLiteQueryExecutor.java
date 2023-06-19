@@ -22,7 +22,7 @@ public final class CustomSQLiteQueryExecutor extends CustomSQLiteQueryBuilder {
         db.execSQL(query.toString());
     }
 
-    public Cursor query()  throws SQLiteException {
+    public Cursor query() throws SQLiteException {
         query.append(SEMICOLON);
         return db.rawQuery(query.toString(), null);
     }

@@ -14,6 +14,9 @@
 
 package org.odk.collect.android.utilities;
 
+import static org.odk.collect.android.utilities.ApplicationConstants.Namespaces.XML_OPENROSA_NAMESPACE;
+import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
+
 import android.net.Uri;
 import android.util.Base64;
 
@@ -27,9 +30,9 @@ import org.kxml2.kdom.Node;
 import org.odk.collect.android.R;
 import org.odk.collect.android.application.Collect;
 import org.odk.collect.android.exception.EncryptionException;
-import org.odk.collect.android.javarosawrapper.FormController.InstanceMetadata;
 import org.odk.collect.android.external.FormsContract;
 import org.odk.collect.android.external.InstancesContract;
+import org.odk.collect.android.javarosawrapper.FormController.InstanceMetadata;
 import org.odk.collect.forms.Form;
 import org.odk.collect.forms.instances.Instance;
 import org.odk.collect.shared.strings.Md5;
@@ -66,9 +69,6 @@ import javax.crypto.spec.SecretKeySpec;
 
 import timber.log.Timber;
 
-import static org.odk.collect.android.utilities.ApplicationConstants.Namespaces.XML_OPENROSA_NAMESPACE;
-import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
-
 /**
  * Utility class for encrypting submissions during the SaveFormToDisk.
  *
@@ -103,148 +103,6 @@ public class EncryptionUtils {
     private static final String ENCRYPTION_PROVIDER = "BC";
 
     private EncryptionUtils() {
-    }
-
-    public static final class EncryptedFormInformation {
-        public final String formId;
-        public final String formVersion;
-        public final InstanceMetadata instanceMetadata;
-        public final PublicKey rsaPublicKey;
-        public final String base64RsaEncryptedSymmetricKey;
-        public final SecretKeySpec symmetricKey;
-        public final byte[] ivSeedArray;
-        private int ivCounter;
-        public final StringBuilder elementSignatureSource = new StringBuilder();
-        private boolean isNotBouncyCastle;
-
-        EncryptedFormInformation(String formId, String formVersion,
-                                 InstanceMetadata instanceMetadata, PublicKey rsaPublicKey) {
-            this.formId = formId;
-            this.formVersion = formVersion;
-            this.instanceMetadata = instanceMetadata;
-            this.rsaPublicKey = rsaPublicKey;
-
-            // generate the symmetric key from random bits...
-
-            SecureRandom r = new SecureRandom();
-            byte[] key = new byte[SYMMETRIC_KEY_LENGTH / 8];
-            r.nextBytes(key);
-            symmetricKey = new SecretKeySpec(key, SYMMETRIC_ALGORITHM);
-
-            // construct the fixed portion of the iv -- the ivSeedArray
-            // this is the md5 hash of the instanceID and the symmetric key
-            try {
-                MessageDigest md = MessageDigest.getInstance("MD5");
-                md.update(instanceMetadata.instanceId.getBytes(UTF_8));
-                md.update(key);
-                byte[] messageDigest = md.digest();
-                ivSeedArray = new byte[IV_BYTE_LENGTH];
-                for (int i = 0; i < IV_BYTE_LENGTH; ++i) {
-                    ivSeedArray[i] = messageDigest[i % messageDigest.length];
-                }
-            } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-                Timber.e(e, "Unable to set md5 hash for instanceid and symmetric key.");
-                throw new IllegalArgumentException(e.getMessage());
-            }
-
-            // construct the base64-encoded RSA-encrypted symmetric key
-            try {
-                Cipher pkCipher;
-                pkCipher = Cipher.getInstance(ASYMMETRIC_ALGORITHM);
-                // write AES key
-                pkCipher.init(Cipher.ENCRYPT_MODE, rsaPublicKey);
-                byte[] pkEncryptedKey = pkCipher.doFinal(key);
-                String alg = pkCipher.getAlgorithm();
-                Timber.i("Algorithm Used: %s", alg);
-                base64RsaEncryptedSymmetricKey = Base64.encodeToString(pkEncryptedKey, Base64.NO_WRAP);
-
-            } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
-                Timber.e(e, "Unable to encrypt the symmetric key.");
-                throw new IllegalArgumentException(e.getMessage());
-            }
-
-            // start building elementSignatureSource...
-            appendElementSignatureSource(formId);
-            if (formVersion != null) {
-                appendElementSignatureSource(formVersion);
-            }
-            appendElementSignatureSource(base64RsaEncryptedSymmetricKey);
-
-            appendElementSignatureSource(instanceMetadata.instanceId);
-        }
-
-        public void appendElementSignatureSource(String value) {
-            elementSignatureSource.append(value).append('\n');
-        }
-
-        public void appendFileSignatureSource(File file) {
-            String md5Hash = Md5.getMd5Hash(file);
-            appendElementSignatureSource(file.getName() + "::" + md5Hash);
-        }
-
-        public String getBase64EncryptedElementSignature() {
-            // Step 0: construct the text of the elements in elementSignatureSource (done)
-            //     Where...
-            //      * Elements are separated by newline characters.
-            //      * Filename is the unencrypted filename (no .enc suffix).
-            //      * Md5 hashes of the unencrypted files' contents are converted
-            //        to zero-padded 32-character strings before concatenation.
-            //      Assumes this is in the order:
-            //          formId
-            //          version   (omitted if null)
-            //          base64RsaEncryptedSymmetricKey
-            //          instanceId
-            //          for each media file { filename "::" md5Hash }
-            //          submission.xml "::" md5Hash
-
-            // Step 1: construct the (raw) md5 hash of Step 0.
-            byte[] messageDigest;
-            try {
-                MessageDigest md = MessageDigest.getInstance("MD5");
-                md.update(elementSignatureSource.toString().getBytes(UTF_8));
-                messageDigest = md.digest();
-            } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-                Timber.e(e, "Exception thrown while constructing md5 hash.");
-                throw new IllegalArgumentException(e.getMessage());
-            }
-
-            // Step 2: construct the base64-encoded RSA-encrypted md5
-            try {
-                Cipher pkCipher;
-                pkCipher = Cipher.getInstance(ASYMMETRIC_ALGORITHM);
-                // write AES key
-                pkCipher.init(Cipher.ENCRYPT_MODE, rsaPublicKey);
-                byte[] pkEncryptedKey = pkCipher.doFinal(messageDigest);
-                return Base64.encodeToString(pkEncryptedKey, Base64.NO_WRAP);
-
-            } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
-                Timber.e(e, "Unable to encrypt the symmetric key.");
-                throw new IllegalArgumentException(e.getMessage());
-            }
-        }
-
-        public Cipher getCipher() throws InvalidKeyException,
-                InvalidAlgorithmParameterException, NoSuchAlgorithmException,
-                NoSuchPaddingException {
-            ++ivSeedArray[ivCounter % ivSeedArray.length];
-            ++ivCounter;
-            IvParameterSpec baseIv = new IvParameterSpec(ivSeedArray);
-            Cipher c;
-            try {
-                c = Cipher.getInstance(EncryptionUtils.SYMMETRIC_ALGORITHM, "BC");
-                isNotBouncyCastle = false;
-            } catch (NoSuchProviderException e) {
-                Timber.w(e, "Unable to obtain BouncyCastle provider! Decryption may fail.");
-                isNotBouncyCastle = true;
-                c = Cipher.getInstance(EncryptionUtils.SYMMETRIC_ALGORITHM);
-            }
-            c.init(Cipher.ENCRYPT_MODE, symmetricKey, baseIv);
-            return c;
-        }
-
-        public boolean isNotBouncyCastle() {
-            return isNotBouncyCastle;
-        }
     }
 
     /**
@@ -570,6 +428,150 @@ public class EncryptionUtils {
         } finally {
             IOUtils.closeQuietly(writer);
             IOUtils.closeQuietly(fout);
+        }
+    }
+
+    public static final class EncryptedFormInformation {
+        public final String formId;
+        public final String formVersion;
+        public final InstanceMetadata instanceMetadata;
+        public final PublicKey rsaPublicKey;
+        public final String base64RsaEncryptedSymmetricKey;
+        public final SecretKeySpec symmetricKey;
+        public final byte[] ivSeedArray;
+        public final StringBuilder elementSignatureSource = new StringBuilder();
+        private int ivCounter;
+        private boolean isNotBouncyCastle;
+
+        EncryptedFormInformation(String formId, String formVersion,
+                                 InstanceMetadata instanceMetadata, PublicKey rsaPublicKey) {
+            this.formId = formId;
+            this.formVersion = formVersion;
+            this.instanceMetadata = instanceMetadata;
+            this.rsaPublicKey = rsaPublicKey;
+
+            // generate the symmetric key from random bits...
+
+            SecureRandom r = new SecureRandom();
+            byte[] key = new byte[SYMMETRIC_KEY_LENGTH / 8];
+            r.nextBytes(key);
+            symmetricKey = new SecretKeySpec(key, SYMMETRIC_ALGORITHM);
+
+            // construct the fixed portion of the iv -- the ivSeedArray
+            // this is the md5 hash of the instanceID and the symmetric key
+            try {
+                MessageDigest md = MessageDigest.getInstance("MD5");
+                md.update(instanceMetadata.instanceId.getBytes(UTF_8));
+                md.update(key);
+                byte[] messageDigest = md.digest();
+                ivSeedArray = new byte[IV_BYTE_LENGTH];
+                for (int i = 0; i < IV_BYTE_LENGTH; ++i) {
+                    ivSeedArray[i] = messageDigest[i % messageDigest.length];
+                }
+            } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+                Timber.e(e, "Unable to set md5 hash for instanceid and symmetric key.");
+                throw new IllegalArgumentException(e.getMessage());
+            }
+
+            // construct the base64-encoded RSA-encrypted symmetric key
+            try {
+                Cipher pkCipher;
+                pkCipher = Cipher.getInstance(ASYMMETRIC_ALGORITHM);
+                // write AES key
+                pkCipher.init(Cipher.ENCRYPT_MODE, rsaPublicKey);
+                byte[] pkEncryptedKey = pkCipher.doFinal(key);
+                String alg = pkCipher.getAlgorithm();
+                Timber.i("Algorithm Used: %s", alg);
+                base64RsaEncryptedSymmetricKey = Base64.encodeToString(pkEncryptedKey, Base64.NO_WRAP);
+
+            } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException |
+                     IllegalBlockSizeException | BadPaddingException e) {
+                Timber.e(e, "Unable to encrypt the symmetric key.");
+                throw new IllegalArgumentException(e.getMessage());
+            }
+
+            // start building elementSignatureSource...
+            appendElementSignatureSource(formId);
+            if (formVersion != null) {
+                appendElementSignatureSource(formVersion);
+            }
+            appendElementSignatureSource(base64RsaEncryptedSymmetricKey);
+
+            appendElementSignatureSource(instanceMetadata.instanceId);
+        }
+
+        public void appendElementSignatureSource(String value) {
+            elementSignatureSource.append(value).append('\n');
+        }
+
+        public void appendFileSignatureSource(File file) {
+            String md5Hash = Md5.getMd5Hash(file);
+            appendElementSignatureSource(file.getName() + "::" + md5Hash);
+        }
+
+        public String getBase64EncryptedElementSignature() {
+            // Step 0: construct the text of the elements in elementSignatureSource (done)
+            //     Where...
+            //      * Elements are separated by newline characters.
+            //      * Filename is the unencrypted filename (no .enc suffix).
+            //      * Md5 hashes of the unencrypted files' contents are converted
+            //        to zero-padded 32-character strings before concatenation.
+            //      Assumes this is in the order:
+            //          formId
+            //          version   (omitted if null)
+            //          base64RsaEncryptedSymmetricKey
+            //          instanceId
+            //          for each media file { filename "::" md5Hash }
+            //          submission.xml "::" md5Hash
+
+            // Step 1: construct the (raw) md5 hash of Step 0.
+            byte[] messageDigest;
+            try {
+                MessageDigest md = MessageDigest.getInstance("MD5");
+                md.update(elementSignatureSource.toString().getBytes(UTF_8));
+                messageDigest = md.digest();
+            } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+                Timber.e(e, "Exception thrown while constructing md5 hash.");
+                throw new IllegalArgumentException(e.getMessage());
+            }
+
+            // Step 2: construct the base64-encoded RSA-encrypted md5
+            try {
+                Cipher pkCipher;
+                pkCipher = Cipher.getInstance(ASYMMETRIC_ALGORITHM);
+                // write AES key
+                pkCipher.init(Cipher.ENCRYPT_MODE, rsaPublicKey);
+                byte[] pkEncryptedKey = pkCipher.doFinal(messageDigest);
+                return Base64.encodeToString(pkEncryptedKey, Base64.NO_WRAP);
+
+            } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException |
+                     IllegalBlockSizeException | BadPaddingException e) {
+                Timber.e(e, "Unable to encrypt the symmetric key.");
+                throw new IllegalArgumentException(e.getMessage());
+            }
+        }
+
+        public Cipher getCipher() throws InvalidKeyException,
+                InvalidAlgorithmParameterException, NoSuchAlgorithmException,
+                NoSuchPaddingException {
+            ++ivSeedArray[ivCounter % ivSeedArray.length];
+            ++ivCounter;
+            IvParameterSpec baseIv = new IvParameterSpec(ivSeedArray);
+            Cipher c;
+            try {
+                c = Cipher.getInstance(EncryptionUtils.SYMMETRIC_ALGORITHM, "BC");
+                isNotBouncyCastle = false;
+            } catch (NoSuchProviderException e) {
+                Timber.w(e, "Unable to obtain BouncyCastle provider! Decryption may fail.");
+                isNotBouncyCastle = true;
+                c = Cipher.getInstance(EncryptionUtils.SYMMETRIC_ALGORITHM);
+            }
+            c.init(Cipher.ENCRYPT_MODE, symmetricKey, baseIv);
+            return c;
+        }
+
+        public boolean isNotBouncyCastle() {
+            return isNotBouncyCastle;
         }
     }
 }

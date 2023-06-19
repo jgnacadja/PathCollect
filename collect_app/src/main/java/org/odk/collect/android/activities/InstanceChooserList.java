@@ -59,14 +59,11 @@ public class InstanceChooserList extends InstanceListActivity implements Adapter
     private static final String VIEW_SENT_FORM_SORTING_ORDER = "ViewSentFormSortingOrder";
 
     private static final boolean DO_NOT_EXIT = false;
-
-    private boolean editMode;
-
     @Inject
     CurrentProjectProvider currentProjectProvider;
-
     @Inject
     FormsRepositoryProvider formsRepositoryProvider;
+    private boolean editMode;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -20,6 +20,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+
 import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -30,11 +31,6 @@ public class ResetSettingsResultDialog extends DialogFragment {
     public static final String RESET_SETTINGS_RESULT_DIALOG_TAG = "resetSettingsResultDialogTag";
 
     private static final String MESSAGE = "message";
-
-    public interface ResetSettingsResultDialogListener {
-        void onDialogClosed();
-    }
-
     private ResetSettingsResultDialogListener listener;
 
     public static ResetSettingsResultDialog newInstance(String dialogMessage) {
@@ -70,5 +66,9 @@ public class ResetSettingsResultDialog extends DialogFragment {
                     }
                 })
                 .create();
+    }
+
+    public interface ResetSettingsResultDialogListener {
+        void onDialogClosed();
     }
 }

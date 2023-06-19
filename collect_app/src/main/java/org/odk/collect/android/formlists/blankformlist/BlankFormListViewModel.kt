@@ -2,11 +2,7 @@ package org.odk.collect.android.formlists.blankformlist
 
 import android.app.Application
 import android.net.Uri
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import org.odk.collect.analytics.Analytics
 import org.odk.collect.android.analytics.AnalyticsEvents
 import org.odk.collect.android.external.FormsContract
@@ -41,7 +37,8 @@ class BlankFormListViewModel(
     private val projectId: String
 ) : ViewModel() {
 
-    private val _allForms: MutableNonNullLiveData<List<BlankFormListItem>> = MutableNonNullLiveData(emptyList())
+    private val _allForms: MutableNonNullLiveData<List<BlankFormListItem>> =
+        MutableNonNullLiveData(emptyList())
     private val _formsToDisplay: MutableLiveData<List<BlankFormListItem>?> = MutableLiveData()
     val formsToDisplay: LiveData<List<BlankFormListItem>?> = _formsToDisplay
 
@@ -61,8 +58,9 @@ class BlankFormListViewModel(
     ) { (one, two, three) -> one || two || three }
 
     var sortingOrder: Int = generalSettings.getInt("formChooserListSortingOrder")
-        get() { return generalSettings.getInt("formChooserListSortingOrder") }
-
+        get() {
+            return generalSettings.getInt("formChooserListSortingOrder")
+        }
         set(value) {
             field = value
             generalSettings.save("formChooserListSortingOrder", value)
@@ -224,7 +222,9 @@ class BlankFormListViewModel(
             1 -> _allForms.value.sortedByDescending { it.formName.lowercase() }
             2 -> _allForms.value.sortedByDescending { it.dateOfCreation }
             3 -> _allForms.value.sortedBy { it.dateOfCreation }
-            else -> { _allForms.value }
+            else -> {
+                _allForms.value
+            }
         }.filter {
             filterText.isBlank() || it.formName.contains(filterText, true)
         }

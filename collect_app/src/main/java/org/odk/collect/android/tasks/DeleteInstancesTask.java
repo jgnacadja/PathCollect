@@ -17,9 +17,9 @@ package org.odk.collect.android.tasks;
 import android.os.AsyncTask;
 
 import org.odk.collect.android.instancemanagement.InstanceDeleter;
-import org.odk.collect.forms.instances.InstancesRepository;
 import org.odk.collect.android.listeners.DeleteInstancesListener;
 import org.odk.collect.forms.FormsRepository;
+import org.odk.collect.forms.instances.InstancesRepository;
 
 import timber.log.Timber;
 
@@ -31,13 +31,11 @@ import timber.log.Timber;
  */
 public class DeleteInstancesTask extends AsyncTask<Long, Integer, Integer> {
 
-    private DeleteInstancesListener deleteInstancesListener;
-
-    private int successCount;
-    private int toDeleteCount;
-
     private final InstancesRepository instancesRepository;
     private final FormsRepository formsRepository;
+    private DeleteInstancesListener deleteInstancesListener;
+    private int successCount;
+    private int toDeleteCount;
 
     public DeleteInstancesTask(InstancesRepository instancesRepository, FormsRepository formsRepository) {
         this.instancesRepository = instancesRepository;

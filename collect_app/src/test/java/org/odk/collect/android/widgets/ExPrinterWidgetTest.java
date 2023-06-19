@@ -1,5 +1,10 @@
 package org.odk.collect.android.widgets;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.when;
+
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -10,11 +15,6 @@ import org.junit.Test;
 import org.odk.collect.android.formentry.questions.QuestionDetails;
 import org.odk.collect.android.widgets.base.QuestionWidgetTest;
 import org.odk.collect.android.widgets.support.FakeWaitingForDataRegistry;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertNull;
-import static org.mockito.Mockito.when;
 
 public class ExPrinterWidgetTest extends QuestionWidgetTest<ExPrinterWidget, IAnswerData> {
 

@@ -24,10 +24,6 @@ import org.odk.collect.material.MaterialProgressDialogFragment;
 
 public class FormLoadingDialogFragment extends MaterialProgressDialogFragment {
 
-    public interface FormLoadingDialogFragmentListener {
-        void onCancelFormLoading();
-    }
-
     /**
      * Using a listener like this requires an Activity to implement the interface. We could
      * use a similar approach as that used in {@link SaveFormProgressDialogFragment} and grab
@@ -60,5 +56,9 @@ public class FormLoadingDialogFragment extends MaterialProgressDialogFragment {
             listener.onCancelFormLoading();
             return true;
         };
+    }
+
+    public interface FormLoadingDialogFragmentListener {
+        void onCancelFormLoading();
     }
 }

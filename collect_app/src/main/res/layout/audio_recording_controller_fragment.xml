@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_small"
             android:text="@string/recording"
-            android:textColor="?colorOnSurface"/>
+            android:textColor="?colorOnSurface" />
 
         <org.odk.collect.android.audio.VolumeBar
             android:id="@+id/volume_bar"

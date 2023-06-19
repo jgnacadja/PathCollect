@@ -68,10 +68,10 @@ public class IdentifyUserTest {
                 .clickJumpEndButton()
                 .clickSaveAndExit();
 
-            List<CSVRecord> auditLog = StorageUtils.getAuditLogForFirstInstance();
-            CSVRecord formResumeEvent = auditLog.get(7);
-            assertThat(formResumeEvent.get(0), equalTo("form resume"));
-            assertThat(formResumeEvent.get(4), equalTo("Jack"));
+        List<CSVRecord> auditLog = StorageUtils.getAuditLogForFirstInstance();
+        CSVRecord formResumeEvent = auditLog.get(7);
+        assertThat(formResumeEvent.get(0), equalTo("form resume"));
+        assertThat(formResumeEvent.get(4), equalTo("Jack"));
     }
 
     @Test

@@ -16,22 +16,6 @@
 
 package org.odk.collect.android.formentry.audit;
 
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-
-import org.apache.commons.io.FileUtils;
-import org.javarosa.core.model.FormIndex;
-import org.javarosa.core.model.instance.TreeReference;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.annotation.LooperMode;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.CHANGE_REASON;
 import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.END_OF_FORM;
@@ -46,6 +30,22 @@ import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.
 import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.LOCATION_TRACKING_ENABLED;
 import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.PROMPT_NEW_REPEAT;
 import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.QUESTION;
+import static java.util.Arrays.asList;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import org.apache.commons.io.FileUtils;
+import org.javarosa.core.model.FormIndex;
+import org.javarosa.core.model.instance.TreeReference;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.annotation.LooperMode;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @RunWith(AndroidJUnit4.class)
 @LooperMode(LooperMode.Mode.LEGACY)

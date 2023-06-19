@@ -1,5 +1,7 @@
 package org.odk.collect.android.widgets.items;
 
+import static org.odk.collect.android.formentry.media.FormMediaUtils.getPlayableAudioURI;
+
 import android.app.Activity;
 import android.content.Context;
 import android.text.Editable;
@@ -21,16 +23,13 @@ import org.odk.collect.android.widgets.QuestionWidget;
 import org.odk.collect.android.widgets.interfaces.MultiChoiceWidget;
 import org.odk.collect.android.widgets.utilities.SearchQueryViewModel;
 
-import static org.odk.collect.android.formentry.media.FormMediaUtils.getPlayableAudioURI;
-
 import java.util.List;
 
 public abstract class BaseSelectListWidget extends QuestionWidget implements MultiChoiceWidget, SelectItemClickListener {
 
-    SelectListWidgetAnswerBinding binding;
-    protected AbstractSelectListAdapter recyclerViewAdapter;
-
     final List<SelectChoice> items;
+    protected AbstractSelectListAdapter recyclerViewAdapter;
+    SelectListWidgetAnswerBinding binding;
 
     public BaseSelectListWidget(Context context, QuestionDetails questionDetails) {
         super(context, questionDetails);

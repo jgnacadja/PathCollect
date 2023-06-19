@@ -14,10 +14,12 @@ limitations under the License.
 
 package org.odk.collect.android.utilities;
 
-import androidx.annotation.NonNull;
-import com.google.android.material.snackbar.Snackbar;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public final class SnackbarUtils {
     private static final int DURATION_SHORT = 3500;

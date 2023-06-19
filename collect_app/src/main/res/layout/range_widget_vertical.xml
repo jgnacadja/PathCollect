@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2017 Nafundi
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright 2017 Nafundi
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,21 +13,21 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:gravity="center_horizontal"
-    android:paddingTop="15dp"
-    android:paddingBottom="15dp"
     android:clipChildren="false"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp">
 
     <TextView
         android:id="@+id/current_value"
-        android:minWidth="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:minWidth="50dp"
         android:textAppearance="?textAppearanceHeadline5" />
 
     <FrameLayout
@@ -49,9 +48,9 @@ limitations under the License.
     </FrameLayout>
 
     <RelativeLayout
-        android:minWidth="50dp"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:minWidth="50dp"
         android:orientation="vertical">
 
         <TextView

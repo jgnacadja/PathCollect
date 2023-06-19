@@ -57,10 +57,22 @@ class UserInterfacePreferencesFragmentTest {
 
         val scenario = launcherRule.launch(UserInterfacePreferencesFragment::class.java)
         scenario.onFragment { fragment: UserInterfacePreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_APP_THEME)!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_APP_LANGUAGE)!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_FONT_SIZE)!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_NAVIGATION)!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_APP_THEME)!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_APP_LANGUAGE)!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_FONT_SIZE)!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_NAVIGATION)!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -75,10 +87,22 @@ class UserInterfacePreferencesFragmentTest {
 
         val scenario = launcherRule.launch(UserInterfacePreferencesFragment::class.java)
         scenario.onFragment { fragment: UserInterfacePreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_APP_THEME)!!.isVisible, `is`(false))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_APP_LANGUAGE)!!.isVisible, `is`(false))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_FONT_SIZE)!!.isVisible, `is`(false))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_NAVIGATION)!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_APP_THEME)!!.isVisible,
+                `is`(false)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_APP_LANGUAGE)!!.isVisible,
+                `is`(false)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_FONT_SIZE)!!.isVisible,
+                `is`(false)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_NAVIGATION)!!.isVisible,
+                `is`(false)
+            )
         }
     }
 
@@ -88,10 +112,22 @@ class UserInterfacePreferencesFragmentTest {
 
         val scenario = launcherRule.launch(UserInterfacePreferencesFragment::class.java)
         scenario.onFragment { fragment: UserInterfacePreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_APP_THEME)!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_APP_LANGUAGE)!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_FONT_SIZE)!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_NAVIGATION)!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_APP_THEME)!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_APP_LANGUAGE)!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_FONT_SIZE)!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_NAVIGATION)!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -106,10 +142,22 @@ class UserInterfacePreferencesFragmentTest {
 
         val scenario = launcherRule.launch(UserInterfacePreferencesFragment::class.java)
         scenario.onFragment { fragment: UserInterfacePreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_APP_THEME)!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_APP_LANGUAGE)!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_FONT_SIZE)!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_NAVIGATION)!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_APP_THEME)!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_APP_LANGUAGE)!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_FONT_SIZE)!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_NAVIGATION)!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -119,10 +167,22 @@ class UserInterfacePreferencesFragmentTest {
 
         val scenario = launcherRule.launch(UserInterfacePreferencesFragment::class.java)
         scenario.onFragment { fragment: UserInterfacePreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_APP_THEME)!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_APP_LANGUAGE)!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_FONT_SIZE)!!.isVisible, `is`(true))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_NAVIGATION)!!.isVisible, `is`(true))
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_APP_THEME)!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_APP_LANGUAGE)!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_FONT_SIZE)!!.isVisible,
+                `is`(true)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_NAVIGATION)!!.isVisible,
+                `is`(true)
+            )
         }
     }
 
@@ -137,10 +197,22 @@ class UserInterfacePreferencesFragmentTest {
 
         val scenario = launcherRule.launch(UserInterfacePreferencesFragment::class.java)
         scenario.onFragment { fragment: UserInterfacePreferencesFragment ->
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_APP_THEME)!!.isVisible, `is`(false))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_APP_LANGUAGE)!!.isVisible, `is`(false))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_FONT_SIZE)!!.isVisible, `is`(false))
-            assertThat(fragment.findPreference<Preference>(ProjectKeys.KEY_NAVIGATION)!!.isVisible, `is`(false))
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_APP_THEME)!!.isVisible,
+                `is`(false)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_APP_LANGUAGE)!!.isVisible,
+                `is`(false)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_FONT_SIZE)!!.isVisible,
+                `is`(false)
+            )
+            assertThat(
+                fragment.findPreference<Preference>(ProjectKeys.KEY_NAVIGATION)!!.isVisible,
+                `is`(false)
+            )
         }
     }
 }

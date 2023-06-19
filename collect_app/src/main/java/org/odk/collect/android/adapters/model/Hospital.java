@@ -4,10 +4,10 @@ import androidx.annotation.Keep;
 
 import java.io.Serializable;
 import java.util.List;
-import com.google.gson.annotations.SerializedName;
 
 @Keep
 public class Hospital implements Serializable {
+    List<Prestation> prestations;
     private String id;
     private String name;
     private Double longitude;
@@ -18,67 +18,6 @@ public class Hospital implements Serializable {
     private List<String> mails;
     private String type;
     private String level;
-    List<Prestation> prestations;
-
-    @Keep
-    public static class Prestation implements Serializable  {
-        private String id;
-        private String name;
-        private String type;
-        private Double price;
-        private Boolean available;
-
-        public Prestation(String id, String name, String type, Double price, Boolean available) {
-            this.id = id;
-            this.name = name;
-            this.type = type;
-            this.price = price;
-            this.available = available;
-        }
-
-        public Prestation() {
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        public Double getPrice() {
-            return price;
-        }
-
-        public void setPrice(Double price) {
-            this.price = price;
-        }
-
-        public Boolean getAvailable() {
-            return available;
-        }
-
-        public void setAvailable(Boolean available) {
-            this.available = available;
-        }
-    }
 
     public Hospital() {
     }
@@ -183,5 +122,65 @@ public class Hospital implements Serializable {
 
     public void setPrestations(List<Prestation> prestations) {
         this.prestations = prestations;
+    }
+
+    @Keep
+    public static class Prestation implements Serializable {
+        private String id;
+        private String name;
+        private String type;
+        private Double price;
+        private Boolean available;
+
+        public Prestation(String id, String name, String type, Double price, Boolean available) {
+            this.id = id;
+            this.name = name;
+            this.type = type;
+            this.price = price;
+            this.available = available;
+        }
+
+        public Prestation() {
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public Double getPrice() {
+            return price;
+        }
+
+        public void setPrice(Double price) {
+            this.price = price;
+        }
+
+        public Boolean getAvailable() {
+            return available;
+        }
+
+        public void setAvailable(Boolean available) {
+            this.available = available;
+        }
     }
 }

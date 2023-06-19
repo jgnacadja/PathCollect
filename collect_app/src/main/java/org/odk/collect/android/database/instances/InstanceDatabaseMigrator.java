@@ -1,16 +1,5 @@
 package org.odk.collect.android.database.instances;
 
-import android.database.sqlite.SQLiteDatabase;
-
-import org.odk.collect.android.database.DatabaseMigrator;
-import org.odk.collect.forms.instances.Instance;
-import org.odk.collect.android.utilities.SQLiteUtils;
-
-import java.util.Arrays;
-import java.util.List;
-
-import timber.log.Timber;
-
 import static android.provider.BaseColumns._ID;
 import static org.odk.collect.android.database.DatabaseConstants.INSTANCES_TABLE_NAME;
 import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.CAN_EDIT_WHEN_COMPLETE;
@@ -24,6 +13,17 @@ import static org.odk.collect.android.database.instances.DatabaseInstanceColumns
 import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.LAST_STATUS_CHANGE_DATE;
 import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.STATUS;
 import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.SUBMISSION_URI;
+
+import android.database.sqlite.SQLiteDatabase;
+
+import org.odk.collect.android.database.DatabaseMigrator;
+import org.odk.collect.android.utilities.SQLiteUtils;
+import org.odk.collect.forms.instances.Instance;
+
+import java.util.Arrays;
+import java.util.List;
+
+import timber.log.Timber;
 
 public class InstanceDatabaseMigrator implements DatabaseMigrator {
     private static final String[] COLUMN_NAMES_V5 = {_ID, DISPLAY_NAME, SUBMISSION_URI, CAN_EDIT_WHEN_COMPLETE,
@@ -108,15 +108,15 @@ public class InstanceDatabaseMigrator implements DatabaseMigrator {
     /**
      * Use the existing temporary table with the provided name to only keep the given relevant
      * columns, dropping all others.
-     *
+     * <p>
      * NOTE: the temporary table with the name provided is dropped.
-     *
+     * <p>
      * The move and copy strategy is used to overcome the fact that SQLITE does not directly support
      * removing a column. See https://sqlite.org/lang_altertable.html
      *
-     * @param db                    the database to operate on
-     * @param relevantColumns       the columns relevant to the current version
-     * @param temporaryTableName    the name of the temporary table to use and then drop
+     * @param db                 the database to operate on
+     * @param relevantColumns    the columns relevant to the current version
+     * @param temporaryTableName the name of the temporary table to use and then drop
      */
     private void dropObsoleteColumns(SQLiteDatabase db, String[] relevantColumns, String temporaryTableName) {
         List<String> columns = SQLiteUtils.getColumnNames(db, INSTANCES_TABLE_NAME);

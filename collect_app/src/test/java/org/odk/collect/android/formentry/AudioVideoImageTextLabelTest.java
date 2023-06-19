@@ -1,5 +1,16 @@
 package org.odk.collect.android.formentry;
 
+import static android.view.View.VISIBLE;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.odk.collect.android.support.CollectHelpers.createThemedActivity;
+
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
@@ -23,17 +34,6 @@ import org.odk.collect.android.utilities.MediaUtils;
 import org.odk.collect.imageloader.ImageLoader;
 
 import java.io.File;
-
-import static android.view.View.VISIBLE;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.odk.collect.android.support.CollectHelpers.createThemedActivity;
 
 @RunWith(AndroidJUnit4.class)
 public class AudioVideoImageTextLabelTest {
@@ -68,7 +68,7 @@ public class AudioVideoImageTextLabelTest {
     }
 
     @Test
-    public void withText_andAudio_showsTextAndAudioButton()  {
+    public void withText_andAudio_showsTextAndAudioButton() {
         MutableLiveData<Boolean> isPlaying = new MutableLiveData<>(false);
         when(audioHelper.setAudio(any(AudioButton.class), any())).thenReturn(isPlaying);
 

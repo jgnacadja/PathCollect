@@ -1,5 +1,7 @@
 package org.odk.collect.android.formentry.audit;
 
+import static org.odk.collect.android.utilities.CSVUtils.getEscapedValueForCsv;
+
 import org.javarosa.core.model.FormIndex;
 import org.javarosa.core.model.instance.TreeReference;
 import org.odk.collect.shared.strings.StringUtils;
@@ -8,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import timber.log.Timber;
-
-import static org.odk.collect.android.utilities.CSVUtils.getEscapedValueForCsv;
 
 public final class AuditEventCSVLine {
 

@@ -24,8 +24,8 @@ import java.util.List;
 
 @SuppressLint("ViewConstructor")
 public class SelectOneMinimalWidget extends SelectMinimalWidget {
-    private Selection selectedItem;
     private final boolean autoAdvance;
+    private Selection selectedItem;
     private AdvanceToNextListener autoAdvanceListener;
 
     public SelectOneMinimalWidget(Context context, QuestionDetails prompt, boolean autoAdvance, WaitingForDataRegistry waitingForDataRegistry) {

@@ -55,13 +55,12 @@ import timber.log.Timber;
 
 public abstract class AppListFragment extends ListFragment {
 
-    @Inject
-    SettingsProvider settingsProvider;
-
     protected int[] sortingOptions;
     protected SimpleCursorAdapter listAdapter;
     protected LinkedHashSet<Long> selectedInstances = new LinkedHashSet<>();
     protected View rootView;
+    @Inject
+    SettingsProvider settingsProvider;
     private Integer selectedSortingOrder;
     private BottomSheetDialog bottomSheetDialog;
     private String filterText;

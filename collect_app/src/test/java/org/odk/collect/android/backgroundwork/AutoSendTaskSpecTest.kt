@@ -74,13 +74,16 @@ class AutoSendTaskSpecTest {
         TestSettingsProvider.getUnprotectedSettings(projectId)
             .save(ProjectKeys.KEY_AUTOSEND, "wifi_and_cellular")
 
-        whenever(projectDependencyProviderFactory.create(projectId)).thenReturn(projectDependencyProvider)
+        whenever(projectDependencyProviderFactory.create(projectId)).thenReturn(
+            projectDependencyProvider
+        )
     }
 
     @Test
     fun `passes projectDependencyProvider with proper project id`() {
         val inputData = mapOf(TaskData.DATA_PROJECT_ID to projectId)
-        AutoSendTaskSpec().getTask(ApplicationProvider.getApplicationContext(), inputData, true).get()
+        AutoSendTaskSpec().getTask(ApplicationProvider.getApplicationContext(), inputData, true)
+            .get()
         verify(instanceAutoSender).autoSendInstances(projectDependencyProvider)
     }
 

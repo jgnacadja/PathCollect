@@ -13,14 +13,14 @@ limitations under the License.
 
 package org.odk.collect.android.fragments;
 
-import org.odk.collect.android.database.instances.DatabaseInstanceColumns;
-
 import static org.odk.collect.android.utilities.ApplicationConstants.SortingOrder.BY_DATE_ASC;
 import static org.odk.collect.android.utilities.ApplicationConstants.SortingOrder.BY_DATE_DESC;
 import static org.odk.collect.android.utilities.ApplicationConstants.SortingOrder.BY_NAME_ASC;
 import static org.odk.collect.android.utilities.ApplicationConstants.SortingOrder.BY_NAME_DESC;
 import static org.odk.collect.android.utilities.ApplicationConstants.SortingOrder.BY_STATUS_ASC;
 import static org.odk.collect.android.utilities.ApplicationConstants.SortingOrder.BY_STATUS_DESC;
+
+import org.odk.collect.android.database.instances.DatabaseInstanceColumns;
 
 public abstract class InstanceListFragment extends FileManagerFragment {
     protected String getSortingOrder() {

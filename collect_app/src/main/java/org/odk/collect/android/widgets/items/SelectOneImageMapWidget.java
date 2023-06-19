@@ -36,10 +36,9 @@ import org.odk.collect.android.utilities.SelectOneWidgetUtils;
 @SuppressLint("ViewConstructor")
 public class SelectOneImageMapWidget extends SelectImageMapWidget {
 
+    private final boolean autoAdvance;
     @Nullable
     private AdvanceToNextListener listener;
-
-    private final boolean autoAdvance;
 
     public SelectOneImageMapWidget(Context context, QuestionDetails questionDetails, boolean autoAdvance) {
         super(context, questionDetails);

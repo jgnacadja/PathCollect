@@ -10,9 +10,10 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/margin_standard"
+        android:layout_weight="0"
         android:background="@color/colorGray"
-        android:layout_weight="0">
+        android:padding="@dimen/margin_standard">
+
         <ImageView
             android:id="@+id/topic_image"
             android:layout_width="@dimen/touch_target_size"
@@ -24,8 +25,8 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_marginStart="@dimen/margin_small"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <!-- Material Design reference: https://material.io/design/components/lists.html#specs -->
@@ -33,11 +34,11 @@
             android:id="@+id/topic_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/margin_small"
             android:textAppearance="@style/TextAppearance.Collect.Subtitle1"
             android:textColor="@color/colorOnSurface"
-            android:padding="@dimen/margin_small"
-            android:textStyle="bold"
             android:textSize="@dimen/text_size_standard"
+            android:textStyle="bold"
             tools:text="Avortement" />
 
         <TextView
@@ -45,9 +46,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_extra_small"
+            android:textAppearance="@style/TextAppearance.Collect.Body2.MediumEmphasis"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_small"
-            android:textAppearance="@style/TextAppearance.Collect.Body2.MediumEmphasis"
             tools:text="(20548 questions)" />
     </LinearLayout>
 </LinearLayout>

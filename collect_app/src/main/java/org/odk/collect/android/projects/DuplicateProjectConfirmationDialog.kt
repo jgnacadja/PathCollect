@@ -28,7 +28,11 @@ class DuplicateProjectConfirmationDialog : DialogFragment() {
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.duplicate_project)
             .setMessage(R.string.duplicate_project_details)
-            .setPositiveButton(R.string.add_duplicate_project) { _, _ -> listener.createProject(settingsJson) }
+            .setPositiveButton(R.string.add_duplicate_project) { _, _ ->
+                listener.createProject(
+                    settingsJson
+                )
+            }
             .setNegativeButton(R.string.switch_to_existing) { _, _ ->
                 run {
                     listener.switchToProject(matchingProject)

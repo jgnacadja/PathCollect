@@ -80,22 +80,17 @@ public class InstanceUploaderListActivity extends InstanceListActivity implement
 
     @Inject
     CurrentProjectProvider currentProjectProvider;
-
+    @Inject
+    Analytics analytics;
+    @Inject
+    NetworkStateProvider connectivityProvider;
+    @Inject
+    InstanceSubmitScheduler instanceSubmitScheduler;
     private boolean showAllMode;
     private TextView countSelectedItem;
-
     // Default to true so the send button is disabled until the worker status is updated by the
     // observer
     private boolean autoSendOngoing = true;
-
-    @Inject
-    Analytics analytics;
-
-    @Inject
-    NetworkStateProvider connectivityProvider;
-
-    @Inject
-    InstanceSubmitScheduler instanceSubmitScheduler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

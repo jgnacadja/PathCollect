@@ -4,17 +4,12 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.equalTo
+import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.kotlin.doAnswer
-import org.mockito.kotlin.doReturn
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.verify
-import org.mockito.kotlin.verifyNoInteractions
-import org.mockito.kotlin.whenever
+import org.mockito.kotlin.*
 import org.odk.collect.analytics.Analytics
 import org.odk.collect.android.external.FormsContract
 import org.odk.collect.android.formmanagement.FormsUpdater
@@ -209,7 +204,10 @@ class BlankFormListViewModelTest {
         createViewModel()
 
         assertThat(viewModel.formsToDisplay.value!!.size, `is`(1))
-        assertFormItem(viewModel.formsToDisplay.value!![0], form(dbId = 2, formId = "1", version = "1"))
+        assertFormItem(
+            viewModel.formsToDisplay.value!![0],
+            form(dbId = 2, formId = "1", version = "1")
+        )
     }
 
     @Test
@@ -222,8 +220,14 @@ class BlankFormListViewModelTest {
         createViewModel(shouldHideOldFormVersions = false)
 
         assertThat(viewModel.formsToDisplay.value!!.size, `is`(2))
-        assertFormItem(viewModel.formsToDisplay.value!![0], form(dbId = 1, formId = "1", version = "2"))
-        assertFormItem(viewModel.formsToDisplay.value!![1], form(dbId = 2, formId = "1", version = "1"))
+        assertFormItem(
+            viewModel.formsToDisplay.value!![0],
+            form(dbId = 1, formId = "1", version = "2")
+        )
+        assertFormItem(
+            viewModel.formsToDisplay.value!![1],
+            form(dbId = 2, formId = "1", version = "1")
+        )
     }
 
     @Test
@@ -240,35 +244,95 @@ class BlankFormListViewModelTest {
 
         // Sort by name ASC
         viewModel.sortingOrder = 0
-        assertFormItem(viewModel.formsToDisplay.value!![0], form(dbId = 1, formId = "1", formName = "1Form"))
-        assertFormItem(viewModel.formsToDisplay.value!![1], form(dbId = 5, formId = "5", formName = "2Form"))
-        assertFormItem(viewModel.formsToDisplay.value!![2], form(dbId = 3, formId = "3", formName = "aForm"))
-        assertFormItem(viewModel.formsToDisplay.value!![3], form(dbId = 4, formId = "4", formName = "AForm"))
-        assertFormItem(viewModel.formsToDisplay.value!![4], form(dbId = 2, formId = "2", formName = "BForm"))
+        assertFormItem(
+            viewModel.formsToDisplay.value!![0],
+            form(dbId = 1, formId = "1", formName = "1Form")
+        )
+        assertFormItem(
+            viewModel.formsToDisplay.value!![1],
+            form(dbId = 5, formId = "5", formName = "2Form")
+        )
+        assertFormItem(
+            viewModel.formsToDisplay.value!![2],
+            form(dbId = 3, formId = "3", formName = "aForm")
+        )
+        assertFormItem(
+            viewModel.formsToDisplay.value!![3],
+            form(dbId = 4, formId = "4", formName = "AForm")
+        )
+        assertFormItem(
+            viewModel.formsToDisplay.value!![4],
+            form(dbId = 2, formId = "2", formName = "BForm")
+        )
 
         // Sort by name DESC
         viewModel.sortingOrder = 1
-        assertFormItem(viewModel.formsToDisplay.value!![0], form(dbId = 2, formId = "2", formName = "BForm"))
-        assertFormItem(viewModel.formsToDisplay.value!![1], form(dbId = 3, formId = "3", formName = "aForm"))
-        assertFormItem(viewModel.formsToDisplay.value!![2], form(dbId = 4, formId = "4", formName = "AForm"))
-        assertFormItem(viewModel.formsToDisplay.value!![3], form(dbId = 5, formId = "5", formName = "2Form"))
-        assertFormItem(viewModel.formsToDisplay.value!![4], form(dbId = 1, formId = "1", formName = "1Form"))
+        assertFormItem(
+            viewModel.formsToDisplay.value!![0],
+            form(dbId = 2, formId = "2", formName = "BForm")
+        )
+        assertFormItem(
+            viewModel.formsToDisplay.value!![1],
+            form(dbId = 3, formId = "3", formName = "aForm")
+        )
+        assertFormItem(
+            viewModel.formsToDisplay.value!![2],
+            form(dbId = 4, formId = "4", formName = "AForm")
+        )
+        assertFormItem(
+            viewModel.formsToDisplay.value!![3],
+            form(dbId = 5, formId = "5", formName = "2Form")
+        )
+        assertFormItem(
+            viewModel.formsToDisplay.value!![4],
+            form(dbId = 1, formId = "1", formName = "1Form")
+        )
 
         // Sort by date newest first
         viewModel.sortingOrder = 2
-        assertFormItem(viewModel.formsToDisplay.value!![0], form(dbId = 5, formId = "5", formName = "2Form"))
-        assertFormItem(viewModel.formsToDisplay.value!![1], form(dbId = 4, formId = "4", formName = "AForm"))
-        assertFormItem(viewModel.formsToDisplay.value!![2], form(dbId = 3, formId = "3", formName = "aForm"))
-        assertFormItem(viewModel.formsToDisplay.value!![3], form(dbId = 2, formId = "2", formName = "BForm"))
-        assertFormItem(viewModel.formsToDisplay.value!![4], form(dbId = 1, formId = "1", formName = "1Form"))
+        assertFormItem(
+            viewModel.formsToDisplay.value!![0],
+            form(dbId = 5, formId = "5", formName = "2Form")
+        )
+        assertFormItem(
+            viewModel.formsToDisplay.value!![1],
+            form(dbId = 4, formId = "4", formName = "AForm")
+        )
+        assertFormItem(
+            viewModel.formsToDisplay.value!![2],
+            form(dbId = 3, formId = "3", formName = "aForm")
+        )
+        assertFormItem(
+            viewModel.formsToDisplay.value!![3],
+            form(dbId = 2, formId = "2", formName = "BForm")
+        )
+        assertFormItem(
+            viewModel.formsToDisplay.value!![4],
+            form(dbId = 1, formId = "1", formName = "1Form")
+        )
 
         // Sort by date oldest first
         viewModel.sortingOrder = 3
-        assertFormItem(viewModel.formsToDisplay.value!![0], form(dbId = 1, formId = "1", formName = "1Form"))
-        assertFormItem(viewModel.formsToDisplay.value!![1], form(dbId = 2, formId = "2", formName = "BForm"))
-        assertFormItem(viewModel.formsToDisplay.value!![2], form(dbId = 3, formId = "3", formName = "aForm"))
-        assertFormItem(viewModel.formsToDisplay.value!![3], form(dbId = 4, formId = "4", formName = "AForm"))
-        assertFormItem(viewModel.formsToDisplay.value!![4], form(dbId = 5, formId = "5", formName = "2Form"))
+        assertFormItem(
+            viewModel.formsToDisplay.value!![0],
+            form(dbId = 1, formId = "1", formName = "1Form")
+        )
+        assertFormItem(
+            viewModel.formsToDisplay.value!![1],
+            form(dbId = 2, formId = "2", formName = "BForm")
+        )
+        assertFormItem(
+            viewModel.formsToDisplay.value!![2],
+            form(dbId = 3, formId = "3", formName = "aForm")
+        )
+        assertFormItem(
+            viewModel.formsToDisplay.value!![3],
+            form(dbId = 4, formId = "4", formName = "AForm")
+        )
+        assertFormItem(
+            viewModel.formsToDisplay.value!![4],
+            form(dbId = 5, formId = "5", formName = "2Form")
+        )
     }
 
     @Test
@@ -345,7 +409,10 @@ class BlankFormListViewModelTest {
         }
     }
 
-    private fun createViewModel(runAllBackgroundTasks: Boolean = true, shouldHideOldFormVersions: Boolean = true) {
+    private fun createViewModel(
+        runAllBackgroundTasks: Boolean = true,
+        shouldHideOldFormVersions: Boolean = true
+    ) {
         whenever(changeLockProvider.getFormLock(projectId)).thenReturn(changeLock)
         generalSettings.save(ProjectKeys.KEY_HIDE_OLD_FORM_VERSIONS, shouldHideOldFormVersions)
 

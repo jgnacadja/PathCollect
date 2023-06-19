@@ -35,13 +35,37 @@ public class SaveFormIndexTask extends AsyncTask<Void, Void, String> {
     private final SaveFormIndexListener listener;
     private final FormIndex formIndex;
 
-    public interface SaveFormIndexListener {
-        void onSaveFormIndexError(String errorMessage);
-    }
-
     public SaveFormIndexTask(SaveFormIndexListener listener, FormIndex formIndex) {
         this.listener = listener;
         this.formIndex = formIndex;
+    }
+
+    public static void exportFormIndexToFile(FormIndex formIndex, File savepointIndexFile) {
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(savepointIndexFile));
+            oos.writeObject(formIndex);
+            oos.flush();
+            oos.close();
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+    }
+
+    public static FormIndex loadFormIndexFromFile() {
+        FormIndex formIndex = null;
+        try {
+            String instanceName = Collect.getInstance()
+                    .getFormController()
+                    .getInstanceFile()
+                    .getName();
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(SaveFormToDisk.getFormIndexFile(instanceName)));
+            formIndex = (FormIndex) ois.readObject();
+            ois.close();
+        } catch (Exception e) {
+            Timber.e(e);
+        }
+
+        return formIndex;
     }
 
     @Override
@@ -74,31 +98,7 @@ public class SaveFormIndexTask extends AsyncTask<Void, Void, String> {
         }
     }
 
-    public static void exportFormIndexToFile(FormIndex formIndex, File savepointIndexFile) {
-        try {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(savepointIndexFile));
-            oos.writeObject(formIndex);
-            oos.flush();
-            oos.close();
-        } catch (Exception e) {
-            Timber.e(e);
-        }
-    }
-
-    public static FormIndex loadFormIndexFromFile() {
-        FormIndex formIndex = null;
-        try {
-            String instanceName = Collect.getInstance()
-                    .getFormController()
-                    .getInstanceFile()
-                    .getName();
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(SaveFormToDisk.getFormIndexFile(instanceName)));
-            formIndex = (FormIndex) ois.readObject();
-            ois.close();
-        } catch (Exception e) {
-            Timber.e(e);
-        }
-
-        return formIndex;
+    public interface SaveFormIndexListener {
+        void onSaveFormIndexError(String errorMessage);
     }
 }

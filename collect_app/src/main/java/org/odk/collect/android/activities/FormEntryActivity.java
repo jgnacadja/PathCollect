@@ -62,7 +62,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LifecycleOwner;
@@ -223,148 +222,105 @@ public class FormEntryActivity extends CollectAbstractActivity implements Animat
     public static final String KEY_INSTANCES = "instances";
     public static final String KEY_SUCCESS = "success";
     public static final String KEY_ERROR = "error";
-    private static final String KEY_SAVE_NAME = "saveName";
-    private static final String KEY_LOCATION_PERMISSIONS_GRANTED = "location_permissions_granted";
-
-    private static final String TAG_MEDIA_LOADING_FRAGMENT = "media_loading_fragment";
-
     // Identifies the gp of the form used to launch form entry
     public static final String KEY_FORMPATH = "formpath";
-
-    // Identifies whether this is a new form, or reloading a form after a screen
-    // rotation (or similar)
-    private static final String NEWFORM = "newform";
-    // these are only processed if we shut down and are restoring after an
-    // external intent fires
-
     public static final String KEY_INSTANCEPATH = "instancepath";
     public static final String KEY_XPATH = "xpath";
     public static final String KEY_XPATH_WAITING_FOR_DATA = "xpathwaiting";
-
     // Tracks whether we are autosaving
     public static final String KEY_AUTO_SAVED = "autosaved";
-
+    // these are only processed if we shut down and are restoring after an
+    // external intent fires
     public static final String KEY_READ_PHONE_STATE_PERMISSION_REQUEST_NEEDED = "readPhoneStatePermissionRequestNeeded";
-
     public static final String TAG_PROGRESS_DIALOG_MEDIA_LOADING = FormEntryActivity.class.getName() + MaterialProgressDialogFragment.class.getName() + "mediaLoading";
-
-    private boolean autoSaved;
-    private boolean allowMovingBackwards;
-
+    private static final String KEY_SAVE_NAME = "saveName";
+    private static final String KEY_LOCATION_PERMISSIONS_GRANTED = "location_permissions_granted";
+    private static final String TAG_MEDIA_LOADING_FRAGMENT = "media_loading_fragment";
+    // Identifies whether this is a new form, or reloading a form after a screen
+    // rotation (or similar)
+    private static final String NEWFORM = "newform";
     // Random ID
     private static final int DELETE_REPEAT = 654321;
-
+    private final DestroyableLifecyleOwner odkViewLifecycle = new DestroyableLifecyleOwner();
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private final LocationProvidersReceiver locationProvidersReceiver = new LocationProvidersReceiver();
+    MediaLoadingFragment mediaLoadingFragment;
+    @Inject
+    RxEventBus eventBus;
+    @Inject
+    Analytics analytics;
+    @Inject
+    StoragePathProvider storagePathProvider;
+    @Inject
+    FormsRepositoryProvider formsRepositoryProvider;
+    @Inject
+    PropertyManager propertyManager;
+    @Inject
+    InstanceSubmitScheduler instanceSubmitScheduler;
+    @Inject
+    Scheduler scheduler;
+    @Inject
+    AudioRecorder audioRecorder;
+    @Inject
+    FormSaveViewModel.FactoryFactory formSaveViewModelFactoryFactory;
+    @Inject
+    FormEntryViewModel.Factory formEntryViewModelFactory;
+    @Inject
+    SoftKeyboardController softKeyboardController;
+    @Inject
+    PermissionsChecker permissionsChecker;
+    @Inject
+    ExternalAppIntentProvider externalAppIntentProvider;
+    @Inject
+    BackgroundAudioViewModel.Factory backgroundAudioViewModelFactory;
+    @Inject
+    CurrentProjectProvider currentProjectProvider;
+    @Inject
+    IntentLauncher intentLauncher;
+    private boolean autoSaved;
+    private boolean allowMovingBackwards;
     private String formPath;
     private String saveName;
-
     private Animation inAnimation;
     private Animation outAnimation;
-
     private FrameLayout questionHolder;
     private SwipeHandler.View currentView;
-
     private AlertDialog alertDialog;
     private String errorMessage;
     private boolean shownAlertDialogIsGroupRepeat;
-
     private FormLoaderTask formLoaderTask;
-
     private TextView nextButton;
     private TextView backButton;
-
     private ODKView odkView;
-    private final DestroyableLifecyleOwner odkViewLifecycle = new DestroyableLifecyleOwner();
-
     private String instancePath;
     private String startingXPath;
     private String waitingXPath;
     private boolean newForm = true;
     private boolean readPhoneStatePermissionRequestNeeded;
-
-    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
-
-    MediaLoadingFragment mediaLoadingFragment;
     private FormEntryMenuDelegate menuDelegate;
     private FormIndexAnimationHandler formIndexAnimationHandler;
     private WaitingForDataRegistry waitingForDataRegistry;
     private InternalRecordingRequester internalRecordingRequester;
     private ExternalAppRecordingRequester externalAppRecordingRequester;
-
-    @Override
-    public void allowSwiping(boolean doSwipe) {
-        swipeHandler.setAllowSwiping(doSwipe);
-    }
-
-    enum AnimationType {
-        LEFT, RIGHT, FADE
-    }
-
     private boolean showNavigationButtons;
-
-    @Inject
-    RxEventBus eventBus;
-
-    @Inject
-    Analytics analytics;
-
-    @Inject
-    StoragePathProvider storagePathProvider;
-
-    @Inject
-    FormsRepositoryProvider formsRepositoryProvider;
     private FormsRepository formsRepository;
-
-    @Inject
-    PropertyManager propertyManager;
-
-    @Inject
-    InstanceSubmitScheduler instanceSubmitScheduler;
-
-    @Inject
-    Scheduler scheduler;
-
-    @Inject
-    AudioRecorder audioRecorder;
-
-    @Inject
-    FormSaveViewModel.FactoryFactory formSaveViewModelFactoryFactory;
-
-    @Inject
-    FormEntryViewModel.Factory formEntryViewModelFactory;
-
-    @Inject
-    SoftKeyboardController softKeyboardController;
-
-    @Inject
-    PermissionsChecker permissionsChecker;
-
-    @Inject
-    ExternalAppIntentProvider externalAppIntentProvider;
-
-    @Inject
-    BackgroundAudioViewModel.Factory backgroundAudioViewModelFactory;
-
-    @Inject
-    CurrentProjectProvider currentProjectProvider;
-
-    @Inject
-    IntentLauncher intentLauncher;
-
-    private final LocationProvidersReceiver locationProvidersReceiver = new LocationProvidersReceiver();
-
     private SwipeHandler swipeHandler;
-
     /**
      * True if the Android location permission was granted last time it was checked. Allows for
      * detection of location permissions changes while the activity is in the background.
      */
     private boolean locationPermissionsPreviouslyGranted;
-
     private BackgroundLocationViewModel backgroundLocationViewModel;
     private IdentityPromptViewModel identityPromptViewModel;
     private FormSaveViewModel formSaveViewModel;
     private FormEntryViewModel formEntryViewModel;
     private BackgroundAudioViewModel backgroundAudioViewModel;
+    private int animationCompletionSet;
+
+    @Override
+    public void allowSwiping(boolean doSwipe) {
+        swipeHandler.setAllowSwiping(doSwipe);
+    }
 
     /**
      * Called when the activity is first created.
@@ -2048,8 +2004,6 @@ public class FormEntryActivity extends CollectAbstractActivity implements Animat
         super.onDestroy();
     }
 
-    private int animationCompletionSet;
-
     private void afterAllAnimations() {
         if (getCurrentViewIfODKView() != null) {
             getCurrentViewIfODKView().setFocus(this);
@@ -2412,36 +2366,6 @@ public class FormEntryActivity extends CollectAbstractActivity implements Animat
         return null;
     }
 
-    /**
-     * Used whenever we need to show empty view and be able to recognize it from the code
-     */
-    static class EmptyView extends SwipeHandler.View {
-        EmptyView(Context context) {
-            super(context);
-        }
-
-        @Override
-        public boolean shouldSuppressFlingGesture(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-            return false;
-        }
-
-        @Nullable
-        @Override
-        public NestedScrollView getVerticalScrollView() {
-            return null;
-        }
-    }
-
-    private class LocationProvidersReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.getAction() != null
-                    && intent.getAction().matches(LocationManager.PROVIDERS_CHANGED_ACTION)) {
-                backgroundLocationViewModel.locationProvidersChanged();
-            }
-        }
-    }
-
     private void activityDisplayed() {
         displayUIFor(backgroundLocationViewModel.activityDisplayed());
 
@@ -2597,6 +2521,40 @@ public class FormEntryActivity extends CollectAbstractActivity implements Animat
             return currentViewIfODKView.getAnswers();
         } else {
             return new HashMap<>();
+        }
+    }
+
+    enum AnimationType {
+        LEFT, RIGHT, FADE
+    }
+
+    /**
+     * Used whenever we need to show empty view and be able to recognize it from the code
+     */
+    static class EmptyView extends SwipeHandler.View {
+        EmptyView(Context context) {
+            super(context);
+        }
+
+        @Override
+        public boolean shouldSuppressFlingGesture(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            return false;
+        }
+
+        @Nullable
+        @Override
+        public NestedScrollView getVerticalScrollView() {
+            return null;
+        }
+    }
+
+    private class LocationProvidersReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction() != null
+                    && intent.getAction().matches(LocationManager.PROVIDERS_CHANGED_ACTION)) {
+                backgroundLocationViewModel.locationProvidersChanged();
+            }
         }
     }
 }

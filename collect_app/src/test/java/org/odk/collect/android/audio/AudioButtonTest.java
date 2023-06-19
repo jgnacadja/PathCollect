@@ -1,5 +1,9 @@
 package org.odk.collect.android.audio;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.odk.collect.testshared.RobolectricHelpers.getCreatedFromResId;
+
 import android.app.Activity;
 
 import androidx.fragment.app.FragmentActivity;
@@ -10,10 +14,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.odk.collect.android.R;
 import org.odk.collect.testshared.RobolectricHelpers;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.odk.collect.testshared.RobolectricHelpers.getCreatedFromResId;
 
 @RunWith(AndroidJUnit4.class)
 public class AudioButtonTest {

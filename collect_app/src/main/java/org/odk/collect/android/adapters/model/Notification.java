@@ -28,42 +28,6 @@ public class Notification {
         timestamp = builder.timestamp;
 
     }
-    public static class Builder {
-        private Long dbId;
-        private String title;
-        private String body;
-        private Long timestamp;
-
-        public Builder() {
-        }
-
-        public Builder(@NotNull Notification notification) {
-            dbId = notification.dbId;
-            title = notification.title;
-            body = notification.body;
-            timestamp = notification.timestamp;
-        }
-        public Notification.Builder dbId(Long id) {
-            this.dbId = id;
-            return this;
-        }
-        public Notification.Builder title(String title) {
-            this.title = title;
-            return this;
-        }
-        public Notification.Builder body(String body) {
-            this.body = body;
-            return this;
-        }
-        public Notification.Builder timestamp(Long timestamp) {
-            this.timestamp = timestamp;
-            return this;
-        }
-        public Notification build() {
-            return new Notification(this);
-        }
-
-    }
 
     public Long getDbId() {
         return dbId;
@@ -101,6 +65,48 @@ public class Notification {
                 ", body='" + body + '\'' +
                 ", timestamp=" + timestamp +
                 '}';
+    }
+
+    public static class Builder {
+        private Long dbId;
+        private String title;
+        private String body;
+        private Long timestamp;
+
+        public Builder() {
+        }
+
+        public Builder(@NotNull Notification notification) {
+            dbId = notification.dbId;
+            title = notification.title;
+            body = notification.body;
+            timestamp = notification.timestamp;
+        }
+
+        public Notification.Builder dbId(Long id) {
+            this.dbId = id;
+            return this;
+        }
+
+        public Notification.Builder title(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public Notification.Builder body(String body) {
+            this.body = body;
+            return this;
+        }
+
+        public Notification.Builder timestamp(Long timestamp) {
+            this.timestamp = timestamp;
+            return this;
+        }
+
+        public Notification build() {
+            return new Notification(this);
+        }
+
     }
 
 

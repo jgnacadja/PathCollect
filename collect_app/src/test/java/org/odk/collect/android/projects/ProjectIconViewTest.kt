@@ -25,7 +25,8 @@ class ProjectIconViewTest {
         view.project = Project.New("SOM", "S", "#ffffff")
         assertThat(view.findViewById<TextView>(R.id.project_icon_text).text, equalTo("S"))
 
-        val background = view.findViewById<TextView>(R.id.project_icon_text).background as GradientDrawable
+        val background =
+            view.findViewById<TextView>(R.id.project_icon_text).background as GradientDrawable
         assertThat(background.color!!.defaultColor, Matchers.equalTo(Color.parseColor("#ffffff")))
     }
 }

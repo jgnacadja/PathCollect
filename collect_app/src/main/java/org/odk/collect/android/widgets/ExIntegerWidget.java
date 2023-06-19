@@ -44,7 +44,7 @@ public class ExIntegerWidget extends ExStringWidget {
     }
 
     @Override
-    protected Serializable getAnswerForIntent()  {
+    protected Serializable getAnswerForIntent() {
         return StringWidgetUtils.getIntegerAnswerValueFromIAnswerData(getFormEntryPrompt().getAnswerValue());
     }
 

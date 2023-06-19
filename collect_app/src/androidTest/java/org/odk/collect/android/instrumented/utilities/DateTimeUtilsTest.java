@@ -16,7 +16,10 @@
 
 package org.odk.collect.android.instrumented.utilities;
 
+import static org.junit.Assert.assertEquals;
+
 import android.content.Context;
+
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.junit.After;
@@ -32,8 +35,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-
-import static org.junit.Assert.assertEquals;
 
 @RunWith(AndroidJUnit4.class)
 public class DateTimeUtilsTest {

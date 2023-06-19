@@ -22,10 +22,6 @@ public class FakeLocationClient implements LocationClient {
 
     // Instrumentation for testing.
 
-    public void setLocationAvailable(boolean available) {
-        locationAvailable = available;
-    }
-
     public void setFailOnStart(boolean fail) {
         failOnStart = fail;
     }
@@ -45,8 +41,6 @@ public class FakeLocationClient implements LocationClient {
         return running;
     }
 
-    // Implementation of the LocationClient interface.
-
     public void start() {
         running = true;
         if (getListener() != null) {
@@ -58,6 +52,8 @@ public class FakeLocationClient implements LocationClient {
         }
     }
 
+    // Implementation of the LocationClient interface.
+
     public void stop() {
         running = false;
         stopLocationUpdates();
@@ -68,6 +64,10 @@ public class FakeLocationClient implements LocationClient {
 
     public boolean isLocationAvailable() {
         return locationAvailable;
+    }
+
+    public void setLocationAvailable(boolean available) {
+        locationAvailable = available;
     }
 
     public void requestLocationUpdates(LocationListener locationListener) {
@@ -82,13 +82,13 @@ public class FakeLocationClient implements LocationClient {
         this.locationListener = null;
     }
 
+    protected LocationClientListener getListener() {
+        return listenerRef != null ? listenerRef.get() : null;
+    }
+
     @Override
     public void setListener(@Nullable LocationClientListener locationClientListener) {
         this.listenerRef = new WeakReference<>(locationClientListener);
-    }
-
-    protected LocationClientListener getListener() {
-        return listenerRef != null ? listenerRef.get() : null;
     }
 
     public Location getLastLocation() {
@@ -116,7 +116,9 @@ public class FakeLocationClient implements LocationClient {
         return false;
     }
 
-    public void setUpdateIntervals(long updateInterval, long fastestUpdateInterval) { }
+    public void setUpdateIntervals(long updateInterval, long fastestUpdateInterval) {
+    }
 
-    public void resetUpdateIntervals() { }
+    public void resetUpdateIntervals() {
+    }
 }

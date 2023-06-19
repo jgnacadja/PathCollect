@@ -91,51 +91,22 @@ public class Camera2VideoFragment extends Fragment
     }
 
     /**
+     * A {@link Semaphore} to prevent the app from exiting before closing the camera.
+     */
+    private final Semaphore cameraOpenCloseLock = new Semaphore(1);
+    /**
      * An {@link TextureView} for camera preview.
      */
     private TextureView textureView;
-
     /**
      * A reference to the opened {@link android.hardware.camera2.CameraDevice}.
      */
     private CameraDevice cameraDevice;
-
     /**
      * A reference to the current {@link android.hardware.camera2.CameraCaptureSession} for
      * preview.
      */
     private CameraCaptureSession previewSession;
-
-    /**
-     * {@link TextureView.SurfaceTextureListener} handles several lifecycle events on a
-     * {@link TextureView}.
-     */
-    private final TextureView.SurfaceTextureListener surfaceTextureListener
-            = new TextureView.SurfaceTextureListener() {
-
-        @Override
-        public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture,
-                                              int width, int height) {
-            openCamera(width, height);
-        }
-
-        @Override
-        public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture,
-                                                int width, int height) {
-            configureTransform(width, height);
-        }
-
-        @Override
-        public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-            return true;
-        }
-
-        @Override
-        public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        }
-
-    };
-
     /**
      * The {@link android.util.Size} of camera preview.
      */
@@ -165,12 +136,9 @@ public class Camera2VideoFragment extends Fragment
      * A {@link Handler} for running tasks in the background.
      */
     private Handler backgroundHandler;
-
-    /**
-     * A {@link Semaphore} to prevent the app from exiting before closing the camera.
-     */
-    private final Semaphore cameraOpenCloseLock = new Semaphore(1);
-
+    private Integer sensorOrientation;
+    private String nextVideoAbsolutePath;
+    private CaptureRequest.Builder previewBuilder;
     /**
      * {@link CameraDevice.StateCallback} is called when {@link CameraDevice} changes its status.
      */
@@ -205,9 +173,35 @@ public class Camera2VideoFragment extends Fragment
         }
 
     };
-    private Integer sensorOrientation;
-    private String nextVideoAbsolutePath;
-    private CaptureRequest.Builder previewBuilder;
+    /**
+     * {@link TextureView.SurfaceTextureListener} handles several lifecycle events on a
+     * {@link TextureView}.
+     */
+    private final TextureView.SurfaceTextureListener surfaceTextureListener
+            = new TextureView.SurfaceTextureListener() {
+
+        @Override
+        public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture,
+                                              int width, int height) {
+            openCamera(width, height);
+        }
+
+        @Override
+        public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture,
+                                                int width, int height) {
+            configureTransform(width, height);
+        }
+
+        @Override
+        public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+            return true;
+        }
+
+        @Override
+        public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+        }
+
+    };
 
     public static Camera2VideoFragment newInstance() {
         return new Camera2VideoFragment();

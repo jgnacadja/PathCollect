@@ -1,9 +1,5 @@
 package org.odk.collect.android.formentry.audit;
 
-import org.javarosa.core.model.FormIndex;
-import org.javarosa.core.model.instance.TreeReference;
-import org.junit.Test;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
@@ -35,6 +31,10 @@ import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.
 import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.SAVE_ERROR;
 import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.UNKNOWN_EVENT_TYPE;
 import static org.odk.collect.android.formentry.audit.AuditEventCSVLine.toCSVLine;
+
+import org.javarosa.core.model.FormIndex;
+import org.javarosa.core.model.instance.TreeReference;
+import org.junit.Test;
 
 public class AuditEventCSVLineTest {
 

@@ -9,9 +9,7 @@ import org.hamcrest.Matchers.nullValue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.never
-import org.mockito.Mockito.verify
+import org.mockito.Mockito.*
 import org.odk.collect.shared.settings.Settings
 import org.robolectric.RobolectricTestRunner
 import java.math.BigDecimal

@@ -81,45 +81,21 @@ public class FormController {
      * OpenRosa metadata tag names.
      */
     public static final String INSTANCE_ID = "instanceID";
+    public static final String AUDIT_FILE_NAME = "audit.csv";
     private static final String INSTANCE_NAME = "instanceName";
-
     /*
      * Non OpenRosa metadata tag names
      */
     private static final String AUDIT = "audit";
-    public static final String AUDIT_FILE_NAME = "audit.csv";
-
+    private final File mediaFolder;
+    private final FormEntryController formEntryController;
     /*
      * Store the auditEventLogger object with the form controller state
      */
     private AuditEventLogger auditEventLogger;
-
-    /**
-     * OpenRosa metadata of a form instance.
-     * <p>
-     * Contains the values for the required metadata
-     * fields and nothing else.
-     *
-     * @author mitchellsundt@gmail.com
-     */
-    public static final class InstanceMetadata {
-        public final String instanceId;
-        public final String instanceName;
-        public final AuditConfig auditConfig;
-
-        public InstanceMetadata(String instanceId, String instanceName, AuditConfig auditConfig) {
-            this.instanceId = instanceId;
-            this.instanceName = FormNameUtils.normalizeFormName(instanceName, false);
-            this.auditConfig = auditConfig;
-        }
-    }
-
-    private final File mediaFolder;
     @Nullable
     private File instanceFile;
-    private final FormEntryController formEntryController;
     private FormIndex indexWaitingForData;
-
     public FormController(File mediaFolder, FormEntryController fec, File instanceFile) {
         this.mediaFolder = mediaFolder;
         formEntryController = fec;
@@ -153,12 +129,12 @@ public class FormController {
         return mediaFolder != null ? FileUtils.getLastSavedPath(mediaFolder) : null;
     }
 
-    public void setIndexWaitingForData(FormIndex index) {
-        indexWaitingForData = index;
-    }
-
     public FormIndex getIndexWaitingForData() {
         return indexWaitingForData;
+    }
+
+    public void setIndexWaitingForData(FormIndex index) {
+        indexWaitingForData = index;
     }
 
     public AuditEventLogger getAuditEventLogger() {
@@ -286,6 +262,13 @@ public class FormController {
      */
     public String getLanguage() {
         return formEntryController.getModel().getLanguage();
+    }
+
+    /**
+     * Sets the current language.
+     */
+    public void setLanguage(String language) {
+        formEntryController.setLanguage(language);
     }
 
     public String getBindAttribute(String attributeNamespace, String attributeName) {
@@ -721,16 +704,6 @@ public class FormController {
         return !absRef.equals(bindRef);
     }
 
-    public static class FailedConstraint {
-        public final FormIndex index;
-        public final int status;
-
-        public FailedConstraint(FormIndex index, int status) {
-            this.index = index;
-            this.status = status;
-        }
-    }
-
     /**
      * @return FailedConstraint of first failed constraint or null if all questions were saved.
      */
@@ -871,13 +844,6 @@ public class FormController {
     }
 
     /**
-     * Sets the current language.
-     */
-    public void setLanguage(String language) {
-        formEntryController.setLanguage(language);
-    }
-
-    /**
      * Returns an array of question prompts corresponding to the current {@link FormIndex}. These
      * are the prompts that should be displayed to the user and don't include any non-relevant
      * questions.
@@ -886,7 +852,7 @@ public class FormController {
      * elements if there is a group.
      *
      * @throws RepeatsInFieldListException if there is a group at this {@link FormIndex} and it contains
-     *                          elements that are not questions or regular (non-repeat) groups.
+     *                                     elements that are not questions or regular (non-repeat) groups.
      */
     public FormEntryPrompt[] getQuestionPrompts() throws RepeatsInFieldListException {
         // For questions, there is only one.
@@ -1300,5 +1266,35 @@ public class FormController {
 
     public IAnswerData getAnswer(TreeReference treeReference) {
         return getFormDef().getMainInstance().resolveReference(treeReference).getValue();
+    }
+
+    /**
+     * OpenRosa metadata of a form instance.
+     * <p>
+     * Contains the values for the required metadata
+     * fields and nothing else.
+     *
+     * @author mitchellsundt@gmail.com
+     */
+    public static final class InstanceMetadata {
+        public final String instanceId;
+        public final String instanceName;
+        public final AuditConfig auditConfig;
+
+        public InstanceMetadata(String instanceId, String instanceName, AuditConfig auditConfig) {
+            this.instanceId = instanceId;
+            this.instanceName = FormNameUtils.normalizeFormName(instanceName, false);
+            this.auditConfig = auditConfig;
+        }
+    }
+
+    public static class FailedConstraint {
+        public final FormIndex index;
+        public final int status;
+
+        public FailedConstraint(FormIndex index, int status) {
+            this.index = index;
+            this.status = status;
+        }
     }
 }

@@ -32,8 +32,8 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.RuleChain
 import org.junit.runner.RunWith
-import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
+import org.mockito.Mockito.`when`
 import org.odk.collect.android.TestSettingsProvider.getUnprotectedSettings
 import org.odk.collect.android.injection.DaggerUtils
 import org.odk.collect.android.storage.StoragePathProvider
@@ -48,8 +48,6 @@ import org.odk.collect.projects.Project
 import timber.log.Timber
 import java.io.File
 import java.io.IOException
-import java.lang.Exception
-import java.util.HashMap
 
 @RunWith(AndroidJUnit4::class)
 class ImageConverterTest {
@@ -62,7 +60,8 @@ class ImageConverterTest {
         .around(
             RunnableRule {
                 // Set up demo project
-                val component = DaggerUtils.getComponent(ApplicationProvider.getApplicationContext<Context>())
+                val component =
+                    DaggerUtils.getComponent(ApplicationProvider.getApplicationContext<Context>())
                 component.projectsRepository().save(Project.DEMO_PROJECT)
                 component.currentProjectProvider().setCurrentProject(Project.DEMO_PROJECT_ID)
             }
@@ -359,7 +358,8 @@ class ImageConverterTest {
         attributes[ExifInterface.TAG_GPS_LATITUDE_REF] = ExifInterface.TAG_GPS_LATITUDE_REF
         attributes[ExifInterface.TAG_GPS_LONGITUDE] = dec2DMS(23.988174)
         attributes[ExifInterface.TAG_GPS_LONGITUDE_REF] = ExifInterface.TAG_GPS_LONGITUDE_REF
-        attributes[ExifInterface.TAG_GPS_PROCESSING_METHOD] = ExifInterface.TAG_GPS_PROCESSING_METHOD
+        attributes[ExifInterface.TAG_GPS_PROCESSING_METHOD] =
+            ExifInterface.TAG_GPS_PROCESSING_METHOD
         attributes[ExifInterface.TAG_MAKE] = ExifInterface.TAG_MAKE
         attributes[ExifInterface.TAG_MODEL] = ExifInterface.TAG_MODEL
         attributes[ExifInterface.TAG_SUBSEC_TIME] = ExifInterface.TAG_SUBSEC_TIME

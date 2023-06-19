@@ -20,6 +20,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+
 import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -29,11 +30,6 @@ import org.odk.collect.android.R;
 public class MovingBackwardsDialog extends DialogFragment {
 
     public static final String MOVING_BACKWARDS_DIALOG_TAG = "movingBackwardsDialogTag";
-
-    public interface MovingBackwardsDialogListener {
-        void preventOtherWaysOfEditingForm();
-    }
-
     private MovingBackwardsDialogListener listener;
 
     @Override
@@ -63,5 +59,9 @@ public class MovingBackwardsDialog extends DialogFragment {
                     }
                 })
                 .create();
+    }
+
+    public interface MovingBackwardsDialogListener {
+        void preventOtherWaysOfEditingForm();
     }
 }

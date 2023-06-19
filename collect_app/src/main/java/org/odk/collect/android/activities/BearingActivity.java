@@ -29,16 +29,25 @@ import org.odk.collect.externalapp.ExternalAppUtils;
 import java.util.Locale;
 
 public class BearingActivity extends CollectAbstractActivity implements SensorEventListener {
+    private static float[] mAccelerometer;
+    private static float[] mGeomagnetic;
     private ProgressDialog bearingDialog;
-
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private Sensor magnetometer;
-
-    private static float[] mAccelerometer;
-    private static float[] mGeomagnetic;
-
     private String bearingDecimal;
+
+    public static String formatDegrees(double degrees) {
+        return String.format(Locale.US, "%.3f", degrees);
+    }
+
+    public static double normalizeDegrees(double value) {
+        if (value >= 0.0f && value <= 180.0f) {
+            return value;
+        } else {
+            return 180 + (180 + value);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,18 +182,6 @@ public class BearingActivity extends CollectAbstractActivity implements SensorEv
                         + "\n" + getString(R.string.bearing, degrees));
 
             }
-        }
-    }
-
-    public static String formatDegrees(double degrees) {
-        return String.format(Locale.US, "%.3f", degrees);
-    }
-
-    public static double normalizeDegrees(double value) {
-        if (value >= 0.0f && value <= 180.0f) {
-            return value;
-        } else {
-            return 180 + (180 + value);
         }
     }
 }

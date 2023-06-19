@@ -1,12 +1,12 @@
 package org.odk.collect.android.utilities;
 
+import static androidx.lifecycle.Lifecycle.Event.ON_DESTROY;
+import static androidx.lifecycle.Lifecycle.Event.ON_RESUME;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LifecycleRegistry;
-
-import static androidx.lifecycle.Lifecycle.Event.ON_DESTROY;
-import static androidx.lifecycle.Lifecycle.Event.ON_RESUME;
 
 public class DestroyableLifecyleOwner implements LifecycleOwner {
 

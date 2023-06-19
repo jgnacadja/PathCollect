@@ -41,12 +41,12 @@ import org.odk.collect.android.activities.CollectAbstractActivity;
 import org.odk.collect.android.activities.FormEntryActivity;
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.listeners.InstanceUploaderListener;
-import org.odk.collect.androidshared.network.NetworkStateProvider;
 import org.odk.collect.android.utilities.ArrayUtils;
 import org.odk.collect.android.utilities.DialogUtils;
 import org.odk.collect.android.utilities.FormsRepositoryProvider;
 import org.odk.collect.android.utilities.InstanceUploaderUtils;
 import org.odk.collect.android.utilities.InstancesRepositoryProvider;
+import org.odk.collect.androidshared.network.NetworkStateProvider;
 import org.odk.collect.androidshared.ui.ToastUtils;
 import org.odk.collect.permissions.PermissionListener;
 import org.odk.collect.settings.keys.ProjectKeys;
@@ -64,29 +64,23 @@ public class GoogleSheetsUploaderActivity extends CollectAbstractActivity implem
     private static final int GOOGLE_USER_DIALOG = 3;
     private static final String ALERT_MSG = "alertmsg";
     private static final String ALERT_SHOWING = "alertshowing";
+    @Inject
+    GoogleAccountsManager accountsManager;
+    @Inject
+    GoogleApiProvider googleApiProvider;
+    @Inject
+    NetworkStateProvider connectivityProvider;
+    @Inject
+    Analytics analytics;
+    @Inject
+    InstancesRepositoryProvider instancesRepositoryProvider;
+    @Inject
+    FormsRepositoryProvider formsRepositoryProvider;
     private AlertDialog alertDialog;
     private String alertMsg;
     private boolean alertShowing;
     private Long[] instancesToSend;
     private InstanceGoogleSheetsUploaderTask instanceGoogleSheetsUploaderTask;
-
-    @Inject
-    GoogleAccountsManager accountsManager;
-
-    @Inject
-    GoogleApiProvider googleApiProvider;
-
-    @Inject
-    NetworkStateProvider connectivityProvider;
-
-    @Inject
-    Analytics analytics;
-
-    @Inject
-    InstancesRepositoryProvider instancesRepositoryProvider;
-
-    @Inject
-    FormsRepositoryProvider formsRepositoryProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,5 +1,11 @@
 package org.odk.collect.android.widgets.base;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.when;
+import static org.robolectric.Shadows.shadowOf;
+
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -8,14 +14,8 @@ import org.javarosa.core.model.data.IAnswerData;
 import org.junit.Test;
 import org.odk.collect.android.fakes.FakePermissionsProvider;
 import org.odk.collect.android.widgets.QuestionWidget;
-import org.odk.collect.android.widgets.interfaces.WidgetDataReceiver;
 import org.odk.collect.android.widgets.interfaces.Widget;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.mockito.Mockito.when;
-import static org.robolectric.Shadows.shadowOf;
+import org.odk.collect.android.widgets.interfaces.WidgetDataReceiver;
 
 /**
  * @author James Knight

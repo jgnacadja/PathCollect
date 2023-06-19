@@ -17,12 +17,7 @@ package org.odk.collect.android.preferences.screens
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.preference.Preference
 import org.odk.collect.android.R
 import org.odk.collect.android.injection.DaggerUtils
@@ -46,7 +41,10 @@ class ProjectPreferencesFragment :
             { state: Consumable<ProjectPreferencesViewModel.State> ->
                 if (!state.isConsumed()) {
                     state.consume()
-                    preferenceVisibilityHandler.updatePreferencesVisibility(preferenceScreen, state.value)
+                    preferenceVisibilityHandler.updatePreferencesVisibility(
+                        preferenceScreen,
+                        state.value
+                    )
                     requireActivity().invalidateOptionsMenu()
                 }
             }
@@ -58,15 +56,21 @@ class ProjectPreferencesFragment :
         setPreferencesFromResource(R.xml.project_preferences, rootKey)
 
         findPreference<Preference>(PROTOCOL_PREFERENCE_KEY)!!.onPreferenceClickListener = this
-        findPreference<Preference>(PROJECT_DISPLAY_PREFERENCE_KEY)!!.onPreferenceClickListener = this
+        findPreference<Preference>(PROJECT_DISPLAY_PREFERENCE_KEY)!!.onPreferenceClickListener =
+            this
         findPreference<Preference>(USER_INTERFACE_PREFERENCE_KEY)!!.onPreferenceClickListener = this
         findPreference<Preference>(MAPS_PREFERENCE_KEY)!!.onPreferenceClickListener = this
-        findPreference<Preference>(FORM_MANAGEMENT_PREFERENCE_KEY)!!.onPreferenceClickListener = this
-        findPreference<Preference>(USER_AND_DEVICE_IDENTITY_PREFERENCE_KEY)!!.onPreferenceClickListener = this
+        findPreference<Preference>(FORM_MANAGEMENT_PREFERENCE_KEY)!!.onPreferenceClickListener =
+            this
+        findPreference<Preference>(USER_AND_DEVICE_IDENTITY_PREFERENCE_KEY)!!.onPreferenceClickListener =
+            this
         findPreference<Preference>(EXPERIMENTAL_PREFERENCE_KEY)!!.onPreferenceClickListener = this
-        findPreference<Preference>(UNLOCK_PROTECTED_SETTINGS_PREFERENCE_KEY)!!.onPreferenceClickListener = this
-        findPreference<Preference>(CHANGE_ADMIN_PASSWORD_PREFERENCE_KEY)!!.onPreferenceClickListener = this
-        findPreference<Preference>(PROJECT_MANAGEMENT_PREFERENCE_KEY)!!.onPreferenceClickListener = this
+        findPreference<Preference>(UNLOCK_PROTECTED_SETTINGS_PREFERENCE_KEY)!!.onPreferenceClickListener =
+            this
+        findPreference<Preference>(CHANGE_ADMIN_PASSWORD_PREFERENCE_KEY)!!.onPreferenceClickListener =
+            this
+        findPreference<Preference>(PROJECT_MANAGEMENT_PREFERENCE_KEY)!!.onPreferenceClickListener =
+            this
         findPreference<Preference>(ACCESS_CONTROL_PREFERENCE_KEY)!!.onPreferenceClickListener = this
     }
 
@@ -74,11 +78,17 @@ class ProjectPreferencesFragment :
         if (MultiClickGuard.allowClick(javaClass.name)) {
             when (preference.key) {
                 PROTOCOL_PREFERENCE_KEY -> displayPreferences(ServerPreferencesFragment())
-                PROJECT_DISPLAY_PREFERENCE_KEY -> displayPreferences(ProjectDisplayPreferencesFragment())
+                PROJECT_DISPLAY_PREFERENCE_KEY -> displayPreferences(
+                    ProjectDisplayPreferencesFragment()
+                )
                 USER_INTERFACE_PREFERENCE_KEY -> displayPreferences(UserInterfacePreferencesFragment())
                 MAPS_PREFERENCE_KEY -> displayPreferences(MapsPreferencesFragment())
-                FORM_MANAGEMENT_PREFERENCE_KEY -> displayPreferences(FormManagementPreferencesFragment())
-                USER_AND_DEVICE_IDENTITY_PREFERENCE_KEY -> displayPreferences(IdentityPreferencesFragment())
+                FORM_MANAGEMENT_PREFERENCE_KEY -> displayPreferences(
+                    FormManagementPreferencesFragment()
+                )
+                USER_AND_DEVICE_IDENTITY_PREFERENCE_KEY -> displayPreferences(
+                    IdentityPreferencesFragment()
+                )
                 EXPERIMENTAL_PREFERENCE_KEY -> displayPreferences(ExperimentalPreferencesFragment())
                 UNLOCK_PROTECTED_SETTINGS_PREFERENCE_KEY -> DialogFragmentUtils.showIfNotShowing(
                     AdminPasswordDialogFragment::class.java,
@@ -88,7 +98,9 @@ class ProjectPreferencesFragment :
                     ChangeAdminPasswordDialog::class.java,
                     requireActivity().supportFragmentManager
                 )
-                PROJECT_MANAGEMENT_PREFERENCE_KEY -> displayPreferences(ProjectManagementPreferencesFragment())
+                PROJECT_MANAGEMENT_PREFERENCE_KEY -> displayPreferences(
+                    ProjectManagementPreferencesFragment()
+                )
                 ACCESS_CONTROL_PREFERENCE_KEY -> displayPreferences(AccessControlPreferencesFragment())
             }
             return true

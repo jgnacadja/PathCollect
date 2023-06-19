@@ -1,5 +1,9 @@
 package org.odk.collect.android.formmanagement;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.odk.collect.formstest.InstanceUtils.buildInstance;
+
 import org.junit.Test;
 import org.odk.collect.forms.Form;
 import org.odk.collect.forms.instances.Instance;
@@ -9,10 +13,6 @@ import org.odk.collect.formstest.InMemInstancesRepository;
 import org.odk.collect.shared.TempFiles;
 
 import java.util.List;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.odk.collect.formstest.InstanceUtils.buildInstance;
 
 public class FormDeleterTest {
 

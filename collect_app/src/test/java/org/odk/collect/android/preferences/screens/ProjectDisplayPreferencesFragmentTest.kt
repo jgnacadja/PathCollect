@@ -11,8 +11,8 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
+import org.mockito.Mockito.`when`
 import org.odk.collect.android.R
 import org.odk.collect.android.application.Collect
 import org.odk.collect.android.injection.config.AppDependencyModule
@@ -44,11 +44,18 @@ class ProjectDisplayPreferencesFragmentTest {
             .thenReturn(Project.Saved("123", "Project X", "X", "#cccccc"))
 
         CollectHelpers.overrideAppDependencyModule(object : AppDependencyModule() {
-            override fun providesCurrentProjectProvider(settingsProvider: SettingsProvider, projectsRepository: ProjectsRepository): CurrentProjectProvider {
+            override fun providesCurrentProjectProvider(
+                settingsProvider: SettingsProvider,
+                projectsRepository: ProjectsRepository
+            ): CurrentProjectProvider {
                 return currentProjectProvider
             }
 
-            override fun providesProjectsRepository(uuidGenerator: UUIDGenerator, gson: Gson, settingsProvider: SettingsProvider): ProjectsRepository {
+            override fun providesProjectsRepository(
+                uuidGenerator: UUIDGenerator,
+                gson: Gson,
+                settingsProvider: SettingsProvider
+            ): ProjectsRepository {
                 return projectsRepository
             }
         })

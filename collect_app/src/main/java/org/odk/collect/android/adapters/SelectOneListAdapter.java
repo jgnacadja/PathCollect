@@ -81,33 +81,6 @@ public class SelectOneListAdapter extends AbstractSelectListAdapter implements C
         this.listener = listener;
     }
 
-    class ViewHolder extends AbstractSelectListAdapter.ViewHolder {
-        ViewHolder(View v) {
-            super(v);
-            if (noButtonsMode) {
-                noButtonsItem = (NoButtonsItem) v;
-            } else {
-                audioVideoImageTextLabel = (AudioVideoImageTextLabel) v;
-                audioVideoImageTextLabel.setPlayTextColor(playColor);
-                audioVideoImageTextLabel.setItemClickListener(listener);
-            }
-        }
-
-        void bind(final int index) {
-            super.bind(index);
-            if (noButtonsMode) {
-                if (filteredItems.get(index).getValue().equals(selectedValue)) {
-                    noButtonsItem.setBackground(ContextCompat.getDrawable(noButtonsItem.getContext(), R.drawable.select_item_border));
-                    selectedItem = noButtonsItem;
-                } else {
-                    noButtonsItem.setBackground(null);
-                }
-            } else {
-                adjustAudioVideoImageTextLabelForFlexAppearance();
-            }
-        }
-    }
-
     @Override
     RadioButton createButton(final int index, ViewGroup parent) {
         RadioButton radioButton = (RadioButton) LayoutInflater.from(parent.getContext()).inflate(R.layout.select_one_item, null);
@@ -169,5 +142,32 @@ public class SelectOneListAdapter extends AbstractSelectListAdapter implements C
     @Override
     public boolean hasAnswerChanged() {
         return !Objects.equals(originallySelectedValue, selectedValue);
+    }
+
+    class ViewHolder extends AbstractSelectListAdapter.ViewHolder {
+        ViewHolder(View v) {
+            super(v);
+            if (noButtonsMode) {
+                noButtonsItem = (NoButtonsItem) v;
+            } else {
+                audioVideoImageTextLabel = (AudioVideoImageTextLabel) v;
+                audioVideoImageTextLabel.setPlayTextColor(playColor);
+                audioVideoImageTextLabel.setItemClickListener(listener);
+            }
+        }
+
+        void bind(final int index) {
+            super.bind(index);
+            if (noButtonsMode) {
+                if (filteredItems.get(index).getValue().equals(selectedValue)) {
+                    noButtonsItem.setBackground(ContextCompat.getDrawable(noButtonsItem.getContext(), R.drawable.select_item_border));
+                    selectedItem = noButtonsItem;
+                } else {
+                    noButtonsItem.setBackground(null);
+                }
+            } else {
+                adjustAudioVideoImageTextLabelForFlexAppearance();
+            }
+        }
     }
 }

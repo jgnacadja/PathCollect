@@ -18,8 +18,6 @@ package org.odk.collect.android.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +25,9 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.logic.DriveListItem;
@@ -45,6 +46,22 @@ public class FileArrayAdapter extends ArrayAdapter<DriveListItem> {
     public FileArrayAdapter(Context context, List<DriveListItem> filteredDriveList) {
         super(context, R.layout.form_chooser_list_item_multiple_choice, filteredDriveList);
         items = filteredDriveList;
+    }
+
+    @NonNull
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+        final ViewHolder holder;
+        View view;
+        if (convertView == null) {
+            view = LayoutInflater.from(getContext()).inflate(R.layout.form_chooser_list_item_multiple_choice, parent, false);
+            holder = new ViewHolder(view);
+            view.setTag(holder);
+        } else {
+            view = convertView;
+            holder = (ViewHolder) convertView.getTag();
+        }
+        holder.onBind(items.get(position));
+        return view;
     }
 
     private class ViewHolder {
@@ -90,21 +107,5 @@ public class FileArrayAdapter extends ArrayAdapter<DriveListItem> {
             formSubtitle.setText(dateModified);
             checkBox.setChecked(item.isSelected());
         }
-    }
-
-    @NonNull
-    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        final ViewHolder holder;
-        View view;
-        if (convertView == null) {
-            view = LayoutInflater.from(getContext()).inflate(R.layout.form_chooser_list_item_multiple_choice, parent, false);
-            holder = new ViewHolder(view);
-            view.setTag(holder);
-        } else {
-            view = convertView;
-            holder = (ViewHolder) convertView.getTag();
-        }
-        holder.onBind(items.get(position));
-        return view;
     }
 }

@@ -23,7 +23,7 @@ import org.odk.collect.projects.ProjectsRepository
 import org.odk.collect.settings.SettingsProvider
 import org.odk.collect.utilities.UserAgentProvider
 import timber.log.Timber
-import java.util.Locale
+import java.util.*
 
 class ApplicationInitializer(
     private val context: Application,

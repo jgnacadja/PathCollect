@@ -23,14 +23,15 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
-/** A ListPreference where each item has a caption **/
+/**
+ * A ListPreference where each item has a caption
+ **/
 public class CaptionedListPreference extends ListPreference {
-
-    private CharSequence[] captions;
-    private int clickedIndex = -1;
 
     @Inject
     SettingsProvider settingsProvider;
+    private CharSequence[] captions;
+    private int clickedIndex = -1;
 
     public CaptionedListPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -42,7 +43,9 @@ public class CaptionedListPreference extends ListPreference {
         return R.layout.captioned_list_dialog;
     }
 
-    /** Sets the values, labels, and captions for the items in the dialog. */
+    /**
+     * Sets the values, labels, and captions for the items in the dialog.
+     */
     public void setItems(List<Item> items) {
         int count = items.size();
         String[] values = new String[count];
@@ -58,12 +61,16 @@ public class CaptionedListPreference extends ListPreference {
         setCaptions(captions);
     }
 
-    /** Sets the list of items to offer as choices in the dialog. */
+    /**
+     * Sets the list of items to offer as choices in the dialog.
+     */
     public void setCaptions(CharSequence[] captions) {
         this.captions = captions;
     }
 
-    /** Updates the contents of the dialog to show the items passed in by setItems etc.*/
+    /**
+     * Updates the contents of the dialog to show the items passed in by setItems etc.
+     */
     public void updateContent() {
         CharSequence[] values = getEntryValues();
         CharSequence[] labels = getEntries();
@@ -76,7 +83,9 @@ public class CaptionedListPreference extends ListPreference {
         }
     }
 
-    /** Creates the view for one item in the list. */
+    /**
+     * Creates the view for one item in the list.
+     */
     protected void inflateItem(ViewGroup parent, final int i, Object value, Object label, Object caption) {
         View item = LayoutInflater.from(getContext()).inflate(R.layout.captioned_item, null);
         RadioButton button = item.findViewById(R.id.button);
@@ -93,7 +102,9 @@ public class CaptionedListPreference extends ListPreference {
         }
     }
 
-    /** Saves the selected value to the preferences when the dialog is closed. */
+    /**
+     * Saves the selected value to the preferences when the dialog is closed.
+     */
     protected void onDialogClosed() {
         CharSequence[] values = getEntryValues();
         if (clickedIndex >= 0 && values != null) {
@@ -104,7 +115,9 @@ public class CaptionedListPreference extends ListPreference {
         }
     }
 
-    /** When an item is clicked, record which item and then dismiss the dialog. */
+    /**
+     * When an item is clicked, record which item and then dismiss the dialog.
+     */
     protected void onItemClicked(int index) {
         clickedIndex = index;
         onDialogClosed();

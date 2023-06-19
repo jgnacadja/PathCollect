@@ -44,16 +44,15 @@ import timber.log.Timber;
 @SuppressLint("ViewConstructor")
 public class LikertWidget extends QuestionWidget {
 
-    LinearLayout view;
-    private RadioButton checkedButton;
     private final LinearLayout.LayoutParams linearLayoutParams = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT, 1);
     private final RelativeLayout.LayoutParams textViewParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
     private final RelativeLayout.LayoutParams imageViewParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     private final RelativeLayout.LayoutParams radioButtonsParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     private final RelativeLayout.LayoutParams buttonViewParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
     private final List<SelectChoice> items;
-
+    LinearLayout view;
     HashMap<RadioButton, String> buttonsToName;
+    private RadioButton checkedButton;
 
     public LikertWidget(Context context, QuestionDetails questionDetails) {
         super(context, questionDetails);

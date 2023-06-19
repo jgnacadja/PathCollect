@@ -1,5 +1,14 @@
 package org.odk.collect.android.externaldata;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.odk.collect.android.externaldata.ExternalDataUtil.COLUMN_DATASET_FILENAME;
+import static org.odk.collect.android.externaldata.ExternalDataUtil.COLUMN_MD5_HASH;
+import static org.odk.collect.android.externaldata.ExternalDataUtil.EXTERNAL_DATA_TABLE_NAME;
+import static org.odk.collect.android.externaldata.ExternalDataUtil.EXTERNAL_METADATA_TABLE_NAME;
+
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -28,15 +37,6 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.odk.collect.android.externaldata.ExternalDataUtil.COLUMN_DATASET_FILENAME;
-import static org.odk.collect.android.externaldata.ExternalDataUtil.COLUMN_MD5_HASH;
-import static org.odk.collect.android.externaldata.ExternalDataUtil.EXTERNAL_DATA_TABLE_NAME;
-import static org.odk.collect.android.externaldata.ExternalDataUtil.EXTERNAL_METADATA_TABLE_NAME;
-
 @RunWith(AndroidJUnit4.class)
 public class ExternalDataReaderTest {
     private static final String SIMPLE_SEARCH_EXTERNAL_CSV_FORM_FILENAME = "simple-search-external-csv.xml";
@@ -50,6 +50,12 @@ public class ExternalDataReaderTest {
     private static File dbFile;
 
     private static Map<String, File> formDefToCsvMedia;
+
+    private static Map<String, File> makeExternalDataMap() {
+        Map<String, File> externalDataMap = new HashMap<>();
+        externalDataMap.put(SIMPLE_SEARCH_EXTERNAL_CSV_NAME, csvFile);
+        return externalDataMap;
+    }
 
     @Before
     public void setUp() throws IOException {
@@ -212,11 +218,5 @@ public class ExternalDataReaderTest {
         db = SQLiteDatabase.openDatabase(dbFile.getAbsolutePath(), null, SQLiteDatabase.OPEN_READWRITE);
         cursor = db.rawQuery(SELECT_ALL_DATA_QUERY, null);
         assertThat("expected zero rows of data after reimporting unchanged file", cursor.getCount(), is(0));
-    }
-
-    private static Map<String, File> makeExternalDataMap() {
-        Map<String, File> externalDataMap = new HashMap<>();
-        externalDataMap.put(SIMPLE_SEARCH_EXTERNAL_CSV_NAME, csvFile);
-        return externalDataMap;
     }
 }

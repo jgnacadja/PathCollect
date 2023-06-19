@@ -88,8 +88,8 @@ public class AuditConfig {
         return locationMinInterval == null
                 ? null
                 : locationMinInterval > MIN_ALLOWED_LOCATION_MIN_INTERVAL
-                    ? locationMinInterval
-                    : MIN_ALLOWED_LOCATION_MIN_INTERVAL;
+                ? locationMinInterval
+                : MIN_ALLOWED_LOCATION_MIN_INTERVAL;
     }
 
     @Nullable

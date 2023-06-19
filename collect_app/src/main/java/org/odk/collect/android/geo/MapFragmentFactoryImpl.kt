@@ -17,15 +17,16 @@ class MapFragmentFactoryImpl(private val settings: Settings) : MapFragmentFactor
     override fun createMapFragment(): MapFragment {
         return when {
             isBasemapOSM(settings.getString(KEY_BASEMAP_SOURCE)) -> OsmDroidMapFragment()
-            settings.getString(KEY_BASEMAP_SOURCE) == BASEMAP_SOURCE_MAPBOX -> MapboxClassInstanceCreator.createMapboxMapFragment() ?: GoogleMapFragment()
+            settings.getString(KEY_BASEMAP_SOURCE) == BASEMAP_SOURCE_MAPBOX -> MapboxClassInstanceCreator.createMapboxMapFragment()
+                ?: GoogleMapFragment()
             else -> GoogleMapFragment()
         }
     }
 
     private fun isBasemapOSM(basemap: String?): Boolean {
         return basemap == BASEMAP_SOURCE_OSM ||
-            basemap == BASEMAP_SOURCE_USGS ||
-            basemap == BASEMAP_SOURCE_CARTO ||
-            basemap == BASEMAP_SOURCE_STAMEN
+                basemap == BASEMAP_SOURCE_USGS ||
+                basemap == BASEMAP_SOURCE_CARTO ||
+                basemap == BASEMAP_SOURCE_STAMEN
     }
 }

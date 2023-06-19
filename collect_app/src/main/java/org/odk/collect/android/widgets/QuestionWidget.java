@@ -51,12 +51,12 @@ import org.odk.collect.android.utilities.AnimationUtils;
 import org.odk.collect.android.utilities.FormEntryPromptUtils;
 import org.odk.collect.android.utilities.HtmlUtils;
 import org.odk.collect.android.utilities.MediaUtils;
-import org.odk.collect.androidshared.utils.ScreenUtils;
 import org.odk.collect.android.utilities.SoftKeyboardController;
 import org.odk.collect.android.utilities.ThemeUtils;
 import org.odk.collect.android.utilities.ViewUtils;
 import org.odk.collect.android.widgets.interfaces.Widget;
 import org.odk.collect.android.widgets.items.SelectImageMapWidget;
+import org.odk.collect.androidshared.utils.ScreenUtils;
 import org.odk.collect.imageloader.ImageLoader;
 import org.odk.collect.permissions.PermissionsProvider;
 import org.odk.collect.settings.SettingsProvider;
@@ -72,49 +72,39 @@ import timber.log.Timber;
 
 public abstract class QuestionWidget extends FrameLayout implements Widget {
 
+    protected final QuestionDetails questionDetails;
+    protected final ThemeUtils themeUtils;
     private final FormEntryPrompt formEntryPrompt;
     private final AudioVideoImageTextLabel audioVideoImageTextLabel;
-    protected final QuestionDetails questionDetails;
     private final TextView helpTextView;
     private final View helpTextLayout;
     private final View guidanceTextLayout;
     private final View textLayout;
     private final TextView warningText;
-    private AtomicBoolean expanded;
-    protected final ThemeUtils themeUtils;
-    protected AudioHelper audioHelper;
     private final ViewGroup containerView;
     private final QuestionTextSizeHelper questionTextSizeHelper;
-
-    private WidgetValueChangedListener valueChangedListener;
-
     @Inject
     public ReferenceManager referenceManager;
-
     @Inject
     public AudioHelperFactory audioHelperFactory;
-
     @Inject
     public Analytics analytics;
-
     @Inject
     public ScreenUtils screenUtils;
-
     @Inject
     public SoftKeyboardController softKeyboardController;
-
-    @Inject
-    PermissionsProvider permissionsProvider;
-
-    @Inject
-    SettingsProvider settingsProvider;
-
+    protected AudioHelper audioHelper;
     @Inject
     protected
     MediaUtils mediaUtils;
-
+    @Inject
+    PermissionsProvider permissionsProvider;
+    @Inject
+    SettingsProvider settingsProvider;
     @Inject
     ImageLoader imageLoader;
+    private AtomicBoolean expanded;
+    private WidgetValueChangedListener valueChangedListener;
 
     public QuestionWidget(Context context, QuestionDetails questionDetails) {
         super(context);
@@ -149,6 +139,19 @@ public abstract class QuestionWidget extends FrameLayout implements Widget {
             registerToClearAnswerOnLongPress((Activity) context, this);
         }
         hideAnswerContainerIfNeeded();
+    }
+
+    //source::https://stackoverflow.com/questions/18996183/identifying-rtl-language-in-android/23203698#23203698
+    public static boolean isRTL() {
+        return isRTL(Locale.getDefault());
+    }
+
+    private static boolean isRTL(Locale locale) {
+        if (locale.getDisplayName().isEmpty()) {
+            return false;
+        }
+        final int directionality = Character.getDirectionality(locale.getDisplayName().charAt(0));
+        return directionality == Character.DIRECTIONALITY_RIGHT_TO_LEFT || directionality == Character.DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC;
     }
 
     /**
@@ -260,19 +263,6 @@ public abstract class QuestionWidget extends FrameLayout implements Widget {
 
         guidanceTextView.setMovementMethod(LinkMovementMethod.getInstance());
         return guidanceTextView;
-    }
-
-    //source::https://stackoverflow.com/questions/18996183/identifying-rtl-language-in-android/23203698#23203698
-    public static boolean isRTL() {
-        return isRTL(Locale.getDefault());
-    }
-
-    private static boolean isRTL(Locale locale) {
-        if (locale.getDisplayName().isEmpty()) {
-            return false;
-        }
-        final int directionality = Character.getDirectionality(locale.getDisplayName().charAt(0));
-        return directionality == Character.DIRECTIONALITY_RIGHT_TO_LEFT || directionality == Character.DIRECTIONALITY_RIGHT_TO_LEFT_ARABIC;
     }
 
     public TextView getHelpTextView() {

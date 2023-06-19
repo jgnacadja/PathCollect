@@ -1,16 +1,10 @@
 package org.odk.collect.android.projects
 
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
-import org.hamcrest.Matchers.`is`
-import org.hamcrest.Matchers.instanceOf
-import org.hamcrest.Matchers.nullValue
+import org.hamcrest.Matchers.*
 import org.junit.Before
 import org.junit.Test
-import org.mockito.kotlin.any
-import org.mockito.kotlin.doReturn
-import org.mockito.kotlin.mock
-import org.mockito.kotlin.verify
-import org.mockito.kotlin.whenever
+import org.mockito.kotlin.*
 import org.odk.collect.android.backgroundwork.FormUpdateScheduler
 import org.odk.collect.android.backgroundwork.InstanceSubmitScheduler
 import org.odk.collect.android.preferences.Defaults
@@ -69,7 +63,10 @@ class ProjectDeleterTest {
         )
 
         deleter.deleteCurrentProject()
-        assertThat(deleter.deleteCurrentProject(), instanceOf(DeleteProjectResult.UnsentInstances::class.java))
+        assertThat(
+            deleter.deleteCurrentProject(),
+            instanceOf(DeleteProjectResult.UnsentInstances::class.java)
+        )
         assertThat(projectsRepository.projects.contains(project1), `is`(true))
     }
 
@@ -93,7 +90,10 @@ class ProjectDeleterTest {
         )
 
         deleter.deleteCurrentProject()
-        assertThat(deleter.deleteCurrentProject(), instanceOf(DeleteProjectResult.UnsentInstances::class.java))
+        assertThat(
+            deleter.deleteCurrentProject(),
+            instanceOf(DeleteProjectResult.UnsentInstances::class.java)
+        )
         assertThat(projectsRepository.projects.contains(project1), `is`(true))
     }
 
@@ -117,7 +117,10 @@ class ProjectDeleterTest {
         )
 
         deleter.deleteCurrentProject()
-        assertThat(deleter.deleteCurrentProject(), instanceOf(DeleteProjectResult.UnsentInstances::class.java))
+        assertThat(
+            deleter.deleteCurrentProject(),
+            instanceOf(DeleteProjectResult.UnsentInstances::class.java)
+        )
         assertThat(projectsRepository.projects.contains(project1), `is`(true))
     }
 
@@ -142,7 +145,10 @@ class ProjectDeleterTest {
 
         val result = deleter.deleteCurrentProject()
         assertThat(result, instanceOf(DeleteProjectResult.DeletedSuccessfully::class.java))
-        assertThat((result as DeleteProjectResult.DeletedSuccessfully).newCurrentProject, `is`(nullValue()))
+        assertThat(
+            (result as DeleteProjectResult.DeletedSuccessfully).newCurrentProject,
+            `is`(nullValue())
+        )
         assertThat(projectsRepository.projects.size, `is`(0))
     }
 
@@ -214,10 +220,12 @@ class ProjectDeleterTest {
     fun `Deleting project clears its settings`() {
         settingsProvider.getMetaSettings().save(MetaKeys.KEY_INSTALL_ID, "1234")
 
-        settingsProvider.getUnprotectedSettings("1").save(ProjectKeys.KEY_SERVER_URL, "https://my-server.com")
+        settingsProvider.getUnprotectedSettings("1")
+            .save(ProjectKeys.KEY_SERVER_URL, "https://my-server.com")
         settingsProvider.getProtectedSettings("1").save(ProtectedProjectKeys.KEY_AUTOSEND, false)
 
-        settingsProvider.getUnprotectedSettings("2").save(ProjectKeys.KEY_SERVER_URL, "https://my-server.com")
+        settingsProvider.getUnprotectedSettings("2")
+            .save(ProjectKeys.KEY_SERVER_URL, "https://my-server.com")
         settingsProvider.getProtectedSettings("2").save(ProtectedProjectKeys.KEY_AUTOSEND, false)
 
         val deleter = ProjectDeleter(
@@ -233,7 +241,10 @@ class ProjectDeleterTest {
 
         deleter.deleteCurrentProject()
 
-        assertThat(settingsProvider.getMetaSettings().getString(MetaKeys.KEY_INSTALL_ID), `is`("1234"))
+        assertThat(
+            settingsProvider.getMetaSettings().getString(MetaKeys.KEY_INSTALL_ID),
+            `is`("1234")
+        )
 
         settingsProvider.getUnprotectedSettings("1").getAll().forEach { (key, value) ->
             assertThat(value, `is`(Defaults.protected[key]))
@@ -243,8 +254,14 @@ class ProjectDeleterTest {
             assertThat(value, `is`(Defaults.protected[key]))
         }
 
-        assertThat(settingsProvider.getUnprotectedSettings("2").getString(ProjectKeys.KEY_SERVER_URL), `is`("https://my-server.com"))
-        assertThat(settingsProvider.getProtectedSettings("2").getBoolean(ProtectedProjectKeys.KEY_AUTOSEND), `is`(false))
+        assertThat(
+            settingsProvider.getUnprotectedSettings("2").getString(ProjectKeys.KEY_SERVER_URL),
+            `is`("https://my-server.com")
+        )
+        assertThat(
+            settingsProvider.getProtectedSettings("2")
+                .getBoolean(ProtectedProjectKeys.KEY_AUTOSEND), `is`(false)
+        )
     }
 
     @Test
@@ -262,7 +279,10 @@ class ProjectDeleterTest {
 
         val result = deleter.deleteCurrentProject()
         assertThat(result, instanceOf(DeleteProjectResult.DeletedSuccessfully::class.java))
-        assertThat((result as DeleteProjectResult.DeletedSuccessfully).newCurrentProject, `is`(nullValue()))
+        assertThat(
+            (result as DeleteProjectResult.DeletedSuccessfully).newCurrentProject,
+            `is`(nullValue())
+        )
     }
 
     @Test
@@ -284,7 +304,10 @@ class ProjectDeleterTest {
         val result = deleter.deleteCurrentProject()
         verify(currentProjectProvider).setCurrentProject(project2.uuid)
         assertThat(result, instanceOf(DeleteProjectResult.DeletedSuccessfully::class.java))
-        assertThat((result as DeleteProjectResult.DeletedSuccessfully).newCurrentProject, `is`(project2))
+        assertThat(
+            (result as DeleteProjectResult.DeletedSuccessfully).newCurrentProject,
+            `is`(project2)
+        )
     }
 
     @Test

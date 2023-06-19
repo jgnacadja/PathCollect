@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <include
-        layout="@layout/date_widget_answer"
-        android:id="@+id/date_widget"/>
+        android:id="@+id/date_widget"
+        layout="@layout/date_widget_answer" />
 
     <include
-        layout="@layout/time_widget_answer"
-        android:id="@+id/time_widget"/>
+        android:id="@+id/time_widget"
+        layout="@layout/time_widget_answer" />
 
 </LinearLayout>

@@ -21,7 +21,7 @@ import org.odk.collect.android.support.CollectHelpers
 import org.odk.collect.android.support.WidgetTestActivity
 import org.robolectric.ParameterizedRobolectricTestRunner
 import java.io.File
-import java.util.Random
+import java.util.*
 
 @RunWith(ParameterizedRobolectricTestRunner::class)
 class AudioVideoImageTextLabelVisibilityTest(

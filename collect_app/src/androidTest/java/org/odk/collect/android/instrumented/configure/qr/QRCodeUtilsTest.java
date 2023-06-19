@@ -1,5 +1,8 @@
 package org.odk.collect.android.instrumented.configure.qr;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 import android.graphics.Bitmap;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -10,9 +13,6 @@ import org.odk.collect.android.configure.qr.QRCodeUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 
 /**
  * It's important to test this in `androidTest` rather than `test` so that we make sure we're

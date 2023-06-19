@@ -28,7 +28,7 @@ import java.util.List;
  * information is generally accessed through {@link FormEntryPrompt}s which change as the form is
  * being filled and {@link org.javarosa.core.model.condition.Triggerable}s are evaluated.
  * {@link ImmutableDisplayableQuestion} objects are used to make snapshots of what the user sees.
- *
+ * <p>
  * Inspired by https://github.com/dimagi/commcare-android/blob/fd63a5b2471a1e33ac6bf1ce77ac82daf558b08a/app/src/org/commcare/activities/components/FormRelevancyUpdating.java#L48
  */
 public class ImmutableDisplayableQuestion {
@@ -86,29 +86,6 @@ public class ImmutableDisplayableQuestion {
         }
     }
 
-    public FormIndex getFormIndex() {
-        return index;
-    }
-
-    public Object getAnswerText() {
-        return answerText;
-    }
-
-    /**
-     * Returns {@code true} if the provided {@link FormEntryPrompt} has the same user-visible
-     * aspects, {@code false} otherwise.
-     */
-    public boolean sameAs(FormEntryPrompt question) {
-        return question != null
-                && question.getIndex().equals(index)
-                && (question.getQuestionText() == null ? questionText == null : question.getQuestionText().equals(questionText))
-                && (question.getHelpText() == null ? helpText == null : question.getHelpText().equals(helpText))
-                && (getGuidanceHintText(question) == null ? guidanceText == null : getGuidanceHintText(question).equals(guidanceText))
-                && (question.getAnswerText() == null ? answerText == null : question.getAnswerText().equals(answerText))
-                && (question.isReadOnly() == isReadOnly)
-                && selectChoiceListsEqual(question.getSelectChoices(), selectChoices);
-    }
-
     private static boolean selectChoiceListsEqual(List<SelectChoice> selectChoiceList1, List<SelectChoice> selectChoiceList2) {
         if (selectChoiceList1 == null) {
             return selectChoiceList2 == null;
@@ -137,7 +114,7 @@ public class ImmutableDisplayableQuestion {
     /**
      * Returns true if the two SelectChoice objects currently represent the same choice in the same
      * position.
-     *
+     * <p>
      * Note: this is here rather than as a .equals for SelectChoice in JavaRosa because SelectChoice
      * is mutable and keeps track of both the choice and its current position. Clients may want to
      * define equality differently for different usages.
@@ -174,5 +151,28 @@ public class ImmutableDisplayableQuestion {
         return selectChoice1.getIndex() == selectChoice2.getIndex()
                 && selectChoice1.isLocalizable() == selectChoice2.isLocalizable()
                 && selectChoice1.copyNode == selectChoice2.copyNode;
+    }
+
+    public FormIndex getFormIndex() {
+        return index;
+    }
+
+    public Object getAnswerText() {
+        return answerText;
+    }
+
+    /**
+     * Returns {@code true} if the provided {@link FormEntryPrompt} has the same user-visible
+     * aspects, {@code false} otherwise.
+     */
+    public boolean sameAs(FormEntryPrompt question) {
+        return question != null
+                && question.getIndex().equals(index)
+                && (question.getQuestionText() == null ? questionText == null : question.getQuestionText().equals(questionText))
+                && (question.getHelpText() == null ? helpText == null : question.getHelpText().equals(helpText))
+                && (getGuidanceHintText(question) == null ? guidanceText == null : getGuidanceHintText(question).equals(guidanceText))
+                && (question.getAnswerText() == null ? answerText == null : question.getAnswerText().equals(answerText))
+                && (question.isReadOnly() == isReadOnly)
+                && selectChoiceListsEqual(question.getSelectChoices(), selectChoices);
     }
 }

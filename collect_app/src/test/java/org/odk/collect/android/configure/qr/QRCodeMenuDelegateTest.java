@@ -1,5 +1,15 @@
 package org.odk.collect.android.configure.qr;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.odk.collect.android.configure.qr.QRCodeMenuDelegate.SELECT_PHOTO;
+import static org.robolectric.Shadows.shadowOf;
+
 import android.content.Intent;
 import android.net.Uri;
 
@@ -10,7 +20,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.odk.collect.android.R;
-
 import org.odk.collect.android.TestSettingsProvider;
 import org.odk.collect.android.utilities.FileProvider;
 import org.odk.collect.androidshared.system.IntentLauncher;
@@ -22,25 +31,14 @@ import org.robolectric.fakes.RoboMenuItem;
 import org.robolectric.shadows.ShadowActivity;
 import org.robolectric.shadows.ShadowToast;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.hamcrest.Matchers.nullValue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.odk.collect.android.configure.qr.QRCodeMenuDelegate.SELECT_PHOTO;
-import static org.robolectric.Shadows.shadowOf;
-
 @RunWith(AndroidJUnit4.class)
 public class QRCodeMenuDelegateTest {
 
-    private IntentLauncher intentLauncher;
     private final QRCodeGenerator qrCodeGenerator = mock(QRCodeGenerator.class);
     private final AppConfigurationGenerator appConfigurationGenerator = mock(AppConfigurationGenerator.class);
     private final FileProvider fileProvider = mock(FileProvider.class);
     private final FakeScheduler fakeScheduler = new FakeScheduler();
-
+    private IntentLauncher intentLauncher;
     private FragmentActivity activity;
     private QRCodeMenuDelegate menuDelegate;
 

@@ -4,9 +4,7 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.pressBack
-import androidx.test.espresso.action.ViewActions.scrollTo
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.matcher.RootMatchers.isDialog
@@ -21,9 +19,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.any
-import org.mockito.Mockito.verifyNoInteractions
+import org.mockito.Mockito.*
 import org.mockito.kotlin.mock
 import org.odk.collect.android.R
 import org.odk.collect.android.activities.MainMenuActivity
@@ -115,11 +111,11 @@ class QrCodeProjectCreatorDialogTest {
                     `when`(it.text).thenReturn(
                         CompressionUtils.compress(
                             "{\n" +
-                                "  \"general\": {\n" +
-                                "  },\n" +
-                                "  \"admin\": {\n" +
-                                "  }\n" +
-                                "}"
+                                    "  \"general\": {\n" +
+                                    "  },\n" +
+                                    "  \"admin\": {\n" +
+                                    "  }\n" +
+                                    "}"
                         )
                     )
                 }

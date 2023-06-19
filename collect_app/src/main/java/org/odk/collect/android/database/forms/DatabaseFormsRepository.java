@@ -1,5 +1,20 @@
 package org.odk.collect.android.database.forms;
 
+import static android.provider.BaseColumns._ID;
+import static org.apache.commons.io.FileUtils.deleteDirectory;
+import static org.odk.collect.android.database.DatabaseConstants.FORMS_TABLE_NAME;
+import static org.odk.collect.android.database.DatabaseObjectMapper.getFormFromCurrentCursorPosition;
+import static org.odk.collect.android.database.DatabaseObjectMapper.getValuesFromForm;
+import static org.odk.collect.android.database.forms.DatabaseFormColumns.DATE;
+import static org.odk.collect.android.database.forms.DatabaseFormColumns.DELETED_DATE;
+import static org.odk.collect.android.database.forms.DatabaseFormColumns.FORM_FILE_PATH;
+import static org.odk.collect.android.database.forms.DatabaseFormColumns.FORM_MEDIA_PATH;
+import static org.odk.collect.android.database.forms.DatabaseFormColumns.JRCACHE_FILE_PATH;
+import static org.odk.collect.android.database.forms.DatabaseFormColumns.JR_FORM_ID;
+import static org.odk.collect.android.database.forms.DatabaseFormColumns.JR_VERSION;
+import static org.odk.collect.android.database.forms.DatabaseFormColumns.MD5_HASH;
+import static org.odk.collect.shared.PathUtils.getRelativeFilePath;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -24,21 +39,6 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
-import static android.provider.BaseColumns._ID;
-import static org.apache.commons.io.FileUtils.deleteDirectory;
-import static org.odk.collect.android.database.DatabaseConstants.FORMS_TABLE_NAME;
-import static org.odk.collect.android.database.DatabaseObjectMapper.getFormFromCurrentCursorPosition;
-import static org.odk.collect.android.database.DatabaseObjectMapper.getValuesFromForm;
-import static org.odk.collect.android.database.forms.DatabaseFormColumns.DATE;
-import static org.odk.collect.android.database.forms.DatabaseFormColumns.DELETED_DATE;
-import static org.odk.collect.android.database.forms.DatabaseFormColumns.FORM_FILE_PATH;
-import static org.odk.collect.android.database.forms.DatabaseFormColumns.FORM_MEDIA_PATH;
-import static org.odk.collect.android.database.forms.DatabaseFormColumns.JRCACHE_FILE_PATH;
-import static org.odk.collect.android.database.forms.DatabaseFormColumns.JR_FORM_ID;
-import static org.odk.collect.android.database.forms.DatabaseFormColumns.JR_VERSION;
-import static org.odk.collect.android.database.forms.DatabaseFormColumns.MD5_HASH;
-import static org.odk.collect.shared.PathUtils.getRelativeFilePath;
-
 public class DatabaseFormsRepository implements FormsRepository {
 
     private final DatabaseConnection databaseConnection;
@@ -57,6 +57,21 @@ public class DatabaseFormsRepository implements FormsRepository {
                 new FormDatabaseMigrator(),
                 DatabaseConstants.FORMS_DATABASE_VERSION
         );
+    }
+
+    @NotNull
+    private static List<Form> getFormsFromCursor(Cursor cursor, String formsPath, String cachePath) {
+        List<Form> forms = new ArrayList<>();
+        if (cursor != null) {
+            cursor.moveToPosition(-1);
+            while (cursor.moveToNext()) {
+                Form form = getFormFromCurrentCursorPosition(cursor, formsPath, cachePath);
+
+                forms.add(form);
+            }
+
+        }
+        return forms;
     }
 
     @Nullable
@@ -119,7 +134,6 @@ public class DatabaseFormsRepository implements FormsRepository {
     public List<Form> getAllNotDeletedByFormId(String jrFormId) {
         return queryForForms(JR_FORM_ID + "=? AND " + DELETED_DATE + " IS NULL", new String[]{jrFormId});
     }
-
 
     @Override
     public List<Form> getAllNotDeletedByFormIdAndVersion(String jrFormId, @Nullable String jrVersion) {
@@ -240,21 +254,6 @@ public class DatabaseFormsRepository implements FormsRepository {
 
         SQLiteDatabase writeableDatabase = databaseConnection.getWriteableDatabase();
         writeableDatabase.delete(FORMS_TABLE_NAME, selection, selectionArgs);
-    }
-
-    @NotNull
-    private static List<Form> getFormsFromCursor(Cursor cursor, String formsPath, String cachePath) {
-        List<Form> forms = new ArrayList<>();
-        if (cursor != null) {
-            cursor.moveToPosition(-1);
-            while (cursor.moveToNext()) {
-                Form form = getFormFromCurrentCursorPosition(cursor, formsPath, cachePath);
-
-                forms.add(form);
-            }
-
-        }
-        return forms;
     }
 
     private void deleteFilesForForm(Form form) {

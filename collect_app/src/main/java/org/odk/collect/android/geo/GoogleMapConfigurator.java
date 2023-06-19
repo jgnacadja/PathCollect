@@ -32,21 +32,25 @@ class GoogleMapConfigurator implements MapConfigurator {
     private final int sourceLabelId;
     private final GoogleMapTypeOption[] options;
 
-    /** Constructs a configurator with a few Google map type options to choose from. */
+    /**
+     * Constructs a configurator with a few Google map type options to choose from.
+     */
     GoogleMapConfigurator(String prefKey, int sourceLabelId, GoogleMapTypeOption... options) {
         this.prefKey = prefKey;
         this.sourceLabelId = sourceLabelId;
         this.options = options;
     }
 
-    @Override public boolean isAvailable(Context context) {
+    @Override
+    public boolean isAvailable(Context context) {
         return isGoogleMapsSdkAvailable(context) && isGooglePlayServicesAvailable(context);
     }
 
-    @Override public void showUnavailableMessage(Context context) {
+    @Override
+    public void showUnavailableMessage(Context context) {
         if (!isGoogleMapsSdkAvailable(context)) {
             ToastUtils.showLongToast(context, context.getString(
-                R.string.basemap_source_unavailable, context.getString(sourceLabelId)));
+                    R.string.basemap_source_unavailable, context.getString(sourceLabelId)));
         }
         if (!isGooglePlayServicesAvailable(context)) {
             new PlayServicesChecker().showGooglePlayServicesAvailabilityErrorDialog(context);
@@ -57,14 +61,15 @@ class GoogleMapConfigurator implements MapConfigurator {
         // The Google Maps SDK for Android requires OpenGL ES version 2.
         // See https://developers.google.com/maps/documentation/android-sdk/config
         return ((ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE))
-            .getDeviceConfigurationInfo().reqGlEsVersion >= 0x20000;
+                .getDeviceConfigurationInfo().reqGlEsVersion >= 0x20000;
     }
 
     private boolean isGooglePlayServicesAvailable(Context context) {
         return new PlayServicesChecker().isGooglePlayServicesAvailable(context);
     }
 
-    @Override public List<Preference> createPrefs(Context context, Settings settings) {
+    @Override
+    public List<Preference> createPrefs(Context context, Settings settings) {
         int[] labelIds = new int[options.length];
         String[] values = new String[options.length];
         for (int i = 0; i < options.length; i++) {
@@ -72,32 +77,36 @@ class GoogleMapConfigurator implements MapConfigurator {
             values[i] = Integer.toString(options[i].mapType);
         }
         String prefTitle = context.getString(
-            R.string.map_style_label, context.getString(sourceLabelId));
+                R.string.map_style_label, context.getString(sourceLabelId));
         return Collections.singletonList(createListPref(
-            context, prefKey, prefTitle, labelIds, values, settings
+                context, prefKey, prefTitle, labelIds, values, settings
         ));
     }
 
-    @Override public Set<String> getPrefKeys() {
+    @Override
+    public Set<String> getPrefKeys() {
         return prefKey.isEmpty() ? ImmutableSet.of(KEY_REFERENCE_LAYER) :
-            ImmutableSet.of(prefKey, KEY_REFERENCE_LAYER);
+                ImmutableSet.of(prefKey, KEY_REFERENCE_LAYER);
     }
 
-    @Override public Bundle buildConfig(Settings prefs) {
+    @Override
+    public Bundle buildConfig(Settings prefs) {
         Bundle config = new Bundle();
         config.putInt(GoogleMapFragment.KEY_MAP_TYPE,
-            getInt(KEY_GOOGLE_MAP_STYLE, GoogleMap.MAP_TYPE_NORMAL, prefs));
+                getInt(KEY_GOOGLE_MAP_STYLE, GoogleMap.MAP_TYPE_NORMAL, prefs));
         config.putString(GoogleMapFragment.KEY_REFERENCE_LAYER,
-            prefs.getString(KEY_REFERENCE_LAYER));
+                prefs.getString(KEY_REFERENCE_LAYER));
         return config;
     }
 
-    @Override public boolean supportsLayer(File file) {
+    @Override
+    public boolean supportsLayer(File file) {
         // GoogleMapFragment supports only raster tiles.
         return MbtilesFile.readLayerType(file) == LayerType.RASTER;
     }
 
-    @Override public String getDisplayName(File file) {
+    @Override
+    public String getDisplayName(File file) {
         String name = MbtilesFile.readName(file);
         return name != null ? name : file.getName();
     }

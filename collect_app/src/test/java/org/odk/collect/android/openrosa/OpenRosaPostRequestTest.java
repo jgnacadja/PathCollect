@@ -1,5 +1,15 @@
 package org.odk.collect.android.openrosa;
 
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.isA;
+import static org.hamcrest.Matchers.isEmptyString;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+import static java.util.Arrays.asList;
+
 import androidx.annotation.NonNull;
 
 import org.junit.Before;
@@ -24,25 +34,26 @@ import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
 import okio.Buffer;
 
-import static java.util.Arrays.asList;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.isA;
-import static org.hamcrest.Matchers.isEmptyString;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
-
 public abstract class OpenRosaPostRequestTest {
-
-    protected abstract OpenRosaHttpInterface buildSubject(OpenRosaHttpInterface.FileToContentTypeMapper mapper);
 
     @Rule
     public MockWebServerRule mockWebServerRule = new MockWebServerRule();
-
     private MockWebServer mockWebServer;
     private OpenRosaHttpInterface subject;
+
+    private static byte[] gzip(String data) throws IOException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length());
+        GZIPOutputStream gzipStream = new GZIPOutputStream(outputStream);
+        gzipStream.write(data.getBytes());
+        gzipStream.close();
+
+        byte[] compressed = outputStream.toByteArray();
+        outputStream.close();
+
+        return compressed;
+    }
+
+    protected abstract OpenRosaHttpInterface buildSubject(OpenRosaHttpInterface.FileToContentTypeMapper mapper);
 
     @Before
     public void setup() throws Exception {
@@ -263,18 +274,6 @@ public abstract class OpenRosaPostRequestTest {
         String[] split = body.split(boundary);
         String[] stringParts = Arrays.copyOfRange(split, 1, split.length - 1);
         return Arrays.stream(stringParts).map(part -> part.split("\r\n")).collect(Collectors.toList());
-    }
-
-    private static byte[] gzip(String data) throws IOException {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length());
-        GZIPOutputStream gzipStream = new GZIPOutputStream(outputStream);
-        gzipStream.write(data.getBytes());
-        gzipStream.close();
-
-        byte[] compressed = outputStream.toByteArray();
-        outputStream.close();
-
-        return compressed;
     }
 
     private class XmlOrBlahContentTypeMapper implements OpenRosaHttpInterface.FileToContentTypeMapper {

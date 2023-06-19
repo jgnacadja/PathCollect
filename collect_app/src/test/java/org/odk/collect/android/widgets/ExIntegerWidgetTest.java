@@ -1,18 +1,18 @@
 package org.odk.collect.android.widgets;
 
-import androidx.annotation.NonNull;
-
-import org.javarosa.core.model.data.IntegerData;
-import org.mockito.Mock;
-import org.odk.collect.android.formentry.questions.QuestionDetails;
-import org.junit.Test;
-import org.odk.collect.android.widgets.base.GeneralExStringWidgetTest;
-import org.odk.collect.android.widgets.support.FakeWaitingForDataRegistry;
-import org.odk.collect.android.widgets.utilities.StringRequester;
-
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.odk.collect.android.utilities.Appearances.THOUSANDS_SEP;
+
+import androidx.annotation.NonNull;
+
+import org.javarosa.core.model.data.IntegerData;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.odk.collect.android.formentry.questions.QuestionDetails;
+import org.odk.collect.android.widgets.base.GeneralExStringWidgetTest;
+import org.odk.collect.android.widgets.support.FakeWaitingForDataRegistry;
+import org.odk.collect.android.widgets.utilities.StringRequester;
 
 /**
  * @author James Knight

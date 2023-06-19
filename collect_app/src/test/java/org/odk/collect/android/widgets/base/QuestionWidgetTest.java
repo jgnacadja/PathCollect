@@ -1,5 +1,15 @@
 package org.odk.collect.android.widgets.base;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.mockValueChangedListener;
+
 import android.app.Activity;
 import android.view.View;
 
@@ -22,30 +32,17 @@ import org.odk.collect.android.widgets.interfaces.Widget;
 import java.util.List;
 import java.util.Random;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.mockValueChangedListener;
-
 public abstract class QuestionWidgetTest<W extends Widget, A extends IAnswerData>
         extends WidgetTest {
 
-    protected Random random = new Random();
-    protected Activity activity = CollectHelpers.buildThemedActivity(WidgetTestActivity.class).get();
-
-    private W widget;
-    private W actualWidget;
-
     @Mock
     public FormIndex formIndex;
-
     @Mock
     public FormController formController;
+    protected Random random = new Random();
+    protected Activity activity = CollectHelpers.buildThemedActivity(WidgetTestActivity.class).get();
+    private W widget;
+    private W actualWidget;
 
     @NonNull
     public abstract W createWidget();

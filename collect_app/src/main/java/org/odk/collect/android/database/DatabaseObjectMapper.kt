@@ -12,6 +12,8 @@ import org.odk.collect.forms.instances.Instance
 import org.odk.collect.shared.PathUtils.getAbsoluteFilePath
 import org.odk.collect.shared.PathUtils.getRelativeFilePath
 import java.lang.Boolean
+import kotlin.String
+import kotlin.let
 
 object DatabaseObjectMapper {
 

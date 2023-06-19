@@ -16,6 +16,11 @@
 
 package org.odk.collect.android.adapters;
 
+import static org.odk.collect.android.formentry.media.FormMediaUtils.getClip;
+import static org.odk.collect.android.formentry.media.FormMediaUtils.getClipID;
+import static org.odk.collect.android.formentry.media.FormMediaUtils.getPlayableAudioURI;
+import static org.odk.collect.android.widgets.QuestionWidget.isRTL;
+
 import android.content.Context;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -41,10 +46,10 @@ import org.odk.collect.android.audio.AudioHelper;
 import org.odk.collect.android.externaldata.ExternalSelectChoice;
 import org.odk.collect.android.formentry.questions.AudioVideoImageTextLabel;
 import org.odk.collect.android.formentry.questions.NoButtonsItem;
+import org.odk.collect.android.utilities.Appearances;
+import org.odk.collect.android.utilities.HtmlUtils;
 import org.odk.collect.android.utilities.MediaUtils;
 import org.odk.collect.android.utilities.QuestionFontSizeUtils;
-import org.odk.collect.android.utilities.HtmlUtils;
-import org.odk.collect.android.utilities.Appearances;
 import org.odk.collect.audioclips.Clip;
 import org.odk.collect.imageloader.GlideImageLoader;
 
@@ -55,24 +60,19 @@ import java.util.Locale;
 
 import timber.log.Timber;
 
-import static org.odk.collect.android.formentry.media.FormMediaUtils.getClip;
-import static org.odk.collect.android.formentry.media.FormMediaUtils.getClipID;
-import static org.odk.collect.android.formentry.media.FormMediaUtils.getPlayableAudioURI;
-import static org.odk.collect.android.widgets.QuestionWidget.isRTL;
-
 public abstract class AbstractSelectListAdapter extends RecyclerView.Adapter<AbstractSelectListAdapter.ViewHolder>
         implements Filterable {
 
+    protected final FormEntryPrompt prompt;
+    protected final ReferenceManager referenceManager;
+    protected final int playColor;
+    protected final int numColumns;
+    private final MediaUtils mediaUtils;
     protected Context context;
     protected List<SelectChoice> items;
     protected List<SelectChoice> filteredItems;
-    protected final FormEntryPrompt prompt;
-    protected final ReferenceManager referenceManager;
     protected AudioHelper audioHelper;
-    protected final int playColor;
-    protected final int numColumns;
     protected boolean noButtonsMode;
-    private final MediaUtils mediaUtils;
 
     AbstractSelectListAdapter(Context context, List<SelectChoice> items, FormEntryPrompt prompt,
                               ReferenceManager referenceManager, AudioHelper audioHelper,
@@ -162,13 +162,29 @@ public abstract class AbstractSelectListAdapter extends RecyclerView.Adapter<Abs
         return audioHelper;
     }
 
+    public void setAudioHelper(AudioHelper audioHelper) {
+        this.audioHelper = audioHelper;
+    }
+
     public void setContext(Context context) {
         this.context = context;
     }
 
-    public void setAudioHelper(AudioHelper audioHelper) {
-        this.audioHelper = audioHelper;
+    public void playAudio(SelectChoice selectChoice) {
+        audioHelper.stop();
+        Clip clip = getClip(prompt, selectChoice, referenceManager);
+        if (clip != null) {
+            audioHelper.play(clip);
+        }
     }
+
+    public int getNumColumns() {
+        return numColumns;
+    }
+
+    public abstract void clearAnswer();
+
+    public abstract boolean hasAnswerChanged();
 
     abstract class ViewHolder extends RecyclerView.ViewHolder {
         AudioVideoImageTextLabel audioVideoImageTextLabel;
@@ -281,20 +297,4 @@ public abstract class AbstractSelectListAdapter extends RecyclerView.Adapter<Abs
             }
         }
     }
-
-    public void playAudio(SelectChoice selectChoice) {
-        audioHelper.stop();
-        Clip clip = getClip(prompt, selectChoice, referenceManager);
-        if (clip != null) {
-            audioHelper.play(clip);
-        }
-    }
-
-    public int getNumColumns() {
-        return numColumns;
-    }
-
-    public abstract void clearAnswer();
-
-    public abstract boolean hasAnswerChanged();
 }

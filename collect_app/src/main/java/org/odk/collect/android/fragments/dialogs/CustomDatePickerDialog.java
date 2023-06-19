@@ -48,10 +48,6 @@ public abstract class CustomDatePickerDialog extends DialogFragment {
     private DateTimeViewModel viewModel;
     private DateChangeListener dateChangeListener;
 
-    public interface DateChangeListener {
-        void onDateChanged(LocalDateTime selectedDate);
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -188,4 +184,8 @@ public abstract class CustomDatePickerDialog extends DialogFragment {
     protected abstract void updateDays();
 
     protected abstract LocalDateTime getOriginalDate();
+
+    public interface DateChangeListener {
+        void onDateChanged(LocalDateTime selectedDate);
+    }
 }

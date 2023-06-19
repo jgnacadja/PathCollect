@@ -23,7 +23,7 @@ import org.odk.collect.android.utilities.FormsDirDiskFormsSynchronizer
 import java.io.File
 import java.io.FileReader
 import java.io.IOException
-import java.util.Arrays
+import java.util.*
 
 /**
  * Emulates the process of copying a form via ADB
@@ -36,7 +36,13 @@ object StorageUtils {
      * had been opened.
      */
     @Throws(IOException::class)
-    fun copyFormToStorage(formFilename: String, mediaFilePaths: List<String>?, copyToDatabase: Boolean, copyTo: String, projectName: String) {
+    fun copyFormToStorage(
+        formFilename: String,
+        mediaFilePaths: List<String>?,
+        copyToDatabase: Boolean,
+        copyTo: String,
+        projectName: String
+    ) {
         copyForm(formFilename, copyTo, projectName)
         if (mediaFilePaths != null) {
             copyFormMediaFiles(formFilename, mediaFilePaths, projectName)
@@ -53,8 +59,19 @@ object StorageUtils {
     @JvmStatic
     @JvmOverloads
     @Throws(IOException::class)
-    fun copyFormToDemoProject(formFilename: String, mediaFilePaths: List<String>? = null, copyToDatabase: Boolean = false, copyTo: String? = null) {
-        copyFormToStorage(formFilename, mediaFilePaths, copyToDatabase, copyTo ?: formFilename, "Demo project")
+    fun copyFormToDemoProject(
+        formFilename: String,
+        mediaFilePaths: List<String>? = null,
+        copyToDatabase: Boolean = false,
+        copyTo: String? = null
+    ) {
+        copyFormToStorage(
+            formFilename,
+            mediaFilePaths,
+            copyToDatabase,
+            copyTo ?: formFilename,
+            "Demo project"
+        )
     }
 
     @JvmStatic
@@ -65,9 +82,14 @@ object StorageUtils {
 
     @Throws(IOException::class)
     fun copyInstanceToDemoProject(instanceFileName: String) {
-        val instanceDirPath = getInstancesDirPath("Demo project") + instanceFileName.split("\\.".toRegex()).toTypedArray()[0]
+        val instanceDirPath =
+            getInstancesDirPath("Demo project") + instanceFileName.split("\\.".toRegex())
+                .toTypedArray()[0]
         File(instanceDirPath).mkdir()
-        FileUtils.copyFileFromAssets("instances/$instanceFileName", "$instanceDirPath/$instanceFileName")
+        FileUtils.copyFileFromAssets(
+            "instances/$instanceFileName",
+            "$instanceDirPath/$instanceFileName"
+        )
     }
 
     @Throws(IOException::class)
@@ -78,16 +100,30 @@ object StorageUtils {
     }
 
     @Throws(IOException::class)
-    private fun copyFormMediaFiles(formFilename: String, mediaFilePaths: List<String>, projectName: String) {
-        val mediaPathName = getFormsDirPath(projectName) + formFilename.replace(".xml", "") + org.odk.collect.android.utilities.FileUtils.MEDIA_SUFFIX + "/"
+    private fun copyFormMediaFiles(
+        formFilename: String,
+        mediaFilePaths: List<String>,
+        projectName: String
+    ) {
+        val mediaPathName = getFormsDirPath(projectName) + formFilename.replace(
+            ".xml",
+            ""
+        ) + org.odk.collect.android.utilities.FileUtils.MEDIA_SUFFIX + "/"
         org.odk.collect.android.utilities.FileUtils.checkMediaPath(File(mediaPathName))
         for (mediaFilePath in mediaFilePaths) {
-            FileUtils.copyFileFromAssets("media/$mediaFilePath", mediaPathName + getMediaFileName(mediaFilePath))
+            FileUtils.copyFileFromAssets(
+                "media/$mediaFilePath",
+                mediaPathName + getMediaFileName(mediaFilePath)
+            )
         }
     }
 
     private fun getMediaFileName(mediaFilePath: String): String {
-        return if (mediaFilePath.contains(File.separator)) mediaFilePath.substring(mediaFilePath.indexOf(File.separator) + 1) else mediaFilePath
+        return if (mediaFilePath.contains(File.separator)) mediaFilePath.substring(
+            mediaFilePath.indexOf(
+                File.separator
+            ) + 1
+        ) else mediaFilePath
     }
 
     /**
@@ -111,13 +147,16 @@ object StorageUtils {
     }
 
     private fun getProjectPath(projectName: String): String {
-        val externalFilesDir = ApplicationProvider.getApplicationContext<Application>().getExternalFilesDir(null)
+        val externalFilesDir =
+            ApplicationProvider.getApplicationContext<Application>().getExternalFilesDir(null)
         val projectsDirPath = externalFilesDir.toString() + File.separator + "projects"
         if (projectName == "Demo project") {
             return projectsDirPath + File.separator + "DEMO"
         } else {
             for (projectDir in File(projectsDirPath).listFiles()) {
-                if (Arrays.stream(projectDir.listFiles()).anyMatch { file: File -> file.name == projectName }) {
+                if (Arrays.stream(projectDir.listFiles())
+                        .anyMatch { file: File -> file.name == projectName }
+                ) {
                     return projectDir.absolutePath
                 }
             }

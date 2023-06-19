@@ -14,12 +14,16 @@
 
 package org.odk.collect.android.widgets;
 
+import static org.odk.collect.strings.format.LengthFormatterKt.formatLength;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.MediaMetadataRetriever;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.javarosa.core.model.data.IAnswerData;
 import org.javarosa.core.model.data.StringData;
@@ -43,10 +47,6 @@ import java.util.Locale;
 
 import timber.log.Timber;
 
-import static org.odk.collect.strings.format.LengthFormatterKt.formatLength;
-
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
 /**
  * Widget that allows user to take pictures, sounds or video and add them to the
  * form.
@@ -58,13 +58,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 @SuppressLint("ViewConstructor")
 public class AudioWidget extends QuestionWidget implements FileWidget, WidgetDataReceiver {
 
-    AudioWidgetAnswerBinding binding;
-
     private final AudioPlayer audioPlayer;
     private final RecordingRequester recordingRequester;
     private final QuestionMediaManager questionMediaManager;
     private final AudioFileRequester audioFileRequester;
-
+    AudioWidgetAnswerBinding binding;
     private boolean recordingInProgress;
     private String binaryName;
 

@@ -1,5 +1,10 @@
 package org.odk.collect.android.formentry.media;
 
+import static org.odk.collect.android.formentry.media.FormMediaUtils.getClipID;
+import static org.odk.collect.android.formentry.media.FormMediaUtils.getPlayableAudioURI;
+import static org.odk.collect.android.utilities.Appearances.NO_BUTTONS;
+import static java.util.Collections.emptyList;
+
 import org.javarosa.core.model.Constants;
 import org.javarosa.core.model.SelectChoice;
 import org.javarosa.core.reference.ReferenceManager;
@@ -10,11 +15,6 @@ import org.odk.collect.audioclips.Clip;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.Collections.emptyList;
-import static org.odk.collect.android.formentry.media.FormMediaUtils.getClipID;
-import static org.odk.collect.android.formentry.media.FormMediaUtils.getPlayableAudioURI;
-import static org.odk.collect.android.utilities.Appearances.NO_BUTTONS;
 
 public class PromptAutoplayer {
 

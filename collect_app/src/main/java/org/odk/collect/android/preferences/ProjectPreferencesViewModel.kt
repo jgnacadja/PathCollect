@@ -43,7 +43,8 @@ class ProjectPreferencesViewModel(adminPasswordProvider: AdminPasswordProvider) 
         _state.value = Consumable(State.NOT_PROTECTED)
     }
 
-    open class Factory(private val adminPasswordProvider: AdminPasswordProvider) : ViewModelProvider.Factory {
+    open class Factory(private val adminPasswordProvider: AdminPasswordProvider) :
+        ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return ProjectPreferencesViewModel(adminPasswordProvider) as T
         }

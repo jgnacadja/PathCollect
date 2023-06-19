@@ -45,14 +45,14 @@ import timber.log.Timber;
  */
 public class PropertyManager implements IPropertyManager {
 
-    public static final String PROPMGR_DEVICE_ID        = "deviceid";
-    public static final String PROPMGR_PHONE_NUMBER     = "phonenumber";
-    public static final String PROPMGR_USERNAME         = "username";
-    public static final String PROPMGR_EMAIL            = "email";
+    public static final String PROPMGR_DEVICE_ID = "deviceid";
+    public static final String PROPMGR_PHONE_NUMBER = "phonenumber";
+    public static final String PROPMGR_USERNAME = "username";
+    public static final String PROPMGR_EMAIL = "email";
 
-    public static final String SCHEME_USERNAME     = "username";
-    private static final String SCHEME_TEL          = "tel";
-    private static final String SCHEME_MAILTO       = "mailto";
+    public static final String SCHEME_USERNAME = "username";
+    private static final String SCHEME_TEL = "tel";
+    private static final String SCHEME_MAILTO = "mailto";
 
     private final Map<String, String> properties = new HashMap<>();
 
@@ -68,10 +68,6 @@ public class PropertyManager implements IPropertyManager {
     @Inject
     SettingsProvider settingsProvider;
 
-    public String getName() {
-        return "Property Manager";
-    }
-
     public PropertyManager() {
         Collect.getInstance().getComponent().inject(this);
 
@@ -85,19 +81,27 @@ public class PropertyManager implements IPropertyManager {
         this.settingsProvider = settingsProvider;
     }
 
+    public static String withUri(String name) {
+        return "uri:" + name;
+    }
+
+    public String getName() {
+        return "Property Manager";
+    }
+
     public PropertyManager reload() {
         try {
-            putProperty(PROPMGR_DEVICE_ID,     "",         deviceDetailsProvider.getDeviceId());
-            putProperty(PROPMGR_PHONE_NUMBER,  SCHEME_TEL,          deviceDetailsProvider.getLine1Number());
+            putProperty(PROPMGR_DEVICE_ID, "", deviceDetailsProvider.getDeviceId());
+            putProperty(PROPMGR_PHONE_NUMBER, SCHEME_TEL, deviceDetailsProvider.getLine1Number());
         } catch (SecurityException e) {
             Timber.i(e);
         }
 
         // User-defined properties. Will replace any above with the same PROPMGR_ name.
         Settings generalSettings = settingsProvider.getUnprotectedSettings();
-        initUserDefined(generalSettings, KEY_METADATA_USERNAME,    PROPMGR_USERNAME,      SCHEME_USERNAME);
-        initUserDefined(generalSettings, KEY_METADATA_PHONENUMBER, PROPMGR_PHONE_NUMBER,  SCHEME_TEL);
-        initUserDefined(generalSettings, KEY_METADATA_EMAIL,       PROPMGR_EMAIL,         SCHEME_MAILTO);
+        initUserDefined(generalSettings, KEY_METADATA_USERNAME, PROPMGR_USERNAME, SCHEME_USERNAME);
+        initUserDefined(generalSettings, KEY_METADATA_PHONENUMBER, PROPMGR_PHONE_NUMBER, SCHEME_TEL);
+        initUserDefined(generalSettings, KEY_METADATA_EMAIL, PROPMGR_EMAIL, SCHEME_MAILTO);
 
         // Use the server username by default if the metadata username is not defined
         if (getSingularProperty(PROPMGR_USERNAME) == null || getSingularProperty(PROPMGR_USERNAME).isEmpty()) {
@@ -109,10 +113,11 @@ public class PropertyManager implements IPropertyManager {
 
     /**
      * Initializes a property and its associated “with URI” property, from shared preferences.
+     *
      * @param generalSettings the preferences object to be used
-     * @param prefKey the preferences key
-     * @param propName the name of the property to set
-     * @param scheme the scheme for the associated “with URI” property
+     * @param prefKey         the preferences key
+     * @param propName        the name of the property to set
+     * @param scheme          the scheme for the associated “with URI” property
      */
     private void initUserDefined(Settings generalSettings, String prefKey,
                                  String propName, String scheme) {
@@ -144,6 +149,7 @@ public class PropertyManager implements IPropertyManager {
     /**
      * Dangerous properties are those which require reading phone state:
      * https://developer.android.com/reference/android/Manifest.permission#READ_PHONE_STATE
+     *
      * @param propertyName The name of the property
      * @return True if the given property is dangerous, false otherwise.
      */
@@ -166,9 +172,5 @@ public class PropertyManager implements IPropertyManager {
     @Override
     public List<IPropertyRules> getRules() {
         return null;
-    }
-
-    public static String withUri(String name) {
-        return "uri:" + name;
     }
 }

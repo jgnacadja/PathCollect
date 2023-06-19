@@ -3,17 +3,12 @@ package org.odk.collect.android.projects
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.pressBack
-import androidx.test.espresso.action.ViewActions.replaceText
-import androidx.test.espresso.action.ViewActions.scrollTo
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.matcher.IntentMatchers
 import androidx.test.espresso.matcher.RootMatchers.isDialog
-import androidx.test.espresso.matcher.ViewMatchers.isRoot
-import androidx.test.espresso.matcher.ViewMatchers.withHint
-import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
@@ -175,6 +170,14 @@ class ManualProjectCreatorDialogTest {
         launcherRule.launch(ManualProjectCreatorDialog::class.java)
         onView(withText(R.string.gdrive_configure)).inRoot(isDialog()).perform(scrollTo(), click())
         val context = ApplicationProvider.getApplicationContext<Context>()
-        assertThat(ShadowToast.getTextOfLatestToast(), `is`(context.getString(R.string.activity_not_found, context.getString(R.string.choose_account))))
+        assertThat(
+            ShadowToast.getTextOfLatestToast(),
+            `is`(
+                context.getString(
+                    R.string.activity_not_found,
+                    context.getString(R.string.choose_account)
+                )
+            )
+        )
     }
 }

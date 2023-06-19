@@ -164,6 +164,12 @@ public class OkHttpOpenRosaServerClientProvider implements OpenRosaServerClientP
             this.userAgent = userAgent;
         }
 
+        private static String getHeaderDate(Date currentTime) {
+            SimpleDateFormat dateFormatGmt = new SimpleDateFormat("E, dd MMM yyyy hh:mm:ss zz", Locale.US);
+            dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
+            return dateFormatGmt.format(currentTime);
+        }
+
         @Override
         public Response makeRequest(Request request, Date currentTime) throws IOException {
             return client.newCall(request.newBuilder()
@@ -171,12 +177,6 @@ public class OkHttpOpenRosaServerClientProvider implements OpenRosaServerClientP
                     .addHeader(OPEN_ROSA_VERSION_HEADER, OPEN_ROSA_VERSION)
                     .addHeader(DATE_HEADER, getHeaderDate(currentTime))
                     .build()).execute();
-        }
-
-        private static String getHeaderDate(Date currentTime) {
-            SimpleDateFormat dateFormatGmt = new SimpleDateFormat("E, dd MMM yyyy hh:mm:ss zz", Locale.US);
-            dateFormatGmt.setTimeZone(TimeZone.getTimeZone("GMT"));
-            return dateFormatGmt.format(currentTime);
         }
     }
 }

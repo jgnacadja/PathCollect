@@ -138,7 +138,10 @@ class AdminPasswordDialogFragmentTest {
             it.binding.checkBox.performClick()
             assertThat(it.binding.editText.inputType, `is`(InputType.TYPE_TEXT_VARIATION_PASSWORD))
             it.binding.checkBox.performClick()
-            assertThat(it.binding.editText.inputType, `is`(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD))
+            assertThat(
+                it.binding.editText.inputType,
+                `is`(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
+            )
         }
     }
 }

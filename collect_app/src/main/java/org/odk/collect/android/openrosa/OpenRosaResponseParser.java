@@ -10,5 +10,6 @@ import java.util.List;
 public interface OpenRosaResponseParser {
 
     @Nullable List<FormListItem> parseFormList(Document document);
+
     @Nullable List<MediaFile> parseManifest(Document document);
 }

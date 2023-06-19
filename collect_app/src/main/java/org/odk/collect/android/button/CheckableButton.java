@@ -4,9 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.Button;
 import android.widget.Checkable;
-import android.widget.ImageButton;
-
-import com.google.android.material.button.MaterialButton;
 
 /**
  * A checkable button which has two states (selected and unselected)
@@ -14,9 +11,8 @@ import com.google.android.material.button.MaterialButton;
  * @author liangfeizc
  */
 public class CheckableButton extends Button implements Checkable {
+    private static final int[] CHECKED_STATE_LIST = new int[]{android.R.attr.state_checked};
     private boolean mChecked;
-    private static final int[] CHECKED_STATE_LIST = new int[] { android.R.attr.state_checked };
-
     private boolean mBroadcasting;
 
     private OnCheckedChangeListener mOnCheckedChangeListener;
@@ -43,6 +39,10 @@ public class CheckableButton extends Button implements Checkable {
         return drawableState;
     }
 
+    @Override
+    public boolean isChecked() {
+        return mChecked;
+    }
 
     /**
      * <p>Changes the checked state of this button.</p>
@@ -71,11 +71,6 @@ public class CheckableButton extends Button implements Checkable {
     }
 
     @Override
-    public boolean isChecked() {
-        return mChecked;
-    }
-
-    @Override
     public void toggle() {
         setChecked(!mChecked);
     }
@@ -99,7 +94,7 @@ public class CheckableButton extends Button implements Checkable {
          * Called when the checked state of a checkable button has changed.
          *
          * @param buttonView The checkable button view whose state has changed.
-         * @param isChecked The new checked state of buttonView.
+         * @param isChecked  The new checked state of buttonView.
          */
         void onCheckedChanged(CheckableButton buttonView, boolean isChecked);
     }

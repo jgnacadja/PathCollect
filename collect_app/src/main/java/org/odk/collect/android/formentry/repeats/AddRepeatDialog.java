@@ -1,20 +1,21 @@
 package org.odk.collect.android.formentry.repeats;
 
+import static android.content.DialogInterface.BUTTON_NEGATIVE;
+import static android.content.DialogInterface.BUTTON_POSITIVE;
+
 import android.content.Context;
 import android.content.DialogInterface;
 
 import androidx.appcompat.app.AlertDialog;
 
-import org.odk.collect.android.R;
-
-import static android.content.DialogInterface.BUTTON_NEGATIVE;
-import static android.content.DialogInterface.BUTTON_POSITIVE;
-
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import org.odk.collect.android.R;
 
 public class AddRepeatDialog {
 
-    private AddRepeatDialog() {}
+    private AddRepeatDialog() {
+    }
 
     public static void show(Context context, String groupLabel, Listener listener) {
         AlertDialog alertDialog = new MaterialAlertDialogBuilder(context).create();

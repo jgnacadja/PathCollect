@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2017 Nafundi
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright 2017 Nafundi
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -23,72 +22,72 @@ limitations under the License.
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="?colorError"
-            android:textStyle="bold"
-            android:textAlignment="center"
             android:padding="5dp"
-            android:text="@string/reset_app_state_warning" />
+            android:text="@string/reset_app_state_warning"
+            android:textAlignment="center"
+            android:textColor="?colorError"
+            android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/preferences"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/reset_settings"
-            android:padding="5dp"
-            android:button="@null"
-            app:buttonCompat="@null"
             android:background="?android:attr/selectableItemBackground"
-            android:drawableEnd="?android:attr/listChoiceIndicatorMultiple" />
+            android:button="@null"
+            android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+            android:padding="5dp"
+            android:text="@string/reset_settings"
+            app:buttonCompat="@null" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/instances"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/reset_saved_forms"
-            android:padding="5dp"
-            android:button="@null"
-            app:buttonCompat="@null"
             android:background="?android:attr/selectableItemBackground"
-            android:drawableEnd="?android:attr/listChoiceIndicatorMultiple" />
+            android:button="@null"
+            android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+            android:padding="5dp"
+            android:text="@string/reset_saved_forms"
+            app:buttonCompat="@null" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/forms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/reset_blank_forms"
-            android:padding="5dp"
-            android:button="@null"
-            app:buttonCompat="@null"
             android:background="?android:attr/selectableItemBackground"
-            android:drawableEnd="?android:attr/listChoiceIndicatorMultiple" />
+            android:button="@null"
+            android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+            android:padding="5dp"
+            android:text="@string/reset_blank_forms"
+            app:buttonCompat="@null" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cache"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/reset_cache"
-            android:padding="5dp"
-            android:button="@null"
-            app:buttonCompat="@null"
             android:background="?android:attr/selectableItemBackground"
-            android:drawableEnd="?android:attr/listChoiceIndicatorMultiple" />
+            android:button="@null"
+            android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+            android:padding="5dp"
+            android:text="@string/reset_cache"
+            app:buttonCompat="@null" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/layers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/reset_layers"
-            android:padding="5dp"
-            android:button="@null"
-            app:buttonCompat="@null"
             android:background="?android:attr/selectableItemBackground"
-            android:drawableEnd="?android:attr/listChoiceIndicatorMultiple" />
+            android:button="@null"
+            android:drawableEnd="?android:attr/listChoiceIndicatorMultiple"
+            android:padding="5dp"
+            android:text="@string/reset_layers"
+            app:buttonCompat="@null" />
 
     </LinearLayout>
 </ScrollView>

@@ -14,6 +14,9 @@
 
 package org.odk.collect.android.tasks;
 
+import static org.odk.collect.android.analytics.AnalyticsEvents.ENCRYPT_SUBMISSION;
+import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
+
 import android.content.ContentValues;
 import android.net.Uri;
 import android.util.Pair;
@@ -42,9 +45,9 @@ import org.odk.collect.android.analytics.AnalyticsUtils;
 import org.odk.collect.android.application.Collect;
 import org.odk.collect.android.database.instances.DatabaseInstanceColumns;
 import org.odk.collect.android.exception.EncryptionException;
+import org.odk.collect.android.external.InstancesContract;
 import org.odk.collect.android.formentry.saving.FormSaver;
 import org.odk.collect.android.javarosawrapper.FormController;
-import org.odk.collect.android.external.InstancesContract;
 import org.odk.collect.android.storage.StoragePathProvider;
 import org.odk.collect.android.storage.StorageSubdirectory;
 import org.odk.collect.android.utilities.ContentUriHelper;
@@ -66,9 +69,6 @@ import java.util.ArrayList;
 
 import timber.log.Timber;
 
-import static org.odk.collect.android.analytics.AnalyticsEvents.ENCRYPT_SUBMISSION;
-import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
-
 /**
  * Background task for loading a form.
  *
@@ -77,20 +77,19 @@ import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLoc
  */
 public class SaveFormToDisk {
 
-    private final boolean saveAndExit;
-    private final boolean shouldFinalize;
-    private final FormController formController;
-    private final MediaUtils mediaUtils;
-    private Uri uri;
-    private String instanceName;
-    private final Analytics analytics;
-    private final ArrayList<String> tempFiles;
-    private final String currentProjectId;
-
     public static final int SAVED = 500;
     public static final int SAVE_ERROR = 501;
     public static final int SAVED_AND_EXIT = 504;
     public static final int ENCRYPTION_ERROR = 505;
+    private final boolean saveAndExit;
+    private final boolean shouldFinalize;
+    private final FormController formController;
+    private final MediaUtils mediaUtils;
+    private final Analytics analytics;
+    private final ArrayList<String> tempFiles;
+    private final String currentProjectId;
+    private Uri uri;
+    private String instanceName;
 
     public SaveFormToDisk(FormController formController, MediaUtils mediaUtils, boolean saveAndExit, boolean shouldFinalize, String updatedName,
                           Uri uri, Analytics analytics, ArrayList<String> tempFiles, String currentProjectId) {
@@ -103,6 +102,105 @@ public class SaveFormToDisk {
         this.analytics = analytics;
         this.tempFiles = tempFiles;
         this.currentProjectId = currentProjectId;
+    }
+
+    /**
+     * Return the savepoint file for a given instance.
+     */
+    static File getSavepointFile(String instanceName) {
+        File tempDir = new File(new StoragePathProvider().getOdkDirPath(StorageSubdirectory.CACHE));
+        return new File(tempDir, instanceName + ".save");
+    }
+
+    /**
+     * Return the formIndex file for a given instance.
+     */
+    public static File getFormIndexFile(String instanceName) {
+        File tempDir = new File(new StoragePathProvider().getOdkDirPath(StorageSubdirectory.CACHE));
+        return new File(tempDir, instanceName + ".index");
+    }
+
+    public static void removeSavepointFiles(String instanceName) {
+        File savepointFile = getSavepointFile(instanceName);
+        File formIndexFile = getFormIndexFile(instanceName);
+        FileUtils.deleteAndReport(savepointFile);
+        FileUtils.deleteAndReport(formIndexFile);
+    }
+
+    /**
+     * Returns the XPath path of the geo feature used for mapping that corresponds to the blank form
+     * that the instance with the given uri is an instance of.
+     */
+    private static String getGeometryXpathForInstance(Instance instance) {
+        Form form = new FormsRepositoryProvider(Collect.getInstance()).get().getLatestByFormIdAndVersion(instance.getFormId(), instance.getFormVersion());
+        if (form != null) {
+            return form.getGeometryXpath();
+        } else {
+            return null;
+        }
+    }
+
+    public static void manageFilesAfterSavingEncryptedForm(File instanceXml, File submissionXml) throws IOException {
+        // AT THIS POINT, there is no going back.  We are committed
+        // to returning "success" (true) whether or not we can
+        // rename "submission.xml" to instanceXml and whether or
+        // not we can delete the plaintext media files.
+        //
+        // Handle the fall-out for a failed "submission.xml" rename
+        // in the InstanceUploaderTask task.  Leftover plaintext media
+        // files are handled during form deletion.
+
+        // delete the restore Xml file.
+        if (!instanceXml.delete()) {
+            String msg = "Error deleting " + instanceXml.getAbsolutePath()
+                    + " prior to renaming submission.xml";
+            Timber.e(new Error(msg));
+            throw new IOException(msg);
+        }
+
+        // rename the submission.xml to be the instanceXml
+        if (!submissionXml.renameTo(instanceXml)) {
+            String msg =
+                    "Error renaming submission.xml to " + instanceXml.getAbsolutePath();
+            Timber.e(new Error(msg));
+            throw new IOException(msg);
+        }
+    }
+
+    /**
+     * Writes payload contents to the disk.
+     */
+    static void writeFile(ByteArrayPayload payload, String path) throws IOException {
+        File file = new File(path);
+        if (file.exists() && !file.delete()) {
+            throw new IOException("Cannot overwrite " + path + ". Perhaps the file is locked?");
+        }
+
+        // create data stream
+        InputStream is = payload.getPayloadStream();
+        int len = (int) payload.getLength();
+
+        // read from data stream
+        byte[] data = new byte[len];
+        int read = is.read(data, 0, len);
+        if (read > 0) {
+            // Make sure the directory path to this file exists.
+            file.getParentFile().mkdirs();
+            // write xml file
+            RandomAccessFile randomAccessFile = null;
+            try {
+                randomAccessFile = new RandomAccessFile(file, "rws");
+                randomAccessFile.write(data);
+            } finally {
+                if (randomAccessFile != null) {
+                    try {
+                        randomAccessFile.close();
+                    } catch (IOException e) {
+                        Timber.e(e, "Error closing RandomAccessFile: %s", path);
+                    }
+                }
+            }
+        }
     }
 
     @Nullable
@@ -302,29 +400,6 @@ public class SaveFormToDisk {
     }
 
     /**
-     * Return the savepoint file for a given instance.
-     */
-    static File getSavepointFile(String instanceName) {
-        File tempDir = new File(new StoragePathProvider().getOdkDirPath(StorageSubdirectory.CACHE));
-        return new File(tempDir, instanceName + ".save");
-    }
-
-    /**
-     * Return the formIndex file for a given instance.
-     */
-    public static File getFormIndexFile(String instanceName) {
-        File tempDir = new File(new StoragePathProvider().getOdkDirPath(StorageSubdirectory.CACHE));
-        return new File(tempDir, instanceName + ".index");
-    }
-
-    public static void removeSavepointFiles(String instanceName) {
-        File savepointFile = getSavepointFile(instanceName);
-        File formIndexFile = getFormIndexFile(instanceName);
-        FileUtils.deleteAndReport(savepointFile);
-        FileUtils.deleteAndReport(formIndexFile);
-    }
-
-    /**
      * Write's the data to the sdcard, and updates the instances content provider.
      * In theory we don't have to write to disk, and this is where you'd add
      * other methods.
@@ -440,82 +515,6 @@ public class SaveFormToDisk {
 
                 if (!EncryptionUtils.deletePlaintextFiles(instanceXml, new File(lastSavedPath))) {
                     Timber.e(new Error("Error deleting plaintext files for " + instanceXml.getAbsolutePath()));
-                }
-            }
-        }
-    }
-
-    /**
-     * Returns the XPath path of the geo feature used for mapping that corresponds to the blank form
-     * that the instance with the given uri is an instance of.
-     */
-    private static String getGeometryXpathForInstance(Instance instance) {
-        Form form = new FormsRepositoryProvider(Collect.getInstance()).get().getLatestByFormIdAndVersion(instance.getFormId(), instance.getFormVersion());
-        if (form != null) {
-            return form.getGeometryXpath();
-        } else {
-            return null;
-        }
-    }
-
-    public static void manageFilesAfterSavingEncryptedForm(File instanceXml, File submissionXml) throws IOException {
-        // AT THIS POINT, there is no going back.  We are committed
-        // to returning "success" (true) whether or not we can
-        // rename "submission.xml" to instanceXml and whether or
-        // not we can delete the plaintext media files.
-        //
-        // Handle the fall-out for a failed "submission.xml" rename
-        // in the InstanceUploaderTask task.  Leftover plaintext media
-        // files are handled during form deletion.
-
-        // delete the restore Xml file.
-        if (!instanceXml.delete()) {
-            String msg = "Error deleting " + instanceXml.getAbsolutePath()
-                    + " prior to renaming submission.xml";
-            Timber.e(new Error(msg));
-            throw new IOException(msg);
-        }
-
-        // rename the submission.xml to be the instanceXml
-        if (!submissionXml.renameTo(instanceXml)) {
-            String msg =
-                    "Error renaming submission.xml to " + instanceXml.getAbsolutePath();
-            Timber.e(new Error(msg));
-            throw new IOException(msg);
-        }
-    }
-
-    /**
-     * Writes payload contents to the disk.
-     */
-    static void writeFile(ByteArrayPayload payload, String path) throws IOException {
-        File file = new File(path);
-        if (file.exists() && !file.delete()) {
-            throw new IOException("Cannot overwrite " + path + ". Perhaps the file is locked?");
-        }
-
-        // create data stream
-        InputStream is = payload.getPayloadStream();
-        int len = (int) payload.getLength();
-
-        // read from data stream
-        byte[] data = new byte[len];
-        int read = is.read(data, 0, len);
-        if (read > 0) {
-            // Make sure the directory path to this file exists.
-            file.getParentFile().mkdirs();
-            // write xml file
-            RandomAccessFile randomAccessFile = null;
-            try {
-                randomAccessFile = new RandomAccessFile(file, "rws");
-                randomAccessFile.write(data);
-            } finally {
-                if (randomAccessFile != null) {
-                    try {
-                        randomAccessFile.close();
-                    } catch (IOException e) {
-                        Timber.e(e, "Error closing RandomAccessFile: %s", path);
-                    }
                 }
             }
         }

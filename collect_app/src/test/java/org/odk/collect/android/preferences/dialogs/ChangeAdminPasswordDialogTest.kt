@@ -100,7 +100,10 @@ class ChangeAdminPasswordDialogTest {
             it.binding.pwdField.setText("password")
             (it.dialog as AlertDialog?)!!.getButton(AlertDialog.BUTTON_POSITIVE).performClick()
             RobolectricHelpers.runLooper()
-            assertThat(settingsProvider.getProtectedSettings().getString(ProtectedProjectKeys.KEY_ADMIN_PW), `is`("password"))
+            assertThat(
+                settingsProvider.getProtectedSettings()
+                    .getString(ProtectedProjectKeys.KEY_ADMIN_PW), `is`("password")
+            )
         }
     }
 
@@ -112,7 +115,10 @@ class ChangeAdminPasswordDialogTest {
             it.binding.pwdField.setText("password")
             (it.dialog as AlertDialog?)!!.getButton(AlertDialog.BUTTON_NEGATIVE).performClick()
             RobolectricHelpers.runLooper()
-            assertThat(settingsProvider.getProtectedSettings().getString(ProtectedProjectKeys.KEY_ADMIN_PW), `is`(""))
+            assertThat(
+                settingsProvider.getProtectedSettings()
+                    .getString(ProtectedProjectKeys.KEY_ADMIN_PW), `is`("")
+            )
         }
     }
 
@@ -159,7 +165,10 @@ class ChangeAdminPasswordDialogTest {
             it.binding.checkBox2.performClick()
             assertThat(it.binding.pwdField.inputType, `is`(InputType.TYPE_TEXT_VARIATION_PASSWORD))
             it.binding.checkBox2.performClick()
-            assertThat(it.binding.pwdField.inputType, `is`(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD))
+            assertThat(
+                it.binding.pwdField.inputType,
+                `is`(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
+            )
         }
     }
 }

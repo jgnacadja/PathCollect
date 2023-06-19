@@ -43,6 +43,39 @@ public class ServerFormDownloader implements FormDownloader {
         this.formMetadataParser = formMetadataParser;
     }
 
+    @NotNull
+    private static String getFormFileName(String formName, String formsDirPath) {
+        String formattedFormName = FormNameUtils.formatFilenameFromFormName(formName);
+        String fileName = formattedFormName + ".xml";
+        int i = 2;
+        while (new File(formsDirPath + File.separator + fileName).exists()) {
+            fileName = formattedFormName + "_" + i + ".xml";
+            i++;
+        }
+        return fileName;
+    }
+
+    private static String validateHash(String hash) {
+        return hash == null || hash.isEmpty() ? null : hash;
+    }
+
+    private static void moveMediaFiles(String tempMediaPath, File formMediaPath) throws IOException {
+        File tempMediaFolder = new File(tempMediaPath);
+        File[] mediaFiles = tempMediaFolder.listFiles();
+
+        if (mediaFiles != null && mediaFiles.length != 0) {
+            for (File mediaFile : mediaFiles) {
+                try {
+                    org.apache.commons.io.FileUtils.copyFileToDirectory(mediaFile, formMediaPath);
+                } catch (IllegalArgumentException e) {
+                    // This can happen if copyFileToDirectory is pointed at a file instead of a dir
+                    throw new IOException(e);
+                }
+
+            }
+        }
+    }
+
     @Override
     public void downloadForm(ServerFormDetails form, @Nullable ProgressReporter progressReporter, @Nullable Supplier<Boolean> isCancelled) throws FormDownloadException {
         Form formOnDevice;
@@ -249,39 +282,6 @@ public class ServerFormDownloader implements FormDownloader {
             return new FileResult(new File(form.getFormFilePath()), false);
         } else {
             return new FileResult(tempFormFile, true);
-        }
-    }
-
-    @NotNull
-    private static String getFormFileName(String formName, String formsDirPath) {
-        String formattedFormName = FormNameUtils.formatFilenameFromFormName(formName);
-        String fileName = formattedFormName + ".xml";
-        int i = 2;
-        while (new File(formsDirPath + File.separator + fileName).exists()) {
-            fileName = formattedFormName + "_" + i + ".xml";
-            i++;
-        }
-        return fileName;
-    }
-
-    private static String validateHash(String hash) {
-        return hash == null || hash.isEmpty() ? null : hash;
-    }
-
-    private static void moveMediaFiles(String tempMediaPath, File formMediaPath) throws IOException {
-        File tempMediaFolder = new File(tempMediaPath);
-        File[] mediaFiles = tempMediaFolder.listFiles();
-
-        if (mediaFiles != null && mediaFiles.length != 0) {
-            for (File mediaFile : mediaFiles) {
-                try {
-                    org.apache.commons.io.FileUtils.copyFileToDirectory(mediaFile, formMediaPath);
-                } catch (IllegalArgumentException e) {
-                    // This can happen if copyFileToDirectory is pointed at a file instead of a dir
-                    throw new IOException(e);
-                }
-
-            }
         }
     }
 

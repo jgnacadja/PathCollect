@@ -32,16 +32,16 @@ public abstract class ExternalDataHandlerBase implements ExternalDataHandler {
 
     private ExternalDataManager externalDataManager;
 
+    protected ExternalDataHandlerBase(ExternalDataManager externalDataManager) {
+        this.setExternalDataManager(externalDataManager);
+    }
+
     public ExternalDataManager getExternalDataManager() {
         return externalDataManager;
     }
 
     public void setExternalDataManager(ExternalDataManager externalDataManager) {
         this.externalDataManager = externalDataManager;
-    }
-
-    protected ExternalDataHandlerBase(ExternalDataManager externalDataManager) {
-        this.setExternalDataManager(externalDataManager);
     }
 
     /**

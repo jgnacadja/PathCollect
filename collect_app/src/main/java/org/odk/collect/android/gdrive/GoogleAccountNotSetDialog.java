@@ -1,14 +1,14 @@
 package org.odk.collect.android.gdrive;
 
+import static org.odk.collect.android.utilities.DialogUtils.showDialog;
+
 import android.app.Activity;
 
 import androidx.appcompat.app.AlertDialog;
 
-import org.odk.collect.android.R;
-
-import static org.odk.collect.android.utilities.DialogUtils.showDialog;
-
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import org.odk.collect.android.R;
 
 public final class GoogleAccountNotSetDialog {
 

@@ -1,5 +1,14 @@
 package org.odk.collect.android.formentry.backgroundlocation;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import android.location.Location;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -13,18 +22,9 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.odk.collect.android.formentry.audit.AuditConfig;
-import org.odk.collect.testshared.LocationTestUtils;
-import org.odk.collect.android.location.client.FakeLocationClient;
 import org.odk.collect.android.formentry.audit.AuditEvent;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
-import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import org.odk.collect.android.location.client.FakeLocationClient;
+import org.odk.collect.testshared.LocationTestUtils;
 
 @RunWith(AndroidJUnit4.class)
 public class BackgroundLocationManagerTest {

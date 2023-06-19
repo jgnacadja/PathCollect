@@ -112,7 +112,10 @@ class ProjectSettingsDialog : DialogFragment() {
     private fun switchProject(project: Project.Saved) {
         currentProjectViewModel.setCurrentProject(project)
 
-        ActivityUtils.startActivityAndCloseAllOthers(requireActivity(), MainMenuActivity::class.java)
+        ActivityUtils.startActivityAndCloseAllOthers(
+            requireActivity(),
+            MainMenuActivity::class.java
+        )
         ToastUtils.showLongToast(
             requireContext(),
             getString(R.string.switched_project, project.name)

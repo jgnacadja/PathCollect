@@ -16,11 +16,6 @@ package org.odk.collect.android.fragments;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.CursorLoader;
-import androidx.loader.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +24,12 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.utilities.SnackbarUtils;
@@ -42,6 +42,7 @@ public abstract class FileManagerFragment extends AppListFragment implements Loa
     protected ProgressBar progressBar;
     protected boolean canHideProgressBar;
     private boolean progressBarVisible;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -139,9 +140,9 @@ public abstract class FileManagerFragment extends AppListFragment implements Loa
         progressBarVisible = false;
     }
 
-    protected void checkToogle(){
+    protected void checkToogle() {
         int iconId = R.drawable.ic_square;
-        if(getListView().getCheckedItemCount() == getListView().getCount()){
+        if (getListView().getCheckedItemCount() == getListView().getCount()) {
             iconId = R.drawable.ic_checked;
         }
         toggleButton.setImageResource(iconId);

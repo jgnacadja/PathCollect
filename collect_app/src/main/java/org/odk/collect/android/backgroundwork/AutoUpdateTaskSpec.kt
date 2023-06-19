@@ -33,7 +33,11 @@ class AutoUpdateTaskSpec : TaskSpec {
     override val backoffPolicy: BackoffPolicy? = null
     override val backoffDelay: Long? = null
 
-    override fun getTask(context: Context, inputData: Map<String, String>, isLastUniqueExecution: Boolean): Supplier<Boolean> {
+    override fun getTask(
+        context: Context,
+        inputData: Map<String, String>,
+        isLastUniqueExecution: Boolean
+    ): Supplier<Boolean> {
         DaggerUtils.getComponent(context).inject(this)
         return Supplier {
             val projectId = inputData[TaskData.DATA_PROJECT_ID]

@@ -13,8 +13,6 @@
  */
 package org.odk.collect.android.javarosawrapper
 
-import java.lang.Exception
-
 /**
  * Thrown when there is an issue in form design. This type of error requires the form designer to
  * modify the form.

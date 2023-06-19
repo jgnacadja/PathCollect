@@ -22,13 +22,13 @@ public class GoogleAccountCredentialGoogleAccountPicker implements GoogleAccount
     }
 
     @Override
-    public Account[] getAllAccounts() {
-        return googleAccountCredential.getAllAccounts();
+    public void setSelectedAccountName(String accountName) {
+        googleAccountCredential.setSelectedAccountName(accountName);
     }
 
     @Override
-    public void setSelectedAccountName(String accountName) {
-        googleAccountCredential.setSelectedAccountName(accountName);
+    public Account[] getAllAccounts() {
+        return googleAccountCredential.getAllAccounts();
     }
 
     @Override

@@ -15,21 +15,20 @@ import timber.log.Timber;
 /**
  * Provides location updates for a set timeout period. Once a request is initiated, updates are only
  * provided if the new reading has higher accuracy.
- *
+ * <p>
  * New requests reset the timeout and the highest accuracy.
  */
 public class MaxAccuracyWithinTimeoutLocationClientWrapper implements LocationClient.LocationClientListener, LocationListener {
+    private static final LocationClient.Priority DEFAULT_PRIORITY = LocationClient.Priority.PRIORITY_HIGH_ACCURACY;
     private final LocationClient locationClient;
-
     private final LocationListener listener;
-
-    /** The highest accuracy reading seen since the current request was started. Null if no updates
-     * have been received since the current request was made. **/
+    private final Handler timerHandler;
+    /**
+     * The highest accuracy reading seen since the current request was started. Null if no updates
+     * have been received since the current request was made.
+     **/
     @Nullable
     private Location highestAccuracyReading;
-    private final Handler timerHandler;
-
-    private static final LocationClient.Priority DEFAULT_PRIORITY = LocationClient.Priority.PRIORITY_HIGH_ACCURACY;
 
     public MaxAccuracyWithinTimeoutLocationClientWrapper(LocationClient locationClient, LocationListener listener) {
         this.locationClient = locationClient;
@@ -90,7 +89,7 @@ public class MaxAccuracyWithinTimeoutLocationClientWrapper implements LocationCl
      * - it is the first location update
      * - it is more accurate than the most accurate one seen yet
      * - it is the first location update with accuracy
-     *
+     * <p>
      * Otherwise, the new location reading is discarded.
      */
     @Override

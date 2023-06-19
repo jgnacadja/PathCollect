@@ -91,6 +91,26 @@ public class FieldListUpdateTest {
             .around(new RecordedIntentsRule())
             .around(rule);
 
+    public static ViewAction setRating(final float rating) {
+        return new ViewAction() {
+            @Override
+            public Matcher<View> getConstraints() {
+                return ViewMatchers.isAssignableFrom(RatingBar.class);
+            }
+
+            @Override
+            public String getDescription() {
+                return "Custom view action to set rating on RatingBar";
+            }
+
+            @Override
+            public void perform(UiController uiController, View view) {
+                RatingBar ratingBar = (RatingBar) view;
+                ratingBar.setRating(rating);
+            }
+        };
+    }
+
     @Test
     public void relevanceChangeAtEnd_ShouldToggleLastWidgetVisibility() {
         jumpToGroupWithText("Single relevance at end");
@@ -184,7 +204,6 @@ public class FieldListUpdateTest {
         onView(withIndex(withClassName(endsWith("EditText")), 0)).perform(replaceText(""));
         onView(withText("Please don't use your calculator, !")).check(matches(isDisplayed()));
     }
-
 
     @Test
     public void changeInValueUsedInOtherField_ShouldChangeValue() {
@@ -394,25 +413,5 @@ public class FieldListUpdateTest {
         onView(withId(R.id.list)).perform(RecyclerViewActions.scrollTo(hasDescendant(withText(text))));
 
         onView(allOf(isDisplayed(), withText(text))).perform(click());
-    }
-
-    public static ViewAction setRating(final float rating) {
-        return new ViewAction() {
-            @Override
-            public Matcher<View> getConstraints() {
-                return ViewMatchers.isAssignableFrom(RatingBar.class);
-            }
-
-            @Override
-            public String getDescription() {
-                return "Custom view action to set rating on RatingBar";
-            }
-
-            @Override
-            public void perform(UiController uiController, View view) {
-                RatingBar ratingBar = (RatingBar) view;
-                ratingBar.setRating(rating);
-            }
-        };
     }
 }

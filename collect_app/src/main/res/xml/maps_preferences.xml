@@ -14,11 +14,11 @@
         app:allowDividerBelow="false"
         app:iconSpaceReserved="false">
         <org.odk.collect.android.preferences.CaptionedListPreference
-            android:key="reference_layer"
-            android:title="@string/layer_data_file"
             android:dialogTitle="@string/layer_data_file"
+            android:key="reference_layer"
             android:negativeButtonText="@string/cancel"
             android:positiveButtonText="@string/ok"
+            android:title="@string/layer_data_file"
             app:iconSpaceReserved="false" />
     </PreferenceCategory>
 </PreferenceScreen>

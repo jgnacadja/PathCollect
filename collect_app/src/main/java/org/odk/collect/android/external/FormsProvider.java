@@ -77,21 +77,23 @@ public class FormsProvider extends ContentProvider {
 
     private static final UriMatcher URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
 
+    static {
+        URI_MATCHER.addURI(FormsContract.AUTHORITY, "forms", FORMS);
+        URI_MATCHER.addURI(FormsContract.AUTHORITY, "forms/#", FORM_ID);
+        // Only available for query and type
+        URI_MATCHER.addURI(FormsContract.AUTHORITY, "newest_forms_by_form_id", NEWEST_FORMS_BY_FORM_ID);
+    }
+
     @Inject
     FormsRepositoryProvider formsRepositoryProvider;
-
     @Inject
     InstancesRepositoryProvider instancesRepositoryProvider;
-
     @Inject
     FastExternalItemsetsRepository fastExternalItemsetsRepository;
-
     @Inject
     StoragePathProvider storagePathProvider;
-
     @Inject
     ProjectsRepository projectsRepository;
-
     @Inject
     SettingsProvider settingsProvider;
 
@@ -316,12 +318,5 @@ public class FormsProvider extends ContentProvider {
 
     private void logServerEvent(String projectId, String event) {
         AnalyticsUtils.logServerEvent(event, settingsProvider.getUnprotectedSettings(projectId));
-    }
-
-    static {
-        URI_MATCHER.addURI(FormsContract.AUTHORITY, "forms", FORMS);
-        URI_MATCHER.addURI(FormsContract.AUTHORITY, "forms/#", FORM_ID);
-        // Only available for query and type
-        URI_MATCHER.addURI(FormsContract.AUTHORITY, "newest_forms_by_form_id", NEWEST_FORMS_BY_FORM_ID);
     }
 }
