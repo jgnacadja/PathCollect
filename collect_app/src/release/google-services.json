@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "976781055209",
+    "firebase_url": "https://dssc-fcm-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "dssc-fcm",
     "storage_bucket": "dssc-fcm.appspot.com"
   },
