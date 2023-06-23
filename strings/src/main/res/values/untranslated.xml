@@ -43,7 +43,7 @@ the specific language governing permissions and limitations under the License. -
     <string name="form_selected" translatable="false">(%s)Formulaire sélectionné(s)</string>
     <string name="text_dots" translatable="false">%s...</string>
     <string name="title_avertissement" translatable="false">AVERTISSEMENTS</string>
-    <string name="message_avertissement" translatable="false">Pour accéder à la fonctionnalité de gestion de cycle menstruel, vous serez redirigée vers l\'application mobile Periodical. Si vous n\'avez pas encore l\'application Periodical installée, vous serez redirigée vers Google Play Store pour l\'installer.\n\nCette application utilise la méthode Knaus-Ogino, une méthode de contraception naturelle, pour déterminer les jours fertiles, mais elle présente un taux d\'échec supérieur à 14%. L\'abstinence sexuelle est la seule méthode de contraception efficace à 100% pour éviter complètement une grossesse.\n\nBien qu\'elle donne une indication sur les jours non fertiles, il n’est pas recommandé d’utiliser cette application pour éviter une grossesse. Les utilisatrices doivent s\'adresser aux formations sanitaires habilitées si elles ont besoin de conseils sur l\'utilisation de cette application avec des méthodes contraceptives modernes.\n\nLes informations fournies par cette application ne doivent pas être considérées comme des conseils médicaux.\n\nL’objectif principal de cette application est d\'aider les femmes à suivre leur cycle et santé menstruel.\n\nAfin d\'éviter tout risque de préjudice ou d\'erreur de diagnostic, il est fortement recommandé aux utilisatrices de ne pas tenter de s\'auto-diagnostiquer ou de s\'auto-traiter. En cas de symptômes ou d\'irrégularités identifiés, elles doivent consulter des formations sanitaires habilitées</string>
+    <string name="message_avertissement" translatable="false">Pour accéder à la fonctionnalité de gestion de cycle menstruel, vous serez redirigée vers l\'application mobile CycleBeads. Si vous n\'avez pas encore l\'application CycleBeads installée, vous serez redirigée vers Google Play Store pour l\'installer.\n\nCette application utilise la méthode Knaus-Ogino, une méthode de contraception naturelle, pour déterminer les jours fertiles, mais elle présente un taux d\'échec supérieur à 14%. L\'abstinence sexuelle est la seule méthode de contraception efficace à 100% pour éviter complètement une grossesse.\n\nBien qu\'elle donne une indication sur les jours non fertiles, il n’est pas recommandé d’utiliser cette application pour éviter une grossesse. Les utilisatrices doivent s\'adresser aux formations sanitaires habilitées si elles ont besoin de conseils sur l\'utilisation de cette application avec des méthodes contraceptives modernes.\n\nLes informations fournies par cette application ne doivent pas être considérées comme des conseils médicaux.\n\nL’objectif principal de cette application est d\'aider les femmes à suivre leur cycle et santé menstruel.\n\nAfin d\'éviter tout risque de préjudice ou d\'erreur de diagnostic, il est fortement recommandé aux utilisatrices de ne pas tenter de s\'auto-diagnostiquer ou de s\'auto-traiter. En cas de symptômes ou d\'irrégularités identifiés, elles doivent consulter des formations sanitaires habilitées</string>
     <string name="periodical_app_link" translatable="false">https://play.google.com/store/apps/details?id=de.arnowelzel.android.periodical</string>
 
     <!--
@@ -52,7 +52,6 @@ the specific language governing permissions and limitations under the License. -
     ##############################################
     -->
     <string name="empty_accuracy" translatable="false">--</string>
-    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string name="dssc_kc_server_url" translatable="false">http://kc.kobo.dev.rintio.com</string>
     <string name="dssc_username" translatable="false">molympio</string>
     <string name="dssc_password" translatable="false">m@l@n@@2020$</string>
@@ -60,7 +59,9 @@ the specific language governing permissions and limitations under the License. -
     <string name="upload_answer" translatable="false">Envoie du Formulaire</string>
     <string name="alert_msg" translatable="false">Les informations sur ce forum viennent d\’utilisatrices de produits et services de planification familiale et ne sont pas vérifiées par des professionnels de la santé. Il est dangereux de se fier seulement à ces informations pour prendre des décisions médicales. Ainsi, il est recommandé de rechercher plusieurs sources et de consulter une formation sanitaire habilitée avant de prendre une décision.</string>
     <string name="periodical_app_package_name" translatable="false">com.cyclebeads</string>
+
     <string name="api_gateway_url" translatable="false">https://store.prod.rintio.com/</string>
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string name="fcm_message" translatable="false">Plateforme DSSC</string>
     <string name="show_notifications" translatable="false">Notifications</string>
     <string name="fcm_api_key" translatable="false">6p0orr3s91:r97s0sop414q2_p0929os42n161no329noo3_1o9r7nq363p2r6sr1qqr7584</string>

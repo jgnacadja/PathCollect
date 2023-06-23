@@ -75,7 +75,7 @@ android {
         applicationId('com.rintio.dssc.collect')
         minSdkVersion Versions.android_min_sdk
         targetSdkVersion Versions.android_target_sdk
-        versionCode 4143
+        versionCode 4138
         versionName getVersionName()
         testInstrumentationRunner('androidx.test.runner.AndroidJUnitRunner')
         multiDexEnabled true
@@ -375,11 +375,8 @@ dependencies {
 
     // Add the dependency for the Realtime Database library
     // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation Dependencies.firebase_database
-
     // Firebase Cloud Messaging (Java)
     implementation Dependencies.firebase_messaging
-
     // Import the Firebase BoM (see: https://firebase.google.com/docs/android/learn-more#bom)
     implementation platform(Dependencies.firebase_bom)
 
