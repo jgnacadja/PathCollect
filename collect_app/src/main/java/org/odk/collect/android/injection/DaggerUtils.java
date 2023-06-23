@@ -22,8 +22,7 @@ import org.odk.collect.android.injection.config.AppDependencyComponent;
 
 public final class DaggerUtils {
 
-    private DaggerUtils() {
-    }
+    private DaggerUtils() {}
 
     public static AppDependencyComponent getComponent(Activity activity) {
         return ((Collect) activity.getApplication()).getComponent();

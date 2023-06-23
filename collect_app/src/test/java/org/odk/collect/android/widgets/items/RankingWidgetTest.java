@@ -1,10 +1,5 @@
 package org.odk.collect.android.widgets.items;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.when;
-import static java.util.Arrays.asList;
-
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,6 +17,11 @@ import org.odk.collect.android.widgets.base.SelectWidgetTest;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.Arrays.asList;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.when;
 
 public class RankingWidgetTest extends SelectWidgetTest<RankingWidget, MultipleItemsData> {
 

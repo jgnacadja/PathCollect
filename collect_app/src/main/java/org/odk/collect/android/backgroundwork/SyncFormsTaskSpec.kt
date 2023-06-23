@@ -18,11 +18,7 @@ class SyncFormsTaskSpec : TaskSpec {
     override val backoffPolicy = BackoffPolicy.EXPONENTIAL
     override val backoffDelay: Long = 60_000
 
-    override fun getTask(
-        context: Context,
-        inputData: Map<String, String>,
-        isLastUniqueExecution: Boolean
-    ): Supplier<Boolean> {
+    override fun getTask(context: Context, inputData: Map<String, String>, isLastUniqueExecution: Boolean): Supplier<Boolean> {
         DaggerUtils.getComponent(context).inject(this)
         return Supplier {
             val projectId = inputData[TaskData.DATA_PROJECT_ID]

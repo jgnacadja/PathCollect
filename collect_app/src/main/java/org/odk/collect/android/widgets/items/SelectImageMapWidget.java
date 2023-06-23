@@ -69,11 +69,12 @@ public abstract class SelectImageMapWidget extends QuestionWidget {
                     "        <script src=\"file:///android_asset/svg_map_helper.js\"></script>\n" +
                     "    </body>\n" +
                     "</html>";
-    final List<SelectChoice> items;
     private final boolean isSingleSelect;
     protected List<Selection> selections = new ArrayList<>();
-    SelectImageMapWidgetAnswerBinding binding;
     private String imageMapFilePath;
+    SelectImageMapWidgetAnswerBinding binding;
+
+    final List<SelectChoice> items;
 
     public SelectImageMapWidget(Context context, QuestionDetails prompt) {
         super(context, prompt);

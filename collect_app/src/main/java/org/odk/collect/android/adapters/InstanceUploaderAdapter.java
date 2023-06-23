@@ -1,8 +1,5 @@
 package org.odk.collect.android.adapters;
 
-import static org.odk.collect.forms.instances.Instance.STATUS_SUBMISSION_FAILED;
-import static org.odk.collect.forms.instances.Instance.STATUS_SUBMITTED;
-
 import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
@@ -15,12 +12,15 @@ import android.widget.TextView;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.application.Collect;
-import org.odk.collect.android.database.instances.DatabaseInstanceColumns;
 import org.odk.collect.android.external.InstanceProvider;
+import org.odk.collect.android.database.instances.DatabaseInstanceColumns;
 
 import java.util.Date;
 
 import io.reactivex.disposables.CompositeDisposable;
+
+import static org.odk.collect.forms.instances.Instance.STATUS_SUBMISSION_FAILED;
+import static org.odk.collect.forms.instances.Instance.STATUS_SUBMITTED;
 
 public class InstanceUploaderAdapter extends CursorAdapter {
     private final CompositeDisposable compositeDisposable;

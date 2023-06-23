@@ -16,10 +16,6 @@
 
 package org.odk.collect.android.instrumented.utilities;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
-
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -35,6 +31,10 @@ import org.odk.collect.android.utilities.CustomSQLiteQueryExecutor;
 
 import java.io.File;
 import java.io.IOException;
+
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class CustomSQLiteQueryExecutionTest {

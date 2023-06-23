@@ -1,12 +1,5 @@
 package org.odk.collect.android.widgets.items;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.mockValueChangedListener;
-import static java.util.Arrays.asList;
-
 import android.view.View;
 import android.widget.TextView;
 
@@ -25,6 +18,13 @@ import org.odk.collect.android.widgets.support.FakeWaitingForDataRegistry;
 
 import java.util.Collections;
 import java.util.List;
+
+import static java.util.Arrays.asList;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.mockValueChangedListener;
 
 public class SelectMultiMinimalWidgetTest extends GeneralSelectMultiWidgetTest<SelectMultiMinimalWidget> {
 

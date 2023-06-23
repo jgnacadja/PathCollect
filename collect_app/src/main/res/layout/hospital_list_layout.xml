@@ -3,15 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <include layout="@layout/app_bar_with_progress_bar_layout" />
+    <include layout="@layout/app_bar_with_progress_bar_layout"/>
 
     <TextView
         style="@style/TextAppearance.Collect.Subtitle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin"
         android:layout_marginTop="@dimen/margin"
+        android:layout_marginStart="@dimen/margin"
         android:ellipsize="end"
         android:maxLines="2"
         android:text="@string/formation_title"
@@ -21,7 +20,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/hospitalRecyclerView"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical" />
+        android:layout_height="match_parent" />
 </LinearLayout>

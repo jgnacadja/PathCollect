@@ -20,7 +20,7 @@ import javax.inject.Named;
  * Ensures that background location tracking continues throughout the activity lifecycle. Builds
  * location-related dependency, receives activity events from #{@link FormEntryActivity} and
  * forwards those events to the location manager.
- * <p>
+ *
  * The current goal is to keep this component very thin but this may evolve as it is involved in
  * managing more model objects.
  */

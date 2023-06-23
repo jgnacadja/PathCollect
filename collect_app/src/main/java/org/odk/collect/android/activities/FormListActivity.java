@@ -1,11 +1,11 @@
 package org.odk.collect.android.activities;
 
+import org.odk.collect.android.database.forms.DatabaseFormColumns;
+
 import static org.odk.collect.android.utilities.ApplicationConstants.SortingOrder.BY_DATE_ASC;
 import static org.odk.collect.android.utilities.ApplicationConstants.SortingOrder.BY_DATE_DESC;
 import static org.odk.collect.android.utilities.ApplicationConstants.SortingOrder.BY_NAME_ASC;
 import static org.odk.collect.android.utilities.ApplicationConstants.SortingOrder.BY_NAME_DESC;
-
-import org.odk.collect.android.database.forms.DatabaseFormColumns;
 
 public abstract class FormListActivity extends AppListActivity {
 

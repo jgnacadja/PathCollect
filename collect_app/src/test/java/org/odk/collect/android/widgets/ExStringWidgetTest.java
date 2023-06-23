@@ -1,7 +1,5 @@
 package org.odk.collect.android.widgets;
 
-import static org.mockito.Mockito.when;
-
 import androidx.annotation.NonNull;
 
 import net.bytebuddy.utility.RandomString;
@@ -12,6 +10,8 @@ import org.odk.collect.android.formentry.questions.QuestionDetails;
 import org.odk.collect.android.widgets.base.GeneralExStringWidgetTest;
 import org.odk.collect.android.widgets.support.FakeWaitingForDataRegistry;
 import org.odk.collect.android.widgets.utilities.StringRequester;
+
+import static org.mockito.Mockito.when;
 
 /**
  * @author James Knight

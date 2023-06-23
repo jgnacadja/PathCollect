@@ -1,12 +1,5 @@
 package org.odk.collect.android.instrumented.tasks;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.notNullValue;
-
-import android.app.Application;
-
-import androidx.test.core.app.ApplicationProvider;
-
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
@@ -26,13 +19,22 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.notNullValue;
+
+import android.app.Application;
+
+import androidx.test.core.app.ApplicationProvider;
+
 public class FormLoaderTaskTest {
+
+    private final StoragePathProvider storagePathProvider = new StoragePathProvider();
 
     private static final String SECONDARY_INSTANCE_EXTERNAL_CSV_FORM = "external_csv_form.xml";
     private static final String SIMPLE_SEARCH_EXTERNAL_CSV_FORM = "simple-search-external-csv.xml";
     private static final String SIMPLE_SEARCH_EXTERNAL_CSV_FILE = "simple-search-external-csv-fruits.csv";
     private static final String SIMPLE_SEARCH_EXTERNAL_DB_FILE = "simple-search-external-csv-fruits.db";
-    private final StoragePathProvider storagePathProvider = new StoragePathProvider();
+
     @Rule
     public RuleChain copyFormChain = TestRuleChain.chain()
             .around(new RunnableRule(() -> {

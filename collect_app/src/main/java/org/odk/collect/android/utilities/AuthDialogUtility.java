@@ -16,13 +16,12 @@
 
 package org.odk.collect.android.utilities;
 
+import androidx.appcompat.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-
-import androidx.appcompat.app.AlertDialog;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -38,14 +37,16 @@ import javax.inject.Inject;
  */
 public class AuthDialogUtility {
 
+    private EditText username;
+    private EditText password;
+
+    private String customUsername;
+    private String customPassword;
+
     @Inject
     WebCredentialsUtils webCredentialsUtils;
     @Inject
     PropertyManager propertyManager;
-    private EditText username;
-    private EditText password;
-    private String customUsername;
-    private String customPassword;
 
     public AuthDialogUtility() {
         Collect.getInstance().getComponent().inject(this);

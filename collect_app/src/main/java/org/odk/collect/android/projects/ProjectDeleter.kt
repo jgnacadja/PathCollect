@@ -37,16 +37,12 @@ class ProjectDeleter(
     }
 
     private fun runningBackgroundJobsDetected(): Boolean {
-        val acquiredFormLock =
-            changeLockProvider.getFormLock(currentProjectProvider.getCurrentProject().uuid)
-                .withLock { acquiredLock ->
-                    acquiredLock
-                }
-        val acquiredInstanceLock =
-            changeLockProvider.getInstanceLock(currentProjectProvider.getCurrentProject().uuid)
-                .withLock { acquiredLock ->
-                    acquiredLock
-                }
+        val acquiredFormLock = changeLockProvider.getFormLock(currentProjectProvider.getCurrentProject().uuid).withLock { acquiredLock ->
+            acquiredLock
+        }
+        val acquiredInstanceLock = changeLockProvider.getInstanceLock(currentProjectProvider.getCurrentProject().uuid).withLock { acquiredLock ->
+            acquiredLock
+        }
 
         return !acquiredFormLock || !acquiredInstanceLock
     }

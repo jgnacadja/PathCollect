@@ -42,34 +42,15 @@ class FormsUploadResultInterpreterTest {
 
     @Test
     fun `When all forms uploaded successfully getFailures() should return an empty list`() {
-        assertThat(
-            FormsUploadResultInterpreter.getFailures(resultWithoutErrors, context).size,
-            `is`(0)
-        )
+        assertThat(FormsUploadResultInterpreter.getFailures(resultWithoutErrors, context).size, `is`(0))
     }
 
     @Test
     fun `When not all forms uploaded successfully getFailures() should return list of failures`() {
-        assertThat(
-            FormsUploadResultInterpreter.getFailures(resultWithOneError, context).size,
-            `is`(1)
-        )
-        assertThat(
-            FormsUploadResultInterpreter.getFailures(resultWithOneError, context)[0].title,
-            `is`("Instance 2")
-        )
-        assertThat(
-            FormsUploadResultInterpreter.getFailures(
-                resultWithOneError,
-                context
-            )[0].secondaryText, `is`(context.getString(R.string.form_details, "2", "2"))
-        )
-        assertThat(
-            FormsUploadResultInterpreter.getFailures(
-                resultWithOneError,
-                context
-            )[0].supportingText, `is`("Something went wrong!")
-        )
+        assertThat(FormsUploadResultInterpreter.getFailures(resultWithOneError, context).size, `is`(1))
+        assertThat(FormsUploadResultInterpreter.getFailures(resultWithOneError, context)[0].title, `is`("Instance 2"))
+        assertThat(FormsUploadResultInterpreter.getFailures(resultWithOneError, context)[0].secondaryText, `is`(context.getString(R.string.form_details, "2", "2")))
+        assertThat(FormsUploadResultInterpreter.getFailures(resultWithOneError, context)[0].supportingText, `is`("Something went wrong!"))
     }
 
     @Test
@@ -84,17 +65,11 @@ class FormsUploadResultInterpreterTest {
 
     @Test
     fun `When all forms uploaded successfully allFormsUploadedSuccessfully() should return true`() {
-        assertThat(
-            FormsUploadResultInterpreter.allFormsUploadedSuccessfully(resultWithoutErrors),
-            `is`(true)
-        )
+        assertThat(FormsUploadResultInterpreter.allFormsUploadedSuccessfully(resultWithoutErrors), `is`(true))
     }
 
     @Test
     fun `When not all forms uploaded successfully allFormsUploadedSuccessfully() should return false`() {
-        assertThat(
-            FormsUploadResultInterpreter.allFormsUploadedSuccessfully(resultWithOneError),
-            `is`(false)
-        )
+        assertThat(FormsUploadResultInterpreter.allFormsUploadedSuccessfully(resultWithOneError), `is`(false))
     }
 }

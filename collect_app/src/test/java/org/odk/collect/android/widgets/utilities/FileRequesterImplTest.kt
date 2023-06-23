@@ -19,6 +19,7 @@ import org.odk.collect.android.utilities.ExternalAppIntentProvider
 import org.odk.collect.androidshared.system.IntentLauncher
 import org.robolectric.Robolectric
 import org.robolectric.shadows.ShadowToast
+import java.lang.Exception
 
 @RunWith(AndroidJUnit4::class)
 class FileRequesterImplTest {

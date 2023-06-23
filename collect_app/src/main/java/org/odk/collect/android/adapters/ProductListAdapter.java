@@ -35,7 +35,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
         Hospital.Prestation prestation = prestations.get(position);
         holder.name.setText(prestation.getName());
-        holder.price.setText(prestation.getPrice() + " cfa");
+        holder.price.setText(prestation.getPrice()+" cfa");
         int availabilityIcon = prestation.getAvailable() ? R.drawable.ic_available : R.drawable.ic_unavailable;
         holder.availability.setImageResource(availabilityIcon);
         holder.availability.setTag(availabilityIcon);

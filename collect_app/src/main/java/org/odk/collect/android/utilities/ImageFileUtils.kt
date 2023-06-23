@@ -9,7 +9,8 @@ import timber.log.Timber
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.util.*
+import java.lang.Exception
+import java.util.Locale
 import kotlin.math.ceil
 
 object ImageFileUtils {
@@ -30,13 +31,7 @@ object ImageFileUtils {
             else CompressFormat.JPEG
         try {
             if (bitmap != null) {
-                FileOutputStream(path).use { out ->
-                    bitmap.compress(
-                        compressFormat,
-                        IMAGE_COMPRESS_QUALITY,
-                        out
-                    )
-                }
+                FileOutputStream(path).use { out -> bitmap.compress(compressFormat, IMAGE_COMPRESS_QUALITY, out) }
             }
         } catch (e: Exception) {
             Timber.e(e)
@@ -147,12 +142,12 @@ object ImageFileUtils {
         }
         if (sourceFileExif == null ||
             !EXIF_ORIENTATION_ROTATIONS.contains(
-                sourceFileExif
-                    .getAttributeInt(
-                        ExifInterface.TAG_ORIENTATION,
-                        ExifInterface.ORIENTATION_UNDEFINED
-                    )
-            )
+                    sourceFileExif
+                        .getAttributeInt(
+                                ExifInterface.TAG_ORIENTATION,
+                                ExifInterface.ORIENTATION_UNDEFINED
+                            )
+                )
         ) {
             // Source Image doesn't have any EXIF Rotations, so a normal file copy will suffice
             FileUtils.copyFile(sourceFile, destFile)
@@ -188,8 +183,7 @@ object ImageFileUtils {
             val matrix = Matrix()
             matrix.postRotate(degrees.toFloat())
             if (image != null) {
-                imageToSave =
-                    Bitmap.createBitmap(image, 0, 0, image.width, image.height, matrix, true)
+                imageToSave = Bitmap.createBitmap(image, 0, 0, image.width, image.height, matrix, true)
             }
         } catch (e: OutOfMemoryError) {
             Timber.w(e)

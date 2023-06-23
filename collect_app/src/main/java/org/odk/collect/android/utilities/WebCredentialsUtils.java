@@ -20,15 +20,12 @@ import javax.inject.Singleton;
 @Singleton
 public class WebCredentialsUtils {
 
-    private static final Map<String, HttpCredentialsInterface> HOST_CREDENTIALS = new HashMap<>();
     private final Settings generalSettings;
+
+    private static final Map<String, HttpCredentialsInterface> HOST_CREDENTIALS = new HashMap<>();
 
     public WebCredentialsUtils(Settings generalSettings) {
         this.generalSettings = generalSettings;
-    }
-
-    static void clearAllCredentials() {
-        HOST_CREDENTIALS.clear();
     }
 
     public void saveCredentials(@NonNull String url, @NonNull String username, @NonNull String password) {
@@ -52,7 +49,7 @@ public class WebCredentialsUtils {
      * activity that does some work requiring authentication is called with intent extras specifying
      * credentials. Once the work is done, the temporary credentials are cleared so that different
      * ones can be used on a later request.
-     * <p>
+     *
      * TODO: is this necessary in all cases it's used? Maybe it's needed if we want to be able to do
      * an authenticated call followed by an anonymous one but even then, can't we pass in null
      * username and password if the intent extras aren't set?
@@ -66,6 +63,10 @@ public class WebCredentialsUtils {
         if (host != null) {
             HOST_CREDENTIALS.remove(host);
         }
+    }
+
+    static void clearAllCredentials() {
+        HOST_CREDENTIALS.clear();
     }
 
     public String getServerUrlFromPreferences() {

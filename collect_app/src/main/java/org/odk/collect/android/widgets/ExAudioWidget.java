@@ -33,11 +33,13 @@ import timber.log.Timber;
 
 @SuppressLint("ViewConstructor")
 public class ExAudioWidget extends QuestionWidget implements FileWidget, WidgetDataReceiver {
+    ExAudioWidgetAnswerBinding binding;
+
     private final AudioPlayer audioPlayer;
     private final WaitingForDataRegistry waitingForDataRegistry;
     private final QuestionMediaManager questionMediaManager;
     private final FileRequester fileRequester;
-    ExAudioWidgetAnswerBinding binding;
+
     File answerFile;
 
     public ExAudioWidget(Context context, QuestionDetails questionDetails, QuestionMediaManager questionMediaManager,

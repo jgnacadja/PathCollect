@@ -1,10 +1,5 @@
 package org.odk.collect.android.widgets.items;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.when;
-import static java.util.Arrays.asList;
-
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -17,6 +12,11 @@ import org.odk.collect.android.R;
 import org.odk.collect.android.formentry.questions.QuestionDetails;
 import org.odk.collect.android.support.MockFormEntryPromptBuilder;
 import org.odk.collect.android.widgets.base.GeneralSelectMultiWidgetTest;
+
+import static java.util.Arrays.asList;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.when;
 
 /**
  * @author James Knight

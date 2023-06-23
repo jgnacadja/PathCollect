@@ -44,18 +44,25 @@ import java.util.Collection;
 import javax.inject.Inject;
 
 public class ShowQRCodeFragment extends Fragment {
+    ShowQrcodeFragmentBinding binding;
+
     private final boolean[] checkedItems = {true, true};
     private final boolean[] passwordsSet = {true, true};
+
+    private AlertDialog dialog;
+
     @Inject
     public QRCodeGenerator qrCodeGenerator;
+
     @Inject
     public SettingsProvider settingsProvider;
+
     @Inject
     public Scheduler scheduler;
-    ShowQrcodeFragmentBinding binding;
+
     @Inject
     AppConfigurationGenerator appConfigurationGenerator;
-    private AlertDialog dialog;
+
     private QRCodeViewModel qrCodeViewModel;
 
     @Nullable

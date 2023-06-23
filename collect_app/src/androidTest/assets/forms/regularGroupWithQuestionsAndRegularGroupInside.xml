@@ -1,18 +1,18 @@
-<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns="http://www.w3.org/2002/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jr="http://openrosa.org/javarosa">
     <h:head>
         <h:title>regularGroupWithQuestionsAndRegularGroupInside</h:title>
         <model>
             <instance>
                 <data id="build_form6_1517307617">
                     <meta>
-                        <instanceID />
+                        <instanceID/>
                     </meta>
                     <G1>
-                        <T1 />
+                        <T1/>
                         <G2>
-                            <T2 />
+                            <T2/>
                         </G2>
-                        <T3 />
+                        <T3/>
                     </G1>
                 </data>
             </instance>
@@ -35,27 +35,26 @@
                     </text>
                 </translation>
             </itext>
-            <bind calculate="concat('uuid:', uuid())" nodeset="/data/meta/instanceID" readonly="true()"
-                type="string" />
-            <bind nodeset="/data/G1/T1" type="string" />
-            <bind nodeset="/data/G1/G2/T2" type="string" />
-            <bind nodeset="/data/G1/T3" type="string" />
+            <bind nodeset="/data/meta/instanceID" type="string" readonly="true()" calculate="concat('uuid:', uuid())"/>
+            <bind nodeset="/data/G1/T1" type="string"/>
+            <bind nodeset="/data/G1/G2/T2" type="string"/>
+            <bind nodeset="/data/G1/T3" type="string"/>
         </model>
     </h:head>
     <h:body>
         <group>
-            <label ref="jr:itext('/data/G1:label')" />
+            <label ref="jr:itext('/data/G1:label')"/>
             <input ref="/data/G1/T1">
-                <label ref="jr:itext('/data/G1/T1:label')" />
+                <label ref="jr:itext('/data/G1/T1:label')"/>
             </input>
             <group>
-                <label ref="jr:itext('/data/G1/G2:label')" />
+                <label ref="jr:itext('/data/G1/G2:label')"/>
                 <input ref="/data/G1/G2/T2">
-                    <label ref="jr:itext('/data/G1/G2/T2:label')" />
+                    <label ref="jr:itext('/data/G1/G2/T2:label')"/>
                 </input>
             </group>
             <input ref="/data/G1/T3">
-                <label ref="jr:itext('/data/G1/T3:label')" />
+                <label ref="jr:itext('/data/G1/T3:label')"/>
             </input>
         </group>
     </h:body>

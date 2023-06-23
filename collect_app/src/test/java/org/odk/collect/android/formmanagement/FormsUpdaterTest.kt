@@ -10,7 +10,13 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.verifyNoInteractions
-import org.mockito.kotlin.*
+import org.mockito.kotlin.any
+import org.mockito.kotlin.doAnswer
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.inOrder
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 import org.odk.collect.analytics.Analytics
 import org.odk.collect.android.external.FormsContract
 import org.odk.collect.android.formmanagement.matchexactly.SyncStatusAppState
@@ -71,9 +77,7 @@ class FormsUpdaterTest {
         )
 
         val projectDependencyProviderFactory = mock<ProjectDependencyProviderFactory>()
-        whenever(projectDependencyProviderFactory.create(project.uuid)).thenReturn(
-            projectDependencyProvider
-        )
+        whenever(projectDependencyProviderFactory.create(project.uuid)).thenReturn(projectDependencyProvider)
 
         updateManager = FormsUpdater(
             context = application,

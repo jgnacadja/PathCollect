@@ -1,9 +1,6 @@
 package org.odk.collect.android.widgets.base;
 
 import static junit.framework.Assert.assertTrue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.when;
 
 import android.view.View;
 
@@ -13,6 +10,10 @@ import org.odk.collect.android.R;
 import org.odk.collect.android.support.WidgetTestActivity;
 import org.odk.collect.android.widgets.ExStringWidget;
 import org.odk.collect.android.widgets.StringWidget;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.when;
 
 import java.util.List;
 
@@ -48,7 +49,7 @@ public abstract class GeneralExStringWidgetTest<W extends ExStringWidget, A exte
     /**
      * Unlike other widgets, String widgets that contain EditText should not be registered to
      * context menu as a whole because the Clipboard menu would be broken.
-     * <p>
+     *
      * https://github.com/getodk/collect/pull/4860
      */
     @Test

@@ -1,11 +1,5 @@
 package org.odk.collect.android.openrosa;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.isEmptyOrNullString;
-import static org.hamcrest.Matchers.startsWith;
-import static org.junit.Assert.assertThat;
-import static org.odk.collect.android.openrosa.support.MockWebServerHelper.buildRequest;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -20,13 +14,20 @@ import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
 
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.startsWith;
+import static org.junit.Assert.assertThat;
+import static org.odk.collect.android.openrosa.support.MockWebServerHelper.buildRequest;
+
 public abstract class OpenRosaServerClientProviderTest {
+
+    protected abstract OpenRosaServerClientProvider buildSubject();
+
+    private OpenRosaServerClientProvider subject;
 
     @Rule
     public MockWebServerRule mockWebServerRule = new MockWebServerRule();
-    private OpenRosaServerClientProvider subject;
-
-    protected abstract OpenRosaServerClientProvider buildSubject();
 
     @Before
     public void setup() {

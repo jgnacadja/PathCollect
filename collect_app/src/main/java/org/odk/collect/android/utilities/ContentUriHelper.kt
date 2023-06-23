@@ -31,19 +31,15 @@ object ContentUriHelper {
     @JvmStatic
     fun getFileExtensionFromUri(fileUri: Uri): String? {
         val mimeType = Collect.getInstance().contentResolver.getType(fileUri)
-        var extension =
-            if (fileUri.scheme != null && fileUri.scheme == ContentResolver.SCHEME_CONTENT) MimeTypeMap.getSingleton()
-                .getExtensionFromMimeType(mimeType) else MimeTypeMap.getFileExtensionFromUrl(fileUri.toString())
+        var extension = if (fileUri.scheme != null && fileUri.scheme == ContentResolver.SCHEME_CONTENT) MimeTypeMap.getSingleton().getExtensionFromMimeType(mimeType) else MimeTypeMap.getFileExtensionFromUrl(fileUri.toString())
         if (extension == null || extension.isEmpty()) {
-            Collect.getInstance().contentResolver.query(fileUri, null, null, null, null)
-                .use { cursor ->
-                    var name: String? = null
-                    if (cursor != null && cursor.moveToFirst()) {
-                        name =
-                            cursor.getString(cursor.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME))
-                    }
-                    extension = name?.substring(name.lastIndexOf('.') + 1) ?: ""
+            Collect.getInstance().contentResolver.query(fileUri, null, null, null, null).use { cursor ->
+                var name: String? = null
+                if (cursor != null && cursor.moveToFirst()) {
+                    name = cursor.getString(cursor.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME))
                 }
+                extension = name?.substring(name.lastIndexOf('.') + 1) ?: ""
+            }
         }
 
         if (extension!!.isEmpty() && mimeType != null && mimeType.contains("/")) {

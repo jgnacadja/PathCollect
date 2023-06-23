@@ -1,7 +1,5 @@
 package org.odk.collect.android.support;
 
-import static java.util.Arrays.asList;
-
 import com.google.api.client.http.FileContent;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.Permission;
@@ -21,6 +19,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static java.util.Arrays.asList;
 
 public class FakeGoogleApi implements DriveApi, SheetsApi {
 

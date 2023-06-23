@@ -17,6 +17,7 @@ package org.odk.collect.android.activities;
 import static org.odk.collect.android.javarosawrapper.FormIndexUtils.getPreviousLevel;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +26,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -64,51 +66,61 @@ import timber.log.Timber;
 public class FormHierarchyActivity extends CollectAbstractActivity implements DeleteRepeatDialogFragment.DeleteRepeatDialogCallback {
 
     public static final int RESULT_ADD_REPEAT = 2;
-    private static final String REPEAT_GROUP_PICKER_INDEX_KEY = "REPEAT_GROUP_PICKER_INDEX_KEY";
-    protected Button jumpBeginningButton;
-    protected Button jumpEndButton;
-    protected RecyclerView recyclerView;
-    @Inject
-    FormEntryViewModel.Factory formEntryViewModelFactory;
     /**
      * The questions and repeats at the current level.
      * Recreated every time {@link #refreshView()} is called.
      */
     private List<HierarchyElement> elementsToDisplay;
+
     /**
      * The label shown at the top of a hierarchy screen for a repeat instance. Set by
      * {@link #getCurrentPath()}.
      */
     private TextView groupPathTextView;
+
     /**
      * A ref to the current context group.
      * Useful to make sure we only render items inside of the group.
      */
     private TreeReference contextGroupRef;
+
     /**
      * If this index is non-null, we will render an intermediary "picker" view
      * showing the instances of the given repeat group.
      */
     private FormIndex repeatGroupPickerIndex;
+    private static final String REPEAT_GROUP_PICKER_INDEX_KEY = "REPEAT_GROUP_PICKER_INDEX_KEY";
+
     /**
      * The index of the question or the field list the FormController was set to when the hierarchy
      * was accessed. Used to jump the user back to where they were if applicable.
      */
     private FormIndex startIndex;
+
     /**
      * The index of the question that is being displayed in the hierarchy. On first launch, it is
      * the same as {@link #startIndex}. It can then become the index of a repeat instance.
      */
     private FormIndex currentIndex;
+
     /**
      * The index of the screen that is being displayed in the hierarchy
      * (either the root of the form or a repeat group).
      */
     private FormIndex screenIndex;
+
     /**
      * The toolbar menu.
      */
     private Menu optionsMenu;
+
+    protected Button jumpBeginningButton;
+    protected Button jumpEndButton;
+    protected RecyclerView recyclerView;
+
+    @Inject
+    FormEntryViewModel.Factory formEntryViewModelFactory;
+
     private FormEntryViewModel formEntryViewModel;
 
     @Override

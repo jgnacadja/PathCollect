@@ -11,12 +11,12 @@ import org.junit.Test;
 import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 import org.odk.collect.android.R;
+import org.odk.collect.android.support.rules.CollectTestRule;
 import org.odk.collect.android.support.TestDependencies;
+import org.odk.collect.android.support.rules.TestRuleChain;
 import org.odk.collect.android.support.pages.FormEntryPage;
 import org.odk.collect.android.support.pages.MainMenuPage;
 import org.odk.collect.android.support.pages.OkDialog;
-import org.odk.collect.android.support.rules.CollectTestRule;
-import org.odk.collect.android.support.rules.TestRuleChain;
 import org.odk.collect.audiorecorder.recording.AudioRecorder;
 import org.odk.collect.audiorecorder.testsupport.StubAudioRecorder;
 
@@ -26,8 +26,8 @@ import java.io.IOException;
 @RunWith(AndroidJUnit4.class)
 public class AudioRecordingTest {
 
-    public final CollectTestRule rule = new CollectTestRule();
     private StubAudioRecorder stubAudioRecorderViewModel;
+
     public final TestDependencies testDependencies = new TestDependencies() {
         @Override
         public AudioRecorder providesAudioRecorder(Application application) {
@@ -46,6 +46,9 @@ public class AudioRecordingTest {
             return stubAudioRecorderViewModel;
         }
     };
+
+    public final CollectTestRule rule = new CollectTestRule();
+
     @Rule
     public final RuleChain chain = TestRuleChain.chain(testDependencies)
             .around(rule);

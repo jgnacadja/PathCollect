@@ -9,7 +9,7 @@ import org.odk.collect.maps.MapConfigurator
 import org.odk.collect.maps.layers.ReferenceLayer
 import org.odk.collect.maps.layers.ReferenceLayerRepository
 import java.io.File
-import java.util.*
+import java.util.Collections
 
 object ReferenceLayerPreferenceUtils {
 

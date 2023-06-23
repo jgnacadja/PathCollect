@@ -1,21 +1,5 @@
 package org.odk.collect.android.widgets.utilities;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.odk.collect.android.logic.DatePickerDetails.DatePickerType.BIKRAM_SAMBAT;
-import static org.odk.collect.android.logic.DatePickerDetails.DatePickerType.COPTIC;
-import static org.odk.collect.android.logic.DatePickerDetails.DatePickerType.ETHIOPIAN;
-import static org.odk.collect.android.logic.DatePickerDetails.DatePickerType.GREGORIAN;
-import static org.odk.collect.android.logic.DatePickerDetails.DatePickerType.ISLAMIC;
-import static org.odk.collect.android.logic.DatePickerDetails.DatePickerType.MYANMAR;
-import static org.odk.collect.android.logic.DatePickerDetails.DatePickerType.PERSIAN;
-
-import android.app.DatePickerDialog;
-
 import androidx.fragment.app.DialogFragment;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
@@ -33,8 +17,24 @@ import org.odk.collect.android.fragments.dialogs.IslamicDatePickerDialog;
 import org.odk.collect.android.fragments.dialogs.MyanmarDatePickerDialog;
 import org.odk.collect.android.fragments.dialogs.PersianDatePickerDialog;
 import org.odk.collect.android.logic.DatePickerDetails;
-import org.odk.collect.android.support.WidgetTestActivity;
 import org.odk.collect.testshared.RobolectricHelpers;
+import org.odk.collect.android.support.WidgetTestActivity;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.odk.collect.android.logic.DatePickerDetails.DatePickerType.BIKRAM_SAMBAT;
+import static org.odk.collect.android.logic.DatePickerDetails.DatePickerType.COPTIC;
+import static org.odk.collect.android.logic.DatePickerDetails.DatePickerType.ETHIOPIAN;
+import static org.odk.collect.android.logic.DatePickerDetails.DatePickerType.GREGORIAN;
+import static org.odk.collect.android.logic.DatePickerDetails.DatePickerType.ISLAMIC;
+import static org.odk.collect.android.logic.DatePickerDetails.DatePickerType.MYANMAR;
+import static org.odk.collect.android.logic.DatePickerDetails.DatePickerType.PERSIAN;
+
+import android.app.DatePickerDialog;
 
 @RunWith(AndroidJUnit4.class)
 public class DateTimeWidgetUtilsTest {
@@ -81,7 +81,7 @@ public class DateTimeWidgetUtilsTest {
         datePickerDetails = mock(DatePickerDetails.class);
 
         when(datePickerDetails.getDatePickerType()).thenReturn(GREGORIAN);
-        date = new LocalDateTime().withYear(2010).withMonthOfYear(5).withDayOfMonth(12);
+        date  = new LocalDateTime().withYear(2010).withMonthOfYear(5).withDayOfMonth(12);
 
         gregorian = new DatePickerDetails(DatePickerDetails.DatePickerType.GREGORIAN, DatePickerDetails.DatePickerMode.CALENDAR);
         gregorianSpinners = new DatePickerDetails(DatePickerDetails.DatePickerType.GREGORIAN, DatePickerDetails.DatePickerMode.SPINNERS);

@@ -1,12 +1,5 @@
 package org.odk.collect.android.openrosa;
 
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.isEmptyString;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -18,15 +11,24 @@ import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
 
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.isEmptyString;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 public abstract class OpenRosaHeadRequestTest {
 
     static final String USER_AGENT = "Test Agent";
-    @Rule
-    public MockWebServerRule mockWebServerRule = new MockWebServerRule();
-    private MockWebServer mockWebServer;
-    private OpenRosaHttpInterface subject;
 
     protected abstract OpenRosaHttpInterface buildSubject();
+
+    @Rule
+    public MockWebServerRule mockWebServerRule = new MockWebServerRule();
+
+    private MockWebServer mockWebServer;
+    private OpenRosaHttpInterface subject;
 
     @Before
     public void setup() throws Exception {

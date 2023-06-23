@@ -35,16 +35,16 @@ import timber.log.Timber;
 
 /**
  * An Android-specific implementation of {@link SetGeopointAction}.
- * <p>
+ *
  * When the action is triggered, the first location available is saved and the highest-accuracy
  * reading within {@link #SECONDS_TO_CONSIDER_UPDATES} seconds will replace it. If no location is
  * available within {@link #SECONDS_TO_CONSIDER_UPDATES} seconds, no location is written.
- * <p>
+ *
  * It is possible for the same action to be triggered multiple times within
  * {@link #SECONDS_TO_CONSIDER_UPDATES} seconds if the action is triggered by a value changed
  * event, for example. In that case, the highest accuracy reading resets each time the action is
  * triggered.
- * <p>
+ *
  * In a repeat, the target node for subsequent times the action is triggered could be different than
  * the target node the first time it was triggered. In that case, only the current target node is
  * updated.
@@ -73,7 +73,7 @@ public class CollectSetGeopointAction extends SetGeopointAction implements Locat
         // Only start acquiring location if the Collect preference allows it and Google Play
         // Services are available. If it's not allowed, leave the target field blank.
         if (isBackgroundLocationEnabled()
-                && new PlayServicesChecker().isGooglePlayServicesAvailable(Collect.getInstance().getApplicationContext())) {
+            && new PlayServicesChecker().isGooglePlayServicesAvailable(Collect.getInstance().getApplicationContext())) {
             maxAccuracyLocationClient.requestLocationUpdates(SECONDS_TO_CONSIDER_UPDATES);
         }
     }
@@ -82,7 +82,7 @@ public class CollectSetGeopointAction extends SetGeopointAction implements Locat
      * When the location updates, if location updates are allowed, no location has been received yet
      * or the new location has a higher accuracy than previous locations, save the location in the
      * model, matching the target node's type.
-     * <p>
+     *
      * If the background location preference is toggled to disabled while location is being acquired,
      * the node receiving the location will be cleared.
      */

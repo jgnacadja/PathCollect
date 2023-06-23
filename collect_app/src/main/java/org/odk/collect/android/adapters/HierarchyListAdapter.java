@@ -52,10 +52,6 @@ public class HierarchyListAdapter extends RecyclerView.Adapter<HierarchyListAdap
         return hierarchyElements.size();
     }
 
-    public interface OnElementClickListener {
-        void onElementClick(HierarchyElement element);
-    }
-
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final HierarchyListItemView view;
@@ -69,5 +65,9 @@ public class HierarchyListAdapter extends RecyclerView.Adapter<HierarchyListAdap
             view.setElement(element);
             view.setOnClickListener(v -> listener.onElementClick(element));
         }
+    }
+
+    public interface OnElementClickListener {
+        void onElementClick(HierarchyElement element);
     }
 }

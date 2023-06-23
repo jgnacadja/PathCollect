@@ -1,27 +1,5 @@
 package org.odk.collect.android.external;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.hamcrest.Matchers.nullValue;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.DELETED_DATE;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.DISPLAY_NAME;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.GEOMETRY;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.GEOMETRY_TYPE;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.INSTANCE_FILE_PATH;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.JR_FORM_ID;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.JR_VERSION;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.LAST_STATUS_CHANGE_DATE;
-import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.STATUS;
-import static org.odk.collect.android.external.InstancesContract.CONTENT_ITEM_TYPE;
-import static org.odk.collect.android.external.InstancesContract.CONTENT_TYPE;
-import static org.odk.collect.android.external.InstancesContract.getUri;
-import static org.odk.collect.forms.instances.Instance.STATUS_COMPLETE;
-import static org.odk.collect.forms.instances.Instance.STATUS_INCOMPLETE;
-import static org.odk.collect.forms.instances.Instance.STATUS_SUBMITTED;
-
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -45,6 +23,28 @@ import org.odk.collect.projects.Project;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.DELETED_DATE;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.DISPLAY_NAME;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.GEOMETRY;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.GEOMETRY_TYPE;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.INSTANCE_FILE_PATH;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.JR_FORM_ID;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.JR_VERSION;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.LAST_STATUS_CHANGE_DATE;
+import static org.odk.collect.android.database.instances.DatabaseInstanceColumns.STATUS;
+import static org.odk.collect.android.external.InstancesContract.CONTENT_ITEM_TYPE;
+import static org.odk.collect.android.external.InstancesContract.CONTENT_TYPE;
+import static org.odk.collect.android.external.InstancesContract.getUri;
+import static org.odk.collect.forms.instances.Instance.STATUS_COMPLETE;
+import static org.odk.collect.forms.instances.Instance.STATUS_INCOMPLETE;
+import static org.odk.collect.forms.instances.Instance.STATUS_SUBMITTED;
 
 @RunWith(AndroidJUnit4.class)
 public class InstanceProviderTest {

@@ -24,16 +24,16 @@ public final class InstancesContract {
     public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.odk.instance";
     public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.odk.instance";
 
-    // This class cannot be instantiated
-    private InstancesContract() {
-    }
-
     public static Uri getUri(String projectId) {
         return Uri.parse("content://" + AUTHORITY + "/instances?projectId=" + projectId);
     }
 
     public static Uri getUri(String projectId, Long instanceDbId) {
         return Uri.parse("content://" + AUTHORITY + "/instances/" + instanceDbId + "?projectId=" + projectId);
+    }
+
+    // This class cannot be instantiated
+    private InstancesContract() {
     }
 
 }

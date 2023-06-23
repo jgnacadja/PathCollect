@@ -6,6 +6,8 @@ import org.odk.collect.android.R
 import org.odk.collect.android.utilities.ExternalAppIntentProvider
 import org.odk.collect.androidshared.system.IntentLauncher
 import org.odk.collect.androidshared.ui.ToastUtils.showLongToast
+import java.lang.Error
+import java.lang.Exception
 
 class FileRequesterImpl(
     val intentLauncher: IntentLauncher,

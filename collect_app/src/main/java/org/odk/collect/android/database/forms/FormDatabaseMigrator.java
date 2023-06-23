@@ -1,5 +1,11 @@
 package org.odk.collect.android.database.forms;
 
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+
+import org.odk.collect.android.database.DatabaseMigrator;
+import org.odk.collect.android.utilities.SQLiteUtils;
+
 import static android.provider.BaseColumns._ID;
 import static org.odk.collect.android.database.DatabaseConstants.FORMS_TABLE_NAME;
 import static org.odk.collect.android.database.forms.DatabaseFormColumns.AUTO_DELETE;
@@ -19,12 +25,6 @@ import static org.odk.collect.android.database.forms.DatabaseFormColumns.JR_VERS
 import static org.odk.collect.android.database.forms.DatabaseFormColumns.LANGUAGE;
 import static org.odk.collect.android.database.forms.DatabaseFormColumns.MD5_HASH;
 import static org.odk.collect.android.database.forms.DatabaseFormColumns.SUBMISSION_URI;
-
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-
-import org.odk.collect.android.database.DatabaseMigrator;
-import org.odk.collect.android.utilities.SQLiteUtils;
 
 public class FormDatabaseMigrator implements DatabaseMigrator {
 

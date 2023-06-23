@@ -14,24 +14,24 @@
 
 package org.odk.collect.android.tasks;
 
-import static org.odk.collect.android.analytics.AnalyticsEvents.SUBMISSION;
-import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
-
 import org.odk.collect.analytics.Analytics;
 import org.odk.collect.android.R;
 import org.odk.collect.android.application.Collect;
+import org.odk.collect.forms.instances.Instance;
 import org.odk.collect.android.logic.PropertyManager;
 import org.odk.collect.android.openrosa.OpenRosaHttpInterface;
+import org.odk.collect.android.upload.InstanceServerUploader;
 import org.odk.collect.android.upload.FormUploadAuthRequestedException;
 import org.odk.collect.android.upload.FormUploadException;
-import org.odk.collect.android.upload.InstanceServerUploader;
 import org.odk.collect.android.utilities.WebCredentialsUtils;
-import org.odk.collect.forms.instances.Instance;
 
 import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
+
+import static org.odk.collect.android.analytics.AnalyticsEvents.SUBMISSION;
+import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
 
 /**
  * Background task for uploading completed forms.
@@ -92,7 +92,7 @@ public class InstanceServerUploaderTask extends InstanceUploaderTask {
                         e.getMessage());
             }
         }
-
+        
         return outcome;
     }
 

@@ -29,27 +29,32 @@ import java.util.LinkedHashSet;
 
 public class FormDownloadListViewModel extends ViewModel {
 
+    private HashMap<String, ServerFormDetails> formDetailsByFormId = new HashMap<>();
+
     /**
      * List of forms from the formList response. The map acts like a DisplayableForm object with
      * values for each component that shows up in the form list UI. See
      * FormDownloadListActivity.formListDownloadingComplete for keys.
      */
     private final ArrayList<HashMap<String, String>> formList = new ArrayList<>();
+
     private final LinkedHashSet<String> selectedFormIds = new LinkedHashSet<>();
-    private final HashMap<String, Boolean> formResults = new HashMap<>();
-    private HashMap<String, ServerFormDetails> formDetailsByFormId = new HashMap<>();
+
     private String alertTitle;
     private String alertDialogMsg;
+
     private boolean alertShowing;
     private boolean cancelDialogShowing;
     private boolean shouldExit;
     private boolean loadingCanceled;
+
     // Variables used when the activity is called from an external app
     private boolean isDownloadOnlyMode;
     private String[] formIdsToDownload;
     private String url;
     private String username;
     private String password;
+    private final HashMap<String, Boolean> formResults = new HashMap<>();
 
     public HashMap<String, ServerFormDetails> getFormDetailsByFormId() {
         return formDetailsByFormId;

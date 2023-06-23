@@ -15,8 +15,7 @@ import org.odk.collect.settings.SettingsProvider
 import org.odk.collect.shared.settings.Settings
 
 class ProjectCreatorTest {
-    private val json =
-        "{\"general\":{\"server_url\":\"https:\\/\\/my-server.com\",\"username\":\"adam\",\"password\":\"1234\"},\"admin\":{}}"
+    private val json = "{\"general\":{\"server_url\":\"https:\\/\\/my-server.com\",\"username\":\"adam\",\"password\":\"1234\"},\"admin\":{}}"
     private val newProject = Project.New("my-server.com", "M", "#3e9fcc")
     private val savedProject = Project.Saved("1", newProject)
 

@@ -1,11 +1,5 @@
 package org.odk.collect.android.widgets.items;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.mockValueChangedListener;
-
 import android.text.InputType;
 import android.view.View;
 
@@ -20,6 +14,12 @@ import org.odk.collect.android.widgets.base.GeneralSelectOneWidgetTest;
 import org.odk.collect.android.widgets.support.FakeWaitingForDataRegistry;
 
 import java.util.Collections;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.odk.collect.android.widgets.support.QuestionWidgetHelpers.mockValueChangedListener;
 
 public class SelectOneMinimalWidgetTest extends GeneralSelectOneWidgetTest<SelectOneMinimalWidget> {
     @NonNull

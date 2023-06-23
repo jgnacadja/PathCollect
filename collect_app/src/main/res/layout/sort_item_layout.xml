@@ -22,8 +22,8 @@ the License.
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:orientation="horizontal"
-    android:paddingTop="8dp"
-    android:paddingBottom="8dp">
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/icon"

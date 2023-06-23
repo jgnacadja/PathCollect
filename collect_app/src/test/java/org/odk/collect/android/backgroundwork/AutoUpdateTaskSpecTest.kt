@@ -42,11 +42,7 @@ class AutoUpdateTaskSpecTest {
     @Test
     fun `calls checkForUpdates with project from tag`() {
         val autoUpdateTaskSpec = AutoUpdateTaskSpec()
-        val task = autoUpdateTaskSpec.getTask(
-            context,
-            mapOf(TaskData.DATA_PROJECT_ID to "projectId"),
-            true
-        )
+        val task = autoUpdateTaskSpec.getTask(context, mapOf(TaskData.DATA_PROJECT_ID to "projectId"), true)
 
         task.get()
         verify(formUpdateChecker).downloadUpdates("projectId")

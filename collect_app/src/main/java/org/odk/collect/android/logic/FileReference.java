@@ -28,7 +28,7 @@ public class FileReference implements Reference {
     private String getInternalURI() {
         return "/" + localPart + referencePart;
     }
-
+    
     @Override
     public boolean doesBinaryExist() {
         return new File(getInternalURI()).exists();

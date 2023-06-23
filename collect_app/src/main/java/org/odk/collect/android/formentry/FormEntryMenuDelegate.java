@@ -34,10 +34,11 @@ public class FormEntryMenuDelegate implements MenuDelegate, RequiresFormControll
     private final FormEntryViewModel formEntryViewModel;
     private final BackgroundLocationViewModel backgroundLocationViewModel;
     private final BackgroundAudioViewModel backgroundAudioViewModel;
-    private final AudioRecorder audioRecorder;
-    private final SettingsProvider settingsProvider;
+
     @Nullable
     private FormController formController;
+    private final AudioRecorder audioRecorder;
+    private final SettingsProvider settingsProvider;
 
     public FormEntryMenuDelegate(AppCompatActivity activity, AnswersProvider answersProvider,
                                  FormEntryViewModel formEntryViewModel, AudioRecorder audioRecorder,

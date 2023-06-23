@@ -45,8 +45,7 @@ class ProjectListItemViewTest {
         view.setupView(Project.New("SOM", "S", "#ffffff"), generalSettings)
         assertThat(view.findViewById<TextView>(R.id.project_icon_text).text, equalTo("S"))
 
-        val background =
-            view.findViewById<TextView>(R.id.project_icon_text).background as GradientDrawable
+        val background = view.findViewById<TextView>(R.id.project_icon_text).background as GradientDrawable
         assertThat(background.color!!.defaultColor, equalTo(Color.parseColor("#ffffff")))
     }
 
@@ -59,10 +58,7 @@ class ProjectListItemViewTest {
 
         val view = ProjectListItemView(context)
         view.setupView(Project.New("SOM", "S", "#ffffff"), generalSettings)
-        assertThat(
-            view.findViewById<TextView>(R.id.project_subtext).text,
-            equalTo("Adam / my-project.com")
-        )
+        assertThat(view.findViewById<TextView>(R.id.project_subtext).text, equalTo("Adam / my-project.com"))
     }
 
     @Test
@@ -74,10 +70,7 @@ class ProjectListItemViewTest {
 
         val view = ProjectListItemView(context)
         view.setupView(Project.New("SOM", "S", "#ffffff"), generalSettings)
-        assertThat(
-            view.findViewById<TextView>(R.id.project_subtext).text,
-            equalTo("my-project.com")
-        )
+        assertThat(view.findViewById<TextView>(R.id.project_subtext).text, equalTo("my-project.com"))
     }
 
     @Test
@@ -89,10 +82,7 @@ class ProjectListItemViewTest {
 
         val view = ProjectListItemView(context)
         view.setupView(Project.New("SOM", "S", "#ffffff"), generalSettings)
-        assertThat(
-            view.findViewById<TextView>(R.id.project_subtext).text,
-            equalTo("foo@bar.baz / ")
-        )
+        assertThat(view.findViewById<TextView>(R.id.project_subtext).text, equalTo("foo@bar.baz / "))
     }
 
     @Test
@@ -104,10 +94,7 @@ class ProjectListItemViewTest {
 
         val view = ProjectListItemView(context)
         view.setupView(Project.New("SOM", "S", "#ffffff"), generalSettings)
-        assertThat(
-            view.findViewById<TextView>(R.id.project_subtext).text,
-            equalTo("foo / something something")
-        )
+        assertThat(view.findViewById<TextView>(R.id.project_subtext).text, equalTo("foo / something something"))
     }
 
     @Test
@@ -119,10 +106,7 @@ class ProjectListItemViewTest {
 
         val view = ProjectListItemView(context)
         view.setupView(Project.New("SOM", "S", "#ffffff"), generalSettings)
-        assertThat(
-            view.findViewById<TextView>(R.id.project_subtext).text,
-            equalTo("foo@bar.baz / Google Drive")
-        )
+        assertThat(view.findViewById<TextView>(R.id.project_subtext).text, equalTo("foo@bar.baz / Google Drive"))
     }
 
     @Test

@@ -64,7 +64,7 @@ public class HtmlUtilsTest {
                 {"test< 1/>", "test&lt; 1/>"},
                 {"test < 1/>", "test &lt; 1/>"}
         };
-        for (String[] testCase : tests) {
+        for (String[] testCase: tests) {
             assertEquals(testCase[1], HtmlUtils.markdownToHtml(testCase[0]));
         }
     }
@@ -78,7 +78,7 @@ public class HtmlUtilsTest {
                 "<CAPSTAG",
                 "</closetag>"
         };
-        for (String testCase : tests) {
+        for (String testCase: tests) {
             assertEquals(testCase, HtmlUtils.markdownToHtml(testCase));
         }
     }
@@ -89,7 +89,7 @@ public class HtmlUtilsTest {
                 "<1",
         };
 
-        for (String testCase : tests) {
+        for (String testCase: tests) {
             assertEquals(testCase, HtmlUtils.textToHtml(testCase).toString());
         }
     }

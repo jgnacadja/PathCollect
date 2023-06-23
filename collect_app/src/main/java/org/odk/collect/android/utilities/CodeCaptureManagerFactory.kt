@@ -18,19 +18,12 @@ object CodeCaptureManagerFactory {
         prompt: String = ""
     ): CaptureManager {
         val captureManager = CaptureManager(activity, barcodeView)
-        captureManager.initializeFromIntent(
-            getIntent(activity, supportedFormats, prompt),
-            savedInstanceState
-        )
+        captureManager.initializeFromIntent(getIntent(activity, supportedFormats, prompt), savedInstanceState)
         captureManager.decode()
         return captureManager
     }
 
-    private fun getIntent(
-        activity: Activity,
-        supportedFormats: Collection<String>?,
-        prompt: String = ""
-    ): Intent {
+    private fun getIntent(activity: Activity, supportedFormats: Collection<String>?, prompt: String = ""): Intent {
         return IntentIntegrator(activity)
             .setDesiredBarcodeFormats(supportedFormats)
             .setPrompt(prompt)

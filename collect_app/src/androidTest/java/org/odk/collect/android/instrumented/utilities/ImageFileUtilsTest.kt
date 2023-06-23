@@ -50,8 +50,7 @@ class ImageFileUtilsTest {
         attributes[ExifInterface.TAG_ORIENTATION] = ExifInterface.ORIENTATION_ROTATE_90.toString()
         saveTestBitmapToFile(sourceFile.absolutePath, attributes)
         ImageFileUtils.copyImageAndApplyExifRotation(sourceFile, destinationFile)
-        val image =
-            ImageFileUtils.getBitmap(destinationFile.absolutePath, BitmapFactory.Options())!!
+        val image = ImageFileUtils.getBitmap(destinationFile.absolutePath, BitmapFactory.Options())!!
 
         assertEquals(2, image.width)
         assertEquals(1, image.height)
@@ -65,8 +64,7 @@ class ImageFileUtilsTest {
         attributes[ExifInterface.TAG_ORIENTATION] = ExifInterface.ORIENTATION_ROTATE_270.toString()
         saveTestBitmapToFile(sourceFile.absolutePath, attributes)
         ImageFileUtils.copyImageAndApplyExifRotation(sourceFile, destinationFile)
-        val image =
-            ImageFileUtils.getBitmap(destinationFile.absolutePath, BitmapFactory.Options())!!
+        val image = ImageFileUtils.getBitmap(destinationFile.absolutePath, BitmapFactory.Options())!!
 
         assertEquals(2, image.width)
         assertEquals(1, image.height)
@@ -80,8 +78,7 @@ class ImageFileUtilsTest {
         attributes[ExifInterface.TAG_ORIENTATION] = ExifInterface.ORIENTATION_ROTATE_180.toString()
         saveTestBitmapToFile(sourceFile.absolutePath, attributes)
         ImageFileUtils.copyImageAndApplyExifRotation(sourceFile, destinationFile)
-        val image =
-            ImageFileUtils.getBitmap(destinationFile.absolutePath, BitmapFactory.Options())!!
+        val image = ImageFileUtils.getBitmap(destinationFile.absolutePath, BitmapFactory.Options())!!
 
         assertEquals(1, image.width)
         assertEquals(2, image.height)
@@ -95,8 +92,7 @@ class ImageFileUtilsTest {
         attributes[ExifInterface.TAG_ORIENTATION] = ExifInterface.ORIENTATION_UNDEFINED.toString()
         saveTestBitmapToFile(sourceFile.absolutePath, attributes)
         ImageFileUtils.copyImageAndApplyExifRotation(sourceFile, destinationFile)
-        val image =
-            ImageFileUtils.getBitmap(destinationFile.absolutePath, BitmapFactory.Options())!!
+        val image = ImageFileUtils.getBitmap(destinationFile.absolutePath, BitmapFactory.Options())!!
 
         assertEquals(1, image.width)
         assertEquals(2, image.height)
@@ -109,8 +105,7 @@ class ImageFileUtilsTest {
     fun copyAndRotateImageNoExif() {
         saveTestBitmapToFile(sourceFile.absolutePath, null)
         ImageFileUtils.copyImageAndApplyExifRotation(sourceFile, destinationFile)
-        val image =
-            ImageFileUtils.getBitmap(destinationFile.absolutePath, BitmapFactory.Options())!!
+        val image = ImageFileUtils.getBitmap(destinationFile.absolutePath, BitmapFactory.Options())!!
 
         assertEquals(1, image.width)
         assertEquals(2, image.height)

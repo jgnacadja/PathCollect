@@ -16,20 +16,20 @@
 
 package org.odk.collect.android.utilities;
 
-import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
-
 import android.content.Context;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.application.Collect;
-import org.odk.collect.forms.Form;
-import org.odk.collect.forms.FormsRepository;
 import org.odk.collect.forms.instances.Instance;
 import org.odk.collect.forms.instances.InstancesRepository;
+import org.odk.collect.forms.Form;
+import org.odk.collect.forms.FormsRepository;
 
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+
+import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
 
 public final class InstanceUploaderUtils {
 
@@ -42,9 +42,9 @@ public final class InstanceUploaderUtils {
     /**
      * Returns a formatted message including submission results for all the filled forms accessible
      * through instancesProcessed in the following structure:
-     * <p>
+     *
      * Instance name 1 - result
-     * <p>
+     *
      * Instance name 2 - result
      */
     public static String getUploadResultMessage(InstancesRepository instancesRepository, Context context, Map<String, String> result) {
@@ -96,7 +96,7 @@ public final class InstanceUploaderUtils {
     /**
      * Returns whether instances of the form specified should be auto-deleted after successful
      * update.
-     * <p>
+     *
      * If the form explicitly sets the auto-delete property, then it overrides the preference.
      */
     public static boolean shouldFormBeDeleted(FormsRepository formsRepository, String jrFormId, String jrFormVersion, boolean isAutoDeleteAppSettingEnabled) {

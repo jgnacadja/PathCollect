@@ -1,6 +1,7 @@
 package org.odk.collect.android.views;
 
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -8,6 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.odk.collect.android.R;
+
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public abstract class ForumViewHolder extends RecyclerView.ViewHolder {
     private final ImageView imageView;
@@ -17,8 +22,8 @@ public abstract class ForumViewHolder extends RecyclerView.ViewHolder {
         this.imageView = view.findViewById(viewId);
     }
 
-    public void setIconDrawable(Drawable drawable) {
-        if (drawable != null) {
+    public void setIconDrawable(Drawable drawable){
+        if(drawable != null){
             this.imageView.setImageDrawable(drawable);
         } else {
             int iconId = R.drawable.ic_anonymous_user;

@@ -178,14 +178,14 @@ public class AudioVideoImageTextLabel extends RelativeLayout implements View.OnC
     }
 
     @Override
-    public boolean isEnabled() {
-        return textLabel.isEnabled() && binding.imageView.isEnabled();
-    }
-
-    @Override
     public void setEnabled(boolean enabled) {
         textLabel.setEnabled(enabled);
         binding.imageView.setEnabled(enabled);
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return textLabel.isEnabled() && binding.imageView.isEnabled();
     }
 
     private void onImageClick() {

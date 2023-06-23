@@ -16,9 +16,6 @@
 
 package org.odk.collect.android.widgets.items;
 
-import static org.odk.collect.android.formentry.questions.WidgetViewUtils.createAnswerTextView;
-import static org.odk.collect.android.formentry.questions.WidgetViewUtils.createSimpleButton;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.Button;
@@ -38,20 +35,23 @@ import org.odk.collect.android.fragments.dialogs.RankingWidgetDialog;
 import org.odk.collect.android.javarosawrapper.FormController;
 import org.odk.collect.android.utilities.HtmlUtils;
 import org.odk.collect.android.widgets.QuestionWidget;
-import org.odk.collect.android.widgets.interfaces.ButtonClickListener;
 import org.odk.collect.android.widgets.interfaces.WidgetDataReceiver;
+import org.odk.collect.android.widgets.interfaces.ButtonClickListener;
 import org.odk.collect.android.widgets.warnings.SpacesInUnderlyingValuesWarning;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.odk.collect.android.formentry.questions.WidgetViewUtils.createAnswerTextView;
+import static org.odk.collect.android.formentry.questions.WidgetViewUtils.createSimpleButton;
+
 @SuppressLint("ViewConstructor")
 public class RankingWidget extends QuestionWidget implements WidgetDataReceiver, ButtonClickListener {
 
-    private final List<SelectChoice> items;
-    Button showRankingDialogButton;
     private List<SelectChoice> savedItems;
+    Button showRankingDialogButton;
     private TextView answerTextView;
+    private final List<SelectChoice> items;
 
     public RankingWidget(Context context, QuestionDetails prompt) {
         super(context, prompt);
@@ -113,8 +113,8 @@ public class RankingWidget extends QuestionWidget implements WidgetDataReceiver,
     private List<SelectChoice> getOrderedItems() {
         List<Selection> savedOrderedItems =
                 getFormEntryPrompt().getAnswerValue() == null
-                        ? new ArrayList<>()
-                        : (List<Selection>) getFormEntryPrompt().getAnswerValue().getValue();
+                ? new ArrayList<>()
+                : (List<Selection>) getFormEntryPrompt().getAnswerValue().getValue();
 
         if (savedOrderedItems.isEmpty()) {
             return items;

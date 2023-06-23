@@ -1,11 +1,5 @@
 package org.odk.collect.android.formentry.loading;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import com.google.common.io.Files;
 
 import org.junit.Test;
@@ -16,6 +10,12 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.function.Supplier;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class FormInstanceFileCreatorTest {
 

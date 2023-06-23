@@ -36,15 +36,9 @@ class FakeClickableMapFragment : Fragment(), MapFragment {
         points: MutableIterable<MapPoint>?,
         scaleFactor: Double,
         animate: Boolean
-    ) {
-    }
+    ) {}
 
-    override fun addMarker(
-        point: MapPoint?,
-        draggable: Boolean,
-        iconAnchor: String?,
-        iconDrawableId: Int
-    ): Int {
+    override fun addMarker(point: MapPoint?, draggable: Boolean, iconAnchor: String?, iconDrawableId: Int): Int {
         val id = idCounter++
         return id
     }

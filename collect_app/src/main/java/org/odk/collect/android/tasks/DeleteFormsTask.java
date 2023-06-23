@@ -31,11 +31,13 @@ import timber.log.Timber;
  */
 public class DeleteFormsTask extends AsyncTask<Long, Integer, Integer> {
 
-    private final FormsRepository formsRepository;
-    private final InstancesRepository instancesRepository;
     private DeleteFormsListener dl;
+
     private int successCount;
     private int toDeleteCount;
+
+    private final FormsRepository formsRepository;
+    private final InstancesRepository instancesRepository;
 
     public DeleteFormsTask(FormsRepository formsRepository, InstancesRepository instancesRepository) {
         this.formsRepository = formsRepository;

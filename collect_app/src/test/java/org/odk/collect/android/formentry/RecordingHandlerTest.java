@@ -29,12 +29,14 @@ import java.util.HashSet;
 @SuppressWarnings("PMD.DoubleBraceInitialization")
 public class RecordingHandlerTest {
 
+    @Rule
+    public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
+
     private final FakeQuestionMediaManager questionMediaManager = new FakeQuestionMediaManager();
     private final FormController formController = mock(FormController.class);
     private final AudioFileAppender amrAppender = mock(AudioFileAppender.class);
     private final AudioFileAppender m4aAppender = mock(AudioFileAppender.class);
-    @Rule
-    public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
+
     RecordingHandler recordingHandler;
 
     @Before

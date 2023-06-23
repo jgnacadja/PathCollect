@@ -1,9 +1,5 @@
 package org.odk.collect.android.widgets.base;
 
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.when;
-
 import androidx.annotation.NonNull;
 
 import com.google.common.collect.ImmutableList;
@@ -17,6 +13,10 @@ import org.odk.collect.android.widgets.interfaces.MultiChoiceWidget;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
 
 /**
  * @author James Knight

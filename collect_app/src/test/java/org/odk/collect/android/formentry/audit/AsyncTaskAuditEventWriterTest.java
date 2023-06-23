@@ -16,22 +16,6 @@
 
 package org.odk.collect.android.formentry.audit;
 
-import static org.junit.Assert.assertEquals;
-import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.CHANGE_REASON;
-import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.END_OF_FORM;
-import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.FORM_EXIT;
-import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.FORM_FINALIZE;
-import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.FORM_RESUME;
-import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.FORM_SAVE;
-import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.FORM_START;
-import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.HIERARCHY;
-import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.LOCATION_PERMISSIONS_GRANTED;
-import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.LOCATION_PROVIDERS_ENABLED;
-import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.LOCATION_TRACKING_ENABLED;
-import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.PROMPT_NEW_REPEAT;
-import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.QUESTION;
-import static java.util.Arrays.asList;
-
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.apache.commons.io.FileUtils;
@@ -46,6 +30,22 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static java.util.Arrays.asList;
+import static org.junit.Assert.assertEquals;
+import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.CHANGE_REASON;
+import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.END_OF_FORM;
+import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.FORM_EXIT;
+import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.FORM_FINALIZE;
+import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.FORM_RESUME;
+import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.FORM_SAVE;
+import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.FORM_START;
+import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.HIERARCHY;
+import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.LOCATION_PERMISSIONS_GRANTED;
+import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.LOCATION_PROVIDERS_ENABLED;
+import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.LOCATION_TRACKING_ENABLED;
+import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.PROMPT_NEW_REPEAT;
+import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.QUESTION;
 
 @RunWith(AndroidJUnit4.class)
 @LooperMode(LooperMode.Mode.LEGACY)

@@ -1,14 +1,5 @@
 package org.odk.collect.android.location.client;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.odk.collect.testshared.LocationTestUtils.createLocation;
-import static org.robolectric.shadows.ShadowSystemClock.advanceBy;
-
 import android.location.Location;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -21,6 +12,15 @@ import org.junit.runner.RunWith;
 import org.odk.collect.testshared.RobolectricHelpers;
 
 import java.util.concurrent.TimeUnit;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.odk.collect.testshared.LocationTestUtils.createLocation;
+import static org.robolectric.shadows.ShadowSystemClock.advanceBy;
 
 @RunWith(AndroidJUnit4.class)
 public class MaxAccuracyWithinTimeoutLocationClientWrapperTest {

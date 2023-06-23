@@ -29,11 +29,12 @@ import java.io.File;
 @RunWith(AndroidJUnit4.class)
 public class AudioRecordingFormErrorDialogFragmentTest {
 
+    private StubAudioRecorder audioRecorder;
+
     @Rule
     public FragmentScenarioLauncherRule launcherRule = new FragmentScenarioLauncherRule(
             R.style.Theme_MaterialComponents
     );
-    private StubAudioRecorder audioRecorder;
 
     @Before
     public void setup() throws Exception {

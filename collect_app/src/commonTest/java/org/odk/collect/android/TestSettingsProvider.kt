@@ -12,8 +12,7 @@ import org.odk.collect.shared.settings.Settings
 object TestSettingsProvider {
     @JvmStatic
     fun getSettingsProvider(): SettingsProvider {
-        return DaggerUtils.getComponent(ApplicationProvider.getApplicationContext<Collect>())
-            .settingsProvider()
+        return DaggerUtils.getComponent(ApplicationProvider.getApplicationContext<Collect>()).settingsProvider()
     }
 
     @JvmStatic
@@ -34,9 +33,6 @@ object TestSettingsProvider {
 
     @JvmStatic
     fun getTestSettings(name: String?): Settings {
-        return SharedPreferencesSettings(
-            ApplicationProvider.getApplicationContext<Collect>()
-                .getSharedPreferences(name, Context.MODE_PRIVATE)
-        )
+        return SharedPreferencesSettings(ApplicationProvider.getApplicationContext<Collect>().getSharedPreferences(name, Context.MODE_PRIVATE))
     }
 }

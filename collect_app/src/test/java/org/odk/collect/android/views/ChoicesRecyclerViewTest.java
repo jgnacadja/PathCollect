@@ -1,18 +1,5 @@
 package org.odk.collect.android.views;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.spy;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.odk.collect.testshared.RobolectricHelpers.populateRecyclerView;
-import static java.util.Arrays.asList;
-
 import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +44,19 @@ import org.robolectric.android.controller.ActivityController;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.Arrays.asList;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.odk.collect.testshared.RobolectricHelpers.populateRecyclerView;
 
 @RunWith(AndroidJUnit4.class)
 public class ChoicesRecyclerViewTest {

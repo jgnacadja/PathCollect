@@ -14,8 +14,8 @@ import org.odk.collect.imageloader.ImageLoader;
 import java.io.File;
 
 public class NoButtonsItem extends FrameLayout {
-    private final ImageLoader imageLoader;
     NoButtonsItemLayoutBinding binding;
+    private final ImageLoader imageLoader;
 
     public NoButtonsItem(Context context, boolean enabled, ImageLoader imageLoader) {
         super(context);

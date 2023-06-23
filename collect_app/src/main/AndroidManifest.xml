@@ -81,7 +81,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
-
         <activity
             android:name=".activities.FirstLaunchActivity"
             android:exported="true"
@@ -94,13 +93,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.TopicActivity" />
-        <activity
-            android:name=".activities.DiscussionActivity"
-            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".activities.DiscussionActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".activities.DiscussionListActivity" />
-        <activity
-            android:name=".activities.AddDiscussionActivity"
-            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".activities.AddDiscussionActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".activities.MainMenuActivity" />
         <activity android:name=".activities.LandingPageActivity" />
         <activity android:name=".activities.PostListActivity" />
@@ -291,14 +288,15 @@
 
         <activity-alias
             android:name=".activities.FormEntryActivity"
-            android:exported="true"
             android:targetActivity=".activities.FormEntryActivity"
-            tools:ignore="AppLinkUrlError"></activity-alias>
+            tools:ignore="AppLinkUrlError"
+            android:exported="true">
+        </activity-alias>
 
         <activity-alias
             android:name=".activities.InstanceChooserList"
-            android:exported="true"
             android:targetActivity=".activities.InstanceChooserList"
+            android:exported="true"
             tools:ignore="AppLinkUrlError">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -313,8 +311,8 @@
 
         <activity-alias
             android:name=".activities.FormChooserList"
-            android:exported="true"
             android:targetActivity=".formlists.blankformlist.BlankFormListActivity"
+            android:exported="true"
             tools:ignore="AppLinkUrlError">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -329,8 +327,8 @@
 
         <activity-alias
             android:name=".activities.FormDownloadList"
-            android:exported="true"
-            android:targetActivity=".activities.FormDownloadListActivity">
+            android:targetActivity=".activities.FormDownloadListActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="org.odk.collect.android.FORM_DOWNLOAD" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -340,8 +338,8 @@
 
         <activity-alias
             android:name=".activities.InstanceUploaderList"
-            android:exported="true"
-            android:targetActivity=".activities.InstanceUploaderListActivity">
+            android:targetActivity=".activities.InstanceUploaderListActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.EDIT" />
@@ -352,8 +350,8 @@
 
         <activity-alias
             android:name=".activities.InstanceUploaderActivity"
-            android:exported="true"
-            android:targetActivity=".activities.InstanceUploaderActivity">
+            android:targetActivity=".activities.InstanceUploaderActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="org.odk.collect.android.INSTANCE_UPLOAD" />
                 <category android:name="android.intent.category.DEFAULT" />

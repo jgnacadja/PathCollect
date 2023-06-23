@@ -7,6 +7,8 @@ import org.odk.collect.android.R
 import org.odk.collect.android.utilities.ExternalAppIntentProvider
 import org.odk.collect.androidshared.system.IntentLauncher
 import java.io.Serializable
+import java.lang.Error
+import java.lang.Exception
 
 class StringRequesterImpl(
     val intentLauncher: IntentLauncher,
@@ -21,10 +23,9 @@ class StringRequesterImpl(
         onError: (String) -> Unit
     ) {
         try {
-            val intent =
-                externalAppIntentProvider.getIntentToRunExternalApp(formEntryPrompt)?.apply {
-                    putExtra("value", value)
-                }
+            val intent = externalAppIntentProvider.getIntentToRunExternalApp(formEntryPrompt)?.apply {
+                putExtra("value", value)
+            }
             val intentWithoutDefaultCategory =
                 externalAppIntentProvider.getIntentToRunExternalAppWithoutDefaultCategory(
                     formEntryPrompt,

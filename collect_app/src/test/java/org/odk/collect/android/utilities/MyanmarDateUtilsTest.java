@@ -16,8 +16,6 @@
 
 package org.odk.collect.android.utilities;
 
-import static org.junit.Assert.assertEquals;
-
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDateTime;
 import org.joda.time.tz.UTCProvider;
@@ -27,6 +25,8 @@ import mmcalendar.Language;
 import mmcalendar.LanguageCatalog;
 import mmcalendar.MyanmarDate;
 import mmcalendar.MyanmarDateKernel;
+
+import static org.junit.Assert.assertEquals;
 
 // Results confirmed with https://yan9a.github.io/mcal/
 public class MyanmarDateUtilsTest {

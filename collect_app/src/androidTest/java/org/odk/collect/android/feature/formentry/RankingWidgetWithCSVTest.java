@@ -3,9 +3,9 @@ package org.odk.collect.android.feature.formentry;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.RuleChain;
-import org.odk.collect.android.support.pages.FormEntryPage;
 import org.odk.collect.android.support.rules.FormActivityTestRule;
 import org.odk.collect.android.support.rules.TestRuleChain;
+import org.odk.collect.android.support.pages.FormEntryPage;
 
 import java.util.Collections;
 

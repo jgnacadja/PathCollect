@@ -23,8 +23,6 @@ import android.webkit.WebView;
 
 public class CustomWebView extends WebView {
 
-    private boolean suppressFlingGesture;
-
     public CustomWebView(Context context) {
         super(context);
     }
@@ -32,6 +30,8 @@ public class CustomWebView extends WebView {
     public CustomWebView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
+
+    private boolean suppressFlingGesture;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {

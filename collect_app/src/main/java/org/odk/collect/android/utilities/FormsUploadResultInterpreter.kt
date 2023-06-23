@@ -13,11 +13,7 @@ object FormsUploadResultInterpreter {
     }.map {
         ErrorItem(
             it.key.displayName,
-            context.getLocalizedString(
-                R.string.form_details,
-                it.key.formId ?: "",
-                it.key.formVersion ?: ""
-            ),
+            context.getLocalizedString(R.string.form_details, it.key.formId ?: "", it.key.formVersion ?: ""),
             it.value?.message ?: ""
         )
     }
@@ -26,8 +22,7 @@ object FormsUploadResultInterpreter {
         it.value != null
     }
 
-    fun allFormsUploadedSuccessfully(result: Map<Instance, FormUploadException?>) =
-        result.values.all {
-            it == null
-        }
+    fun allFormsUploadedSuccessfully(result: Map<Instance, FormUploadException?>) = result.values.all {
+        it == null
+    }
 }

@@ -1,11 +1,5 @@
 package org.odk.collect.android.widgets;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.odk.collect.android.support.CollectHelpers.setupFakeReferenceManager;
-import static java.util.Arrays.asList;
-
 import android.app.Application;
 import android.content.Context;
 
@@ -35,6 +29,12 @@ import org.odk.collect.android.support.MockFormEntryPromptBuilder;
 import org.odk.collect.android.support.WidgetTestActivity;
 import org.odk.collect.async.Scheduler;
 import org.odk.collect.audioclips.Clip;
+
+import static java.util.Arrays.asList;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.odk.collect.android.support.CollectHelpers.setupFakeReferenceManager;
 
 @RunWith(AndroidJUnit4.class)
 public class QuestionWidgetTest {

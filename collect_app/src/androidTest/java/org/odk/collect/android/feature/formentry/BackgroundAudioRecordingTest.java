@@ -21,13 +21,13 @@ import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 import org.odk.collect.android.R;
 import org.odk.collect.android.storage.StorageSubdirectory;
+import org.odk.collect.android.support.rules.CollectTestRule;
 import org.odk.collect.android.support.TestDependencies;
+import org.odk.collect.android.support.rules.TestRuleChain;
 import org.odk.collect.android.support.pages.FormEndPage;
 import org.odk.collect.android.support.pages.FormEntryPage;
 import org.odk.collect.android.support.pages.MainMenuPage;
 import org.odk.collect.android.support.pages.SaveOrIgnoreDialog;
-import org.odk.collect.android.support.rules.CollectTestRule;
-import org.odk.collect.android.support.rules.TestRuleChain;
 import org.odk.collect.audiorecorder.recording.AudioRecorder;
 import org.odk.collect.audiorecorder.testsupport.StubAudioRecorder;
 import org.odk.collect.permissions.PermissionListener;
@@ -42,8 +42,8 @@ import java.util.Arrays;
 @RunWith(AndroidJUnit4.class)
 public class BackgroundAudioRecordingTest {
 
-    public final CollectTestRule rule = new CollectTestRule();
     private StubAudioRecorder stubAudioRecorderViewModel;
+
     private RevokeableRecordAudioPermissionsChecker permissionsChecker;
     private ControllableRecordAudioPermissionsProvider permissionsProvider;
     public final TestDependencies testDependencies = new TestDependencies() {
@@ -83,6 +83,9 @@ public class BackgroundAudioRecordingTest {
             return permissionsProvider;
         }
     };
+
+    public final CollectTestRule rule = new CollectTestRule();
+
     @Rule
     public final RuleChain chain = TestRuleChain.chain(testDependencies)
             .around(rule);

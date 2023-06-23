@@ -20,16 +20,20 @@ import javax.inject.Named;
 
 public abstract class BaseProjectPreferencesFragment extends BasePreferencesFragment {
 
-    protected ProjectPreferencesViewModel projectPreferencesViewModel;
     @Inject
     @Named("GENERAL_SETTINGS_STORE")
     SettingsStore generalSettingsStore;
+
     @Inject
     AdminPasswordProvider adminPasswordProvider;
+
     @Inject
     ProjectPreferencesViewModel.Factory factory;
+
     @Inject
     PreferenceVisibilityHandler preferenceVisibilityHandler;
+
+    protected ProjectPreferencesViewModel projectPreferencesViewModel;
 
     @Override
     public void onAttach(@NonNull Context context) {

@@ -16,6 +16,13 @@
 
 package org.odk.collect.android.utilities;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import org.javarosa.form.api.FormEntryPrompt;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.odk.collect.androidshared.utils.ScreenUtils;
+
 import static android.content.res.Configuration.SCREENLAYOUT_SIZE_LARGE;
 import static android.content.res.Configuration.SCREENLAYOUT_SIZE_NORMAL;
 import static android.content.res.Configuration.SCREENLAYOUT_SIZE_SMALL;
@@ -25,13 +32,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-
-import org.javarosa.form.api.FormEntryPrompt;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.odk.collect.androidshared.utils.ScreenUtils;
 
 @RunWith(AndroidJUnit4.class)
 public class AppearancesTest {

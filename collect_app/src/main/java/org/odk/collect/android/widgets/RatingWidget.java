@@ -28,8 +28,8 @@ import org.javarosa.core.model.data.IntegerData;
 import org.javarosa.form.api.FormEntryPrompt;
 import org.odk.collect.android.databinding.RatingWidgetAnswerBinding;
 import org.odk.collect.android.formentry.questions.QuestionDetails;
-import org.odk.collect.android.utilities.UiUtils;
 import org.odk.collect.androidshared.utils.ScreenUtils;
+import org.odk.collect.android.utilities.UiUtils;
 
 import java.lang.reflect.Field;
 

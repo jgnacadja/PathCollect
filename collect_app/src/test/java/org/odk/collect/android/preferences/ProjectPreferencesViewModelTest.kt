@@ -24,10 +24,7 @@ class ProjectPreferencesViewModelTest {
         projectPreferencesViewModel = ProjectPreferencesViewModel(adminPasswordProvider)
         RobolectricHelpers.runLooper()
 
-        assertThat(
-            projectPreferencesViewModel.state.value,
-            `is`(Consumable(ProjectPreferencesViewModel.State.LOCKED))
-        )
+        assertThat(projectPreferencesViewModel.state.value, `is`(Consumable(ProjectPreferencesViewModel.State.LOCKED)))
     }
 
     @Test
@@ -37,10 +34,7 @@ class ProjectPreferencesViewModelTest {
         projectPreferencesViewModel = ProjectPreferencesViewModel(adminPasswordProvider)
         RobolectricHelpers.runLooper()
 
-        assertThat(
-            projectPreferencesViewModel.state.value,
-            `is`(Consumable(ProjectPreferencesViewModel.State.NOT_PROTECTED))
-        )
+        assertThat(projectPreferencesViewModel.state.value, `is`(Consumable(ProjectPreferencesViewModel.State.NOT_PROTECTED)))
     }
 
     @Test
@@ -51,10 +45,7 @@ class ProjectPreferencesViewModelTest {
         projectPreferencesViewModel.setStateLocked()
         RobolectricHelpers.runLooper()
 
-        assertThat(
-            projectPreferencesViewModel.state.value,
-            `is`(Consumable(ProjectPreferencesViewModel.State.LOCKED))
-        )
+        assertThat(projectPreferencesViewModel.state.value, `is`(Consumable(ProjectPreferencesViewModel.State.LOCKED)))
     }
 
     @Test
@@ -65,10 +56,7 @@ class ProjectPreferencesViewModelTest {
         projectPreferencesViewModel.setStateUnlocked()
         RobolectricHelpers.runLooper()
 
-        assertThat(
-            projectPreferencesViewModel.state.value,
-            `is`(Consumable(ProjectPreferencesViewModel.State.UNLOCKED))
-        )
+        assertThat(projectPreferencesViewModel.state.value, `is`(Consumable(ProjectPreferencesViewModel.State.UNLOCKED)))
     }
 
     @Test
@@ -79,10 +67,7 @@ class ProjectPreferencesViewModelTest {
         projectPreferencesViewModel.setStateNotProtected()
         RobolectricHelpers.runLooper()
 
-        assertThat(
-            projectPreferencesViewModel.state.value,
-            `is`(Consumable(ProjectPreferencesViewModel.State.NOT_PROTECTED))
-        )
+        assertThat(projectPreferencesViewModel.state.value, `is`(Consumable(ProjectPreferencesViewModel.State.NOT_PROTECTED)))
     }
 
     @Test

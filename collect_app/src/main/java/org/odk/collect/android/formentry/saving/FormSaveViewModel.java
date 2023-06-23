@@ -64,19 +64,25 @@ public class FormSaveViewModel extends ViewModel implements MaterialProgressDial
     private final MediaUtils mediaUtils;
 
     private final MutableLiveData<SaveResult> saveResult = new MutableLiveData<>(null);
+
+    private String reason = "";
+
+    private Map<String, String> originalFiles = new HashMap<>();
+    private Map<String, String> recentFiles = new HashMap<>();
     private final MutableLiveData<Boolean> isSavingAnswerFile = new MutableLiveData<>(false);
     private final MutableLiveData<String> answerFileError = new MutableLiveData<>(null);
+
+
+    @Nullable
+    private FormController formController;
+
+    @Nullable
+    private AsyncTask<Void, String, SaveToDiskResult> saveTask;
+
     private final Analytics analytics;
     private final Scheduler scheduler;
     private final AudioRecorder audioRecorder;
     private final CurrentProjectProvider currentProjectProvider;
-    private String reason = "";
-    private Map<String, String> originalFiles = new HashMap<>();
-    private Map<String, String> recentFiles = new HashMap<>();
-    @Nullable
-    private FormController formController;
-    @Nullable
-    private AsyncTask<Void, String, SaveToDiskResult> saveTask;
 
     public FormSaveViewModel(SavedStateHandle stateHandle, Supplier<Long> clock, FormSaver formSaver, MediaUtils mediaUtils, Analytics analytics, Scheduler scheduler, AudioRecorder audioRecorder, CurrentProjectProvider currentProjectProvider) {
         this.stateHandle = stateHandle;
@@ -197,12 +203,12 @@ public class FormSaveViewModel extends ViewModel implements MaterialProgressDial
         }
     }
 
-    public String getReason() {
-        return reason;
-    }
-
     public void setReason(@NonNull String reason) {
         this.reason = reason;
+    }
+
+    public String getReason() {
+        return reason;
     }
 
     private boolean saveReason() {
@@ -394,18 +400,6 @@ public class FormSaveViewModel extends ViewModel implements MaterialProgressDial
         answerFileError.setValue(null);
     }
 
-    /**
-     * The ViewModel factory here needs a reference to the Activity (the SavedStateRegistry) so
-     * we need factory to be able to create it in Dagger (as we won't have access to the Activity).
-     * <p>
-     * Could potentially be solved using Dagger's per Activity scopes.
-     */
-
-    public interface FactoryFactory {
-
-        ViewModelProvider.Factory create(@NonNull SavedStateRegistryOwner owner, @Nullable Bundle defaultArgs);
-    }
-
     public static class SaveResult {
         private final State state;
         private final String message;
@@ -429,10 +423,6 @@ public class FormSaveViewModel extends ViewModel implements MaterialProgressDial
             return message;
         }
 
-        public SaveRequest getRequest() {
-            return request;
-        }
-
         public enum State {
             CHANGE_REASON_REQUIRED,
             SAVING,
@@ -441,6 +431,10 @@ public class FormSaveViewModel extends ViewModel implements MaterialProgressDial
             FINALIZE_ERROR,
             CONSTRAINT_ERROR,
             WAITING_TO_SAVE
+        }
+
+        public SaveRequest getRequest() {
+            return request;
         }
     }
 
@@ -515,5 +509,17 @@ public class FormSaveViewModel extends ViewModel implements MaterialProgressDial
 
             void onComplete(SaveToDiskResult saveToDiskResult);
         }
+    }
+
+    /**
+     * The ViewModel factory here needs a reference to the Activity (the SavedStateRegistry) so
+     * we need factory to be able to create it in Dagger (as we won't have access to the Activity).
+     * <p>
+     * Could potentially be solved using Dagger's per Activity scopes.
+     */
+
+    public interface FactoryFactory {
+
+        ViewModelProvider.Factory create(@NonNull SavedStateRegistryOwner owner, @Nullable Bundle defaultArgs);
     }
 }

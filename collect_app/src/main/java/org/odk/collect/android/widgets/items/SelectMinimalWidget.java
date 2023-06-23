@@ -20,8 +20,9 @@ import java.util.List;
 public abstract class SelectMinimalWidget extends QuestionWidget implements WidgetDataReceiver, MultiChoiceWidget {
 
     final List<SelectChoice> items;
-    private final WaitingForDataRegistry waitingForDataRegistry;
+
     SelectMinimalWidgetAnswerBinding binding;
+    private final WaitingForDataRegistry waitingForDataRegistry;
 
     public SelectMinimalWidget(Context context, QuestionDetails prompt, WaitingForDataRegistry waitingForDataRegistry) {
         super(context, prompt);

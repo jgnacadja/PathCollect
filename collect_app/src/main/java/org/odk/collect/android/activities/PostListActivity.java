@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.PostListAdapter;
 import org.odk.collect.android.adapters.model.Post;
@@ -16,7 +15,6 @@ import org.odk.collect.android.dao.ApiGatewayService;
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.utilities.ExternalWebPageHelper;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,10 +27,11 @@ import timber.log.Timber;
 
 public class PostListActivity extends CollectAbstractActivity implements
         PostListAdapter.PostItemClickListener {
-    private static String TAG = "PostListActivity";
     private List<Post> posts;
     private RecyclerView recyclerView;
     private PostListAdapter adapter;
+
+    private static String TAG = "PostListActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

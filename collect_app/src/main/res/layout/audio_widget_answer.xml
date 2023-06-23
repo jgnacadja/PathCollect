@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingHorizontal="@dimen/margin_standard"
-    android:paddingTop="@dimen/margin_small">
+    android:paddingTop="@dimen/margin_small"
+    android:paddingHorizontal="@dimen/margin_standard">
 
     <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
         android:id="@+id/capture_button"
@@ -18,6 +18,6 @@
 
     <include
         android:id="@+id/audio_player"
-        layout="@layout/audio_player_layout" />
+        layout="@layout/audio_player_layout"/>
 
 </LinearLayout>

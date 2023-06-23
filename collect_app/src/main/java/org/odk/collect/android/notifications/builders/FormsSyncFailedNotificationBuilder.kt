@@ -14,11 +14,7 @@ import org.odk.collect.strings.localization.getLocalizedString
 
 object FormsSyncFailedNotificationBuilder {
 
-    fun build(
-        application: Application,
-        exception: FormSourceException,
-        projectName: String
-    ): Notification {
+    fun build(application: Application, exception: FormSourceException, projectName: String): Notification {
         val contentIntent = PendingIntent.getActivity(
             application,
             NotificationManagerNotifier.FORM_SYNC_NOTIFICATION_ID,

@@ -6,7 +6,9 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -56,11 +58,9 @@ class ProjectResetterTest {
         })
 
         currentProjectId = CollectHelpers.setupDemoProject()
-        anotherProjectId =
-            CollectHelpers.createProject(Project.New("Another project", "A", "#cccccc"))
+        anotherProjectId = CollectHelpers.createProject(Project.New("Another project", "A", "#cccccc"))
 
-        val component =
-            DaggerUtils.getComponent(ApplicationProvider.getApplicationContext<Context>() as Application)
+        val component = DaggerUtils.getComponent(ApplicationProvider.getApplicationContext<Context>() as Application)
         projectResetter = component.projectResetter()
         storagePathProvider = component.storagePathProvider()
         settingsProvider = component.settingsProvider()
@@ -142,12 +142,7 @@ class ProjectResetterTest {
 
         resetAppState(listOf(ProjectResetter.ResetAction.RESET_PREFERENCES))
 
-        assertFolderEmpty(
-            storagePathProvider.getOdkDirPath(
-                StorageSubdirectory.SETTINGS,
-                currentProjectId
-            )
-        )
+        assertFolderEmpty(storagePathProvider.getOdkDirPath(StorageSubdirectory.SETTINGS, currentProjectId))
     }
 
     @Test
@@ -156,14 +151,7 @@ class ProjectResetterTest {
 
         resetAppState(listOf(ProjectResetter.ResetAction.RESET_PREFERENCES))
 
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.SETTINGS,
-                    anotherProjectId
-                ), "settings.png"
-            ).exists()
-        )
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.SETTINGS, anotherProjectId), "settings.png").exists())
     }
 
     @Test
@@ -182,20 +170,8 @@ class ProjectResetterTest {
         resetAppState(listOf(ProjectResetter.ResetAction.RESET_FORMS))
 
         assertEquals(0, formsRepositoryProvider.get(currentProjectId).all.size)
-        assertFolderEmpty(
-            storagePathProvider.getOdkDirPath(
-                StorageSubdirectory.FORMS,
-                currentProjectId
-            )
-        )
-        assertFalse(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.METADATA,
-                    currentProjectId
-                ) + "/itemsets.db"
-            ).exists()
-        )
+        assertFolderEmpty(storagePathProvider.getOdkDirPath(StorageSubdirectory.FORMS, currentProjectId))
+        assertFalse(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.METADATA, currentProjectId) + "/itemsets.db").exists())
     }
 
     @Test
@@ -208,14 +184,7 @@ class ProjectResetterTest {
 
         assertEquals(1, formsRepositoryProvider.get(anotherProjectId).all.size)
         assertTestFormFiles(anotherProjectId)
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.METADATA,
-                    anotherProjectId
-                ) + "/itemsets.db"
-            ).exists()
-        )
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.METADATA, anotherProjectId) + "/itemsets.db").exists())
     }
 
     @Test
@@ -226,12 +195,7 @@ class ProjectResetterTest {
         resetAppState(listOf(ProjectResetter.ResetAction.RESET_INSTANCES))
 
         assertEquals(0, instancesRepositoryProvider.get(currentProjectId).all.size)
-        assertFolderEmpty(
-            storagePathProvider.getOdkDirPath(
-                StorageSubdirectory.INSTANCES,
-                currentProjectId
-            )
-        )
+        assertFolderEmpty(storagePathProvider.getOdkDirPath(StorageSubdirectory.INSTANCES, currentProjectId))
     }
 
     @Test
@@ -251,12 +215,7 @@ class ProjectResetterTest {
 
         resetAppState(listOf(ProjectResetter.ResetAction.RESET_LAYERS))
 
-        assertFolderEmpty(
-            storagePathProvider.getOdkDirPath(
-                StorageSubdirectory.LAYERS,
-                currentProjectId
-            )
-        )
+        assertFolderEmpty(storagePathProvider.getOdkDirPath(StorageSubdirectory.LAYERS, currentProjectId))
     }
 
     @Test
@@ -274,12 +233,7 @@ class ProjectResetterTest {
 
         resetAppState(listOf(ProjectResetter.ResetAction.RESET_CACHE))
 
-        assertFolderEmpty(
-            storagePathProvider.getOdkDirPath(
-                StorageSubdirectory.CACHE,
-                currentProjectId
-            )
-        )
+        assertFolderEmpty(storagePathProvider.getOdkDirPath(StorageSubdirectory.CACHE, currentProjectId))
     }
 
     @Test
@@ -307,20 +261,12 @@ class ProjectResetterTest {
 
     private fun setupTestSettingsFolder(uuid: String) {
         assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.SETTINGS,
-                    uuid
-                )
-            ).exists() || File(
+            File(storagePathProvider.getOdkDirPath(StorageSubdirectory.SETTINGS, uuid)).exists() || File(
                 storagePathProvider.getOdkDirPath(StorageSubdirectory.SETTINGS, uuid)
             ).mkdir()
         )
 
-        File(
-            storagePathProvider.getOdkDirPath(StorageSubdirectory.SETTINGS, uuid),
-            "settings.png"
-        ).createNewFile()
+        File(storagePathProvider.getOdkDirPath(StorageSubdirectory.SETTINGS, uuid), "settings.png").createNewFile()
     }
 
     private fun setupTestFormsDatabase(uuid: String) {
@@ -328,12 +274,7 @@ class ProjectResetterTest {
             Form.Builder()
                 .formId("jrFormId")
                 .displayName("displayName")
-                .formFilePath(
-                    storagePathProvider.getOdkDirPath(
-                        StorageSubdirectory.FORMS,
-                        uuid
-                    ) + "/testFile1.xml"
-                )
+                .formFilePath(storagePathProvider.getOdkDirPath(StorageSubdirectory.FORMS, uuid) + "/testFile1.xml")
                 .build()
         )
         assertEquals(1, formsRepositoryProvider.get(uuid).all.size)
@@ -353,294 +294,63 @@ class ProjectResetterTest {
     }
 
     private fun createTestItemsetsDatabaseFile(uuid: String) {
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.METADATA,
-                    uuid
-                ) + "/itemsets.db"
-            ).createNewFile()
-        )
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.METADATA, uuid) + "/itemsets.db").createNewFile())
     }
 
     private fun saveTestFormFiles(uuid: String) {
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.FORMS,
-                    uuid
-                ) + "/testFile1.xml"
-            ).createNewFile()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.FORMS,
-                    uuid
-                ) + "/testFile2.xml"
-            ).createNewFile()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.FORMS,
-                    uuid
-                ) + "/testFile3.xml"
-            ).createNewFile()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.FORMS,
-                    uuid
-                ) + "/testDir1/testFile1-media"
-            ).mkdirs()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.FORMS,
-                    uuid
-                ) + "/testDir2/testFile2-media"
-            ).mkdirs()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.FORMS,
-                    uuid
-                ) + "/testDir3/testFile3-media/testFile.csv"
-            ).mkdirs()
-        )
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.FORMS, uuid) + "/testFile1.xml").createNewFile())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.FORMS, uuid) + "/testFile2.xml").createNewFile())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.FORMS, uuid) + "/testFile3.xml").createNewFile())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.FORMS, uuid) + "/testDir1/testFile1-media").mkdirs())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.FORMS, uuid) + "/testDir2/testFile2-media").mkdirs())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.FORMS, uuid) + "/testDir3/testFile3-media/testFile.csv").mkdirs())
     }
 
     private fun assertTestFormFiles(uuid: String) {
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.FORMS,
-                    uuid
-                ) + "/testFile1.xml"
-            ).exists()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.FORMS,
-                    uuid
-                ) + "/testFile2.xml"
-            ).exists()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.FORMS,
-                    uuid
-                ) + "/testFile3.xml"
-            ).exists()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.FORMS,
-                    uuid
-                ) + "/testDir1/testFile1-media"
-            ).exists()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.FORMS,
-                    uuid
-                ) + "/testDir2/testFile2-media"
-            ).exists()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.FORMS,
-                    uuid
-                ) + "/testDir3/testFile3-media/testFile.csv"
-            ).exists()
-        )
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.FORMS, uuid) + "/testFile1.xml").exists())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.FORMS, uuid) + "/testFile2.xml").exists())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.FORMS, uuid) + "/testFile3.xml").exists())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.FORMS, uuid) + "/testDir1/testFile1-media").exists())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.FORMS, uuid) + "/testDir2/testFile2-media").exists())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.FORMS, uuid) + "/testDir3/testFile3-media/testFile.csv").exists())
     }
 
     private fun saveTestInstanceFiles(uuid: String) {
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.INSTANCES,
-                    uuid
-                ) + "/testDir1/testFile1.xml"
-            ).mkdirs()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.INSTANCES,
-                    uuid
-                ) + "/testDir2/testFile2.xml"
-            ).mkdirs()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.INSTANCES,
-                    uuid
-                ) + "/testDir3"
-            ).mkdirs()
-        )
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.INSTANCES, uuid) + "/testDir1/testFile1.xml").mkdirs())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.INSTANCES, uuid) + "/testDir2/testFile2.xml").mkdirs())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.INSTANCES, uuid) + "/testDir3").mkdirs())
     }
 
     private fun assertTestInstanceFiles(uuid: String) {
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.INSTANCES,
-                    uuid
-                ) + "/testDir1/testFile1.xml"
-            ).exists()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.INSTANCES,
-                    uuid
-                ) + "/testDir2/testFile2.xml"
-            ).exists()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.INSTANCES,
-                    uuid
-                ) + "/testDir3"
-            ).exists()
-        )
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.INSTANCES, uuid) + "/testDir1/testFile1.xml").exists())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.INSTANCES, uuid) + "/testDir2/testFile2.xml").exists())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.INSTANCES, uuid) + "/testDir3").exists())
     }
 
     private fun saveTestLayerFiles(uuid: String) {
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.LAYERS,
-                    uuid
-                ) + "/testFile1"
-            ).createNewFile()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.LAYERS,
-                    uuid
-                ) + "/testFile2"
-            ).createNewFile()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.LAYERS,
-                    uuid
-                ) + "/testFile3"
-            ).createNewFile()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.LAYERS,
-                    uuid
-                ) + "/testFile4"
-            ).createNewFile()
-        )
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.LAYERS, uuid) + "/testFile1").createNewFile())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.LAYERS, uuid) + "/testFile2").createNewFile())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.LAYERS, uuid) + "/testFile3").createNewFile())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.LAYERS, uuid) + "/testFile4").createNewFile())
     }
 
     private fun assertTestLayerFiles(uuid: String) {
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.LAYERS,
-                    uuid
-                ) + "/testFile1"
-            ).exists()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.LAYERS,
-                    uuid
-                ) + "/testFile2"
-            ).exists()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.LAYERS,
-                    uuid
-                ) + "/testFile3"
-            ).exists()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.LAYERS,
-                    uuid
-                ) + "/testFile4"
-            ).exists()
-        )
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.LAYERS, uuid) + "/testFile1").exists())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.LAYERS, uuid) + "/testFile2").exists())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.LAYERS, uuid) + "/testFile3").exists())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.LAYERS, uuid) + "/testFile4").exists())
     }
 
     private fun saveTestCacheFiles(uuid: String) {
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.CACHE,
-                    uuid
-                ) + "/testFile1"
-            ).createNewFile()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.CACHE,
-                    uuid
-                ) + "/testFile2"
-            ).createNewFile()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.CACHE,
-                    uuid
-                ) + "/testFile3"
-            ).createNewFile()
-        )
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.CACHE, uuid) + "/testFile1").createNewFile())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.CACHE, uuid) + "/testFile2").createNewFile())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.CACHE, uuid) + "/testFile3").createNewFile())
     }
 
     private fun assertTestCacheFiles(uuid: String) {
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.CACHE,
-                    uuid
-                ) + "/testFile1"
-            ).exists()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.CACHE,
-                    uuid
-                ) + "/testFile2"
-            ).exists()
-        )
-        assertTrue(
-            File(
-                storagePathProvider.getOdkDirPath(
-                    StorageSubdirectory.CACHE,
-                    uuid
-                ) + "/testFile3"
-            ).exists()
-        )
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.CACHE, uuid) + "/testFile1").exists())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.CACHE, uuid) + "/testFile2").exists())
+        assertTrue(File(storagePathProvider.getOdkDirPath(StorageSubdirectory.CACHE, uuid) + "/testFile3").exists())
     }
 
     private fun assertFolderEmpty(folder: String) {

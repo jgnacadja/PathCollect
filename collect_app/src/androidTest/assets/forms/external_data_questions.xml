@@ -1,21 +1,27 @@
 <?xml version="1.0"?>
-<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns="http://www.w3.org/2002/xforms">
+<h:html
+    xmlns="http://www.w3.org/2002/xforms"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:jr="http://openrosa.org/javarosa"
+    xmlns:odk="http://www.opendatakit.org/xforms"
+    xmlns:orx="http://openrosa.org/xforms"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <h:head>
         <h:title>externalDataQuestions</h:title>
         <model>
             <instance>
                 <externalDataQuestions id="externalDataQuestions">
-                    <q1 />
-                    <q2 />
+                    <q1/>
+                    <q2/>
                     <meta>
-                        <instanceID />
+                        <instanceID/>
                     </meta>
                 </externalDataQuestions>
             </instance>
-            <bind nodeset="/externalDataQuestions/q1" type="select1" />
-            <bind nodeset="/externalDataQuestions/q2" type="string" />
-            <bind nodeset="/externalDataQuestions/meta/instanceID" readonly="true()"
-                type="string" jr:preload="uid" />
+            <bind nodeset="/externalDataQuestions/q1" type="select1"/>
+            <bind nodeset="/externalDataQuestions/q2" type="string"/>
+            <bind jr:preload="uid" nodeset="/externalDataQuestions/meta/instanceID" readonly="true()" type="string"/>
         </model>
     </h:head>
     <h:body>
@@ -26,8 +32,7 @@
                 <value>name_key</value>
             </item>
         </select1>
-        <input query="instance('counties')/root/item[county= &quot;King&quot;]"
-            ref="/externalDataQuestions/q2">
+        <input query="instance('counties')/root/item[county= &quot;King&quot;]" ref="/externalDataQuestions/q2">
             <label>External csv</label>
         </input>
     </h:body>

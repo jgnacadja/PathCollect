@@ -5,7 +5,7 @@ import android.content.Context;
 public final class ViewUtils {
 
     private ViewUtils() {
-
+        
     }
 
     public static int dpFromPx(final Context context, final float px) {

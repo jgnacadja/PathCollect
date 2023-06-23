@@ -36,9 +36,9 @@ import java.util.stream.Stream;
 
 public abstract class InstanceUploaderTask extends AsyncTask<Long, Integer, InstanceUploaderTask.Outcome> {
 
-    protected SettingsProvider settingsProvider;
     private InstancesRepository instancesRepository;
     private FormsRepository formsRepository;
+    protected SettingsProvider settingsProvider;
     private InstanceUploaderListener stateListener;
     private Boolean deleteInstanceAfterSubmission;
 

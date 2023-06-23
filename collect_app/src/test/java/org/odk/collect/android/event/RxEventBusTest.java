@@ -1,13 +1,13 @@
 package org.odk.collect.android.event;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 import org.odk.collect.android.events.RxEvent;
 import org.odk.collect.android.events.RxEventBus;
 
 import io.reactivex.observers.TestObserver;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class RxEventBusTest {
 

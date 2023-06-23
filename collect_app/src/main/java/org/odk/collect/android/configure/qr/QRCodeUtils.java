@@ -14,8 +14,6 @@
 
 package org.odk.collect.android.configure.qr;
 
-import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -49,20 +47,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.DataFormatException;
 
+import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
+
 public class QRCodeUtils implements QRCodeDecoder {
 
     private static final int QR_CODE_SIDE_LENGTH = 400; // in pixels
-
-    @NonNull
-    private static BinaryBitmap getBinaryBitmap(Bitmap bitmap) {
-        int[] intArray = new int[bitmap.getWidth() * bitmap.getHeight()];
-
-        //copy pixel data from bitmap into the array
-        bitmap.getPixels(intArray, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
-
-        LuminanceSource source = new RGBLuminanceSource(bitmap.getWidth(), bitmap.getHeight(), intArray);
-        return new BinaryBitmap(new HybridBinarizer(source));
-    }
 
     public Bitmap encode(String data) throws IOException, WriterException {
         String compressedData = CompressionUtils.compress(data);
@@ -100,6 +89,7 @@ public class QRCodeUtils implements QRCodeDecoder {
         tmpHintsMap.put(DecodeHintType.PURE_BARCODE, Boolean.FALSE);
 
 
+
         try {
             QRCodeMultiReader reader = new QRCodeMultiReader();
             Result result = reader.decode(getBinaryBitmap(bitmap), tmpHintsMap);
@@ -109,5 +99,16 @@ public class QRCodeUtils implements QRCodeDecoder {
         } catch (FormatException | com.google.zxing.NotFoundException | ChecksumException e) {
             throw new NotFoundException();
         }
+    }
+
+    @NonNull
+    private static BinaryBitmap getBinaryBitmap(Bitmap bitmap) {
+        int[] intArray = new int[bitmap.getWidth() * bitmap.getHeight()];
+
+        //copy pixel data from bitmap into the array
+        bitmap.getPixels(intArray, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
+
+        LuminanceSource source = new RGBLuminanceSource(bitmap.getWidth(), bitmap.getHeight(), intArray);
+        return new BinaryBitmap(new HybridBinarizer(source));
     }
 }

@@ -18,8 +18,6 @@
 
 package org.odk.collect.android.externaldata.handler;
 
-import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
-
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -43,6 +41,8 @@ import java.util.Set;
 
 import timber.log.Timber;
 
+import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
+
 /**
  * Author: Meletis Margaritis
  * Date: 16/05/13
@@ -57,7 +57,7 @@ public class ExternalDataHandlerSearch extends ExternalDataHandlerBase {
     private final String imageColumn;
 
     public ExternalDataHandlerSearch(ExternalDataManager externalDataManager, String displayColumns,
-                                     String valueColumn, String imageColumn) {
+            String valueColumn, String imageColumn) {
         super(externalDataManager);
         this.displayColumns = displayColumns;
         this.valueColumn = valueColumn;
@@ -198,7 +198,7 @@ public class ExternalDataHandlerSearch extends ExternalDataHandlerBase {
     }
 
     protected ArrayList<SelectChoice> createDynamicSelectChoices(Cursor c,
-                                                                 LinkedHashMap<String, String> selectColumnMap, String safeImageColumn) {
+            LinkedHashMap<String, String> selectColumnMap, String safeImageColumn) {
         List<String> columnsToExcludeFromLabels = new ArrayList<>();
         if (safeImageColumn != null) {
             columnsToExcludeFromLabels.add(safeImageColumn);
@@ -261,7 +261,7 @@ public class ExternalDataHandlerSearch extends ExternalDataHandlerBase {
      * col1value (col2name: col2value) (col3name: col3value)
      */
     protected String buildLabel(Cursor c, LinkedHashMap<String, String> selectColumnMap,
-                                List<String> columnsToExcludeFromLabels) {
+            List<String> columnsToExcludeFromLabels) {
         StringBuilder sb = new StringBuilder();
         // we start at 1 since 0 is the "value" column
         for (int columnIndex = 1; columnIndex < c.getColumnCount(); columnIndex++) {

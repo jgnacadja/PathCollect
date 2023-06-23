@@ -61,21 +61,21 @@ the License.
     </FrameLayout>
 
 
+
     <LinearLayout
         android:id="@+id/buttonholder"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
         android:background="@color/colorOnPrimary"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/form_back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:background="@color/color15"
             android:clickable="true"
             android:contentDescription="@string/form_backward"
@@ -88,6 +88,7 @@ the License.
             android:textColor="@color/colorOnPrimary"
             android:textStyle="bold"
             android:visibility="gone"
+            android:layout_marginStart="20dp"
             tools:visibility="visible" />
 
         <View
@@ -99,7 +100,6 @@ the License.
             android:id="@+id/form_forward_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
             android:background="@color/colorPrimary"
             android:clickable="true"
             android:contentDescription="@string/form_forward"
@@ -112,6 +112,7 @@ the License.
             android:textColor="@color/colorOnPrimary"
             android:textStyle="bold"
             android:visibility="gone"
+            android:layout_marginEnd="20dp"
             tools:visibility="visible" />
     </LinearLayout>
 </RelativeLayout>

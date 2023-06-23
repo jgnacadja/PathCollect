@@ -1,8 +1,5 @@
 package org.odk.collect.android.preferences.dialogs;
 
-import static org.odk.collect.android.fragments.dialogs.ResetSettingsResultDialog.RESET_SETTINGS_RESULT_DIALOG_TAG;
-import static org.odk.collect.android.utilities.ProjectResetter.ResetAction.RESET_PREFERENCES;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -29,6 +26,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import timber.log.Timber;
+
+import static org.odk.collect.android.fragments.dialogs.ResetSettingsResultDialog.RESET_SETTINGS_RESULT_DIALOG_TAG;
+import static org.odk.collect.android.utilities.ProjectResetter.ResetAction.RESET_PREFERENCES;
 
 public class ResetDialogPreferenceFragmentCompat extends PreferenceDialogFragmentCompat implements CompoundButton.OnCheckedChangeListener {
 

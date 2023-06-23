@@ -14,8 +14,6 @@
 
 package org.odk.collect.android.upload;
 
-import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
-
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
@@ -45,6 +43,8 @@ import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 
 import timber.log.Timber;
+
+import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
 
 public class InstanceServerUploader extends InstanceUploader {
     private static final String URL_PATH_SEP = "/";

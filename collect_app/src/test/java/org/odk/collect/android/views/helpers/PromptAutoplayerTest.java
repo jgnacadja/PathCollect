@@ -1,17 +1,5 @@
 package org.odk.collect.android.views.helpers;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.odk.collect.android.support.CollectHelpers.setupFakeReferenceManager;
-import static org.odk.collect.android.utilities.Appearances.COMPACT;
-import static org.odk.collect.android.utilities.Appearances.MINIMAL;
-import static org.odk.collect.android.utilities.Appearances.NO_BUTTONS;
-import static java.util.Arrays.asList;
-
 import androidx.core.util.Pair;
 
 import org.javarosa.core.model.Constants;
@@ -29,15 +17,23 @@ import org.odk.collect.audioclips.Clip;
 
 import java.util.List;
 
+import static java.util.Arrays.asList;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.odk.collect.android.support.CollectHelpers.setupFakeReferenceManager;
+import static org.odk.collect.android.utilities.Appearances.COMPACT;
+import static org.odk.collect.android.utilities.Appearances.MINIMAL;
+import static org.odk.collect.android.utilities.Appearances.NO_BUTTONS;
+
 public class PromptAutoplayerTest {
 
-    private static final List<Pair<String, String>> REFERENCES = asList(
-            new Pair<>("ref", "file://audio.mp3"),
-            new Pair<>("ref1", "file://audio1.mp3"),
-            new Pair<>("ref2", "file://audio2.mp3")
-    );
     private final AudioHelper audioHelper = mock(AudioHelper.class);
     private final Analytics analytics = mock(Analytics.class);
+
     private PromptAutoplayer autoplayer;
 
     @Before
@@ -258,4 +254,10 @@ public class PromptAutoplayerTest {
         verify(analytics, never()).logEvent(any(), any());
         verify(analytics, never()).logEvent(any(), any(), any());
     }
+
+    private static final List<Pair<String, String>> REFERENCES = asList(
+            new Pair<>("ref", "file://audio.mp3"),
+            new Pair<>("ref1", "file://audio1.mp3"),
+            new Pair<>("ref2", "file://audio2.mp3")
+    );
 }

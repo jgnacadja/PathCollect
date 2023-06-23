@@ -33,9 +33,7 @@ import java.util.Locale;
 
 import timber.log.Timber;
 
-/**
- * An adapter for displaying form definitions in a list.
- */
+/** An adapter for displaying form definitions in a list. */
 public class FormListAdapter extends SimpleCursorAdapter {
     private final Context context;
     private final ListView listView;
@@ -43,8 +41,8 @@ public class FormListAdapter extends SimpleCursorAdapter {
     private final OnItemClickListener mapButtonListener;
 
     public FormListAdapter(
-            ListView listView, String versionColumnName, Context context, int layoutId,
-            OnItemClickListener mapButtonListener, String[] columnNames, int[] viewIds) {
+        ListView listView, String versionColumnName, Context context, int layoutId,
+        OnItemClickListener mapButtonListener, String[] columnNames, int[] viewIds) {
         super(context, layoutId, null, columnNames, viewIds);
         this.context = context;
         this.listView = listView;
@@ -92,8 +90,7 @@ public class FormListAdapter extends SimpleCursorAdapter {
         });
     }
 
-    @Override
-    public void bindView(View view, Context context, Cursor cursor) {
+    @Override public void bindView(View view, Context context, Cursor cursor) {
         super.bindView(view, context, cursor);
         View mapView = view.findViewById(R.id.map_view);
         if (mapView != null) {
@@ -110,7 +107,7 @@ public class FormListAdapter extends SimpleCursorAdapter {
         try {
             if (context != null) {
                 return new SimpleDateFormat(
-                        context.getString(R.string.added_on_date_at_time), Locale.getDefault()
+                    context.getString(R.string.added_on_date_at_time), Locale.getDefault()
                 ).format(date);
             }
         } catch (IllegalArgumentException e) {

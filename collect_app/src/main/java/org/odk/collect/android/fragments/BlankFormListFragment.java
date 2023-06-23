@@ -13,20 +13,16 @@
  */
 
 package org.odk.collect.android.fragments;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.loader.content.CursorLoader;
-
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.FormListAdapter;
 import org.odk.collect.android.dao.CursorLoaderFactory;
@@ -45,9 +41,7 @@ import org.odk.collect.androidshared.ui.DialogFragmentUtils;
 import org.odk.collect.androidshared.ui.ToastUtils;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 import org.odk.collect.material.MaterialProgressDialogFragment;
-
 import javax.inject.Inject;
-
 import timber.log.Timber;
 
 /**
@@ -60,18 +54,23 @@ import timber.log.Timber;
 public class BlankFormListFragment extends FormListFragment implements DiskSyncListener,
         DeleteFormsListener, View.OnClickListener {
     private static final String FORM_MANAGER_LIST_SORTING_ORDER = "formManagerListSortingOrder";
-    @Inject
-    FormsRepositoryProvider formsRepositoryProvider;
-    @Inject
-    InstancesRepositoryProvider instancesRepositoryProvider;
-    @Inject
-    FastExternalItemsetsRepository fastExternalItemsetsRepository;
-    @Inject
-    CurrentProjectProvider currentProjectProvider;
-    @Inject
-    ChangeLockProvider changeLockProvider;
     private BackgroundTasks backgroundTasks; // handled across orientation changes
     private AlertDialog alertDialog;
+
+    @Inject
+    FormsRepositoryProvider formsRepositoryProvider;
+
+    @Inject
+    InstancesRepositoryProvider instancesRepositoryProvider;
+
+    @Inject
+    FastExternalItemsetsRepository fastExternalItemsetsRepository;
+
+    @Inject
+    CurrentProjectProvider currentProjectProvider;
+
+    @Inject
+    ChangeLockProvider changeLockProvider;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -285,7 +284,7 @@ public class BlankFormListFragment extends FormListFragment implements DiskSyncL
         FormSyncTask formSyncTask;
         DeleteFormsTask deleteFormsTask;
 
-        BackgroundTasks() {
+        BackgroundTasks(){
         }
     }
 }

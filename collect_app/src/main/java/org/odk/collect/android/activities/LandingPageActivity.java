@@ -1,5 +1,7 @@
 package org.odk.collect.android.activities;
 
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
+
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -20,7 +22,7 @@ import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.utilities.ApplicationConstants;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 
-public class LandingPageActivity extends CollectAbstractActivity {
+public class LandingPageActivity extends CollectAbstractActivity{
     //button
     private Button sondageButton;
     private Button messageButton;
@@ -164,7 +166,7 @@ public class LandingPageActivity extends CollectAbstractActivity {
         PackageManager manager = getApplicationContext().getPackageManager();
         try {
             Intent i = manager.getLaunchIntentForPackage(packageName);
-            if (i == null) {
+            if (i == null){
                 throw new PackageManager.NameNotFoundException();
             }
             i.addCategory(Intent.CATEGORY_LAUNCHER);
@@ -172,9 +174,9 @@ public class LandingPageActivity extends CollectAbstractActivity {
         } catch (PackageManager.NameNotFoundException e) {
             //if not found in device then will come here
             try {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName)));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+packageName)));
             } catch (ActivityNotFoundException ex) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + packageName)));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id="+packageName)));
             }
         }
     }

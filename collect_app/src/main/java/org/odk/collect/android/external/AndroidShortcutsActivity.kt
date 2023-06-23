@@ -81,10 +81,7 @@ class AndroidShortcutsActivity : AppCompatActivity() {
             putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent)
             putExtra(Intent.EXTRA_SHORTCUT_NAME, forms[item].formName)
             val iconResource: Parcelable =
-                Intent.ShortcutIconResource.fromContext(
-                    this@AndroidShortcutsActivity,
-                    R.drawable.notes
-                )
+                Intent.ShortcutIconResource.fromContext(this@AndroidShortcutsActivity, R.drawable.notes)
             putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, iconResource)
         }
     }

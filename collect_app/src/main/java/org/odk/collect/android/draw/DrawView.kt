@@ -16,7 +16,11 @@
 package org.odk.collect.android.draw
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Path
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
@@ -154,8 +158,7 @@ class DrawView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
     private fun resetImage(w: Int, h: Int) {
         val backgroundBitmapFile = File(StoragePathProvider().getTmpImageFilePath())
         if (backgroundBitmapFile.exists()) {
-            bitmap = ImageFileUtils.getBitmapScaledToDisplay(backgroundBitmapFile, h, w, true)!!
-                .copy(Bitmap.Config.ARGB_8888, true)
+            bitmap = ImageFileUtils.getBitmapScaledToDisplay(backgroundBitmapFile, h, w, true)!!.copy(Bitmap.Config.ARGB_8888, true)
             canvas = Canvas(bitmap)
         } else {
             bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)

@@ -16,8 +16,6 @@
 
 package org.odk.collect.android.instrumented.forms;
 
-import static junit.framework.Assert.assertEquals;
-
 import android.app.Application;
 
 import androidx.test.core.app.ApplicationProvider;
@@ -48,6 +46,8 @@ import java.util.concurrent.ExecutionException;
 
 import timber.log.Timber;
 
+import static junit.framework.Assert.assertEquals;
+
 /**
  * This test has been created in order to check indices while navigating through a form.
  * It's especially important while navigating through a form that contains nested groups and if we
@@ -59,8 +59,6 @@ import timber.log.Timber;
 @RunWith(Parameterized.class)
 public class FormNavigationTest {
 
-    private final String formName;
-    private final String[] expectedIndices;
     @Rule
     public RuleChain copyFormChain = TestRuleChain.chain()
             .around(new RunnableRule(() -> {
@@ -69,11 +67,6 @@ public class FormNavigationTest {
                 component.projectsRepository().save(Project.Companion.getDEMO_PROJECT());
                 component.currentProjectProvider().setCurrentProject(Project.DEMO_PROJECT_ID);
             }));
-
-    public FormNavigationTest(String formName, String[] expectedIndices) {
-        this.formName = formName;
-        this.expectedIndices = expectedIndices;
-    }
 
     @Parameters(name = "{0}")
     public static Iterable<Object[]> data() {
@@ -107,10 +100,12 @@ public class FormNavigationTest {
         return new Object[]{formName, expectedIndices};
     }
 
-    private static String formPath(String formName) {
-        return new StoragePathProvider().getOdkDirPath(StorageSubdirectory.FORMS)
-                + File.separator
-                + formName;
+    private final String formName;
+    private final String[] expectedIndices;
+
+    public FormNavigationTest(String formName, String[] expectedIndices) {
+        this.formName = formName;
+        this.expectedIndices = expectedIndices;
     }
 
     @Test
@@ -166,5 +161,11 @@ public class FormNavigationTest {
      */
     private void copyToStorage(String formName) throws IOException {
         StorageUtils.copyFormToDemoProject(formName);
+    }
+
+    private static String formPath(String formName) {
+        return new StoragePathProvider().getOdkDirPath(StorageSubdirectory.FORMS)
+                + File.separator
+                + formName;
     }
 }

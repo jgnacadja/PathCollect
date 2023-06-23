@@ -1,7 +1,5 @@
 package org.odk.collect.android.utilities;
 
-import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
-
 import android.database.SQLException;
 
 import org.odk.collect.android.R;
@@ -23,6 +21,8 @@ import java.util.List;
 
 import timber.log.Timber;
 
+import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
+
 public class FormsDirDiskFormsSynchronizer implements DiskFormsSynchronizer {
 
     private static int counter;
@@ -37,29 +37,6 @@ public class FormsDirDiskFormsSynchronizer implements DiskFormsSynchronizer {
     public FormsDirDiskFormsSynchronizer(FormsRepository formsRepository, String formsDir) {
         this.formsRepository = formsRepository;
         this.formsDir = formsDir;
-    }
-
-    public static List<File> filterFormsToAdd(File[] formDefs, int backgroundInstanceId) {
-        List<File> formsToAdd = new LinkedList<>();
-        if (formDefs != null) {
-            for (File candidate : formDefs) {
-                if (shouldAddFormFile(candidate.getName())) {
-                    formsToAdd.add(candidate);
-                } else {
-                    Timber.i("[%d] Ignoring: %s", backgroundInstanceId, candidate.getAbsolutePath());
-                }
-            }
-        }
-        return formsToAdd;
-    }
-
-    public static boolean shouldAddFormFile(String fileName) {
-        // discard files beginning with "."
-        // discard files not ending with ".xml" or ".xhtml"
-        boolean ignoredFile = fileName.startsWith(".");
-        boolean xmlFile = fileName.endsWith(".xml");
-        boolean xhtmlFile = fileName.endsWith(".xhtml");
-        return !ignoredFile && (xmlFile || xhtmlFile);
     }
 
     @Override
@@ -199,6 +176,29 @@ public class FormsDirDiskFormsSynchronizer implements DiskFormsSynchronizer {
         } finally {
             Timber.i("[%d] doInBackground ends!", instance);
         }
+    }
+
+    public static List<File> filterFormsToAdd(File[] formDefs, int backgroundInstanceId) {
+        List<File> formsToAdd = new LinkedList<>();
+        if (formDefs != null) {
+            for (File candidate : formDefs) {
+                if (shouldAddFormFile(candidate.getName())) {
+                    formsToAdd.add(candidate);
+                } else {
+                    Timber.i("[%d] Ignoring: %s", backgroundInstanceId, candidate.getAbsolutePath());
+                }
+            }
+        }
+        return formsToAdd;
+    }
+
+    public static boolean shouldAddFormFile(String fileName) {
+        // discard files beginning with "."
+        // discard files not ending with ".xml" or ".xhtml"
+        boolean ignoredFile = fileName.startsWith(".");
+        boolean xmlFile = fileName.endsWith(".xml");
+        boolean xhtmlFile = fileName.endsWith(".xhtml");
+        return !ignoredFile && (xmlFile || xhtmlFile);
     }
 
     private Form parseForm(File formDefFile) throws IllegalArgumentException {

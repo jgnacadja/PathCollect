@@ -59,8 +59,12 @@ enum ExternalDataSearchType {
         this.keyword = keyword;
     }
 
+    public String getKeyword() {
+        return keyword;
+    }
+
     public static ExternalDataSearchType getByKeyword(String keyword,
-                                                      ExternalDataSearchType fallback) {
+            ExternalDataSearchType fallback) {
         if (keyword == null) {
             return fallback;
         }
@@ -71,10 +75,6 @@ enum ExternalDataSearchType {
         }
 
         return fallback;
-    }
-
-    public String getKeyword() {
-        return keyword;
     }
 
     public String[] constructLikeArguments(String queriedValue, int times) {

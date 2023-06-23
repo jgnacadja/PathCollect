@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/2002/xforms">
+<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:jr="http://openrosa.org/javarosa" xmlns:odk="http://www.opendatakit.org/xforms" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <h:head>
         <h:title>different-search-appearances</h:title>
         <model>
@@ -24,8 +24,7 @@
                 </different-search-appearances>
             </instance>
             <bind nodeset="/different-search-appearances/fruit1" type="select1" />
-            <bind nodeset="/different-search-appearances/note_fruit" readonly="true()"
-                type="string" />
+            <bind nodeset="/different-search-appearances/note_fruit" readonly="true()" type="string" />
             <bind nodeset="/different-search-appearances/animal1" type="select1" />
             <bind nodeset="/different-search-appearances/animal2" type="select1" />
             <bind nodeset="/different-search-appearances/animal3" type="select1" />
@@ -37,9 +36,7 @@
             <bind nodeset="/different-search-appearances/animal6" type="select" />
             <bind nodeset="/different-search-appearances/fruit5" type="select" />
             <bind nodeset="/different-search-appearances/fruit6" type="select" />
-            <bind calculate="concat('uuid:', uuid())"
-                nodeset="/different-search-appearances/meta/instanceID" readonly="true()"
-                type="string" />
+            <bind calculate="concat('uuid:', uuid())" nodeset="/different-search-appearances/meta/instanceID" readonly="true()" type="string" />
         </model>
     </h:head>
     <h:body>
@@ -52,9 +49,7 @@
         </select1>
         <input ref="/different-search-appearances/note_fruit">
             <label>
-                The fruit
-                <output value=" /different-search-appearances/fruit1 " />
-                pulled from csv
+                The fruit <output value=" /different-search-appearances/fruit1 " /> pulled from csv
             </label>
         </input>
         <select1 ref="/different-search-appearances/animal1">
@@ -115,18 +110,14 @@
             </item>
         </select1>
         <select1 appearance="search search('fruits')" ref="/different-search-appearances/fruit2">
-            <label>Select from a CSV using search() appearance/function and search appearance
-            </label>
+            <label>Select from a CSV using search() appearance/function and search appearance</label>
             <item>
                 <label>name</label>
                 <value>name_key</value>
             </item>
         </select1>
-        <select1 appearance="autocomplete search('fruits')"
-            ref="/different-search-appearances/fruit3">
-            <label>Select from a CSV using search() appearance/function and autocomplete
-                appearance
-            </label>
+        <select1 appearance="autocomplete search('fruits')" ref="/different-search-appearances/fruit3">
+            <label>Select from a CSV using search() appearance/function and autocomplete appearance</label>
             <item>
                 <label>name</label>
                 <value>name_key</value>
@@ -197,18 +188,14 @@
             </item>
         </select>
         <select appearance="search search('fruits')" ref="/different-search-appearances/fruit5">
-            <label>Select from a CSV using search() appearance/function and search appearance
-            </label>
+            <label>Select from a CSV using search() appearance/function and search appearance</label>
             <item>
                 <label>name</label>
                 <value>name_key</value>
             </item>
         </select>
-        <select appearance="autocomplete search('fruits')"
-            ref="/different-search-appearances/fruit6">
-            <label>Select from a CSV using search() appearance/function and autocomplete
-                appearance
-            </label>
+        <select appearance="autocomplete search('fruits')" ref="/different-search-appearances/fruit6">
+            <label>Select from a CSV using search() appearance/function and autocomplete appearance</label>
             <item>
                 <label>name</label>
                 <value>name_key</value>

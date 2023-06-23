@@ -32,31 +32,18 @@ public class CustomSQLiteQueryBuilder {
         query = new StringBuilder();
     }
 
+    public void end() {}
+
+    public String getQueryString() {
+        return query.toString();
+    }
+
     public static String quoteIdentifier(String unquoted) {
         return "\"" + unquoted + "\"";
     }
 
     public static String quoteStringLiteral(String unquoted) {
         return "\'" + unquoted + "\'";
-    }
-
-    public static String formatCompareEquals(String left, String right) {
-        return left + " = " + right;
-    }
-
-    public static String formatLogicalAnd(String[] criteria) {
-        return StringUtils.join(" AND ", Arrays.asList(criteria));
-    }
-
-    public static String formatColumnDefinition(String columnName, String columnType) {
-        return columnName + SPACE + columnType;
-    }
-
-    public void end() {
-    }
-
-    public String getQueryString() {
-        return query.toString();
     }
 
     public CustomSQLiteQueryBuilder select() {
@@ -95,6 +82,14 @@ public class CustomSQLiteQueryBuilder {
         return where(formatLogicalAnd(selectCriteria));
     }
 
+    public static String formatCompareEquals(String left, String right) {
+        return left + " = " + right;
+    }
+
+    public static String formatLogicalAnd(String[] criteria) {
+        return StringUtils.join(" AND ", Arrays.asList(criteria));
+    }
+
     public CustomSQLiteQueryBuilder renameTable(String table) {
         query.append("ALTER TABLE").append(SPACE).append(table).append(SPACE).append("RENAME TO").append(SPACE);
         return this;
@@ -123,6 +118,10 @@ public class CustomSQLiteQueryBuilder {
     public CustomSQLiteQueryBuilder columnsForCreate(List<String> columnDefinitions) {
         query.append('(').append(StringUtils.join(LIST_SEPARATOR, columnDefinitions)).append(')');
         return this;
+    }
+
+    public static String formatColumnDefinition(String columnName, String columnType) {
+        return columnName + SPACE + columnType;
     }
 
     public CustomSQLiteQueryBuilder alter() {

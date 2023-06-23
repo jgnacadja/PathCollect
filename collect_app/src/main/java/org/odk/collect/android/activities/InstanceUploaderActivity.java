@@ -60,22 +60,30 @@ public class InstanceUploaderActivity extends CollectAbstractActivity implements
     private static final String AUTH_URI = "auth";
     private static final String ALERT_MSG = "alertmsg";
     private static final String TO_SEND = "tosend";
-    @Inject
-    InstancesRepositoryProvider instancesRepositoryProvider;
-    @Inject
-    FormsRepositoryProvider formsRepositoryProvider;
+
     private ProgressDialog progressDialog;
+
     private String alertMsg;
+
     private InstanceServerUploaderTask instanceServerUploaderTask;
+
     // maintain a list of what we've yet to send, in case we're interrupted by auth requests
     private Long[] instancesToSend;
+
     // URL specified when authentication is requested or specified from intent extra as override
     private String url;
+
     // Set from intent extras
     private String username;
     private String password;
     private Boolean deleteInstanceAfterUpload;
+
+    @Inject
+    InstancesRepositoryProvider instancesRepositoryProvider;
     private InstancesRepository instancesRepository;
+
+    @Inject
+    FormsRepositoryProvider formsRepositoryProvider;
     private FormsRepository formsRepository;
 
     @Override
@@ -293,7 +301,7 @@ public class InstanceUploaderActivity extends CollectAbstractActivity implements
     /**
      * Prompts the user for credentials for the server at the given URL. Once credentials are
      * provided, starts a new upload task with just the instances that were not yet reached.
-     * <p>
+     *
      * messagesByInstanceIdAttempted makes it possible to identify the instances that were part
      * of the latest submission attempt. The database provides generic status which could have come
      * from an unrelated submission attempt.

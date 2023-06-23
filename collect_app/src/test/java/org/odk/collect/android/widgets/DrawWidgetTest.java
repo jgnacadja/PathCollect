@@ -1,14 +1,5 @@
 package org.odk.collect.android.widgets;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.mockito.Mockito.when;
-import static org.odk.collect.android.support.CollectHelpers.setupFakeReferenceManager;
-import static org.robolectric.Shadows.shadowOf;
-import static java.util.Collections.singletonList;
-
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -20,7 +11,6 @@ import androidx.core.util.Pair;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import net.bytebuddy.utility.RandomString;
-
 import org.javarosa.core.model.data.StringData;
 import org.javarosa.core.reference.ReferenceManager;
 import org.junit.Test;
@@ -40,6 +30,15 @@ import org.odk.collect.imageloader.ImageLoader;
 import org.odk.collect.shared.TempFiles;
 
 import java.io.File;
+
+import static java.util.Collections.singletonList;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.mockito.Mockito.when;
+import static org.odk.collect.android.support.CollectHelpers.setupFakeReferenceManager;
+import static org.robolectric.Shadows.shadowOf;
 
 /**
  * @author James Knight

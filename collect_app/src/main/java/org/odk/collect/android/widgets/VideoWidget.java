@@ -64,13 +64,15 @@ import timber.log.Timber;
 public class VideoWidget extends QuestionWidget implements FileWidget, ButtonClickListener, WidgetDataReceiver {
     private final WaitingForDataRegistry waitingForDataRegistry;
     private final QuestionMediaManager questionMediaManager;
-    private final boolean selfie;
+
     Button captureButton;
     Button playButton;
     Button chooseButton;
     private String binaryName;
 
-    public VideoWidget(Context context, QuestionDetails prompt, QuestionMediaManager questionMediaManager, WaitingForDataRegistry waitingForDataRegistry) {
+    private final boolean selfie;
+
+    public VideoWidget(Context context, QuestionDetails prompt,  QuestionMediaManager questionMediaManager, WaitingForDataRegistry waitingForDataRegistry) {
         this(context, prompt, waitingForDataRegistry, questionMediaManager, new CameraUtils());
     }
 
@@ -114,7 +116,7 @@ public class VideoWidget extends QuestionWidget implements FileWidget, ButtonCli
     @Override
     public void deleteFile() {
         questionMediaManager.deleteAnswerFile(getFormEntryPrompt().getIndex().toString(),
-                getInstanceFolder() + File.separator + binaryName);
+                        getInstanceFolder() + File.separator + binaryName);
         binaryName = null;
     }
 
@@ -240,9 +242,9 @@ public class VideoWidget extends QuestionWidget implements FileWidget, ButtonCli
                     RequestCodes.VIDEO_CAPTURE);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(
-                            getContext(),
-                            getContext().getString(R.string.activity_not_found,
-                                    getContext().getString(R.string.capture_video)), Toast.LENGTH_SHORT)
+                    getContext(),
+                    getContext().getString(R.string.activity_not_found,
+                            getContext().getString(R.string.capture_video)), Toast.LENGTH_SHORT)
                     .show();
             waitingForDataRegistry.cancelWaitingForData();
         }
@@ -257,9 +259,9 @@ public class VideoWidget extends QuestionWidget implements FileWidget, ButtonCli
                     RequestCodes.VIDEO_CHOOSER);
         } catch (ActivityNotFoundException e) {
             Toast.makeText(
-                            getContext(),
-                            getContext().getString(R.string.activity_not_found,
-                                    getContext().getString(R.string.choose_video)), Toast.LENGTH_SHORT)
+                    getContext(),
+                    getContext().getString(R.string.activity_not_found,
+                            getContext().getString(R.string.choose_video)), Toast.LENGTH_SHORT)
                     .show();
 
             waitingForDataRegistry.cancelWaitingForData();

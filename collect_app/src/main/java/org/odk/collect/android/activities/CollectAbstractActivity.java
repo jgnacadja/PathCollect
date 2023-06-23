@@ -33,11 +33,13 @@ import javax.inject.Inject;
 
 public abstract class CollectAbstractActivity extends LocalizedActivity {
 
+    private boolean isInstanceStateSaved;
+
     @Inject
     protected PermissionsProvider permissionsProvider;
+
     @Inject
     protected SettingsProvider settingsProvider;
-    private boolean isInstanceStateSaved;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,13 +66,13 @@ public abstract class CollectAbstractActivity extends LocalizedActivity {
     protected void initToolbar(String title, boolean isDisplayEnable, Integer homeIndicator) {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if (title != null) {
+        if(title != null){
             setTitle(title);
         }
-        if (isDisplayEnable) {
+        if(isDisplayEnable){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        if (homeIndicator != null) {
+        if(homeIndicator != null){
             getSupportActionBar().setHomeAsUpIndicator(homeIndicator);
         }
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

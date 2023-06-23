@@ -1,9 +1,5 @@
 package org.odk.collect.android.utilities;
 
-import static android.content.Context.MODE_PRIVATE;
-import static junit.framework.TestCase.assertFalse;
-import static junit.framework.TestCase.assertTrue;
-
 import android.database.sqlite.SQLiteDatabase;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -14,6 +10,10 @@ import org.odk.collect.android.application.Collect;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class SQLiteUtilsTest {

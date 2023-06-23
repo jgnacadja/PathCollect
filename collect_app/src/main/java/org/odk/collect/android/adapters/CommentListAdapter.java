@@ -1,9 +1,11 @@
 package org.odk.collect.android.adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.CookieManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -22,8 +24,9 @@ import java.util.List;
 public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.ViewHolder> {
 
     private final Context context;
-    private final String installID;
     private List<Comment> comments;
+
+    private final String installID;
 
     public CommentListAdapter(List<Comment> comments, Context context, String installID) {
         this.context = context;
@@ -50,7 +53,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         boolean alreadyLiked;
         try {
             alreadyLiked = comment.getLikedUsers().contains(installID);
-        } catch (NullPointerException e) {
+        } catch (NullPointerException e){
             alreadyLiked = false;
         }
 
@@ -61,7 +64,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         holder.date.setText(TimeAgo.formatTimestamp(comment.getTimestamp()));
         holder.likes.setText(String.valueOf(comment.getLikes()));
 
-        if (alreadyLiked) {
+        if(alreadyLiked){
             int iconId = R.drawable.thumb_up_filled;
             holder.likeBtn.setImageResource(iconId);
             holder.likeBtn.setTag(iconId);

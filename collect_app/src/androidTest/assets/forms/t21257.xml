@@ -1,30 +1,33 @@
 <?xml version="1.0"?>
-<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns="http://www.w3.org/2002/xforms">
+<h:html
+    xmlns="http://www.w3.org/2002/xforms"
+    xmlns:ev="http://www.w3.org/2001/xml-events"
+    xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:jr="http://openrosa.org/javarosa"
+    xmlns:odk="http://www.opendatakit.org/xforms"
+    xmlns:orx="http://openrosa.org/xforms"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <h:head>
         <h:title>t21257</h:title>
         <model>
             <instance>
                 <t21257 id="t21257">
-                    <mytext1 />
-                    <mydecimal />
-                    <mynumbers />
-                    <mytext2 />
-                    <myselect />
+                    <mytext1/>
+                    <mydecimal/>
+                    <mynumbers/>
+                    <mytext2/>
+                    <myselect/>
                     <meta>
-                        <instanceID />
+                        <instanceID/>
                     </meta>
                 </t21257>
             </instance>
-            <bind nodeset="/t21257/mytext1" type="string" />
-            <bind constraint=". &gt;= 18 and . &lt; 110" nodeset="/t21257/mydecimal"
-                type="decimal" jr:constraintMsg="mydecimal constraint" />
-            <bind constraint=". &gt;= 18 and . &lt; 110" nodeset="/t21257/mynumbers"
-                type="string" jr:constraintMsg="mynumbers constraint" />
-            <bind nodeset="/t21257/mytext2" type="string" />
-            <bind constraint="not(selected(., 'do_not_know') and (count-selected(.)&gt;1))"
-                nodeset="/t21257/myselect" type="select" jr:constraintMsg="myselect constraint" />
-            <bind nodeset="/t21257/meta/instanceID" readonly="true()" type="string"
-                jr:preload="uid" />
+            <bind nodeset="/t21257/mytext1" type="string"/>
+            <bind constraint=". &gt;= 18 and . &lt; 110" jr:constraintMsg="mydecimal constraint" nodeset="/t21257/mydecimal" type="decimal"/>
+            <bind constraint=". &gt;= 18 and . &lt; 110" jr:constraintMsg="mynumbers constraint" nodeset="/t21257/mynumbers" type="string"/>
+            <bind nodeset="/t21257/mytext2" type="string"/>
+            <bind constraint="not(selected(., 'do_not_know') and (count-selected(.)&gt;1))" jr:constraintMsg="myselect constraint" nodeset="/t21257/myselect" type="select"/>
+            <bind jr:preload="uid" nodeset="/t21257/meta/instanceID" readonly="true()" type="string"/>
         </model>
     </h:head>
     <h:body>

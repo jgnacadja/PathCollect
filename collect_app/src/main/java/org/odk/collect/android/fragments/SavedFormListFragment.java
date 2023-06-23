@@ -63,14 +63,17 @@ public class SavedFormListFragment extends InstanceListFragment implements Delet
     private static final String DATA_MANAGER_LIST_SORTING_ORDER = "dataManagerListSortingOrder";
 
     DeleteInstancesTask deleteInstancesTask;
-    @Inject
-    InstancesRepositoryProvider instancesRepositoryProvider;
-    @Inject
-    FormsRepositoryProvider formsRepositoryProvider;
-    @Inject
-    CurrentProjectProvider currentProjectProvider;
     private AlertDialog alertDialog;
     private ProgressDialog progressDialog;
+
+    @Inject
+    InstancesRepositoryProvider instancesRepositoryProvider;
+
+    @Inject
+    FormsRepositoryProvider formsRepositoryProvider;
+
+    @Inject
+    CurrentProjectProvider currentProjectProvider;
 
     @Override
     public void onAttach(@NonNull Context context) {

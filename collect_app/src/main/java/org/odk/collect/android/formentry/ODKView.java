@@ -117,19 +117,26 @@ public class ODKView extends SwipeHandler.View implements OnLongClickListener, W
     private final LinearLayout.LayoutParams layout;
     private final ArrayList<QuestionWidget> widgets;
     private final AudioHelper audioHelper;
-    private final WidgetFactory widgetFactory;
-    private final LifecycleOwner viewLifecycle;
+
+    private WidgetValueChangedListener widgetValueChangedListener;
+
     @Inject
     public AudioHelperFactory audioHelperFactory;
+
     @Inject
     PermissionsProvider permissionsProvider;
+
     @Inject
     SettingsProvider settingsProvider;
+
     @Inject
     FileRequester fileRequester;
+
     @Inject
     StringRequester stringRequester;
-    private WidgetValueChangedListener widgetValueChangedListener;
+
+    private final WidgetFactory widgetFactory;
+    private final LifecycleOwner viewLifecycle;
 
     /**
      * Builds the view for a specified question or field-list of questions.
@@ -193,47 +200,6 @@ public class ODKView extends SwipeHandler.View implements OnLongClickListener, W
 
         setupAudioErrors();
         autoplayIfNeeded(advancingPage);
-    }
-
-    /**
-     * @see #getGroupsPath(FormEntryCaption[], boolean)
-     */
-    @NonNull
-    public static CharSequence getGroupsPath(FormEntryCaption[] groups) {
-        return getGroupsPath(groups, false);
-    }
-
-    /**
-     * Builds a string representing the 'path' of the list of groups.
-     * Each level is separated by `>`.
-     * <p>
-     * Some views (e.g. the repeat picker) may want to hide the multiplicity of the last item,
-     * i.e. show `Friends` instead of `Friends > 1`.
-     */
-    @NonNull
-    public static CharSequence getGroupsPath(FormEntryCaption[] groups, boolean hideLastMultiplicity) {
-        if (groups == null) {
-            return "";
-        }
-
-        List<String> segments = new ArrayList<>();
-        int index = 1;
-        for (FormEntryCaption group : groups) {
-            String text = group.getLongText();
-
-            if (text != null) {
-                segments.add(text);
-
-                boolean isMultiplicityAllowed = !(hideLastMultiplicity && index == groups.length);
-                if (group.repeats() && isMultiplicityAllowed) {
-                    segments.add(Integer.toString(group.getMultiplicity() + 1));
-                }
-            }
-
-            index++;
-        }
-
-        return HtmlUtils.textToHtml(TextUtils.join(" > ", segments));
     }
 
     private void setupAudioErrors() {
@@ -380,6 +346,47 @@ public class ODKView extends SwipeHandler.View implements OnLongClickListener, W
 
             tv.setVisibility(VISIBLE);
         }
+    }
+
+    /**
+     * @see #getGroupsPath(FormEntryCaption[], boolean)
+     */
+    @NonNull
+    public static CharSequence getGroupsPath(FormEntryCaption[] groups) {
+        return getGroupsPath(groups, false);
+    }
+
+    /**
+     * Builds a string representing the 'path' of the list of groups.
+     * Each level is separated by `>`.
+     * <p>
+     * Some views (e.g. the repeat picker) may want to hide the multiplicity of the last item,
+     * i.e. show `Friends` instead of `Friends > 1`.
+     */
+    @NonNull
+    public static CharSequence getGroupsPath(FormEntryCaption[] groups, boolean hideLastMultiplicity) {
+        if (groups == null) {
+            return "";
+        }
+
+        List<String> segments = new ArrayList<>();
+        int index = 1;
+        for (FormEntryCaption group : groups) {
+            String text = group.getLongText();
+
+            if (text != null) {
+                segments.add(text);
+
+                boolean isMultiplicityAllowed = !(hideLastMultiplicity && index == groups.length);
+                if (group.repeats() && isMultiplicityAllowed) {
+                    segments.add(Integer.toString(group.getMultiplicity() + 1));
+                }
+            }
+
+            index++;
+        }
+
+        return HtmlUtils.textToHtml(TextUtils.join(" > ", segments));
     }
 
     /**

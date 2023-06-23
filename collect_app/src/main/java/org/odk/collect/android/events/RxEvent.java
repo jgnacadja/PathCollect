@@ -6,7 +6,7 @@ package org.odk.collect.android.events;
  * developers know its purpose.
  */
 public abstract class RxEvent {
-    private String description;
+   private String description;
 
     public String getDescription() {
         return description;

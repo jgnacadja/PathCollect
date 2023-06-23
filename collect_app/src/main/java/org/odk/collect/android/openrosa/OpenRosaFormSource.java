@@ -1,8 +1,5 @@
 package org.odk.collect.android.openrosa;
 
-import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
-import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
-
 import org.jetbrains.annotations.NotNull;
 import org.odk.collect.android.analytics.AnalyticsUtils;
 import org.odk.collect.android.utilities.DocumentFetchResult;
@@ -20,6 +17,9 @@ import java.util.List;
 import java.util.concurrent.Callable;
 
 import javax.net.ssl.SSLException;
+
+import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
+import static java.net.HttpURLConnection.HTTP_UNAUTHORIZED;
 
 public class OpenRosaFormSource implements FormSource {
 

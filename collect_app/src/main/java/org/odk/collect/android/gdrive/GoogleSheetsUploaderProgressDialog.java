@@ -35,6 +35,11 @@ public class GoogleSheetsUploaderProgressDialog extends DialogFragment {
     private static final String MESSAGE = "message";
 
     private OnSendingFormsCanceledListener onSendingFormsCanceled;
+
+    public interface OnSendingFormsCanceledListener {
+        void onSendingFormsCanceled();
+    }
+
     private ProgressDialog dialog;
 
     public static GoogleSheetsUploaderProgressDialog newInstance(String message) {
@@ -103,9 +108,5 @@ public class GoogleSheetsUploaderProgressDialog extends DialogFragment {
 
     public void setMessage(String alertMsg) {
         dialog.setMessage(alertMsg);
-    }
-
-    public interface OnSendingFormsCanceledListener {
-        void onSendingFormsCanceled();
     }
 }

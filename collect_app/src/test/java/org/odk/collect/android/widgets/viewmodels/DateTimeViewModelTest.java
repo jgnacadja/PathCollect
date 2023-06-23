@@ -27,9 +27,10 @@ public class DateTimeViewModelTest {
 
     @Rule
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
+
+    private DateTimeViewModel viewModel;
     LiveData<LocalDateTime> selectedDate;
     LiveData<DateTime> selectedTime;
-    private DateTimeViewModel viewModel;
 
     @Before
     public void setUp() {

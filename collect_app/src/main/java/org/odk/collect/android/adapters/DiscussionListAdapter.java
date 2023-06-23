@@ -44,7 +44,7 @@ public class DiscussionListAdapter extends RecyclerView.Adapter<DiscussionListAd
         DownloadImageTask task = new DownloadImageTask(holder);
         task.execute(discussion.getIcon());
         holder.title.setText(discussion.getTitle());
-        if (discussion.getLastCommentTimestamp() != 0) {
+        if(discussion.getLastCommentTimestamp() != 0){
             holder.lastCommentTimestamp.setText(TimeAgo.getTimeAgo(discussion.getLastCommentTimestamp()));
             holder.lastCommentLayout.setVisibility(View.VISIBLE);
         } else {

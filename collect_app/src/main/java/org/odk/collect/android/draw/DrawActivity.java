@@ -22,6 +22,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
+import androidx.lifecycle.ViewModelProvider;
+
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -30,12 +37,6 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.cardview.widget.CardView;
-import androidx.lifecycle.ViewModelProvider;
-
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.common.collect.ImmutableList;
 
 import org.odk.collect.android.R;
@@ -43,8 +44,8 @@ import org.odk.collect.android.activities.CollectAbstractActivity;
 import org.odk.collect.android.adapters.IconMenuListAdapter;
 import org.odk.collect.android.adapters.model.IconMenuItem;
 import org.odk.collect.android.injection.DaggerUtils;
-import org.odk.collect.android.storage.StoragePathProvider;
 import org.odk.collect.android.utilities.AnimationUtils;
+import org.odk.collect.android.storage.StoragePathProvider;
 import org.odk.collect.android.utilities.DialogUtils;
 import org.odk.collect.android.utilities.ImageFileUtils;
 import org.odk.collect.androidshared.ui.DialogFragmentUtils;
@@ -74,17 +75,21 @@ public class DrawActivity extends CollectAbstractActivity {
     public static final String EXTRA_OUTPUT = android.provider.MediaStore.EXTRA_OUTPUT;
     public static final String SAVEPOINT_IMAGE = "savepointImage"; // during
     // restore
-    @Inject
-    PenColorPickerViewModel.Factory factory;
+
     private FloatingActionButton fabActions;
+
     // incoming options...
     private String loadOption;
     private File refImage;
     private File output;
     private File savepointImage;
+
     private DrawView drawView;
     private String alertTitleString;
     private AlertDialog alertDialog;
+
+    @Inject
+    PenColorPickerViewModel.Factory factory;
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {

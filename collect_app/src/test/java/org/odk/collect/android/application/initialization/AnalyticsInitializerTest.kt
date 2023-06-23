@@ -1,7 +1,11 @@
 package org.odk.collect.android.application.initialization
 
 import org.junit.Test
-import org.mockito.kotlin.*
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.only
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 import org.odk.collect.analytics.Analytics
 import org.odk.collect.android.version.VersionInformation
 import org.odk.collect.settings.InMemSettingsProvider

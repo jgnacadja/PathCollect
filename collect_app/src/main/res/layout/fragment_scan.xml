@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:text="@string/turn_on_flashlight"
         android:layout_margin="@dimen/margin_large"
-        android:padding="@dimen/margin"
-        android:text="@string/turn_on_flashlight" />
+        android:padding="@dimen/margin"/>
 </RelativeLayout>

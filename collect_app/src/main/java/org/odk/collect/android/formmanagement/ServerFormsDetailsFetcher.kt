@@ -18,7 +18,12 @@ package org.odk.collect.android.formmanagement
 import org.odk.collect.android.openrosa.OpenRosaFormSource
 import org.odk.collect.android.utilities.FormUtils
 import org.odk.collect.android.utilities.WebCredentialsUtils
-import org.odk.collect.forms.*
+import org.odk.collect.forms.Form
+import org.odk.collect.forms.FormSource
+import org.odk.collect.forms.FormSourceException
+import org.odk.collect.forms.FormsRepository
+import org.odk.collect.forms.ManifestFile
+import org.odk.collect.forms.MediaFile
 import org.odk.collect.shared.strings.Md5.getMd5Hash
 import timber.log.Timber
 import java.io.File

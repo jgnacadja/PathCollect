@@ -18,8 +18,8 @@ import org.odk.collect.android.databinding.RangePickerWidgetAnswerBinding;
 import org.odk.collect.android.databinding.RangeWidgetHorizontalBinding;
 import org.odk.collect.android.databinding.RangeWidgetVerticalBinding;
 import org.odk.collect.android.fragments.dialogs.NumberPickerDialog;
-import org.odk.collect.android.views.TrackingTouchSlider;
 import org.odk.collect.androidshared.ui.ToastUtils;
+import org.odk.collect.android.views.TrackingTouchSlider;
 
 import java.math.BigDecimal;
 
@@ -30,6 +30,30 @@ public class RangeWidgetUtils {
     private static final String NO_TICKS_APPEARANCE = "no-ticks";
 
     private RangeWidgetUtils() {
+    }
+
+    public static class RangeWidgetLayoutElements {
+        private final View answerView;
+        private final TrackingTouchSlider slider;
+        private final TextView currentValue;
+
+        public RangeWidgetLayoutElements(View answerView, TrackingTouchSlider slider, TextView currentValue) {
+            this.answerView = answerView;
+            this.slider = slider;
+            this.currentValue = currentValue;
+        }
+
+        public View getAnswerView() {
+            return answerView;
+        }
+
+        public TrackingTouchSlider getSlider() {
+            return slider;
+        }
+
+        public TextView getCurrentValue() {
+            return currentValue;
+        }
     }
 
     public static RangeWidgetLayoutElements setUpLayoutElements(Context context, FormEntryPrompt prompt) {
@@ -209,7 +233,7 @@ public class RangeWidgetUtils {
     }
 
     public static int getNumberPickerProgress(RangePickerWidgetAnswerBinding binding, BigDecimal rangeStart, BigDecimal rangeStep,
-                                              BigDecimal rangeEnd, int value) {
+                                               BigDecimal rangeEnd, int value) {
         BigDecimal actualValue;
         int elementCount = rangeEnd.subtract(rangeStart).abs().divide(rangeStep).intValue();
         BigDecimal multiply = new BigDecimal(elementCount - value).multiply(rangeStep);
@@ -251,29 +275,5 @@ public class RangeWidgetUtils {
             widgetButton.setEnabled(false);
         }
         return isWidgetValid(widgetButton.getContext(), rangeQuestion);
-    }
-
-    public static class RangeWidgetLayoutElements {
-        private final View answerView;
-        private final TrackingTouchSlider slider;
-        private final TextView currentValue;
-
-        public RangeWidgetLayoutElements(View answerView, TrackingTouchSlider slider, TextView currentValue) {
-            this.answerView = answerView;
-            this.slider = slider;
-            this.currentValue = currentValue;
-        }
-
-        public View getAnswerView() {
-            return answerView;
-        }
-
-        public TrackingTouchSlider getSlider() {
-            return slider;
-        }
-
-        public TextView getCurrentValue() {
-            return currentValue;
-        }
     }
 }

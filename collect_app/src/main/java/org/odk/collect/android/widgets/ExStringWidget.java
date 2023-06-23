@@ -85,9 +85,10 @@ import timber.log.Timber;
 @SuppressLint("ViewConstructor")
 public class ExStringWidget extends StringWidget implements WidgetDataReceiver, ButtonClickListener {
     private final WaitingForDataRegistry waitingForDataRegistry;
-    private final StringRequester stringRequester;
-    public Button launchIntentButton;
+
     private boolean hasExApp = true;
+    public Button launchIntentButton;
+    private final StringRequester stringRequester;
 
     public ExStringWidget(Context context, QuestionDetails questionDetails, WaitingForDataRegistry waitingForDataRegistry, StringRequester stringRequester) {
         super(context, questionDetails);
@@ -137,16 +138,16 @@ public class ExStringWidget extends StringWidget implements WidgetDataReceiver, 
         } else {
             if (!getFormEntryPrompt().isReadOnly()) {
                 softKeyboardController.showSoftKeyboard(answerText);
-                /*
-                 * If you do a multi-question screen after a "add another group" dialog, this won't
-                 * automatically pop up. It's an Android issue.
-                 *
-                 * That is, if I have an edit text in an activity, and pop a dialog, and in that
-                 * dialog's button's OnClick() I call edittext.requestFocus() and
-                 * showSoftInput(edittext, 0), showSoftinput() returns false. However, if the
-                 * edittext
-                 * is focused before the dialog pops up, everything works fine. great.
-                 */
+            /*
+             * If you do a multi-question screen after a "add another group" dialog, this won't
+             * automatically pop up. It's an Android issue.
+             *
+             * That is, if I have an edit text in an activity, and pop a dialog, and in that
+             * dialog's button's OnClick() I call edittext.requestFocus() and
+             * showSoftInput(edittext, 0), showSoftinput() returns false. However, if the
+             * edittext
+             * is focused before the dialog pops up, everything works fine. great.
+             */
             } else {
                 softKeyboardController.hideSoftKeyboard(answerText);
             }
@@ -206,7 +207,7 @@ public class ExStringWidget extends StringWidget implements WidgetDataReceiver, 
         waitingForDataRegistry.cancelWaitingForData();
 
         Toast.makeText(getContext(),
-                        toastText, Toast.LENGTH_SHORT)
+                toastText, Toast.LENGTH_SHORT)
                 .show();
         Timber.d(toastText);
         focusAnswer();

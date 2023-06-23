@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
-<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns="http://www.w3.org/2002/xforms">
+<h:html xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:jr="http://openrosa.org/javarosa" xmlns:odk="http://www.opendatakit.org/xforms"
+    xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.w3.org/2002/xforms">
     <h:head>
         <h:title>All widgets likert icon</h:title>
         <model>
@@ -123,9 +126,9 @@
                     <likert_image_widget_error2 />
                     <likert_error_missing_text />
                     <cascading_select>
-                        <source1 />
-                        <target1 />
-                        <target1-1 />
+                        <source1/>
+                        <target1/>
+                        <target1-1/>
                     </cascading_select>
                     <meta>
                         <instanceID />
@@ -232,9 +235,9 @@
             <bind nodeset="/likert_test/likert_image_widget_error" type="select1" />
             <bind nodeset="/likert_test/likert_image_widget_error2" type="select1" />
             <bind nodeset="/likert_test/likert_error_missing_text" type="select1" />
-            <bind nodeset="/likert_test/cascading_select/source1" type="select1" />
-            <bind nodeset="/likert_test/cascading_select/target1" type="select1" />
-            <bind nodeset="/likert_test/cascading_select/target1-1" type="select1" />
+            <bind nodeset="/likert_test/cascading_select/source1" type="select1"/>
+            <bind nodeset="/likert_test/cascading_select/target1" type="select1"/>
+            <bind nodeset="/likert_test/cascading_select/target1-1" type="select1"/>
             <bind nodeset="/likert_test/meta/instanceID" readonly="true()" type="string"
                 jr:preload="uid" />
         </model>
@@ -399,18 +402,16 @@
             </select1>
             <select1 appearance="likert" ref="/likert_test/cascading_select/target1">
                 <label>Level2</label>
-                <itemset
-                    nodeset="instance('level2')/root/item[level1 =  /likert_test/cascading_select/source1 ]">
-                    <value ref="name" />
-                    <label ref="jr:itext(itextId)" />
+                <itemset nodeset="instance('level2')/root/item[level1 =  /likert_test/cascading_select/source1 ]">
+                    <value ref="name"/>
+                    <label ref="jr:itext(itextId)"/>
                 </itemset>
             </select1>
             <select1 appearance="likert" ref="/likert_test/cascading_select/target1-1">
                 <label>Level3</label>
-                <itemset
-                    nodeset="instance('level3')/root/item[level2 =  /likert_test/cascading_select/target1 ]">
-                    <value ref="name" />
-                    <label ref="jr:itext(itextId)" />
+                <itemset nodeset="instance('level3')/root/item[level2 =  /likert_test/cascading_select/target1 ]">
+                    <value ref="name"/>
+                    <label ref="jr:itext(itextId)"/>
                 </itemset>
             </select1>
         </group>

@@ -69,11 +69,7 @@ class MapsPreferencesFragment : BaseProjectPreferencesFragment() {
         initBasemapSourcePref()
         initReferenceLayerPref()
         if (autoShowReferenceLayerDialog) {
-            populateReferenceLayerPref(
-                requireContext(),
-                referenceLayerRepository,
-                referenceLayerPref!!
-            )
+            populateReferenceLayerPref(requireContext(), referenceLayerRepository, referenceLayerPref!!)
             /** Opens the dialog programmatically, rather than by a click from the user.  */
             onDisplayPreferenceDialog(
                 preferenceManager.findPreference("reference_layer")!!
@@ -89,11 +85,7 @@ class MapsPreferencesFragment : BaseProjectPreferencesFragment() {
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         if (referenceLayerPref != null) {
-            populateReferenceLayerPref(
-                requireContext(),
-                referenceLayerRepository,
-                referenceLayerPref!!
-            )
+            populateReferenceLayerPref(requireContext(), referenceLayerRepository, referenceLayerPref!!)
         }
     }
 
@@ -152,11 +144,7 @@ class MapsPreferencesFragment : BaseProjectPreferencesFragment() {
         referenceLayerPref = findPreference("reference_layer")
         referenceLayerPref!!.onPreferenceClickListener =
             Preference.OnPreferenceClickListener { preference: Preference? ->
-                populateReferenceLayerPref(
-                    requireContext(),
-                    referenceLayerRepository,
-                    referenceLayerPref!!
-                )
+                populateReferenceLayerPref(requireContext(), referenceLayerRepository, referenceLayerPref!!)
                 false
             }
         if (referenceLayerPref!!.value == null || referenceLayerRepository.get(

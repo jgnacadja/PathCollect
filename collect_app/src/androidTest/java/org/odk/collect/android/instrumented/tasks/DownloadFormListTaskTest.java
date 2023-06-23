@@ -1,15 +1,15 @@
 package org.odk.collect.android.instrumented.tasks;
 
+import org.junit.Test;
+import org.odk.collect.android.formmanagement.ServerFormsDetailsFetcher;
+import org.odk.collect.android.tasks.DownloadFormListTask;
+import org.odk.collect.android.utilities.WebCredentialsUtils;
+
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-
-import org.junit.Test;
-import org.odk.collect.android.formmanagement.ServerFormsDetailsFetcher;
-import org.odk.collect.android.tasks.DownloadFormListTask;
-import org.odk.collect.android.utilities.WebCredentialsUtils;
 
 public class DownloadFormListTaskTest {
 

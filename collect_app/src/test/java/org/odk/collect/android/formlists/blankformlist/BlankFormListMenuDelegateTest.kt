@@ -8,7 +8,9 @@ import androidx.core.internal.view.SupportMenu
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import org.hamcrest.CoreMatchers.*
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.CoreMatchers.instanceOf
+import org.hamcrest.CoreMatchers.nullValue
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Test
@@ -107,8 +109,7 @@ class BlankFormListMenuDelegateTest {
         menuDelegate.onOptionsItemSelected(RoboMenuItem(R.id.menu_refresh))
 
         assertThat(
-            ShadowToast.getTextOfLatestToast(),
-            `is`(activity.getString(R.string.form_update_succeeded))
+            ShadowToast.getTextOfLatestToast(), `is`(activity.getString(R.string.form_update_succeeded))
         )
     }
 
@@ -140,10 +141,7 @@ class BlankFormListMenuDelegateTest {
         val menuDelegate = createMenuDelegate()
         menuDelegate.onOptionsItemSelected(RoboMenuItem(R.id.menu_sort))
 
-        assertThat(
-            ShadowDialog.getLatestDialog(),
-            instanceOf(FormListSortingBottomSheetDialog::class.java)
-        )
+        assertThat(ShadowDialog.getLatestDialog(), instanceOf(FormListSortingBottomSheetDialog::class.java))
     }
 
     @Test
@@ -154,10 +152,7 @@ class BlankFormListMenuDelegateTest {
         menuDelegate.onCreateOptionsMenu(menuInflater, menu)
         menuDelegate.onPrepareOptionsMenu(menu)
 
-        val searchView =
-            (menu.findItem(R.id.menu_filter).actionView as SearchView).findViewById<SearchView.SearchAutoComplete>(
-                androidx.appcompat.R.id.search_src_text
-            )
+        val searchView = (menu.findItem(R.id.menu_filter).actionView as SearchView).findViewById<SearchView.SearchAutoComplete>(androidx.appcompat.R.id.search_src_text)
         searchView.setText("abc")
 
         verify(viewModel).filterText = "abc"

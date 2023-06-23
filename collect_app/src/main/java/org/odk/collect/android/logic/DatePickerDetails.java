@@ -19,6 +19,14 @@ package org.odk.collect.android.logic;
 import java.io.Serializable;
 
 public class DatePickerDetails implements Serializable {
+    public enum DatePickerType {
+        GREGORIAN, ETHIOPIAN, COPTIC, ISLAMIC, BIKRAM_SAMBAT, MYANMAR, PERSIAN
+    }
+
+    public enum DatePickerMode {
+        CALENDAR, SPINNERS, MONTH_YEAR, YEAR
+    }
+
     private final DatePickerType datePickerType;
     private final DatePickerMode datePickerMode;
 
@@ -68,13 +76,5 @@ public class DatePickerDetails implements Serializable {
         result = 31 * result + datePickerType.hashCode();
         result = 31 * result + datePickerMode.hashCode();
         return result;
-    }
-
-    public enum DatePickerType {
-        GREGORIAN, ETHIOPIAN, COPTIC, ISLAMIC, BIKRAM_SAMBAT, MYANMAR, PERSIAN
-    }
-
-    public enum DatePickerMode {
-        CALENDAR, SPINNERS, MONTH_YEAR, YEAR
     }
 }

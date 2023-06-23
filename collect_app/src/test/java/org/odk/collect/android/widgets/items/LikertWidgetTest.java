@@ -1,10 +1,5 @@
 package org.odk.collect.android.widgets.items;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.when;
-import static java.util.Arrays.asList;
-
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -23,6 +18,11 @@ import org.odk.collect.android.widgets.base.QuestionWidgetTest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static java.util.Arrays.asList;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.when;
 
 public class LikertWidgetTest extends QuestionWidgetTest<LikertWidget, SelectOneData> {
     private List<SelectChoice> options = new ArrayList<>();

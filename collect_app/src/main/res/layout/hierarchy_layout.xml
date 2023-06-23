@@ -42,16 +42,16 @@ the License.
             style="@style/Widget.Collect.Button.BottomOption"
             android:layout_marginLeft="@dimen/margin_extra_small"
             android:layout_marginRight="@dimen/margin_extra_small"
-            android:text="@string/jump_to_beginning"
-            android:textColor="@color/colorWhite" />
+            android:textColor="@color/colorWhite"
+            android:text="@string/jump_to_beginning" />
 
         <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
             android:id="@+id/jumpEndButton"
             style="@style/Widget.Collect.Button.BottomOption"
             android:layout_marginLeft="@dimen/margin_extra_small"
             android:layout_marginRight="@dimen/margin_extra_small"
-            android:text="@string/jump_to_end"
-            android:textColor="@color/colorWhite" />
+            android:textColor="@color/colorWhite"
+            android:text="@string/jump_to_end" />
 
         <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
             android:id="@+id/exitButton"

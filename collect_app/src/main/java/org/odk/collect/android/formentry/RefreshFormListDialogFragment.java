@@ -38,6 +38,6 @@ public class RefreshFormListDialogFragment extends MaterialProgressDialogFragmen
     }
 
     public interface RefreshFormListDialogFragmentListener {
-        void onCancelFormLoading();
+            void onCancelFormLoading();
     }
 }

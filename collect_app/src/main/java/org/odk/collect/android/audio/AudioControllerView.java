@@ -14,10 +14,6 @@
 
 package org.odk.collect.android.audio;
 
-import static org.odk.collect.strings.format.LengthFormatterKt.formatLength;
-import static java.lang.Math.max;
-import static java.lang.Math.min;
-
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
@@ -32,6 +28,10 @@ import com.google.android.material.button.MaterialButton;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.databinding.AudioControllerLayoutBinding;
+
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+import static org.odk.collect.strings.format.LengthFormatterKt.formatLength;
 
 public class AudioControllerView extends FrameLayout {
 

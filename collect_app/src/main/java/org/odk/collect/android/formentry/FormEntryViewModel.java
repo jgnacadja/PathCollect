@@ -266,10 +266,6 @@ public class FormEntryViewModel extends ViewModel implements RequiresFormControl
         currentIndex.setValue(formController.getFormIndex());
     }
 
-    public interface AnswerListener {
-        void onAnswer(FormIndex index, IAnswerData answer);
-    }
-
     public static class Factory implements ViewModelProvider.Factory {
 
         private final Supplier<Long> clock;
@@ -322,5 +318,9 @@ public class FormEntryViewModel extends ViewModel implements RequiresFormControl
         public int hashCode() {
             return Objects.hash(message);
         }
+    }
+
+    public interface AnswerListener {
+        void onAnswer(FormIndex index, IAnswerData answer);
     }
 }

@@ -29,62 +29,63 @@ import java.util.Locale;
 import timber.log.Timber;
 
 public final class Appearances {
+    private static final String EXCEPTION_PARSING_COLUMNS = "Exception parsing columns";
+
     // Date appearances
-    public static final String ETHIOPIAN = "ethiopian";
-    public static final String COPTIC = "coptic";
-    public static final String ISLAMIC = "islamic";
-    public static final String BIKRAM_SAMBAT = "bikram-sambat";
-    public static final String MYANMAR = "myanmar";
-    public static final String PERSIAN = "persian";
-    public static final String NO_CALENDAR = "no-calendar";
-    public static final String MONTH_YEAR = "month-year";
-    public static final String YEAR = "year";
+    public static final String ETHIOPIAN                = "ethiopian";
+    public static final String COPTIC                   = "coptic";
+    public static final String ISLAMIC                  = "islamic";
+    public static final String BIKRAM_SAMBAT            = "bikram-sambat";
+    public static final String MYANMAR                  = "myanmar";
+    public static final String PERSIAN                  = "persian";
+    public static final String NO_CALENDAR              = "no-calendar";
+    public static final String MONTH_YEAR               = "month-year";
+    public static final String YEAR                     = "year";
+
     // Select one/multiple appearances
-    @Deprecated
-    public static final String COMPACT = "compact";
-    @Deprecated
-    public static final String COMPACT_N = "compact-";
-    public static final String MINIMAL = "minimal";
-    public static final String COLUMNS = "columns";
-    public static final String COLUMNS_N = "columns-";
-    public static final String COLUMNS_PACK = "columns-pack";
-    @Deprecated
-    public static final String QUICKCOMPACT = "quickcompact";
-    @Deprecated
-    public static final String SEARCH = "search";
-    public static final String AUTOCOMPLETE = "autocomplete";
-    public static final String LIST_NO_LABEL = "list-nolabel";
-    public static final String LIST = "list";
-    public static final String LIKERT = "likert";
-    public static final String LABEL = "label";
-    public static final String IMAGE_MAP = "image-map";
-    public static final String NO_BUTTONS = "no-buttons";
-    public static final String QUICK = "quick";
-    public static final String MAP = "map";
+    @Deprecated public static final String COMPACT      = "compact";
+    @Deprecated public static final String COMPACT_N    = "compact-";
+    public static final String MINIMAL                  = "minimal";
+    public static final String COLUMNS                  = "columns";
+    public static final String COLUMNS_N                = "columns-";
+    public static final String COLUMNS_PACK             = "columns-pack";
+    @Deprecated public static final String QUICKCOMPACT = "quickcompact";
+    @Deprecated public static final String SEARCH       = "search";
+    public static final String AUTOCOMPLETE             = "autocomplete";
+    public static final String LIST_NO_LABEL            = "list-nolabel";
+    public static final String LIST                     = "list";
+    public static final String LIKERT                   = "likert";
+    public static final String LABEL                    = "label";
+    public static final String IMAGE_MAP                = "image-map";
+    public static final String NO_BUTTONS               = "no-buttons";
+    public static final String QUICK                    = "quick";
+    public static final String MAP                      = "map";
+
     // Media appearances
-    public static final String SIGNATURE = "signature";
-    public static final String ANNOTATE = "annotate";
-    public static final String DRAW = "draw";
-    @Deprecated
-    public static final String SELFIE = "selfie";
-    public static final String NEW_FRONT = "new-front";
-    public static final String NEW = "new";
-    public static final String FRONT = "front";
+    public static final String SIGNATURE                = "signature";
+    public static final String ANNOTATE                 = "annotate";
+    public static final String DRAW                     = "draw";
+    @Deprecated public static final String SELFIE       = "selfie";
+    public static final String NEW_FRONT                = "new-front";
+    public static final String NEW                      = "new";
+    public static final String FRONT                    = "front";
+
     // Maps appearances
-    public static final String PLACEMENT_MAP = "placement-map";
-    public static final String MAPS = "maps";
+    public static final String PLACEMENT_MAP            = "placement-map";
+    public static final String MAPS                     = "maps";
+
     // Groups and repeats
     public static final String FIELD_LIST = "field-list";
+
     // Other appearances
-    public static final String NO_APPEARANCE = "";
-    public static final String BEARING = "bearing";
-    public static final String EX = "ex:";
-    public static final String THOUSANDS_SEP = "thousands-sep";
-    public static final String PRINTER = "printer";
-    public static final String NUMBERS = "numbers";
-    public static final String URL = "url";
-    public static final String RATING = "rating";
-    private static final String EXCEPTION_PARSING_COLUMNS = "Exception parsing columns";
+    public static final String NO_APPEARANCE            = "";
+    public static final String BEARING                  = "bearing";
+    public static final String EX                       = "ex:";
+    public static final String THOUSANDS_SEP            = "thousands-sep";
+    public static final String PRINTER                  = "printer";
+    public static final String NUMBERS                  = "numbers";
+    public static final String URL                      = "url";
+    public static final String RATING                   = "rating";
 
     private Appearances() {
     }
@@ -107,9 +108,7 @@ public final class Appearances {
         return appearance;
     }
 
-    /**
-     * Returns whether an appearance is present.  (Appearances are the constants above.)
-     */
+    /** Returns whether an appearance is present.  (Appearances are the constants above.) */
     public static boolean hasAppearance(FormEntryPrompt fep, String appearance) {
         return getSanitizedAppearanceHint(fep).contains(appearance);
     }

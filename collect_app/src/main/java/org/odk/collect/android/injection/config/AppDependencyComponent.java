@@ -131,6 +131,17 @@ import dagger.Component;
 })
 public interface AppDependencyComponent {
 
+    @Component.Builder
+    interface Builder {
+
+        @BindsInstance
+        Builder application(Application application);
+
+        Builder appDependencyModule(AppDependencyModule testDependencyModule);
+
+        AppDependencyComponent build();
+    }
+
     void inject(Collect collect);
 
     void inject(AboutActivity aboutActivity);
@@ -326,15 +337,4 @@ public interface AppDependencyComponent {
     ReferenceLayerRepository referenceLayerRepository();
 
     NetworkStateProvider networkStateProvider();
-
-    @Component.Builder
-    interface Builder {
-
-        @BindsInstance
-        Builder application(Application application);
-
-        Builder appDependencyModule(AppDependencyModule testDependencyModule);
-
-        AppDependencyComponent build();
-    }
 }

@@ -10,7 +10,12 @@ import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.kotlin.*
+import org.mockito.kotlin.any
+import org.mockito.kotlin.argumentCaptor
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.never
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 import org.odk.collect.android.BuildConfig
 import org.odk.collect.androidshared.system.IntentLauncher
 import org.robolectric.shadows.ShadowToast
@@ -48,10 +53,7 @@ class MediaUtilsTest {
 
         mediaUtils.openFile(context, file, "image/*")
 
-        assertThat(
-            ShadowToast.getTextOfLatestToast(),
-            `is`("Can't open file. If you are on a Huawei device, this is expected and will not be fixed.")
-        )
+        assertThat(ShadowToast.getTextOfLatestToast(), `is`("Can't open file. If you are on a Huawei device, this is expected and will not be fixed."))
         assertThat(ShadowToast.getLatestToast().duration, `is`(Toast.LENGTH_LONG))
         verify(intentLauncher, never()).launch(any(), any(), any())
     }

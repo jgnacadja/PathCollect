@@ -189,6 +189,27 @@ public class DateTimeWidgetUtils {
         return String.format(context.getString(R.string.custom_date), customDateText, gregorianDateText);
     }
 
+    public void showTimePickerDialog(Context context, LocalDateTime dateTime) {
+        ThemeUtils themeUtils = new ThemeUtils(context);
+
+        Bundle bundle = new Bundle();
+        bundle.putInt(DIALOG_THEME, themeUtils.getSpinnerTimePickerDialogTheme());
+        bundle.putSerializable(TIME, dateTime);
+
+        DialogFragmentUtils.showIfNotShowing(CustomTimePickerDialog.class, bundle, ((FragmentActivity) context).getSupportFragmentManager());
+    }
+
+    public void showDatePickerDialog(Context context, DatePickerDetails datePickerDetails, LocalDateTime date) {
+        ThemeUtils themeUtils = new ThemeUtils(context);
+
+        Bundle bundle = new Bundle();
+        bundle.putInt(DIALOG_THEME, getDatePickerTheme(themeUtils, datePickerDetails));
+        bundle.putSerializable(DATE, date);
+        bundle.putSerializable(DATE_PICKER_DETAILS, datePickerDetails);
+
+        DialogFragmentUtils.showIfNotShowing(getClass(datePickerDetails.getDatePickerType()), bundle, ((FragmentActivity) context).getSupportFragmentManager());
+    }
+
     private static Class getClass(DatePickerDetails.DatePickerType datePickerType) {
         switch (datePickerType) {
             case ETHIOPIAN:
@@ -247,26 +268,5 @@ public class DateTimeWidgetUtils {
             dateSkeleton = "yyyy";
         }
         return dateSkeleton;
-    }
-
-    public void showTimePickerDialog(Context context, LocalDateTime dateTime) {
-        ThemeUtils themeUtils = new ThemeUtils(context);
-
-        Bundle bundle = new Bundle();
-        bundle.putInt(DIALOG_THEME, themeUtils.getSpinnerTimePickerDialogTheme());
-        bundle.putSerializable(TIME, dateTime);
-
-        DialogFragmentUtils.showIfNotShowing(CustomTimePickerDialog.class, bundle, ((FragmentActivity) context).getSupportFragmentManager());
-    }
-
-    public void showDatePickerDialog(Context context, DatePickerDetails datePickerDetails, LocalDateTime date) {
-        ThemeUtils themeUtils = new ThemeUtils(context);
-
-        Bundle bundle = new Bundle();
-        bundle.putInt(DIALOG_THEME, getDatePickerTheme(themeUtils, datePickerDetails));
-        bundle.putSerializable(DATE, date);
-        bundle.putSerializable(DATE_PICKER_DETAILS, datePickerDetails);
-
-        DialogFragmentUtils.showIfNotShowing(getClass(datePickerDetails.getDatePickerType()), bundle, ((FragmentActivity) context).getSupportFragmentManager());
     }
 }

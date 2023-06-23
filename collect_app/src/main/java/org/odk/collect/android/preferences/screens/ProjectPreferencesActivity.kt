@@ -62,8 +62,7 @@ class ProjectPreferencesActivity :
     }
 
     override fun preventOtherWaysOfEditingForm() {
-        val fragment =
-            supportFragmentManager.findFragmentById(R.id.preferences_fragment_container) as FormEntryAccessPreferencesFragment
+        val fragment = supportFragmentManager.findFragmentById(R.id.preferences_fragment_container) as FormEntryAccessPreferencesFragment
         fragment.preventOtherWaysOfEditingForm()
     }
 

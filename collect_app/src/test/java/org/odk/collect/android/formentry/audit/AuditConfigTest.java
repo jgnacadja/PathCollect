@@ -16,6 +16,8 @@
 
 package org.odk.collect.android.formentry.audit;
 
+import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
@@ -24,8 +26,6 @@ import static org.odk.collect.location.LocationClient.Priority.PRIORITY_BALANCED
 import static org.odk.collect.location.LocationClient.Priority.PRIORITY_HIGH_ACCURACY;
 import static org.odk.collect.location.LocationClient.Priority.PRIORITY_LOW_POWER;
 import static org.odk.collect.location.LocationClient.Priority.PRIORITY_NO_POWER;
-
-import org.junit.Test;
 
 public class AuditConfigTest {
 

@@ -16,24 +16,23 @@
 
 package org.odk.collect.android.adapters;
 
-import static org.odk.collect.android.activities.FormDownloadListActivity.FORMID_DISPLAY;
-import static org.odk.collect.android.activities.FormDownloadListActivity.FORMNAME;
-import static org.odk.collect.android.activities.FormDownloadListActivity.FORM_ID_KEY;
-
 import android.content.Context;
+import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import org.odk.collect.android.R;
 import org.odk.collect.android.formmanagement.ServerFormDetails;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static org.odk.collect.android.activities.FormDownloadListActivity.FORMID_DISPLAY;
+import static org.odk.collect.android.activities.FormDownloadListActivity.FORMNAME;
+import static org.odk.collect.android.activities.FormDownloadListActivity.FORM_ID_KEY;
 
 public class FormDownloadListAdapter extends ArrayAdapter {
 
@@ -49,6 +48,12 @@ public class FormDownloadListAdapter extends ArrayAdapter {
 
     public void setFromIdsToDetails(HashMap<String, ServerFormDetails> formIdsToDetails) {
         this.formIdsToDetails = formIdsToDetails;
+    }
+
+    private static class ViewHolder {
+        TextView formTitle;
+        TextView formSubtitle;
+        TextView formUpdateAlert;
     }
 
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
@@ -79,13 +84,7 @@ public class FormDownloadListAdapter extends ArrayAdapter {
         } else {
             holder.formUpdateAlert.setVisibility(View.GONE);
         }
-
+        
         return row;
-    }
-
-    private static class ViewHolder {
-        TextView formTitle;
-        TextView formSubtitle;
-        TextView formUpdateAlert;
     }
 }

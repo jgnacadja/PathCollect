@@ -10,7 +10,7 @@ public final class FlingRegister {
     private static boolean flingDetected;
 
     private FlingRegister() {
-
+        
     }
 
     public static void attemptingFling() {

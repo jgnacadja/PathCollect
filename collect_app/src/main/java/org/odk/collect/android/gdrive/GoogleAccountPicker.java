@@ -15,9 +15,9 @@ public interface GoogleAccountPicker {
 
     String getSelectedAccountName();
 
-    void setSelectedAccountName(String accountName);
-
     Account[] getAllAccounts();
+
+    void setSelectedAccountName(String accountName);
 
     String getToken() throws IOException, GoogleAuthException;
 

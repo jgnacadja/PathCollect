@@ -19,24 +19,14 @@ import java.io.Serializable
 
 object FormsSubmissionNotificationBuilder {
 
-    fun build(
-        application: Application,
-        result: Map<Instance, FormUploadException?>,
-        projectName: String
-    ): Notification {
-        val allFormsUploadedSuccessfully =
-            FormsUploadResultInterpreter.allFormsUploadedSuccessfully(result)
+    fun build(application: Application, result: Map<Instance, FormUploadException?>, projectName: String): Notification {
+        val allFormsUploadedSuccessfully = FormsUploadResultInterpreter.allFormsUploadedSuccessfully(result)
 
         return NotificationCompat.Builder(
             application,
             NotificationManagerNotifier.COLLECT_NOTIFICATION_CHANNEL
         ).apply {
-            setContentIntent(
-                getNotificationPendingIntent(
-                    application,
-                    allFormsUploadedSuccessfully
-                )
-            )
+            setContentIntent(getNotificationPendingIntent(application, allFormsUploadedSuccessfully))
             setContentTitle(getTitle(application, allFormsUploadedSuccessfully))
             setContentText(getMessage(application, allFormsUploadedSuccessfully, result))
             setSubText(projectName)
@@ -61,11 +51,7 @@ object FormsSubmissionNotificationBuilder {
         }
     }
 
-    private fun getMessage(
-        application: Application,
-        allFormsUploadedSuccessfully: Boolean,
-        result: Map<Instance, FormUploadException?>
-    ): String {
+    private fun getMessage(application: Application, allFormsUploadedSuccessfully: Boolean, result: Map<Instance, FormUploadException?>): String {
         return if (allFormsUploadedSuccessfully) {
             application.getLocalizedString(R.string.all_uploads_succeeded)
         } else {
@@ -77,10 +63,7 @@ object FormsSubmissionNotificationBuilder {
         }
     }
 
-    private fun getNotificationPendingIntent(
-        application: Application,
-        allFormsUploadedSuccessfully: Boolean
-    ): PendingIntent {
+    private fun getNotificationPendingIntent(application: Application, allFormsUploadedSuccessfully: Boolean): PendingIntent {
         val notifyIntent = if (allFormsUploadedSuccessfully) {
             Intent(application, MainMenuActivity::class.java)
         } else {
@@ -97,15 +80,9 @@ object FormsSubmissionNotificationBuilder {
         )
     }
 
-    private fun getShowDetailsPendingIntent(
-        application: Application,
-        result: Map<Instance, FormUploadException?>
-    ): PendingIntent {
+    private fun getShowDetailsPendingIntent(application: Application, result: Map<Instance, FormUploadException?>): PendingIntent {
         val showDetailsIntent = Intent(application, ErrorActivity::class.java).apply {
-            putExtra(
-                ErrorActivity.EXTRA_ERRORS,
-                FormsUploadResultInterpreter.getFailures(result, application) as Serializable
-            )
+            putExtra(ErrorActivity.EXTRA_ERRORS, FormsUploadResultInterpreter.getFailures(result, application) as Serializable)
         }
 
         return PendingIntent.getActivity(

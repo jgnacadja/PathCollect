@@ -44,13 +44,14 @@ import java.util.function.Supplier;
 @SuppressWarnings("PMD.DoubleBraceInitialization")
 public class FormEntryViewModelTest {
 
-    @Rule
-    public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
     private FormEntryViewModel viewModel;
     private FormController formController;
     private FormIndex startingIndex;
     private AuditEventLogger auditEventLogger;
     private FakeScheduler scheduler;
+
+    @Rule
+    public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
     @Before
     public void setup() {

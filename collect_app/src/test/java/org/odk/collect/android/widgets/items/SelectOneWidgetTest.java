@@ -1,19 +1,5 @@
 package org.odk.collect.android.widgets.items;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.odk.collect.android.support.CollectHelpers.setupFakeReferenceManager;
-import static org.odk.collect.testshared.RobolectricHelpers.populateRecyclerView;
-import static java.util.Arrays.asList;
-
 import android.app.Application;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,20 +41,24 @@ import org.odk.collect.audioclips.Clip;
 
 import java.util.List;
 
+import static java.util.Arrays.asList;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.odk.collect.android.support.CollectHelpers.setupFakeReferenceManager;
+import static org.odk.collect.testshared.RobolectricHelpers.populateRecyclerView;
+
 /**
  * @author James Knight
  */
 public class SelectOneWidgetTest extends GeneralSelectOneWidgetTest<SelectOneWidget> {
-    private static final List<Pair<String, String>> REFERENCES = asList(
-            new Pair<>("ref", "file://audio.mp3"),
-            new Pair<>("ref1", "file://audio1.mp3")
-    );
-    @Rule
-    public MockitoRule rule = MockitoJUnit.rule();
-    @Mock
-    public AudioHelper audioHelper;
-    @Mock
-    public Analytics analytics;
     @Mock
     private AdvanceToNextListener listener;
 
@@ -82,6 +72,15 @@ public class SelectOneWidgetTest extends GeneralSelectOneWidgetTest<SelectOneWid
         selectOneWidget.setFocus(activity);
         return selectOneWidget;
     }
+
+    @Rule
+    public MockitoRule rule = MockitoJUnit.rule();
+
+    @Mock
+    public AudioHelper audioHelper;
+
+    @Mock
+    public Analytics analytics;
 
     @Before
     public void setup() throws Exception {
@@ -337,6 +336,11 @@ public class SelectOneWidgetTest extends GeneralSelectOneWidgetTest<SelectOneWid
     private ViewGroup getChoiceView(SelectOneWidget widget, int index) {
         return (ViewGroup) widget.binding.choicesRecyclerView.getChildAt(index);
     }
+
+    private static final List<Pair<String, String>> REFERENCES = asList(
+            new Pair<>("ref", "file://audio.mp3"),
+            new Pair<>("ref1", "file://audio1.mp3")
+    );
 
     private boolean isQuick() {
         return Appearances.getSanitizedAppearanceHint(formEntryPrompt).contains("quick");

@@ -1,14 +1,5 @@
 package org.odk.collect.android.openrosa.api;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.fail;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import org.junit.Test;
 import org.odk.collect.android.openrosa.HttpGetResult;
 import org.odk.collect.android.openrosa.OpenRosaConstants;
@@ -26,36 +17,20 @@ import java.util.HashMap;
 
 import javax.net.ssl.SSLException;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.fail;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 @SuppressWarnings("PMD.DoubleBraceInitialization")
 public class OpenRosaFormSourceTest {
-    private static final String RESPONSE = join(
-            "<xforms xmlns=\"http://openrosa.org/xforms/xformsList\">",
-            "<xform><formID>one</formID>",
-            "<name>The First Form</name>",
-            "<majorMinorVersion></majorMinorVersion>",
-            "<version></version>",
-            "<hash>md5:b71c92bec48730119eab982044a8adff</hash>",
-            "<downloadUrl>https://example.com/formXml?formId=one</downloadUrl>",
-            "</xform>",
-            "<xform><formID>two</formID>",
-            "<name>The Second Form</name>",
-            "<majorMinorVersion></majorMinorVersion>",
-            "<version></version>",
-            "<hash>md5:4428adffbbec48771c9230119eab9820</hash>",
-            "<downloadUrl>https://example.com/formXml?formId=two</downloadUrl>",
-            "</xform>",
-            "</xforms>");
     private final OpenRosaHttpInterface httpInterface = mock(OpenRosaHttpInterface.class);
     private final WebCredentialsUtils webCredentialsUtils = mock(WebCredentialsUtils.class);
     private final OpenRosaResponseParser responseParser = mock(OpenRosaResponseParser.class);
-
-    private static String join(String... strings) {
-        StringBuilder bob = new StringBuilder();
-        for (String s : strings) {
-            bob.append(s).append('\n');
-        }
-        return bob.toString();
-    }
 
     @Test
     public void fetchFormList_removesTrailingSlashesFromUrl() throws Exception {
@@ -274,4 +249,30 @@ public class OpenRosaFormSourceTest {
             assertThat(e.getServerUrl(), is("http://blah.com"));
         }
     }
+
+    private static String join(String... strings) {
+        StringBuilder bob = new StringBuilder();
+        for (String s : strings) {
+            bob.append(s).append('\n');
+        }
+        return bob.toString();
+    }
+
+    private static final String RESPONSE = join(
+            "<xforms xmlns=\"http://openrosa.org/xforms/xformsList\">",
+            "<xform><formID>one</formID>",
+            "<name>The First Form</name>",
+            "<majorMinorVersion></majorMinorVersion>",
+            "<version></version>",
+            "<hash>md5:b71c92bec48730119eab982044a8adff</hash>",
+            "<downloadUrl>https://example.com/formXml?formId=one</downloadUrl>",
+            "</xform>",
+            "<xform><formID>two</formID>",
+            "<name>The Second Form</name>",
+            "<majorMinorVersion></majorMinorVersion>",
+            "<version></version>",
+            "<hash>md5:4428adffbbec48771c9230119eab9820</hash>",
+            "<downloadUrl>https://example.com/formXml?formId=two</downloadUrl>",
+            "</xform>",
+            "</xforms>");
 }

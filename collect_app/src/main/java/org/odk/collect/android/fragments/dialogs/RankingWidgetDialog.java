@@ -19,20 +19,19 @@ package org.odk.collect.android.fragments.dialogs;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import androidx.fragment.app.DialogFragment;
+import androidx.core.widget.NestedScrollView;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.ItemTouchHelper.Callback;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
-
-import androidx.core.widget.NestedScrollView;
-import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.ItemTouchHelper.Callback;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -55,6 +54,10 @@ public class RankingWidgetDialog extends DialogFragment {
     private List<SelectChoice> items;
     private FormIndex formIndex;
     private RankingViewModel viewModel;
+
+    public interface RankingListener {
+        void onRankingChanged(List<SelectChoice> items);
+    }
 
     public RankingWidgetDialog() {
     }
@@ -133,9 +136,5 @@ public class RankingWidgetDialog extends DialogFragment {
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
         return recyclerView;
-    }
-
-    public interface RankingListener {
-        void onRankingChanged(List<SelectChoice> items);
     }
 }

@@ -61,15 +61,21 @@ import javax.inject.Inject;
 public class ServerPreferencesFragment extends BaseProjectPreferencesFragment implements OnBackPressedListener {
 
     private static final int REQUEST_ACCOUNT_PICKER = 1000;
+
+    private EditTextPreference passwordPreference;
+
     @Inject
     GoogleAccountsManager accountsManager;
+
     @Inject
     Analytics analytics;
+
     @Inject
     FormUpdateScheduler formUpdateScheduler;
+
     @Inject
     PermissionsProvider permissionsProvider;
-    private EditTextPreference passwordPreference;
+
     private Preference selectedGoogleAccountPreference;
     private boolean allowClickSelectedGoogleAccountPreference = true;
 
@@ -146,7 +152,7 @@ public class ServerPreferencesFragment extends BaseProjectPreferencesFragment im
 
         EditTextPreference googleSheetsUrlPreference = (EditTextPreference) findPreference(
                 ProjectKeys.KEY_GOOGLE_SHEETS_URL);
-        googleSheetsUrlPreference.setOnBindEditTextListener(editText -> editText.setFilters(new InputFilter[]{new ControlCharacterFilter(), new WhitespaceFilter()}));
+        googleSheetsUrlPreference.setOnBindEditTextListener(editText -> editText.setFilters(new InputFilter[] {new ControlCharacterFilter(), new WhitespaceFilter() }));
         googleSheetsUrlPreference.setOnPreferenceChangeListener(createChangeListener());
 
         String currentGoogleSheetsURL = googleSheetsUrlPreference.getText();

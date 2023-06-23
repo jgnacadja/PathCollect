@@ -22,8 +22,10 @@ import org.odk.collect.androidtest.RecordedIntentsRule;
 @RunWith(AndroidJUnit4.class)
 public class ServerSettingsTest {
 
-    public final CollectTestRule rule = new CollectTestRule();
     private final TestDependencies testDependencies = new TestDependencies();
+
+    public final CollectTestRule rule = new CollectTestRule();
+
     @Rule
     public RuleChain copyFormChain = TestRuleChain.chain(testDependencies)
             .around(new RecordedIntentsRule())

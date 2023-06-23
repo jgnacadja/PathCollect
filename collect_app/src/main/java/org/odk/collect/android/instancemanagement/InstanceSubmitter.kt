@@ -55,8 +55,7 @@ class InstanceSubmitter(
                         generalSettings.getString(ProjectKeys.KEY_GOOGLE_SHEETS_URL)
                     )
                     if (!InstanceUploaderUtils.doesUrlRefersToGoogleSheetsFile(destinationUrl)) {
-                        result[instance] =
-                            FormUploadException(InstanceUploaderUtils.SPREADSHEET_UPLOADED_TO_GOOGLE_DRIVE)
+                        result[instance] = FormUploadException(InstanceUploaderUtils.SPREADSHEET_UPLOADED_TO_GOOGLE_DRIVE)
                         continue
                     }
                 } else {

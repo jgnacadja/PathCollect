@@ -7,16 +7,18 @@ import org.junit.Test;
 import org.junit.rules.RuleChain;
 import org.junit.runner.RunWith;
 import org.odk.collect.android.R;
-import org.odk.collect.android.support.TestDependencies;
-import org.odk.collect.android.support.pages.GetBlankFormPage;
 import org.odk.collect.android.support.rules.CollectTestRule;
+import org.odk.collect.android.support.TestDependencies;
 import org.odk.collect.android.support.rules.TestRuleChain;
+import org.odk.collect.android.support.pages.GetBlankFormPage;
 
 @RunWith(AndroidJUnit4.class)
 public class GetBlankFormsTest {
 
-    final TestDependencies testDependencies = new TestDependencies();
     public CollectTestRule rule = new CollectTestRule(false);
+
+    final TestDependencies testDependencies = new TestDependencies();
+
     @Rule
     public RuleChain copyFormChain = TestRuleChain.chain(testDependencies)
             .around(rule);

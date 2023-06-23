@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
 public class HospitalListActivity extends CollectAbstractActivity implements
-        HospitalListAdapter.HospitalItemClickListener {
+        HospitalListAdapter.HospitalItemClickListener{
 
     private static final String TAG = "HospitalListActivity";
     private List<Hospital> hospitals;
@@ -88,7 +90,7 @@ public class HospitalListActivity extends CollectAbstractActivity implements
         if (MultiClickGuard.allowClick(getClass().getName())) {
             Hospital hospital = hospitals.get(position);
             Intent intent = new Intent(this, HospitalActivity.class);
-            intent.putExtra("screenTitle", hospital.getLevel() + " " + hospital.getName());
+            intent.putExtra("screenTitle", hospital.getLevel() + " " +hospital.getName());
             intent.putExtra("hospital", hospital);
             startActivity(intent);
         }

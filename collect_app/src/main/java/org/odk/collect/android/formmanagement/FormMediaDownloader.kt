@@ -3,7 +3,11 @@ package org.odk.collect.android.formmanagement
 import org.odk.collect.android.utilities.FileUtils.copyFile
 import org.odk.collect.android.utilities.FileUtils.interuptablyWriteFile
 import org.odk.collect.async.OngoingWorkListener
-import org.odk.collect.forms.*
+import org.odk.collect.forms.Form
+import org.odk.collect.forms.FormSource
+import org.odk.collect.forms.FormSourceException
+import org.odk.collect.forms.FormsRepository
+import org.odk.collect.forms.MediaFile
 import org.odk.collect.shared.strings.Md5.getMd5Hash
 import java.io.File
 import java.io.IOException

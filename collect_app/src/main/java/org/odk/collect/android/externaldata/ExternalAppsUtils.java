@@ -36,8 +36,8 @@ import org.javarosa.xpath.expr.XPathPathExpr;
 import org.javarosa.xpath.parser.XPathSyntaxException;
 import org.odk.collect.android.application.Collect;
 import org.odk.collect.android.exception.ExternalParamsException;
-import org.odk.collect.android.utilities.InstancesRepositoryProvider;
 import org.odk.collect.forms.instances.Instance;
+import org.odk.collect.android.utilities.InstancesRepositoryProvider;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -113,7 +113,7 @@ public final class ExternalAppsUtils {
     }
 
     public static void populateParameters(Intent intent, Map<String, String> exParams,
-                                          TreeReference reference) throws ExternalParamsException {
+            TreeReference reference) throws ExternalParamsException {
         if (exParams != null) {
             for (Map.Entry<String, String> paramEntry : exParams.entrySet()) {
                 String paramEntryValue = paramEntry.getValue();

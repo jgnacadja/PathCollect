@@ -10,7 +10,7 @@ import org.odk.collect.android.databinding.BlankFormListItemBinding
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard
 import timber.log.Timber
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
 class FormListAdapter(
     val listener: OnFormItemClickListener
@@ -19,8 +19,7 @@ class FormListAdapter(
     private var formItems = emptyList<BlankFormListItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding =
-            BlankFormListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = BlankFormListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -29,23 +28,17 @@ class FormListAdapter(
             with(formItems[position]) {
                 binding.formTitle.text = this.formName
 
-                binding.formSubtitle.text =
-                    binding.root.context.getString(R.string.version_number, this.formVersion)
-                binding.formSubtitle.visibility =
-                    if (this.formVersion.isNotBlank()) View.VISIBLE else View.GONE
+                binding.formSubtitle.text = binding.root.context.getString(R.string.version_number, this.formVersion)
+                binding.formSubtitle.visibility = if (this.formVersion.isNotBlank()) View.VISIBLE else View.GONE
 
                 binding.formSubtitle2.text = try {
-                    SimpleDateFormat(
-                        binding.root.context.getString(R.string.added_on_date_at_time),
-                        Locale.getDefault()
-                    ).format(this.dateOfCreation)
+                    SimpleDateFormat(binding.root.context.getString(R.string.added_on_date_at_time), Locale.getDefault()).format(this.dateOfCreation)
                 } catch (e: IllegalArgumentException) {
                     Timber.e(e)
                     ""
                 }
 
-                binding.mapButton.visibility =
-                    if (this.geometryPath.isNotBlank()) View.VISIBLE else View.GONE
+                binding.mapButton.visibility = if (this.geometryPath.isNotBlank()) View.VISIBLE else View.GONE
 
                 binding.root.setOnClickListener {
                     if (MultiClickGuard.allowClick(javaClass.name)) {

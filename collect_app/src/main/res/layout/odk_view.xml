@@ -26,13 +26,13 @@ limitations under the License.
 
         <TextView
             android:id="@+id/group_text"
-            style="@style/TextAppearance.Collect.Subtitle1.MediumEmphasis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_standard"
             android:layout_marginTop="@dimen/margin_standard"
             android:layout_marginRight="@dimen/margin_standard"
             android:visibility="gone"
+            style="@style/TextAppearance.Collect.Subtitle1.MediumEmphasis"
             tools:text="Group text"
             tools:visibility="visible" />
 
@@ -40,10 +40,10 @@ limitations under the License.
             android:id="@+id/launchIntentButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_standard"
+            android:visibility="gone"
             android:gravity="center"
-            android:padding="@dimen/margin_small"
-            android:visibility="gone" />
+            android:layout_margin="@dimen/margin_standard"
+            android:padding="@dimen/margin_small"/>
 
         <LinearLayout
             android:id="@+id/widgets"

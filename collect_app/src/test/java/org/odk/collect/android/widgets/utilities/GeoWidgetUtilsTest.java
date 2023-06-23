@@ -1,8 +1,5 @@
 package org.odk.collect.android.widgets.utilities;
 
-import static junit.framework.TestCase.assertEquals;
-import static org.odk.collect.android.widgets.support.GeoWidgetHelpers.getRandomDoubleArray;
-
 import android.content.Context;
 
 import androidx.test.core.app.ApplicationProvider;
@@ -12,6 +9,9 @@ import org.javarosa.core.model.data.GeoPointData;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.odk.collect.android.R;
+
+import static junit.framework.TestCase.assertEquals;
+import static org.odk.collect.android.widgets.support.GeoWidgetHelpers.getRandomDoubleArray;
 
 @RunWith(AndroidJUnit4.class)
 public class GeoWidgetUtilsTest {

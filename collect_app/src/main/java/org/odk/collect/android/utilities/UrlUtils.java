@@ -14,13 +14,13 @@
 
 package org.odk.collect.android.utilities;
 
-import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
-
 import androidx.annotation.NonNull;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.application.Collect;
 import org.odk.collect.android.exception.BadUrlException;
+
+import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
 
 public final class UrlUtils {
 

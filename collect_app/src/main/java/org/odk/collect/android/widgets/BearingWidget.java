@@ -33,18 +33,19 @@ import org.odk.collect.android.R;
 import org.odk.collect.android.activities.BearingActivity;
 import org.odk.collect.android.databinding.BearingWidgetAnswerBinding;
 import org.odk.collect.android.formentry.questions.QuestionDetails;
+import org.odk.collect.androidshared.ui.ToastUtils;
 import org.odk.collect.android.widgets.interfaces.WidgetDataReceiver;
 import org.odk.collect.android.widgets.utilities.WaitingForDataRegistry;
-import org.odk.collect.androidshared.ui.ToastUtils;
 
 /**
  * BearingWidget is the widget that allows the user to get a compass heading.
  */
 @SuppressLint("ViewConstructor")
 public class BearingWidget extends QuestionWidget implements WidgetDataReceiver {
+    BearingWidgetAnswerBinding binding;
+
     private final WaitingForDataRegistry waitingForDataRegistry;
     private final SensorManager sensorManager;
-    BearingWidgetAnswerBinding binding;
 
     public BearingWidget(Context context, QuestionDetails questionDetails, WaitingForDataRegistry waitingForDataRegistry, SensorManager sensorManager) {
         super(context, questionDetails);

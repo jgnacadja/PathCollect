@@ -1,8 +1,8 @@
 package org.odk.collect.android.openrosa;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Assert;
 import org.odk.collect.android.openrosa.okhttp.OkHttpCaseInsensitiveHeaders;
 
 import java.util.Set;
@@ -12,19 +12,6 @@ import okhttp3.Headers;
 
 public class OkHttpCaseInsensitiveHeadersTest {
     private static CaseInsensitiveHeaders headers;
-
-    private static OkHttpCaseInsensitiveHeaders buildTestHeaders() {
-        Headers.Builder headerBuilder = new Headers.Builder();
-
-        headerBuilder.add("Mixed-Case", "value");
-        headerBuilder.add("lower-case", "value");
-        headerBuilder.add("UPPER-CASE", "value");
-        headerBuilder.add("collision", "v1");
-        headerBuilder.add("Collision", "v2");
-        headerBuilder.add("COLLISION", "v3");
-
-        return new OkHttpCaseInsensitiveHeaders(headerBuilder.build());
-    }
 
     @Before
     public void setup() {
@@ -79,5 +66,18 @@ public class OkHttpCaseInsensitiveHeadersTest {
     public void testCaseInsensitiveNameCollisions() {
         Assert.assertTrue(headers.containsHeader("Collision"));
         Assert.assertTrue(headers.getValues("Collision").size() > 1);
+    }
+
+    private static OkHttpCaseInsensitiveHeaders buildTestHeaders() {
+        Headers.Builder headerBuilder = new Headers.Builder();
+
+        headerBuilder.add("Mixed-Case", "value");
+        headerBuilder.add("lower-case", "value");
+        headerBuilder.add("UPPER-CASE", "value");
+        headerBuilder.add("collision", "v1");
+        headerBuilder.add("Collision", "v2");
+        headerBuilder.add("COLLISION", "v3");
+
+        return new OkHttpCaseInsensitiveHeaders(headerBuilder.build());
     }
 }

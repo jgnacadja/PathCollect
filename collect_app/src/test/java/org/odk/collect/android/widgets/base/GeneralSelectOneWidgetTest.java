@@ -1,9 +1,6 @@
 package org.odk.collect.android.widgets.base;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-
 import androidx.annotation.NonNull;
 
 import org.javarosa.core.model.SelectChoice;
@@ -14,6 +11,9 @@ import org.junit.Test;
 import org.odk.collect.android.widgets.interfaces.MultiChoiceWidget;
 
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author James Knight

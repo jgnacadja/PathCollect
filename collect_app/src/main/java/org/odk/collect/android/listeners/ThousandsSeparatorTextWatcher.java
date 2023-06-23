@@ -16,8 +16,8 @@ import timber.log.Timber;
  */
 
 public class ThousandsSeparatorTextWatcher implements TextWatcher {
-    private static String thousandSeparator;
     private final EditText editText;
+    private static String thousandSeparator;
     private int cursorPosition;
 
     public ThousandsSeparatorTextWatcher(EditText editText) {
@@ -29,6 +29,38 @@ public class ThousandsSeparatorTextWatcher implements TextWatcher {
         // The decimal marker is always "." (see DecimalWidget) so avoid it as thousands separator
         if (thousandSeparator.equals(".")) {
             thousandSeparator = " ";
+        }
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
+        cursorPosition = editText.getText().toString().length() - editText.getSelectionStart();
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        try {
+            editText.removeTextChangedListener(this);
+            String value = editText.getText().toString();
+
+            if (!value.equals("")) {
+                String str = editText.getText().toString().replaceAll(Pattern.quote(thousandSeparator), "");
+                if (!value.equals("")) {
+                    editText.setText(getDecimalFormattedString(str));
+                }
+                editText.setSelection(editText.getText().toString().length());
+            }
+
+            //setting the cursor back to where it was
+            int selectionIndex = editText.getText().toString().length() - cursorPosition;
+            editText.setSelection(Math.max(selectionIndex, 0));
+            editText.addTextChangedListener(this);
+        } catch (Exception ex) {
+            Timber.e(ex);
+            editText.addTextChangedListener(this);
         }
     }
 
@@ -64,42 +96,9 @@ public class ThousandsSeparatorTextWatcher implements TextWatcher {
     }
 
     /*
-     * Returns the string after removing all the thousands separators.
-     * */
+    * Returns the string after removing all the thousands separators.
+    * */
     public static String getOriginalString(String string) {
         return string.replace(thousandSeparator, "");
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
-        cursorPosition = editText.getText().toString().length() - editText.getSelectionStart();
-    }
-
-    @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-        try {
-            editText.removeTextChangedListener(this);
-            String value = editText.getText().toString();
-
-            if (!value.equals("")) {
-                String str = editText.getText().toString().replaceAll(Pattern.quote(thousandSeparator), "");
-                if (!value.equals("")) {
-                    editText.setText(getDecimalFormattedString(str));
-                }
-                editText.setSelection(editText.getText().toString().length());
-            }
-
-            //setting the cursor back to where it was
-            int selectionIndex = editText.getText().toString().length() - cursorPosition;
-            editText.setSelection(Math.max(selectionIndex, 0));
-            editText.addTextChangedListener(this);
-        } catch (Exception ex) {
-            Timber.e(ex);
-            editText.addTextChangedListener(this);
-        }
     }
 }

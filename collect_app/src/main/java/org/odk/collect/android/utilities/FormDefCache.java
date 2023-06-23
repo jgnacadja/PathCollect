@@ -15,9 +15,7 @@ import java.io.IOException;
 
 import timber.log.Timber;
 
-/**
- * Methods for reading from and writing to the FormDef cache
- */
+/** Methods for reading from and writing to the FormDef cache */
 public final class FormDefCache {
 
     private FormDefCache() {
@@ -76,7 +74,6 @@ public final class FormDefCache {
 
     /**
      * If a form is present in the cache, deserializes and returns it as as FormDef.
-     *
      * @param formXml a File containing the XML version of the form
      * @return a FormDef, or null if the form is not present in the cache
      */
@@ -104,7 +101,6 @@ public final class FormDefCache {
 
     /**
      * Builds and returns a File object for the cached version of a form.
-     *
      * @param formXml the File containing the XML form
      * @return a File object
      */

@@ -37,8 +37,7 @@ class ChangeAdminPasswordDialog : DialogFragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         DaggerUtils.getComponent(context).inject(this)
-        projectPreferencesViewModel =
-            ViewModelProvider(requireActivity(), factory)[ProjectPreferencesViewModel::class.java]
+        projectPreferencesViewModel = ViewModelProvider(requireActivity(), factory)[ProjectPreferencesViewModel::class.java]
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -51,8 +50,7 @@ class ChangeAdminPasswordDialog : DialogFragment() {
             if (isChecked) {
                 binding.pwdField.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
             } else {
-                binding.pwdField.inputType =
-                    InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+                binding.pwdField.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
             }
         }
 
@@ -63,8 +61,7 @@ class ChangeAdminPasswordDialog : DialogFragment() {
             .setPositiveButton(getString(R.string.ok)) { _: DialogInterface?, _: Int ->
                 val password = binding.pwdField.text.toString()
 
-                settingsProvider.getProtectedSettings()
-                    .save(ProtectedProjectKeys.KEY_ADMIN_PW, password)
+                settingsProvider.getProtectedSettings().save(ProtectedProjectKeys.KEY_ADMIN_PW, password)
 
                 if (password.isEmpty()) {
                     projectPreferencesViewModel.setStateNotProtected()

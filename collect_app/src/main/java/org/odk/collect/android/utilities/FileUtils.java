@@ -76,19 +76,13 @@ public final class FileUtils {
     public static final String AUTO_SEND = "autoSend";
     public static final String GEOMETRY_XPATH = "geometryXpath";
 
-    /**
-     * Suffix for the form media directory.
-     */
+    /** Suffix for the form media directory. */
     public static final String MEDIA_SUFFIX = "-media";
 
-    /**
-     * Filename of the last-saved instance data.
-     */
+    /** Filename of the last-saved instance data. */
     public static final String LAST_SAVED_FILENAME = "last-saved.xml";
 
-    /**
-     * Valid XML stub that can be parsed without error.
-     */
+    /** Valid XML stub that can be parsed without error. */
     public static final String STUB_XML = "<?xml version='1.0' ?><stub />";
 
     private FileUtils() {
@@ -204,11 +198,11 @@ public final class FileUtils {
     /**
      * Returns an XPath path representing the first geopoint of this form definition or null if the
      * definition does not contain any field of type geopoint.
-     * <p>
+     *
      * The first geopoint is either of:
-     * (1) the first geopoint in the body that is not in a repeat
-     * (2) if the form has a setgeopoint action, the first geopoint in the instance that occurs
-     * before (1) or (1) if there is no geopoint defined before it in the instance.
+     *      (1) the first geopoint in the body that is not in a repeat
+     *      (2) if the form has a setgeopoint action, the first geopoint in the instance that occurs
+     *          before (1) or (1) if there is no geopoint defined before it in the instance.
      */
     private static String getOverallFirstGeoPoint(FormDef formDef) {
         TreeReference firstTopLevelBodyGeoPoint = getFirstToplevelBodyGeoPoint(formDef);
@@ -406,9 +400,7 @@ public final class FileUtils {
         }
     }
 
-    /**
-     * Sorts file paths as if sorting the path components and extensions lexicographically.
-     */
+    /** Sorts file paths as if sorting the path components and extensions lexicographically. */
     public static int comparePaths(String a, String b) {
         // Regular string compareTo() is incorrect, because it will sort "/" and "."
         // after other punctuation (e.g. "foo/bar" will sort AFTER "foo-2/bar" and

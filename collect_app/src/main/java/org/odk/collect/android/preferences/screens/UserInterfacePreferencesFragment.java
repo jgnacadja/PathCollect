@@ -22,18 +22,14 @@ import static org.odk.collect.settings.keys.ProjectKeys.KEY_NAVIGATION;
 
 import android.content.Context;
 import android.os.Bundle;
-
 import androidx.preference.ListPreference;
-
 import org.odk.collect.android.R;
 import org.odk.collect.android.activities.MainMenuActivity;
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.utilities.LocaleHelper;
 import org.odk.collect.android.version.VersionInformation;
-
 import java.util.ArrayList;
 import java.util.TreeMap;
-
 import javax.inject.Inject;
 
 public class UserInterfacePreferencesFragment extends BaseProjectPreferencesFragment {

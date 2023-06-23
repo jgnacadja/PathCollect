@@ -1,11 +1,5 @@
 package org.odk.collect.android.fragments.dialogs;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.mock;
-import static java.util.Arrays.asList;
-
 import android.view.View;
 
 import androidx.fragment.app.FragmentActivity;
@@ -26,6 +20,12 @@ import org.odk.collect.android.utilities.MediaUtils;
 import org.odk.collect.testshared.RobolectricHelpers;
 
 import java.util.List;
+
+import static java.util.Arrays.asList;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.Mockito.mock;
 
 @RunWith(AndroidJUnit4.class)
 public class SelectMinimalDialogTest {

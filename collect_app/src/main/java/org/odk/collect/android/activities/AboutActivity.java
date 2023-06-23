@@ -38,12 +38,14 @@ public class AboutActivity extends CollectAbstractActivity implements
 
     private static final String LICENSES_HTML_PATH = "file:///android_asset/open_source_licenses.html";
     private static final String GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=";
-    @Inject
-    IntentLauncher intentLauncher;
+
     private ExternalWebPageHelper websiteTabHelper;
     private ExternalWebPageHelper forumTabHelper;
     private Uri websiteUri;
     private Uri forumUri;
+
+    @Inject
+    IntentLauncher intentLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +105,6 @@ public class AboutActivity extends CollectAbstractActivity implements
             }
         }
     }
-
     @Override
     public void onStart() {
         super.onStart();

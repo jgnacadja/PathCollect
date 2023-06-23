@@ -87,14 +87,18 @@ public class Collect extends Application implements
 
     private final AppState appState = new AppState();
     private final SupplierObjectProvider mapboxDependencies = new SupplierObjectProvider();
-    @Inject
-    ApplicationInitializer applicationInitializer;
-    @Inject
-    SettingsProvider settingsProvider;
+
     @Nullable
     private FormController formController;
     private ExternalDataManager externalDataManager;
     private AppDependencyComponent applicationComponent;
+
+    @Inject
+    ApplicationInitializer applicationInitializer;
+
+    @Inject
+    SettingsProvider settingsProvider;
+
     private AudioRecorderDependencyComponent audioRecorderDependencyComponent;
     private ProjectsDependencyComponent projectsDependencyComponent;
     private GeoDependencyComponent geoDependencyComponent;
@@ -108,22 +112,6 @@ public class Collect extends Application implements
     @Deprecated
     public static Collect getInstance() {
         return singleton;
-    }
-
-    /**
-     * Gets a unique, privacy-preserving identifier for a form based on its id and version.
-     *
-     * @param formId      id of a form
-     * @param formVersion version of a form
-     * @return md5 hash of the form title, a space, the form ID
-     */
-    public static String getFormIdentifierHash(String formId, String formVersion) {
-        Form form = new FormsRepositoryProvider(Collect.getInstance()).get().getLatestByFormIdAndVersion(formId, formVersion);
-
-        String formTitle = form != null ? form.getDisplayName() : "";
-
-        String formIdentifier = formTitle + " " + formId;
-        return Md5.getMd5Hash(new ByteArrayInputStream(formIdentifier.getBytes()));
     }
 
     public FormController getFormController() {
@@ -231,6 +219,22 @@ public class Collect extends Application implements
     public void setComponent(AppDependencyComponent applicationComponent) {
         this.applicationComponent = applicationComponent;
         applicationComponent.inject(this);
+    }
+
+    /**
+     * Gets a unique, privacy-preserving identifier for a form based on its id and version.
+     *
+     * @param formId      id of a form
+     * @param formVersion version of a form
+     * @return md5 hash of the form title, a space, the form ID
+     */
+    public static String getFormIdentifierHash(String formId, String formVersion) {
+        Form form = new FormsRepositoryProvider(Collect.getInstance()).get().getLatestByFormIdAndVersion(formId, formVersion);
+
+        String formTitle = form != null ? form.getDisplayName() : "";
+
+        String formIdentifier = formTitle + " " + formId;
+        return Md5.getMd5Hash(new ByteArrayInputStream(formIdentifier.getBytes()));
     }
 
     // https://issuetracker.google.com/issues/154855417

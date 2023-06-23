@@ -23,14 +23,18 @@ import javax.annotation.OverridingMethodsMustInvokeSuper;
 @RunWith(AndroidJUnit4.class)
 public abstract class WidgetTest {
 
-    protected final SettingsProvider settingsProvider = TestSettingsProvider.getSettingsProvider();
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
+
     @Mock
     public FormEntryPrompt formEntryPrompt;
+
     @Mock
     public IFormElement formElement;
+
     public boolean readOnlyOverride;
+
+    protected final SettingsProvider settingsProvider = TestSettingsProvider.getSettingsProvider();
 
     @Before
     @OverridingMethodsMustInvokeSuper

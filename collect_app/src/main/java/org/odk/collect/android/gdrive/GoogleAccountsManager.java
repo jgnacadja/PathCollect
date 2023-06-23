@@ -35,10 +35,11 @@ import javax.inject.Inject;
 public class GoogleAccountsManager {
 
     private final GoogleAccountPicker accountPicker;
-    private final SettingsProvider settingsProvider;
+
     private Intent intentChooseAccount;
     private Context context;
     private ThemeUtils themeUtils;
+    private final SettingsProvider settingsProvider;
 
     @Inject
     public GoogleAccountsManager(@NonNull Context context, GoogleAccountPicker googleAccountPicker, SettingsProvider settingsProvider) {

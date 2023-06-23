@@ -19,6 +19,7 @@ package org.odk.collect.android.widgets;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+
 import android.util.TypedValue;
 import android.view.View;
 
@@ -27,14 +28,15 @@ import org.odk.collect.android.databinding.ArbitraryFileWidgetAnswerBinding;
 import org.odk.collect.android.formentry.questions.QuestionDetails;
 import org.odk.collect.android.utilities.ApplicationConstants;
 import org.odk.collect.android.utilities.QuestionMediaManager;
-import org.odk.collect.android.widgets.interfaces.FileWidget;
 import org.odk.collect.android.widgets.interfaces.WidgetDataReceiver;
+import org.odk.collect.android.widgets.interfaces.FileWidget;
 import org.odk.collect.android.widgets.utilities.WaitingForDataRegistry;
 
 @SuppressLint("ViewConstructor")
 public class ArbitraryFileWidget extends BaseArbitraryFileWidget implements FileWidget, WidgetDataReceiver {
-    private final WaitingForDataRegistry waitingForDataRegistry;
     ArbitraryFileWidgetAnswerBinding binding;
+
+    private final WaitingForDataRegistry waitingForDataRegistry;
 
     ArbitraryFileWidget(Context context, QuestionDetails questionDetails,
                         QuestionMediaManager questionMediaManager, WaitingForDataRegistry waitingForDataRegistry) {

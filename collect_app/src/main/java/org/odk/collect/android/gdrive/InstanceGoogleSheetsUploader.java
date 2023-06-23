@@ -44,8 +44,8 @@ import org.odk.collect.android.gdrive.sheets.SheetsHelper;
 import org.odk.collect.android.storage.StoragePathProvider;
 import org.odk.collect.android.storage.StorageSubdirectory;
 import org.odk.collect.android.tasks.FormLoaderTask;
-import org.odk.collect.android.upload.FormUploadException;
 import org.odk.collect.android.upload.InstanceUploader;
+import org.odk.collect.android.upload.FormUploadException;
 import org.odk.collect.android.utilities.FileUtils;
 import org.odk.collect.android.utilities.FormsRepositoryProvider;
 import org.odk.collect.android.utilities.UrlUtils;
@@ -84,25 +84,6 @@ public class InstanceGoogleSheetsUploader extends InstanceUploader {
     public InstanceGoogleSheetsUploader(DriveApi driveApi, SheetsApi sheetsApi) {
         driveHelper = new DriveHelper(driveApi);
         sheetsHelper = new SheetsHelper(sheetsApi);
-    }
-
-    public static String getFormattingResistantAnswer(TreeElement childElement) {
-        String answer = childElement.getValue() != null ? childElement.getValue().getDisplayText() : "";
-
-        if (!answer.isEmpty() && (childElement.getDataType() == Constants.DATATYPE_TEXT
-                || childElement.getDataType() == Constants.DATATYPE_MULTIPLE_ITEMS
-                || childElement.getDataType() == Constants.DATATYPE_BARCODE)) {
-            answer = "'" + answer;
-        }
-
-        return answer;
-    }
-
-    public static boolean isLocationValid(String answer) {
-        return Pattern
-                .compile("^-?[0-9]+\\.[0-9]+\\s-?[0-9]+\\.[0-9]+\\s-?[0-9]+\\.[0-9]+\\s[0-9]+\\.[0-9]+$")
-                .matcher(answer)
-                .matches();
     }
 
     @Override
@@ -389,6 +370,18 @@ public class InstanceGoogleSheetsUploader extends InstanceUploader {
         return answers;
     }
 
+    public static String getFormattingResistantAnswer(TreeElement childElement) {
+        String answer = childElement.getValue() != null ? childElement.getValue().getDisplayText() : "";
+
+        if (!answer.isEmpty() && (childElement.getDataType() == Constants.DATATYPE_TEXT
+                || childElement.getDataType() == Constants.DATATYPE_MULTIPLE_ITEMS
+                || childElement.getDataType() == Constants.DATATYPE_BARCODE)) {
+            answer = "'" + answer;
+        }
+
+        return answer;
+    }
+
     /**
      * Strips the Altitude and Accuracy from a location String and adds them as separate columns if
      * the column titles exist.
@@ -602,5 +595,12 @@ public class InstanceGoogleSheetsUploader extends InstanceUploader {
         return sheetId == null
                 ? null
                 : spreadsheet.getSpreadsheetUrl().substring(0, spreadsheet.getSpreadsheetUrl().lastIndexOf('/') + 1) + "edit#gid=" + sheetId;
+    }
+
+    public static boolean isLocationValid(String answer) {
+        return Pattern
+                .compile("^-?[0-9]+\\.[0-9]+\\s-?[0-9]+\\.[0-9]+\\s-?[0-9]+\\.[0-9]+\\s[0-9]+\\.[0-9]+$")
+                .matcher(answer)
+                .matches();
     }
 }

@@ -7,6 +7,7 @@ import org.kxml2.io.KXmlParser
 import org.kxml2.kdom.Document
 import org.xmlpull.v1.XmlPullParser
 import java.io.StringReader
+import java.lang.StringBuilder
 
 class OpenRosaResponseParserImplTest {
 

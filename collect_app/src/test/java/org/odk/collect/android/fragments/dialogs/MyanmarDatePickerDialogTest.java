@@ -1,7 +1,5 @@
 package org.odk.collect.android.fragments.dialogs;
 
-import static org.mockito.Mockito.when;
-
 import android.content.DialogInterface;
 
 import androidx.fragment.app.FragmentManager;
@@ -14,6 +12,8 @@ import org.odk.collect.android.fragments.support.DialogFragmentHelpers;
 import org.odk.collect.android.logic.DatePickerDetails;
 import org.odk.collect.android.support.CollectHelpers;
 import org.odk.collect.testshared.RobolectricHelpers;
+
+import static org.mockito.Mockito.when;
 
 @RunWith(AndroidJUnit4.class)
 public class MyanmarDatePickerDialogTest {

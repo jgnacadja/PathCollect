@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa"
-    xmlns:odk="http://www.opendatakit.org/xforms" xmlns="http://www.w3.org/2002/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml"
+    xmlns:jr="http://openrosa.org/javarosa" xmlns:odk="http://www.opendatakit.org/xforms">
     <h:head>
         <h:title>Empty First Repeat</h:title>
         <model odk:xforms-version="1.0.0">
@@ -18,8 +18,8 @@
                 </data>
             </instance>
             <bind nodeset="/data/repeat/text" relevant="position(..) != 1" type="string" />
-            <bind nodeset="/data/meta/instanceID" readonly="true()" type="string"
-                jr:preload="uid" />
+            <bind jr:preload="uid" nodeset="/data/meta/instanceID" readonly="true()"
+                type="string" />
         </model>
     </h:head>
     <h:body>

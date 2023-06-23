@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<h:html xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa"
-    xmlns:odk="http://www.opendatakit.org/xforms" xmlns="http://www.w3.org/2002/xforms">
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:odk="http://www.opendatakit.org/xforms">
     <h:head>
         <h:title>Relevance and calculate loop</h:title>
         <model odk:xforms-version="1.0.0">
@@ -8,21 +7,19 @@
                 <data id="form-list-relevance-issue">
                     <group>
                         <name>A</name>
-                        <fullName />
+                        <fullName/>
                         <middleName>third</middleName>
                     </group>
                     <meta>
-                        <instanceID />
+                        <instanceID/>
                     </meta>
                 </data>
             </instance>
-            <bind nodeset="/data/group/name" type="string" />
+            <bind nodeset="/data/group/name" type="string"/>
             <!-- The form design issue is that calculates can't be used as dynamic defaults because they're reevaluated continuously -->
-            <bind calculate=" /data/group/name " nodeset="/data/group/fullName" type="string" />
-            <bind nodeset="/data/group/middleName"
-                relevant=" /data/group/name != /data/group/fullName " type="string" />
-            <bind nodeset="/data/meta/instanceID" readonly="true()" type="string"
-                jr:preload="uid" />
+            <bind calculate=" /data/group/name " nodeset="/data/group/fullName" type="string"/>
+            <bind nodeset="/data/group/middleName" relevant=" /data/group/name != /data/group/fullName " type="string"/>
+            <bind jr:preload="uid" nodeset="/data/meta/instanceID" readonly="true()" type="string"/>
         </model>
     </h:head>
     <h:body>

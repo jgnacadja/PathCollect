@@ -37,8 +37,8 @@ import org.odk.collect.android.R;
 import org.odk.collect.android.utilities.Appearances;
 import org.odk.collect.android.utilities.CameraUtils;
 import org.odk.collect.android.utilities.CodeCaptureManagerFactory;
-import org.odk.collect.android.views.BarcodeViewDecoder;
 import org.odk.collect.androidshared.ui.ToastUtils;
+import org.odk.collect.android.views.BarcodeViewDecoder;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -48,14 +48,17 @@ import javax.inject.Inject;
 
 public abstract class BarCodeScannerFragment extends Fragment implements DecoratedBarcodeView.TorchListener {
 
-    @Inject
-    CodeCaptureManagerFactory codeCaptureManagerFactory;
-    @Inject
-    BarcodeViewDecoder barcodeViewDecoder;
     private CaptureManager capture;
     private DecoratedBarcodeView barcodeScannerView;
+
     private Button switchFlashlightButton;
     private BeepManager beepManager;
+
+    @Inject
+    CodeCaptureManagerFactory codeCaptureManagerFactory;
+
+    @Inject
+    BarcodeViewDecoder barcodeViewDecoder;
 
     @Override
     public void onAttach(@NonNull Context context) {

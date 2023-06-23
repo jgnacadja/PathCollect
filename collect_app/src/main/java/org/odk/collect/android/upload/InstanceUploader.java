@@ -31,15 +31,17 @@ import javax.inject.Inject;
 
 public abstract class InstanceUploader {
 
-    public static final String FAIL = "Error: ";
     @Inject
     InstancesRepositoryProvider instancesRepositoryProvider;
+
     @Inject
     InstancesAppState instancesAppState;
 
     public InstanceUploader() {
         DaggerUtils.getComponent(Collect.getInstance()).inject(this);
     }
+
+    public static final String FAIL = "Error: ";
 
     /**
      * Uploads the specified instance to the specified destination URL. It may return a custom

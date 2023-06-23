@@ -16,10 +16,6 @@
 
 package org.odk.collect.android.instrumented.utilities;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.when;
-
 import org.javarosa.core.model.FormIndex;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,6 +29,10 @@ import org.odk.collect.android.tasks.SaveFormIndexTask;
 import org.odk.collect.android.tasks.SaveFormToDisk;
 
 import java.io.File;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.when;
 
 // Verify that a FormIndex can be saved to and restored from a file
 @RunWith(MockitoJUnitRunner.class)

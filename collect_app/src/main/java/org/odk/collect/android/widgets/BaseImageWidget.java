@@ -52,16 +52,18 @@ import timber.log.Timber;
 
 public abstract class BaseImageWidget extends QuestionWidget implements FileWidget, WidgetDataReceiver {
 
-    protected final String tmpImageFilePath;
-    private final WaitingForDataRegistry waitingForDataRegistry;
-    private final QuestionMediaManager questionMediaManager;
     @Nullable
     protected ImageView imageView;
     protected String binaryName;
     protected TextView errorTextView;
     protected LinearLayout answerLayout;
+
     protected ImageClickHandler imageClickHandler;
     protected ExternalImageCaptureHandler imageCaptureHandler;
+
+    private final WaitingForDataRegistry waitingForDataRegistry;
+    private final QuestionMediaManager questionMediaManager;
+    protected final String tmpImageFilePath;
 
     public BaseImageWidget(Context context, QuestionDetails prompt, QuestionMediaManager questionMediaManager,
                            WaitingForDataRegistry waitingForDataRegistry, String tmpImageFilePath) {
@@ -178,65 +180,10 @@ public abstract class BaseImageWidget extends QuestionWidget implements FileWidg
     public abstract Intent addExtrasToIntent(Intent intent);
 
     /**
-     * Standard method for launching an Activity.
-     *
-     * @param intent              - The Intent to start
-     * @param resourceCode        - Code to return when Activity exits
-     * @param errorStringResource - String resource for error toast
-     */
-    protected void launchActivityForResult(Intent intent, final int resourceCode, final int errorStringResource) {
-        try {
-            waitingForDataRegistry.waitForData(getFormEntryPrompt().getIndex());
-            ((Activity) getContext()).startActivityForResult(intent, resourceCode);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(getContext(),
-                    getContext().getString(R.string.activity_not_found, getContext().getString(errorStringResource)),
-                    Toast.LENGTH_SHORT).show();
-            waitingForDataRegistry.cancelWaitingForData();
-        }
-    }
-
-    @Nullable
-    private File getFile() {
-        File file = questionMediaManager.getAnswerFile(binaryName);
-        if ((file == null || !file.exists()) && doesSupportDefaultValues()) {
-            file = new File(getDefaultFilePath());
-        }
-
-        return file;
-    }
-
-    private String getDefaultFilePath() {
-        try {
-            return referenceManager.deriveReference(binaryName).getLocalURI();
-        } catch (InvalidReferenceException e) {
-            Timber.w(e);
-        }
-
-        return "";
-    }
-
-    protected abstract boolean doesSupportDefaultValues();
-
-    @Nullable
-    public ImageView getImageView() {
-        return imageView;
-    }
-
-    /**
      * Interface for Clicking on Images
      */
     protected interface ImageClickHandler {
         void clickImage(String context);
-    }
-
-    /**
-     * Interface for choosing or capturing a new image
-     */
-    protected interface ExternalImageCaptureHandler {
-        void captureImage(Intent intent, int requestCode, int stringResource);
-
-        void chooseImage(int stringResource);
     }
 
     /**
@@ -288,6 +235,15 @@ public abstract class BaseImageWidget extends QuestionWidget implements FileWidg
     }
 
     /**
+     * Interface for choosing or capturing a new image
+     */
+    protected interface ExternalImageCaptureHandler {
+        void captureImage(Intent intent, int requestCode, int stringResource);
+
+        void chooseImage(int stringResource);
+    }
+
+    /**
      * Class for launching the image capture or choose image activities
      */
     protected class ImageCaptureHandler implements ExternalImageCaptureHandler {
@@ -304,5 +260,51 @@ public abstract class BaseImageWidget extends QuestionWidget implements FileWidg
             i.setType("image/*");
             launchActivityForResult(i, ApplicationConstants.RequestCodes.IMAGE_CHOOSER, stringResource);
         }
+    }
+
+    /**
+     * Standard method for launching an Activity.
+     *
+     * @param intent              - The Intent to start
+     * @param resourceCode        - Code to return when Activity exits
+     * @param errorStringResource - String resource for error toast
+     */
+    protected void launchActivityForResult(Intent intent, final int resourceCode, final int errorStringResource) {
+        try {
+            waitingForDataRegistry.waitForData(getFormEntryPrompt().getIndex());
+            ((Activity) getContext()).startActivityForResult(intent, resourceCode);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(getContext(),
+                    getContext().getString(R.string.activity_not_found, getContext().getString(errorStringResource)),
+                    Toast.LENGTH_SHORT).show();
+            waitingForDataRegistry.cancelWaitingForData();
+        }
+    }
+
+    @Nullable
+    private File getFile() {
+        File file = questionMediaManager.getAnswerFile(binaryName);
+        if ((file == null || !file.exists()) && doesSupportDefaultValues()) {
+            file = new File(getDefaultFilePath());
+        }
+
+        return file;
+    }
+
+    private String getDefaultFilePath() {
+        try {
+            return referenceManager.deriveReference(binaryName).getLocalURI();
+        } catch (InvalidReferenceException e) {
+            Timber.w(e);
+        }
+
+        return "";
+    }
+
+    protected abstract boolean doesSupportDefaultValues();
+
+    @Nullable
+    public ImageView getImageView() {
+        return imageView;
     }
 }

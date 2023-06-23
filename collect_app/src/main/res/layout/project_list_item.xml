@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingVertical="@dimen/margin_extra_small">
+    android:paddingVertical="@dimen/margin_extra_small"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <org.odk.collect.android.projects.ProjectIconView
         android:id="@+id/project_icon"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="A" />
+        tools:text="A"/>
 
     <LinearLayout
         android:layout_width="0dp"
@@ -31,7 +31,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textAppearance="?textAppearanceSubtitle1"
-            tools:text="A project" />
+            tools:text="A project"/>
 
         <TextView
             android:id="@+id/project_subtext"
@@ -41,6 +41,6 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:textAppearance="@style/TextAppearance.Collect.Body2.MediumEmphasis"
-            tools:text="my.cool.project.com" />
+            tools:text="my.cool.project.com"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

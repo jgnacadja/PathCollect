@@ -39,13 +39,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_standard"
-            android:adjustViewBounds="true"
             android:paddingStart="@dimen/margin_standard"
             android:paddingLeft="@dimen/margin_standard"
             android:paddingEnd="@dimen/margin_standard"
             android:paddingRight="@dimen/margin_standard"
             android:paddingBottom="@dimen/margin_standard"
             android:scaleType="fitStart"
+            android:adjustViewBounds="true"
             android:visibility="gone" />
 
         <TextView
@@ -82,8 +82,8 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:layout_width="@dimen/touch_target_size"
             android:layout_height="@dimen/touch_target_size"
-            android:fillColor="@color/colorPrimary"
             android:visibility="gone"
+            android:fillColor="@color/colorPrimary"
             app:iconTint="@color/colorPrimary"
             tools:visibility="visible" />
 

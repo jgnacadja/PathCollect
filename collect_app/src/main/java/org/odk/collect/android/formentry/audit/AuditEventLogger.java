@@ -1,3 +1,4 @@
+
 package org.odk.collect.android.formentry.audit;
 
 import static org.odk.collect.android.formentry.audit.AuditEvent.AuditEventType.LOCATION_PROVIDERS_DISABLED;
@@ -30,12 +31,14 @@ import timber.log.Timber;
 public class AuditEventLogger {
 
     private final AuditEventWriter writer;
-    private final AuditConfig auditConfig;
-    private final FormController formController;
     private List<Location> locations = new ArrayList<>();
+
     private ArrayList<AuditEvent> auditEvents = new ArrayList<>();
     private long surveyOpenTime;
     private long surveyOpenElapsedTime;
+
+    private final AuditConfig auditConfig;
+    private final FormController formController;
     private String user;
     private boolean changesMade;
     private boolean editing;
@@ -284,12 +287,12 @@ public class AuditEventLogger {
         return auditConfig != null && auditConfig.isIdentifyUserEnabled();
     }
 
-    public String getUser() {
-        return user;
-    }
-
     public void setUser(String user) {
         this.user = user;
+    }
+
+    public String getUser() {
+        return user;
     }
 
     public boolean isChangeReasonRequired() {
@@ -300,12 +303,12 @@ public class AuditEventLogger {
         return changesMade;
     }
 
-    public boolean isEditing() {
-        return editing;
-    }
-
     public void setEditing(boolean editing) {
         this.editing = editing;
+    }
+
+    public boolean isEditing() {
+        return editing;
     }
 
     public interface AuditEventWriter {

@@ -14,9 +14,10 @@ import java.io.File;
 
 import timber.log.Timber;
 
-public abstract class BaseArbitraryFileWidget extends QuestionWidget implements FileWidget, WidgetDataReceiver {
-    protected final WaitingForDataRegistry waitingForDataRegistry;
+public abstract class BaseArbitraryFileWidget extends QuestionWidget implements FileWidget, WidgetDataReceiver  {
     private final QuestionMediaManager questionMediaManager;
+    protected final WaitingForDataRegistry waitingForDataRegistry;
+
     protected File answerFile;
 
     public BaseArbitraryFileWidget(Context context, QuestionDetails questionDetails, QuestionMediaManager questionMediaManager,

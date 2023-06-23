@@ -42,6 +42,11 @@ public class FakeLocationClient implements LocationClient {
         this.locationListener = null;
     }
 
+    @Override
+    public void setListener(@Nullable LocationClientListener locationClientListener) {
+        this.listenerRef = new WeakReference<>(locationClientListener);
+    }
+
     public Location getLastLocation() {
         return lastLocation;
     }
@@ -50,16 +55,14 @@ public class FakeLocationClient implements LocationClient {
         return locationListener != null;
     }
 
-    public void setPriority(Priority priority) {
-    }
+    public void setPriority(Priority priority) { }
 
     @Override
     public void setRetainMockAccuracy(boolean retainMockAccuracy) {
         throw new UnsupportedOperationException();
     }
 
-    public void setUpdateIntervals(long updateInterval, long fastestUpdateInterval) {
-    }
+    public void setUpdateIntervals(long updateInterval, long fastestUpdateInterval) { }
 
     public void setLocation(Location location) {
         this.lastLocation = location;
@@ -74,10 +77,5 @@ public class FakeLocationClient implements LocationClient {
 
     private LocationClientListener getListener() {
         return listenerRef != null ? listenerRef.get() : null;
-    }
-
-    @Override
-    public void setListener(@Nullable LocationClientListener locationClientListener) {
-        this.listenerRef = new WeakReference<>(locationClientListener);
     }
 }

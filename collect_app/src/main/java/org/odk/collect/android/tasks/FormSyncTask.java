@@ -17,8 +17,8 @@ package org.odk.collect.android.tasks;
 import android.os.AsyncTask;
 
 import org.odk.collect.android.application.Collect;
-import org.odk.collect.android.external.FormsContract;
 import org.odk.collect.android.listeners.DiskSyncListener;
+import org.odk.collect.android.external.FormsContract;
 import org.odk.collect.android.utilities.ChangeLockProvider;
 import org.odk.collect.android.utilities.FormsDirDiskFormsSynchronizer;
 

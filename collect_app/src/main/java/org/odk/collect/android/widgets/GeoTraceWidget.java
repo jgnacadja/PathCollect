@@ -26,11 +26,11 @@ import org.javarosa.form.api.FormEntryPrompt;
 import org.odk.collect.android.R;
 import org.odk.collect.android.databinding.GeoWidgetAnswerBinding;
 import org.odk.collect.android.formentry.questions.QuestionDetails;
+import org.odk.collect.maps.MapConfigurator;
 import org.odk.collect.android.widgets.interfaces.GeoDataRequester;
 import org.odk.collect.android.widgets.interfaces.WidgetDataReceiver;
 import org.odk.collect.android.widgets.utilities.GeoWidgetUtils;
 import org.odk.collect.android.widgets.utilities.WaitingForDataRegistry;
-import org.odk.collect.maps.MapConfigurator;
 
 /**
  * GeoTraceWidget allows the user to collect a trace of GPS points as the
@@ -38,10 +38,11 @@ import org.odk.collect.maps.MapConfigurator;
  */
 @SuppressLint("ViewConstructor")
 public class GeoTraceWidget extends QuestionWidget implements WidgetDataReceiver {
+    GeoWidgetAnswerBinding binding;
+
     private final WaitingForDataRegistry waitingForDataRegistry;
     private final MapConfigurator mapConfigurator;
     private final GeoDataRequester geoDataRequester;
-    GeoWidgetAnswerBinding binding;
 
     public GeoTraceWidget(Context context, QuestionDetails questionDetails, WaitingForDataRegistry waitingForDataRegistry,
                           MapConfigurator mapConfigurator, GeoDataRequester geoDataRequester) {

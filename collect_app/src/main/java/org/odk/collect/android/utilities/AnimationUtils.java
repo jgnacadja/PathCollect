@@ -1,5 +1,7 @@
 package org.odk.collect.android.utilities;
 
+import androidx.core.view.animation.PathInterpolatorCompat;
+
 import android.content.Context;
 import android.provider.Settings;
 import android.view.View;
@@ -8,8 +10,6 @@ import android.view.animation.Animation;
 import android.view.animation.Interpolator;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.Transformation;
-
-import androidx.core.view.animation.PathInterpolatorCompat;
 
 import org.odk.collect.android.listeners.Result;
 

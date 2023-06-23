@@ -18,13 +18,8 @@ import java.io.Serializable
 
 object FormUpdatesDownloadedNotificationBuilder {
 
-    fun build(
-        application: Application,
-        result: Map<ServerFormDetails, FormDownloadException?>,
-        projectName: String
-    ): Notification {
-        val allFormsDownloadedSuccessfully =
-            FormsDownloadResultInterpreter.allFormsDownloadedSuccessfully(result)
+    fun build(application: Application, result: Map<ServerFormDetails, FormDownloadException?>, projectName: String): Notification {
+        val allFormsDownloadedSuccessfully = FormsDownloadResultInterpreter.allFormsDownloadedSuccessfully(result)
 
         val intent = if (allFormsDownloadedSuccessfully) {
             Intent(application, BlankFormListActivity::class.java).apply {
@@ -32,10 +27,7 @@ object FormUpdatesDownloadedNotificationBuilder {
             }
         } else {
             Intent(application, ErrorActivity::class.java).apply {
-                putExtra(
-                    ErrorActivity.EXTRA_ERRORS,
-                    FormsDownloadResultInterpreter.getFailures(result, application) as Serializable
-                )
+                putExtra(ErrorActivity.EXTRA_ERRORS, FormsDownloadResultInterpreter.getFailures(result, application) as Serializable)
             }
         }
 

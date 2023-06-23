@@ -7,20 +7,20 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.location.LocationListener;
 
 import org.odk.collect.android.R;
+import org.odk.collect.location.LocationClient;
 import org.odk.collect.android.formentry.audit.AuditConfig;
 import org.odk.collect.android.formentry.audit.AuditEvent;
 import org.odk.collect.android.logic.actions.setgeopoint.CollectSetGeopointAction;
-import org.odk.collect.location.LocationClient;
 
 /**
  * Manages background location for the location audit logging and odk:setgeopoint action features.
  * Provides precondition checking and user feedback for both features.
- * <p>
+ *
  * For location audit logging, manages all the audit logging as well as fetching the location using
  * Google Play Services.
- * <p>
+ *
  * {@link CollectSetGeopointAction} fetches location for odk:setgeopoint actions.
- * <p>
+ *
  * The implementation uses a state machine concept. Public methods represent user or system actions
  * that clients of this class react to. Based on those actions and various preconditions (Google Play
  * Services available, location permissions granted, etc), the manager's state changes.
@@ -262,40 +262,28 @@ public class BackgroundLocationManager implements LocationClient.LocationClientL
     }
 
     private enum BackgroundLocationState {
-        /**
-         * The current form does not track background location (also the case if the current form
-         * is not set yet
-         */
+        /** The current form does not track background location (also the case if the current form
+         * is not set yet */
         NO_BACKGROUND_LOCATION_NEEDED,
 
-        /**
-         * The current form tracks background location and a message hasn't been shown to the user
-         **/
+        /** The current form tracks background location and a message hasn't been shown to the user **/
         PENDING_PRECONDITION_CHECKS,
 
-        /**
-         * An Android location permission check must be performed
-         */
+        /** An Android location permission check must be performed */
         PENDING_PERMISSION_CHECK,
 
-        /**
-         * Terminal state: all checks have been performed and messaging has been displayed to the
-         * user, it's now up to the setgeopoint action implementation to manage location fetching
-         */
+        /** Terminal state: all checks have been performed and messaging has been displayed to the
+         * user, it's now up to the setgeopoint action implementation to manage location fetching */
         SETGEOPOINT_ONLY,
 
-        /**
-         * The current form requests location audits but some preconditions to location capture are
+        /** The current form requests location audits but some preconditions to location capture are
          * currently unmet. Once this state is reached, it's only possible to go between it and
-         * {@link #RECEIVING_LOCATIONS}
-         */
+         * {@link #RECEIVING_LOCATIONS} */
         STOPPED,
 
-        /**
-         * The current form audits location and all preconditions to location capture have been
+        /** The current form audits location and all preconditions to location capture have been
          * met. Once this state is reached, it's only possible to go between it and
-         * {@link #STOPPED}
-         */
+         * {@link #STOPPED} */
         RECEIVING_LOCATIONS
     }
 

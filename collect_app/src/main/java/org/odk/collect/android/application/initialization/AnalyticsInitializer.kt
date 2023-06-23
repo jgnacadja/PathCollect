@@ -15,8 +15,7 @@ class AnalyticsInitializer(
         if (versionInformation.isBeta) {
             analytics.setAnalyticsCollectionEnabled(true)
         } else {
-            val analyticsEnabled =
-                settingsProvider.getUnprotectedSettings().getBoolean(ProjectKeys.KEY_ANALYTICS)
+            val analyticsEnabled = settingsProvider.getUnprotectedSettings().getBoolean(ProjectKeys.KEY_ANALYTICS)
             analytics.setAnalyticsCollectionEnabled(analyticsEnabled)
         }
 

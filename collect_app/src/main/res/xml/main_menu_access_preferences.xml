@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/main_menu_settings">
 
-    <PreferenceCategory
-        android:title="@string/found_in_main"
+    <PreferenceCategory android:title="@string/found_in_main"
         app:iconSpaceReserved="false">
         <CheckBoxPreference
             android:key="edit_saved"

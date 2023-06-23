@@ -36,9 +36,11 @@ import org.odk.collect.android.widgets.utilities.WaitingForDataRegistry;
 
 @SuppressLint("ViewConstructor")
 public class GeoPointWidget extends QuestionWidget implements WidgetDataReceiver {
+    GeoWidgetAnswerBinding binding;
+
     private final WaitingForDataRegistry waitingForDataRegistry;
     private final GeoDataRequester geoDataRequester;
-    GeoWidgetAnswerBinding binding;
+
     private String answerText;
 
     public GeoPointWidget(Context context, QuestionDetails questionDetails, WaitingForDataRegistry waitingForDataRegistry,

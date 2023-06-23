@@ -16,12 +16,12 @@
 
 package org.odk.collect.android.dependencies;
 
-import static org.junit.Assert.assertEquals;
-
 import org.joda.time.DateTime;
 import org.joda.time.chrono.GregorianChronology;
 import org.joda.time.chrono.PersianChronologyKhayyamBorkowski;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Results confirmed with:

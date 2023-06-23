@@ -14,8 +14,6 @@
 
 package org.odk.collect.android.instancemanagement;
 
-import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
-
 import android.net.Uri;
 
 import org.apache.commons.io.FileUtils;
@@ -53,24 +51,27 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import timber.log.Timber;
 
+import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
+
 public class InstanceDiskSynchronizer {
 
     private static int counter;
+
+    private String currentStatus = "";
     private final CurrentProjectProvider currentProjectProvider;
     private final SettingsProvider settingsProvider;
     private final StoragePathProvider storagePathProvider = new StoragePathProvider();
     private final InstancesRepository instancesRepository;
-    private String currentStatus = "";
+
+    public String getStatusMessage() {
+        return currentStatus;
+    }
 
     public InstanceDiskSynchronizer(SettingsProvider settingsProvider) {
         this.settingsProvider = settingsProvider;
         instancesRepository = new InstancesRepositoryProvider(Collect.getInstance()).get();
         AppDependencyComponent component = DaggerUtils.getComponent(Collect.getInstance());
         currentProjectProvider = component.currentProjectProvider();
-    }
-
-    public String getStatusMessage() {
-        return currentStatus;
     }
 
     public String doInBackground() {

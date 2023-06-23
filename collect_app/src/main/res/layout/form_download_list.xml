@@ -13,10 +13,10 @@ License for the specific language governing permissions and limitations under
 the License.
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <include layout="@layout/app_bar_with_progress_bar_layout" />
@@ -35,9 +35,9 @@ the License.
                 android:id="@+id/count_selected_form"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_extra_large"
                 android:textAppearance="?textAppearanceBody1"
-                tools:text="@string/form_selected" />
+                tools:text="@string/form_selected"
+                android:layout_marginStart="@dimen/margin_extra_large"/>
 
         </LinearLayout>
 
@@ -77,24 +77,25 @@ the License.
                 style="@style/Widget.Collect.Button.BottomOption"
                 android:layout_marginLeft="@dimen/margin_extra_small"
                 android:layout_marginRight="@dimen/margin_extra_small"
-                android:drawableTop="@drawable/ic_outline_refresh_accent_24" />
+                android:drawableTop="@drawable/ic_outline_refresh_accent_24"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/add_button"
                 style="@style/Widget.Collect.Button.BottomOption"
                 android:layout_marginLeft="@dimen/margin_extra_small"
                 android:layout_marginRight="@dimen/margin_extra_small"
-                android:drawableTop="@drawable/ic_baseline_save" />
+                android:drawableTop="@drawable/ic_baseline_save"/>
 
             <ImageButton
                 android:id="@+id/toggle_button"
+                android:gravity="center"
                 style="@style/Widget.Collect.Button.CheckableButton"
                 android:layout_marginLeft="@dimen/margin_extra_small"
-                android:layout_marginTop="@dimen/margin_extra_small"
                 android:layout_marginRight="@dimen/margin_extra_small"
+                android:layout_marginTop="@dimen/margin_extra_small"
                 android:layout_marginBottom="@dimen/margin_small"
-                android:gravity="center"
-                app:srcCompat="@drawable/ic_square" />
+                app:srcCompat="@drawable/ic_square"
+                />
 
         </LinearLayout>
     </RelativeLayout>

@@ -14,9 +14,9 @@ import org.odk.collect.shared.settings.Settings;
 
 /**
  * Wrapper on resources needed by {@link BackgroundLocationManager} to make testing easier.
- * <p>
+ *
  * Ideally this would be replaced by more coherent abstractions in the future.
- * <p>
+ *
  * The methods on the {@link FormController} are wrapped here rather
  * than the form controller being passed in when constructing the {@link BackgroundLocationManager}
  * because the form controller isn't set until
@@ -52,7 +52,7 @@ public class BackgroundLocationHelper {
 
     /**
      * @return true if the current form definition requests any kind of background location.
-     * <p>
+     *
      * Precondition: the global form controller has been initialized.
      */
     boolean currentFormCollectsBackgroundLocation() {
@@ -62,7 +62,7 @@ public class BackgroundLocationHelper {
     /**
      * @return true if the current form definition requests a background location audit, false
      * otherwise.
-     * <p>
+     *
      * Precondition: the global form controller has been initialized.
      */
     boolean currentFormAuditsLocation() {
@@ -71,7 +71,7 @@ public class BackgroundLocationHelper {
 
     /**
      * @return the configuration for the audit requested by the current form definition.
-     * <p>
+     *
      * Precondition: the global form controller has been initialized.
      */
     AuditConfig getCurrentFormAuditConfig() {
@@ -80,7 +80,7 @@ public class BackgroundLocationHelper {
 
     /**
      * Logs an audit event of the given type.
-     * <p>
+     *
      * Precondition: the global form controller has been initialized.
      */
     void logAuditEvent(AuditEvent.AuditEventType eventType) {
@@ -89,7 +89,7 @@ public class BackgroundLocationHelper {
 
     /**
      * Provides the location to the global audit event logger.
-     * <p>
+     *
      * Precondition: the global form controller has been initialized.
      */
     void provideLocationToAuditLogger(Location location) {

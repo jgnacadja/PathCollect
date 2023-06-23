@@ -17,8 +17,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,7 +43,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import timber.log.Timber;
 
 
@@ -315,16 +314,6 @@ public class DiscussionActivity extends CollectAbstractActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void hideSoftKeyboard() {
-        try {
-            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        } catch (Exception e) {
-            // TODO: handle exception
-            Timber.tag(TAG).e(e);
-        }
-    }
-
     private class DownloadImageFile extends AsyncTask<String, Void, Drawable> {
 
         @Override
@@ -359,5 +348,15 @@ public class DiscussionActivity extends CollectAbstractActivity {
             }
         }
 
+    }
+
+    private void hideSoftKeyboard() {
+        try {
+            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        } catch (Exception e) {
+            // TODO: handle exception
+            Timber.tag(TAG).e(e);
+        }
     }
 }

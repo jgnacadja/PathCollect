@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.model.Topic;
 import org.odk.collect.android.tasks.DownloadImageTask;
+import org.odk.collect.android.utilities.TimeAgo;
 import org.odk.collect.android.views.ForumViewHolder;
 
 import java.util.List;

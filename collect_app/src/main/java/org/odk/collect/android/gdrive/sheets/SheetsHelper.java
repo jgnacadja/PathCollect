@@ -39,7 +39,7 @@ public class SheetsHelper {
 
     private final SheetsApi sheetsAPI;
 
-    public SheetsHelper(@NonNull SheetsApi sheetsAPI) {
+   public SheetsHelper(@NonNull SheetsApi sheetsAPI) {
         this.sheetsAPI = sheetsAPI;
     }
 
@@ -87,22 +87,22 @@ public class SheetsHelper {
 
     // Force a locale that correctly interprets dates sent by Collect, unlike en_US
     public void updateSpreadsheetLocaleForNewSpreadsheet(String spreadsheetId, String mainSheetTitle) {
-        try {
-            if (!isNewSpreadsheet(spreadsheetId, mainSheetTitle)) {
-                return;
-            }
+       try {
+           if (!isNewSpreadsheet(spreadsheetId, mainSheetTitle)) {
+               return;
+           }
 
-            SpreadsheetProperties sheetProperties = new SpreadsheetProperties()
-                    .setLocale("en_GB");
+           SpreadsheetProperties sheetProperties = new SpreadsheetProperties()
+                   .setLocale("en_GB");
 
-            List<Request> requests = new ArrayList<>();
-            requests.add(
-                    new Request().setUpdateSpreadsheetProperties(
-                            new UpdateSpreadsheetPropertiesRequest()
-                                    .setProperties(sheetProperties)
-                                    .setFields("locale")));
+           List<Request> requests = new ArrayList<>();
+           requests.add(
+                   new Request().setUpdateSpreadsheetProperties(
+                           new UpdateSpreadsheetPropertiesRequest()
+                                   .setProperties(sheetProperties)
+                                   .setFields("locale")));
 
-            sheetsAPI.batchUpdate(spreadsheetId, requests);
+           sheetsAPI.batchUpdate(spreadsheetId, requests);
         } catch (IOException e) {
             Timber.w(e);
         }

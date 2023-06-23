@@ -75,10 +75,7 @@ class FirstLaunchActivity : CollectAbstractActivity() {
             setContentView(this.root)
             addDsscProject()
             if (projectsRepository.getAll().isNotEmpty()) {
-                ActivityUtils.startActivityAndCloseAllOthers(
-                    this@FirstLaunchActivity,
-                    LandingPageActivity::class.java
-                )
+                ActivityUtils.startActivityAndCloseAllOthers(this@FirstLaunchActivity, LandingPageActivity::class.java)
                 return
             } else {
                 appName.text = String.format(
@@ -107,10 +104,7 @@ class FirstLaunchActivity : CollectAbstractActivity() {
                     projectsRepository.save(Project.DEMO_PROJECT)
                     currentProjectProvider.setCurrentProject(Project.DEMO_PROJECT_ID)
 
-                    ActivityUtils.startActivityAndCloseAllOthers(
-                        this@FirstLaunchActivity,
-                        LandingPageActivity::class.java
-                    )
+                    ActivityUtils.startActivityAndCloseAllOthers(this@FirstLaunchActivity, LandingPageActivity::class.java)
                 }
             }
         }

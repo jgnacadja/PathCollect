@@ -14,16 +14,10 @@
 
 package org.odk.collect.android.tasks;
 
-import static org.odk.collect.android.utilities.FormUtils.setupReferenceManagerForForm;
-import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.os.AsyncTask;
-
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
 
 import org.javarosa.core.model.FormDef;
 import org.javarosa.core.model.FormIndex;
@@ -64,6 +58,12 @@ import java.util.Map;
 
 import timber.log.Timber;
 
+import static org.odk.collect.android.utilities.FormUtils.setupReferenceManagerForForm;
+import static org.odk.collect.strings.localization.LocalizedApplicationKt.getLocalizedString;
+
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
+
 /**
  * Background task for loading a form.
  *
@@ -72,13 +72,13 @@ import timber.log.Timber;
  */
 public class FormLoaderTask extends AsyncTask<String, String, FormLoaderTask.FECWrapper> {
     private static final String ITEMSETS_CSV = "itemsets.csv";
-    private final String xpath;
-    private final String waitingXPath;
-    FECWrapper data;
+
     private FormLoaderListener stateListener;
     private String errorMsg;
     private String warningMsg;
     private String instancePath;
+    private final String xpath;
+    private final String waitingXPath;
     private boolean pendingActivityResult;
     private int requestCode;
     private int resultCode;
@@ -86,54 +86,34 @@ public class FormLoaderTask extends AsyncTask<String, String, FormLoaderTask.FEC
     private ExternalDataManager externalDataManager;
     private FormDef formDef;
 
+    public static class FECWrapper {
+        FormController controller;
+        boolean usedSavepoint;
+
+        protected FECWrapper(FormController controller, boolean usedSavepoint) {
+            this.controller = controller;
+            this.usedSavepoint = usedSavepoint;
+        }
+
+        public FormController getController() {
+            return controller;
+        }
+
+        protected boolean hasUsedSavepoint() {
+            return usedSavepoint;
+        }
+
+        protected void free() {
+            controller = null;
+        }
+    }
+
+    FECWrapper data;
+
     public FormLoaderTask(String instancePath, String xpath, String waitingXPath) {
         this.instancePath = instancePath;
         this.xpath = xpath;
         this.waitingXPath = waitingXPath;
-    }
-
-    // Copied from XFormParser.loadXmlInstance in order to set ExternalAnswerResolver for search()
-    public static void importData(File instanceFile, FormEntryController fec) throws IOException, RuntimeException {
-        // convert files into a byte array
-        byte[] fileBytes = org.apache.commons.io.FileUtils.readFileToByteArray(instanceFile);
-
-        // get the root of the saved and template instances
-        TreeElement savedRoot = XFormParser.restoreDataModel(fileBytes, null).getRoot();
-        TreeElement templateRoot = fec.getModel().getForm().getInstance().getRoot().deepCopy(true);
-
-        // weak check for matching forms
-        if (!savedRoot.getName().equals(templateRoot.getName()) || savedRoot.getMult() != 0) {
-            Timber.e(new Error("Saved form instance does not match template form definition"));
-            return;
-        }
-
-        // populate the data model
-        TreeReference tr = TreeReference.rootRef();
-        tr.add(templateRoot.getName(), TreeReference.INDEX_UNBOUND);
-
-        // Here we set the Collect's implementation of the IAnswerResolver.
-        // We set it back to the default after select choices have been populated.
-        XFormParser.setAnswerResolver(new ExternalAnswerResolver());
-        templateRoot.populate(savedRoot, fec.getModel().getForm());
-        XFormParser.setAnswerResolver(new DefaultAnswerResolver());
-
-        // FormInstanceParser.parseInstance is responsible for initial creation of instances. It explicitly sets the
-        // main instance name to null so we force this again on deserialization because some code paths rely on the main
-        // instance not having a name. Must be before the call on setRoot because setRoot also sets the root's name.
-        fec.getModel().getForm().getInstance().setName(null);
-
-        // populated model to current form
-        fec.getModel().getForm().getInstance().setRoot(templateRoot);
-
-        // fix any language issues
-        // :
-        // http://bitbucket.org/javarosa/main/issue/5/itext-n-appearing-in-restored-instances
-        if (fec.getModel().getLanguages() != null) {
-            fec.getModel().getForm()
-                    .localeChanged(fec.getModel().getLanguage(),
-                            fec.getModel().getForm().getLocalizer());
-        }
-        Timber.i("Done importing data");
     }
 
     /**
@@ -350,7 +330,7 @@ public class FormLoaderTask extends AsyncTask<String, String, FormLoaderTask.FEC
                         // The saved instance is corrupted.
                         Timber.e(e, "Corrupt saved instance");
                         throw new RuntimeException("An unknown error has occurred. Please ask your project leadership to email support@kobotoolbox.org with information about this form."
-                                + "\n\n" + e.getMessage());
+                            + "\n\n" + e.getMessage());
                     }
                 }
             } else {
@@ -425,6 +405,50 @@ public class FormLoaderTask extends AsyncTask<String, String, FormLoaderTask.FEC
                 }
             }
         }
+    }
+
+    // Copied from XFormParser.loadXmlInstance in order to set ExternalAnswerResolver for search()
+    public static void importData(File instanceFile, FormEntryController fec) throws IOException, RuntimeException {
+        // convert files into a byte array
+        byte[] fileBytes = org.apache.commons.io.FileUtils.readFileToByteArray(instanceFile);
+
+        // get the root of the saved and template instances
+        TreeElement savedRoot = XFormParser.restoreDataModel(fileBytes, null).getRoot();
+        TreeElement templateRoot = fec.getModel().getForm().getInstance().getRoot().deepCopy(true);
+
+        // weak check for matching forms
+        if (!savedRoot.getName().equals(templateRoot.getName()) || savedRoot.getMult() != 0) {
+            Timber.e(new Error("Saved form instance does not match template form definition"));
+            return;
+        }
+
+        // populate the data model
+        TreeReference tr = TreeReference.rootRef();
+        tr.add(templateRoot.getName(), TreeReference.INDEX_UNBOUND);
+
+        // Here we set the Collect's implementation of the IAnswerResolver.
+        // We set it back to the default after select choices have been populated.
+        XFormParser.setAnswerResolver(new ExternalAnswerResolver());
+        templateRoot.populate(savedRoot, fec.getModel().getForm());
+        XFormParser.setAnswerResolver(new DefaultAnswerResolver());
+
+        // FormInstanceParser.parseInstance is responsible for initial creation of instances. It explicitly sets the
+        // main instance name to null so we force this again on deserialization because some code paths rely on the main
+        // instance not having a name. Must be before the call on setRoot because setRoot also sets the root's name.
+        fec.getModel().getForm().getInstance().setName(null);
+
+        // populated model to current form
+        fec.getModel().getForm().getInstance().setRoot(templateRoot);
+
+        // fix any language issues
+        // :
+        // http://bitbucket.org/javarosa/main/issue/5/itext-n-appearing-in-restored-instances
+        if (fec.getModel().getLanguages() != null) {
+            fec.getModel().getForm()
+                    .localeChanged(fec.getModel().getLanguage(),
+                            fec.getModel().getForm().getLocalizer());
+        }
+        Timber.i("Done importing data");
     }
 
     @Override
@@ -546,27 +570,5 @@ public class FormLoaderTask extends AsyncTask<String, String, FormLoaderTask.FEC
 
     public FormDef getFormDef() {
         return formDef;
-    }
-
-    public static class FECWrapper {
-        FormController controller;
-        boolean usedSavepoint;
-
-        protected FECWrapper(FormController controller, boolean usedSavepoint) {
-            this.controller = controller;
-            this.usedSavepoint = usedSavepoint;
-        }
-
-        public FormController getController() {
-            return controller;
-        }
-
-        protected boolean hasUsedSavepoint() {
-            return usedSavepoint;
-        }
-
-        protected void free() {
-            controller = null;
-        }
     }
 }

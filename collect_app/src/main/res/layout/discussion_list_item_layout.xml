@@ -131,12 +131,12 @@
             android:id="@+id/ll_last_comment_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_gravity="center_vertical"
-            android:layout_marginEnd="@dimen/margin_small"
-            android:orientation="horizontal"
             android:paddingStart="@dimen/margin_small"
-            android:paddingEnd="@dimen/margin_small">
+            android:paddingEnd="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_alignParentEnd="true"
+            android:orientation="horizontal">
 
             <!-- Material Design reference: https://material.io/design/components/lists.html#specs -->
             <ImageView

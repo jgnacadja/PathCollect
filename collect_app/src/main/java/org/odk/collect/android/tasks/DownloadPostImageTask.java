@@ -2,9 +2,7 @@ package org.odk.collect.android.tasks;
 
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-
 import org.odk.collect.android.adapters.PostListAdapter;
-
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
