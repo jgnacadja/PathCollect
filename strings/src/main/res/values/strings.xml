@@ -1002,8 +1002,6 @@
     <string name="leave_a_review_msg">Your (hopefully positive) review increases the visibility of the App in the Play Store.</string>
     <string name="odk_website">Visit the DSSC COLLECT website</string>
     <string name="odk_website_summary">DSSC COLLECT is part of DSSC platform and based on ODK Collect.</string>
-    <string name="odk_forum">Visit the DSSC COLLECT forum</string>
-    <string name="odk_forum_summary">DSSC COLLECT is part of DSSC platform and based on ODK Collect.</string>
     <string name="download_a_survey_form">How can I download a survey form</string>
     <string name="download_a_survey_form_msg">To download a survey form, go to the "Survey" section and click on the "Download a blank form" button. Select the desired form(s) from the available list and click the "Download" button to retrieve it.</string>
     <string name="how_do_i_respond_to_a_survey_form">How can I download a survey form</string>
@@ -1155,6 +1153,7 @@
     ##############################################
     -->
     <string name="open_settings">Open Settings</string>
+    <string name="screen_posts_list">Articles</string>
 
     <!--
     ##############################################
@@ -1177,12 +1176,10 @@
     <string name="comment_hint">Type a message</string>
     <string name="question_content_hint">Question content</string>
     <string name="question_label_hint">Your question</string>
-
-    <!--
-    ##############################################
-    # FORMATION
-    ##############################################
-    -->
+     ##############################################
+     # FORMATION
+     ##############################################
+     -->
     <string name="formation_title">Make an appointment with a center</string>
     <string name="service_title">By services</string>
     <string name="product_title">Our products</string>

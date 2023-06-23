@@ -65,6 +65,7 @@ public class DiscussionListAdapter extends RecyclerView.Adapter<DiscussionListAd
         notifyDataSetChanged();
     }
 
+
     public interface DiscussionItemClickListener {
         void onClick(int position);
     }

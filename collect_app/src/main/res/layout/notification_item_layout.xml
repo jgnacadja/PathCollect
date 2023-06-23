@@ -38,7 +38,7 @@ You may obtain a copy of the License at
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_extra_small"
             android:textColor="@color/color15"
-            tools:text="@string/none" />
+            tools:text="@string/notification" />
 
     </LinearLayout>
 </LinearLayout>

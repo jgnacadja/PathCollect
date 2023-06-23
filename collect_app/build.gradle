@@ -81,7 +81,6 @@ android {
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         archivesBaseName = 'collect'
-        signingConfig signingConfigs.debug
     }
 
     signingConfigs {

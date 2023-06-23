@@ -1,5 +1,7 @@
 package org.odk.collect.android.adapters;
+
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,11 @@ import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.model.Hospital;
 
 import java.util.List;
+
+import com.google.common.eventbus.Subscribe;
+import com.google.gson.Gson;
+
+import timber.log.Timber;
 
 public class HospitalListAdapter extends RecyclerView.Adapter<HospitalListAdapter.ViewHolder> {
 

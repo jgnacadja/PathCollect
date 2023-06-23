@@ -1,8 +1,8 @@
 package org.odk.collect.android.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.annotation.SuppressLint;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +12,16 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.common.eventbus.Subscribe;
+import com.google.gson.Gson;
+
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.model.Post;
 import org.odk.collect.android.tasks.DownloadPostImageTask;
-import org.odk.collect.android.utilities.TextUtils;
 
 import java.util.List;
+
+import timber.log.Timber;
 
 public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHolder> {
 
@@ -52,7 +56,8 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
             holder.imageView.setTag(iconId);
         }
         holder.title.setText(post.getTitle());
-        holder.preview.setText(TextUtils.formatHtmlText(post.getSummary()));
+        String plainString = Html.fromHtml(post.getSummary()).toString();
+        holder.preview.setText(plainString.substring(0, Math.min(120, plainString.length())) + "...");
     }
 
     @Override
