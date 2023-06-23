@@ -9,9 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import androidx.appcompat.widget.Toolbar;
-
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
 
@@ -20,8 +17,6 @@ import org.odk.collect.android.adapters.model.Discussion;
 import org.odk.collect.android.dao.DiscussionDao;
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
-
-import java.util.ArrayList;
 
 
 public class AddDiscussionActivity extends CollectAbstractActivity {
@@ -39,7 +34,7 @@ public class AddDiscussionActivity extends CollectAbstractActivity {
         setContentView(R.layout.add_discussion_layout);
         DaggerUtils.getComponent(this).inject(this);
 
-        initToolbar();
+        initToolbar(getString(R.string.screen_add_question), false, null);
         topicId = getIntent().getStringExtra("topicId");
         // Get a reference to the "discussions" node in Firebase
         dao = new DiscussionDao();
@@ -55,12 +50,6 @@ public class AddDiscussionActivity extends CollectAbstractActivity {
                 createDiscussion();
             }
         });
-    }
-
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.collect_app_name));
-        setSupportActionBar(toolbar);
     }
 
     @SuppressLint("SetTextI18n")

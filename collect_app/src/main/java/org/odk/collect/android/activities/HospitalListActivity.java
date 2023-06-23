@@ -2,6 +2,8 @@ package org.odk.collect.android.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -40,7 +42,7 @@ public class HospitalListActivity extends CollectAbstractActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hospital_list_layout);
 
-        initToolbar();
+        initToolbar(getString(R.string.screen_health_center_list), false, null);
         hospitals = new ArrayList<>();
 
         // initialize RecyclerView and Adapter
@@ -83,20 +85,42 @@ public class HospitalListActivity extends CollectAbstractActivity implements
         });
     }
 
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.collect_app_name));
-        setSupportActionBar(toolbar);
-    }
-
     @Override
     public void onClick(int position) {
         if (MultiClickGuard.allowClick(getClass().getName())) {
             Hospital hospital = hospitals.get(position);
             Intent intent = new Intent(this, HospitalActivity.class);
+            intent.putExtra("screenTitle", hospital.getLevel() + " " +hospital.getName());
             intent.putExtra("hospital", hospital);
             startActivity(intent);
         }
+    }
+
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.about_menu_icon).setVisible(true).setEnabled(true);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.landing_page_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (!MultiClickGuard.allowClick(getClass().getName())) {
+            return true;
+        }
+
+        if (item.getItemId() == R.id.about_menu_icon) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

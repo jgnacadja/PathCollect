@@ -17,7 +17,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -44,7 +43,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import timber.log.Timber;
 
 
@@ -70,14 +68,14 @@ public class DiscussionActivity extends CollectAbstractActivity {
     private boolean isCommentsRead;
     private String installID;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.discussion_layout);
         DaggerUtils.getComponent(this).inject(this);
 
-        initToolbar();
+        String discussionName = getIntent().getStringExtra("discussionName");
+        initToolbar(getString(R.string.screen_question, discussionName), false, null);
         initComponent();
         ProgressBar progressBar = findViewById(R.id.discussionProgressBar);
         progressBar.setVisibility(View.VISIBLE);
@@ -122,7 +120,7 @@ public class DiscussionActivity extends CollectAbstractActivity {
                 boolean alreadyViewed;
                 try {
                     alreadyViewed = discussion.getViewedUsers().contains(installID);
-                } catch (NullPointerException e){
+                } catch (NullPointerException e) {
                     alreadyViewed = false;
                 }
                 if (!alreadyViewed) {
@@ -137,15 +135,15 @@ public class DiscussionActivity extends CollectAbstractActivity {
                 boolean alreadyLiked;
                 try {
                     alreadyLiked = discussion.getLikedUsers().contains(installID);
-                } catch (NullPointerException e){
+                } catch (NullPointerException e) {
                     alreadyLiked = false;
                 }
 
-                if(alreadyLiked){
+                if (alreadyLiked) {
                     int iconId = R.drawable.thumb_up_filled;
                     discussionLikeBtn.setImageResource(iconId);
                     discussionLikeBtn.setTag(iconId);
-                }else {
+                } else {
                     int iconId = R.drawable.thumbs_up;
                     discussionLikeBtn.setImageResource(iconId);
                     discussionLikeBtn.setTag(iconId);
@@ -236,11 +234,7 @@ public class DiscussionActivity extends CollectAbstractActivity {
             return View.VISIBLE;
         }
     }
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.collect_app_name));
-        setSupportActionBar(toolbar);
-    }
+
     private void initComponent() {
         errorMessage = findViewById(R.id.comment_creation_error);
         errorMessage.setVisibility(View.GONE);
@@ -356,9 +350,9 @@ public class DiscussionActivity extends CollectAbstractActivity {
 
     }
 
-    private void hideSoftKeyboard(){
+    private void hideSoftKeyboard() {
         try {
-            InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         } catch (Exception e) {
             // TODO: handle exception

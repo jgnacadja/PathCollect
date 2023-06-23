@@ -48,7 +48,8 @@ public class DiscussionListActivity extends CollectAbstractActivity implements
         setContentView(R.layout.discussion_list_layout);
         DaggerUtils.getComponent(this).inject(this);
 
-        initToolbar(getString(R.string.collect_app_name), false, null);
+        String topicName = getIntent().getStringExtra("topicName");
+        initToolbar(getString(R.string.screen_topic, topicName), false, null);
         ProgressBar progressBar = findViewById(R.id.discussionListProgressBar);
         progressBar.setVisibility(View.VISIBLE);
         TextView tv = findViewById(R.id.discussionListFetchError);
@@ -98,11 +99,6 @@ public class DiscussionListActivity extends CollectAbstractActivity implements
             }
         });
     }
-    private void initToolbar(String string, boolean b, Object o) {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.collect_app_name));
-        setSupportActionBar(toolbar);
-    }
 
     public void redirectToCreateDiscussion() {
         Intent intent = new Intent(this, AddDiscussionActivity.class);
@@ -116,6 +112,7 @@ public class DiscussionListActivity extends CollectAbstractActivity implements
             Discussion discussion = discussions.get(position);
             Intent intent = new Intent(this, DiscussionActivity.class);
             intent.putExtra("discussionId", discussion.getId());
+            intent.putExtra("discussionName", discussion.getTitle());
             startActivity(intent);
         }
     }

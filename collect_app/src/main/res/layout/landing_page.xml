@@ -55,13 +55,13 @@
                 android:layout_height="@dimen/main_menu_bloc"
                 android:orientation="horizontal">
 
-                    <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
-                        android:id="@+id/post"
-                        style="@style/Widget.Collect.Button.BlocButton"
-                        android:text="@string/btn_article"
-                        app:icon="@drawable/icon_article"
-                        android:background="@drawable/bloc_btn_bg"
-                        tools:text="@string/btn_article" />
+                <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
+                    android:id="@+id/post"
+                    style="@style/Widget.Collect.Button.BlocButton"
+                    android:text="@string/btn_post"
+                    app:icon="@drawable/icon_post"
+                    android:background="@drawable/bloc_btn_bg"
+                    tools:text="@string/btn_post" />
 
                     <org.odk.collect.androidshared.ui.multiclicksafe.MultiClickSafeButton
                         android:id="@+id/centre_Hospital"

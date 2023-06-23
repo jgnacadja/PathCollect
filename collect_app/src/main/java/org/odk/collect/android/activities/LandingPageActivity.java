@@ -17,8 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.appcompat.widget.Toolbar;
-
 import org.odk.collect.android.R;
 import org.odk.collect.android.injection.DaggerUtils;
 import org.odk.collect.android.utilities.ApplicationConstants;
@@ -28,7 +26,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
     //button
     private Button sondageButton;
     private Button messageButton;
-    private Button articleButton;
+    private Button postButton;
     private Button centreHospitalButton;
     private Button cycleButton;
     private Button notificationButton;
@@ -39,7 +37,7 @@ public class LandingPageActivity extends CollectAbstractActivity{
         DaggerUtils.getComponent(this).inject(this);
         setContentView(R.layout.landing_page);
 
-        initToolbar();
+        initToolbar(getString(R.string.collect_app_name), false, null);
 
         // songade button
         sondageButton = findViewById(R.id.sondage);
@@ -64,19 +62,17 @@ public class LandingPageActivity extends CollectAbstractActivity{
             }
         });
 
-        //article Button
-        articleButton = findViewById(R.id.post);
-        articleButton.setOnClickListener(new View.OnClickListener() {
+        //post Button
+        postButton = findViewById(R.id.post);
+        postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent i = new Intent(getApplicationContext(), PostListActivity.class);
                 startActivity(i);
             }
         });
 
-
-//        // centre Hospital Button
+        // centre Hospital Button
         centreHospitalButton = findViewById(R.id.centre_Hospital);
         centreHospitalButton.setText(getString(R.string.btn_centreHospital));
         centreHospitalButton.setOnClickListener(new View.OnClickListener() {
@@ -141,10 +137,6 @@ public class LandingPageActivity extends CollectAbstractActivity{
         return super.onOptionsItemSelected(item);
     }
 
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-    }
     private void confirmOpenForum() {
         boolean isDarkMode = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
         AlertDialog.Builder builder = new AlertDialog.Builder(LandingPageActivity.this)
@@ -170,11 +162,10 @@ public class LandingPageActivity extends CollectAbstractActivity{
     }
 
     private void openCycleBeads() {
-        Intent i;
         String packageName = getString(R.string.periodical_app_package_name);
         PackageManager manager = getApplicationContext().getPackageManager();
         try {
-            i = manager.getLaunchIntentForPackage(packageName);
+            Intent i = manager.getLaunchIntentForPackage(packageName);
             if (i == null){
                 throw new PackageManager.NameNotFoundException();
             }

@@ -109,24 +109,5 @@
 
             </LinearLayout>
         </LinearLayout>
-
-                <TextView
-                    android:id="@+id/app_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/margin_standard"
-                    android:textAppearance="?textAppearanceBody1"
-                    android:textColor="@color/color_on_surface_medium_emphasis"
-                    tools:text="DSSC Collect v2023.1" />
-
-                <TextView
-                    android:id="@+id/version_sha"
-                    android:textAppearance="?textAppearanceCaption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    tools:text="commit sha" />
-
     </LinearLayout>
 </ScrollView>

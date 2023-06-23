@@ -113,7 +113,7 @@ class FirstLaunchActivity : CollectAbstractActivity() {
     private fun subscribeToWP() {
         // Get token
         // [START log_reg_token]
-        if (!settingsProvider.getMetaSettings().getBoolean(MetaKeys.SUBSCRIBE_TO_WP)) {
+//        if (!settingsProvider.getMetaSettings().getBoolean(MetaKeys.SUBSCRIBE_TO_WP)) {
             FirebaseMessaging.getInstance().token
                 .addOnCompleteListener { task ->
                     if (!task.isSuccessful) {
@@ -137,10 +137,14 @@ class FirstLaunchActivity : CollectAbstractActivity() {
                         subscription
                     )
 
+                    Timber.tag("SendRequestToWP").i(task.exception,
+                        "Notification registration URL is :$url"
+                    )
                     SendRequestToWP().execute(url)
                     settingsProvider.getMetaSettings().save(MetaKeys.SUBSCRIBE_TO_WP, true)
+                    Timber.tag("SendRequestToWP").i(task.exception, "Registration successful")
                 }
-        }
+//        }
     }
 
 }

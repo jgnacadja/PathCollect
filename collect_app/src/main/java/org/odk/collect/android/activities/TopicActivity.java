@@ -44,7 +44,7 @@ public class TopicActivity extends CollectAbstractActivity implements
         setContentView(R.layout.topic_layout);
         DaggerUtils.getComponent(this).inject(this);
 
-        initToolbar();
+        initToolbar(getString(R.string.screen_topic_list), false, null);
         ProgressBar progressBar = findViewById(R.id.topicProgressBar);
         progressBar.setVisibility(View.VISIBLE);
         TextView tv = findViewById(R.id.topicFetchError);
@@ -91,6 +91,7 @@ public class TopicActivity extends CollectAbstractActivity implements
             Topic topic = topics.get(position);
             Intent intent = new Intent(this, DiscussionListActivity.class);
             intent.putExtra("topicId", topic.getId());
+            intent.putExtra("topicName", topic.getTitle());
             startActivity(intent);
         }
     }
@@ -116,11 +117,7 @@ public class TopicActivity extends CollectAbstractActivity implements
         getMenuInflater().inflate(R.menu.landing_page_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.collect_app_name));
-        setSupportActionBar(toolbar);
-    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (!MultiClickGuard.allowClick(getClass().getName())) {

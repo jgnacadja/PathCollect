@@ -1,13 +1,10 @@
 package org.odk.collect.android.activities;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +30,8 @@ public class PostListActivity extends CollectAbstractActivity implements
     private List<Post> posts;
     private RecyclerView recyclerView;
     private PostListAdapter adapter;
+
+    private static String TAG = "PostListActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,12 +77,6 @@ public class PostListActivity extends CollectAbstractActivity implements
                 Timber.tag(TAG).e(t);
             }
         });
-    }
-
-    private void initToolbar(String string, boolean b, Object o) {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(getString(R.string.collect_app_name));
-        setSupportActionBar(toolbar);
     }
 
     @Override

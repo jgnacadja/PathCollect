@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.model.Notification;
-
+import org.odk.collect.android.utilities.TextUtils;
 import java.util.List;
 
 public class NotificationListAdapter extends RecyclerView.Adapter<NotificationListAdapter.ViewHolder> {
@@ -35,9 +35,10 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Notification notification = items.get(position);
-        holder.imageView.setImageResource(R.drawable.ic_stat_ic_notification);
         holder.notificationTitle.setText(notification.getTitle());
-        holder.notificationSubtitle.setText(notification.getBody());
+        holder.notificationSubtitle.setText(TextUtils.cropText(notification.getBody()));
+        holder.image.setImageResource(R.drawable.ic_fcm_notification);
+        holder.image.setTag(R.drawable.ic_fcm_notification);
     }
 
     @Override
@@ -45,22 +46,16 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
         return items.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final ImageView imageView;
+    class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView notificationTitle;
         private final TextView notificationSubtitle;
+        private final ImageView image;
 
         ViewHolder(View view) {
             super(view);
-            imageView = view.findViewById(R.id.imageNotification);
+            image = view.findViewById(R.id.imageNotification);
             notificationTitle = view.findViewById(R.id.notificationTitle);
             notificationSubtitle = view.findViewById(R.id.notificationSubtitle);
-            view.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-
         }
 
     }

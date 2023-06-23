@@ -1,26 +1,21 @@
 package org.odk.collect.android.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import org.odk.collect.android.R;
 import org.odk.collect.android.adapters.ProductListAdapter;
 import org.odk.collect.android.adapters.model.Hospital;
+import org.odk.collect.android.injection.DaggerUtils;
+import org.odk.collect.androidshared.ui.multiclicksafe.MultiClickGuard;
 
 import java.io.Serializable;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HospitalActivity extends CollectAbstractActivity {
 
@@ -36,10 +31,13 @@ public class HospitalActivity extends CollectAbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hospital_layout);
+        DaggerUtils.getComponent(this).inject(this);
+
+        String screenTitle = getIntent().getStringExtra("screenTitle");
+        initToolbar(getString(R.string.screen_health_center, screenTitle), false, null);
 
         Serializable s = getIntent().getSerializableExtra("hospital");
         Hospital hospital = (Hospital) s;
-        initToolbar(hospital.getName());
 
         name = findViewById(R.id.hospitalDetailName);
         name.setText(hospital.getName());
@@ -59,10 +57,30 @@ public class HospitalActivity extends CollectAbstractActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
-    private void initToolbar(String name) {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setTitle(name);
-        setSupportActionBar(toolbar);
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.about_menu_icon).setVisible(true).setEnabled(true);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.landing_page_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (!MultiClickGuard.allowClick(getClass().getName())) {
+            return true;
+        }
+
+        if (item.getItemId() == R.id.about_menu_icon) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
